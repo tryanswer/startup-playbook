@@ -10,6 +10,7 @@
 - `playbooks/04-operations-and-analytics`: 指标、实验复盘、用户反馈和运营节奏。
 - `skills/`: 可复制到 Codex / agent 环境使用的技能。
 - `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
+- `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。
 - `templates/`: 可直接复制使用的实验、PRD、SEO/ASO 和落地页模板。
 - `case-studies/beauty-log`: Beauty Log 的实战记录。
 
@@ -28,4 +29,4 @@
 3. 用 `templates/landing-page-checklist.md` 快速建页验证转化。
 4. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
 5. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
-
+6. 需要参考创业案例时，用 `skills/case-study-skill-mining` 和 `skills/founder-case-patterns` 把案例转成可执行经验。

@@ -18,14 +18,15 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 ## Workflow
 
 1. Convert the validated pain into one user-visible promise.
-2. Define the first successful user journey from entry to value.
-3. Split scope into `must have`, `later`, and `do not build`.
-4. Write a PRD with acceptance criteria and measurable success.
-5. Identify risk: technical, product, distribution, compliance, cost.
-6. Add instrumentation before launch.
-7. Launch to the smallest reachable audience.
-8. Review activation, conversion, retention, revenue, and user quotes.
-9. Decide whether to iterate, expand, reposition, or stop.
+2. Check `founder-case-patterns` for similar MVP, pricing, validation, or distribution moves.
+3. Define the first successful user journey from entry to value.
+4. Split scope into `must have`, `later`, and `do not build`.
+5. Write a PRD with acceptance criteria and measurable success.
+6. Identify risk: technical, product, distribution, compliance, cost.
+7. Add instrumentation before launch.
+8. Launch to the smallest reachable audience.
+9. Review activation, conversion, retention, revenue, and user quotes.
+10. Decide whether to iterate, expand, reposition, or stop.
 
 ## Required Output
 
@@ -42,4 +43,3 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 - Do not build advanced settings for unproven users.
 - Do not treat a beautiful demo as product-market proof.
 - Do not ship without a way to measure the core behavior.
-

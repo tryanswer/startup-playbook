@@ -1,0 +1,17 @@
+{
+  "name": "case-study-skill-miner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mine founder case studies into reusable startup playbook skills.",
+  "scripts": {
+    "test": "node --test",
+    "discover:indie-hackers": "node scripts/discover-indie-hackers.mjs",
+    "fetch": "node scripts/fetch-cases.mjs",
+    "synthesize": "node scripts/synthesize-skill.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

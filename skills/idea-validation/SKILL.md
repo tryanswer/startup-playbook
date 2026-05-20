@@ -22,22 +22,25 @@ If any answer is missing, treat the idea as unvalidated.
 1. **Narrow the niche**
    Define a three-level segment: user group, situation, and one core pain. The idea must be understandable in one second.
 
-2. **Mine pain ore**
+2. **Check founder patterns**
+   If available, load `founder-case-patterns` and look for similar user, pain, channel, pricing, or validation patterns. Use case studies as hypotheses to test, not proof.
+
+3. **Mine pain ore**
    Collect raw complaints from Reddit, app reviews, Discord, forums, social comments, support tickets, or interviews. Store original quotes, source, link, and pain theme.
 
-3. **Quantify pain**
+4. **Quantify pain**
    Cluster the quotes with AI and calculate theme frequency. Prioritize pains that appear in more than 40% of the corpus. Preserve vivid language from users instead of rewriting everything into neutral product wording.
 
-4. **Validate demand**
+5. **Validate demand**
    Use Keywords Everywhere for long-tail density, volume, CPC, and competition when available. Use Google Trends for trend direction, geography, related queries, and seasonality. Reject ideas with declining search interest, no concrete long-tail terms, or only broad head-term interest.
 
-5. **Check willingness to pay**
+6. **Check willingness to pay**
    Look for buying behavior: paid alternatives, high CPC, marketplace demand, explicit user budget, service purchases, affiliate products, paid communities, preorder clicks, or payment-page clicks.
 
-6. **Build a fast landing page**
+7. **Build a fast landing page**
    Use raw user language for headline, pain points, FAQ, and CTA. Include a waitlist, preorder, buy-now, consultation booking, or payment-intent action.
 
-7. **Decide**
+8. **Decide**
    Output one of: kill, pivot, continue. Include the evidence threshold and next experiment.
 
 ## Required Output
@@ -63,4 +66,3 @@ If any answer is missing, treat the idea as unvalidated.
 - Trusting one viral trend without long-tail demand.
 - Treating free interest as paid demand.
 - Building a landing page without a conversion action.
-
