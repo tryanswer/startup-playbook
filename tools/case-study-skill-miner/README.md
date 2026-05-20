@@ -5,12 +5,12 @@ Turns founder case studies into reusable startup playbook skills. The goal is no
 ## Pipeline
 
 1. Discover case URLs and metadata.
-2. Fetch a small, respectful sample for personal research.
+2. Fetch either a small sample or a full public index with resumable, low-concurrency requests.
 3. Extract text and startup signals.
 4. Synthesize repeated patterns into `skills/founder-case-patterns/SKILL.md`.
 5. Save a readable pattern report under `case-studies/<source>/`.
 
-For JavaScript-rendered guide hubs such as Indie Hackers Starting Up, render the visible guide index first, then synthesize the index into a stage-based skill.
+For JavaScript-rendered guide hubs such as Indie Hackers Starting Up, render the visible guide index first, fetch the linked public resources, then synthesize the guide into a stage-based skill.
 
 ## Guardrails
 
@@ -45,6 +45,27 @@ npm run fetch -- \
   --out output/cases
 ```
 
+Run the full public Indie Hackers stories index:
+
+```bash
+npm run discover:indie-hackers -- \
+  --allow-unknown-robots \
+  --limit 10000 \
+  --out output/indie-hackers-stories-full
+
+npm run fetch -- \
+  --input output/indie-hackers-stories-full-urls.txt \
+  --out output/cases-full \
+  --delay-ms 1000 \
+  --timeout 30000 \
+  --force
+
+npm run synthesize -- \
+  --input output/cases-full/cases.jsonl \
+  --skill-out ../../skills/founder-case-patterns/SKILL.md \
+  --report-out ../../case-studies/indie-hackers/patterns.md
+```
+
 Synthesize a skill and report:
 
 ```bash
@@ -66,6 +87,29 @@ npm run synthesize:starting-up -- \
   --skill-out ../../skills/indie-hackers-starting-up/SKILL.md \
   --report-out ../../case-studies/indie-hackers/starting-up-guide.md
 ```
+
+Fetch and learn the linked Starting Up resources:
+
+```bash
+npm run fetch:starting-up-resources -- \
+  --input output/starting-up-guide.json \
+  --out output/guide-resources-full \
+  --delay-ms 1000 \
+  --timeout 30000 \
+  --force
+
+npm run synthesize:starting-up-resources -- \
+  --guide-input output/starting-up-guide.json \
+  --resources-input output/guide-resources-full/guide-resources.jsonl \
+  --skill-out ../../skills/indie-hackers-starting-up/SKILL.md \
+  --report-out ../../case-studies/indie-hackers/starting-up-guide.md
+```
+
+## Current Indie Hackers Coverage
+
+- Stories database snapshot: 499 public case URLs discovered, 498 fetched/readable, 1 historical URL returned 404.
+- Starting Up guide snapshot: 80 indexed resources, 78 fetched/readable, 2 Twitter/X resources blocked by fetch.
+- Full HTML/text stays in ignored `output/`; committed artifacts are source-linked summaries and skills.
 
 ## Output Contract
 

@@ -8,9 +8,11 @@
     "test": "node --test",
     "discover:indie-hackers": "node scripts/discover-indie-hackers.mjs",
     "fetch": "node scripts/fetch-cases.mjs",
+    "fetch:starting-up-resources": "node scripts/fetch-guide-resources.mjs",
     "render:starting-up": "node scripts/render-starting-up.mjs",
     "synthesize": "node scripts/synthesize-skill.mjs",
-    "synthesize:starting-up": "node scripts/synthesize-starting-up.mjs"
+    "synthesize:starting-up": "node scripts/synthesize-starting-up.mjs",
+    "synthesize:starting-up-resources": "node scripts/synthesize-guide-resources.mjs"
   },
   "engines": {
     "node": ">=20"

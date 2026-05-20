@@ -7,10 +7,15 @@ const CHANNEL_KEYWORDS = [
   ["seo", /\bseo\b|search engine|google search|organic search/i],
   ["content", /\bcontent\b|blog|newsletter|youtube|podcast/i],
   ["twitter", /\btwitter\b|\bx\.com\b/i],
+  ["linkedin", /\blinkedin\b/i],
+  ["discord", /\bdiscord\b/i],
   ["cold-email", /cold email|cold outreach|outbound/i],
   ["community", /\bcommunity\b|discord|forum|slack/i],
   ["marketplace", /marketplace|app store|chrome web store|shopify app/i],
+  ["partnerships", /partner(ship)?|integration partner|affiliate/i],
+  ["word-of-mouth", /word of mouth|referral|viral|invite/i],
   ["paid-ads", /paid ads|google ads|facebook ads|meta ads|adwords/i],
+  ["direct-sales", /sales calls?|demo calls?|founder[- ]led sales|enterprise sales/i],
 ];
 
 const VALIDATION_KEYWORDS = [
@@ -19,6 +24,9 @@ const VALIDATION_KEYWORDS = [
   ["preorders", /preorder|pre-order|paid upfront|deposit|waitlist/i],
   ["manual-service", /concierge|manual|spreadsheet|service|agency|consulting/i],
   ["launch-test", /launched|launch|product hunt|beta|early access/i],
+  ["scratch-own-itch", /scratch(?:ed)? (?:my|our|your) own itch|own problem|needed this ourselves/i],
+  ["competitor-research", /competitor|alternative to|existing solution|market research/i],
+  ["mvp", /\bmvp\b|minimum viable|prototype|no-code|nocode/i],
 ];
 
 const PRICING_KEYWORDS = [
@@ -26,6 +34,8 @@ const PRICING_KEYWORDS = [
   ["price-point", /\$\s?\d[\d,.]*(?:\.\d+)?(?:\s?(?:k|m))?(?:\/mo|\/month| per month)?/i],
   ["one-time", /one-time|lifetime deal|paid once|license/i],
   ["services", /consulting|agency|done-for-you|service package/i],
+  ["freemium", /freemium|free plan|free trial/i],
+  ["enterprise", /enterprise|annual contract|seat|per user/i],
 ];
 
 const BUSINESS_MODEL_KEYWORDS = [
@@ -35,6 +45,27 @@ const BUSINESS_MODEL_KEYWORDS = [
   ["newsletter", /newsletter|sponsorship/i],
   ["course", /course|cohort|education|workshop/i],
   ["template", /template|boilerplate|starter kit/i],
+  ["ai-tool", /\bai\b|artificial intelligence|gpt|llm/i],
+  ["developer-tool", /developer|api|github|cli|devtool|code/i],
+  ["ecommerce", /ecommerce|e-commerce|shopify|storefront/i],
+];
+
+const GUIDE_TOPIC_KEYWORDS = [
+  ["idea-selection", /idea|brainstorm|opportunit|valuable problem|niche/i],
+  ["validation", /validat|sell before|preorder|pre-order|customer interview|market test/i],
+  ["founder-runway", /runway|quit your job|side project|day job|funding|expenses/i],
+  ["cofounder", /co-?founder|partner/i],
+  ["productized-service", /productiz|consulting|service/i],
+  ["tiny-product", /tiny product|simple, lovable, complete|slc|do less|small product/i],
+  ["first-users", /first users?|bloggers?|early users?|beta/i],
+  ["landing-page", /landing page|converts?|copywriting/i],
+  ["launch", /launch|relaunch|product hunt|list your product/i],
+  ["build-speed", /build fast|speed up development|no-code|no code|tech stack/i],
+  ["acquisition", /acquisition|marketing channel|growth hacking|discord|seo|ads/i],
+  ["retention", /retention|churn|retain/i],
+  ["sales", /\bsales\b|revenue|customers?/i],
+  ["word-of-mouth", /word-of-mouth|word of mouth|referral/i],
+  ["founder-sustainability", /lifestyle|passive income|organize your day|isolated|long term/i],
 ];
 
 export function extractStoryCards(html, baseUrl) {
@@ -125,6 +156,17 @@ export function extractCaseSignals(caseItem) {
   };
 }
 
+export function extractGuideResourceSignals(resource) {
+  const corpus = `${resource.section ?? ""}\n${resource.title ?? ""}\n${resource.author ?? ""}\n${resource.text ?? ""}`;
+  return {
+    topics: matchLabels(corpus, GUIDE_TOPIC_KEYWORDS),
+    channels: matchLabels(corpus, CHANNEL_KEYWORDS),
+    validation: matchLabels(corpus, VALIDATION_KEYWORDS),
+    pricing: matchLabels(corpus, PRICING_KEYWORDS),
+    businessModels: matchLabels(corpus, BUSINESS_MODEL_KEYWORDS),
+  };
+}
+
 export function synthesizeSkillMarkdown(cases, options = {}) {
   const skillName = options.skillName ?? "founder-case-patterns";
   const analyzedCases = cases.map((item) => ({
@@ -137,9 +179,18 @@ export function synthesizeSkillMarkdown(cases, options = {}) {
   const pricingCounts = countSignals(analyzedCases, "pricing");
   const modelCounts = countSignals(analyzedCases, "businessModels");
   const confidence = confidenceForSampleSize(analyzedCases.length);
+  const fetchedCount = analyzedCases.filter((item) => item.status !== "failed").length;
+  const failedCount = analyzedCases.filter((item) => item.status === "failed").length;
   const evidenceRows = analyzedCases
+    .filter((item) => item.status !== "failed")
     .slice(0, 12)
     .map((item) => `| ${escapeMarkdown(item.title ?? "Untitled")} | ${escapeMarkdown(item.signals.revenueMentions?.[0] ?? item.revenue ?? "")} | ${escapeMarkdown(topSignals(item.signals).join(", "))} | ${item.url ?? ""} |`);
+  const applicationRules = buildCaseApplicationRules({
+    channelCounts,
+    validationCounts,
+    pricingCounts,
+    modelCounts,
+  });
 
   return [
     "---",
@@ -161,6 +212,8 @@ export function synthesizeSkillMarkdown(cases, options = {}) {
     "## Evidence Strength",
     "",
     `- Sample size: ${analyzedCases.length} cases`,
+    `- Fetched/readable cases: ${fetchedCount}`,
+    `- Failed or blocked cases: ${failedCount}`,
     `- Confidence: ${confidence}`,
     "- Upgrade weak patterns only after adding more source-linked cases.",
     "",
@@ -178,6 +231,10 @@ export function synthesizeSkillMarkdown(cases, options = {}) {
     "### Business Models",
     ...formatCounts(modelCounts),
     "",
+    "## Conditional Founder Lessons",
+    "",
+    ...applicationRules,
+    "",
     "## How To Apply",
     "",
     "1. Match the new idea to the closest case pattern by user, pain, channel, price, and speed to value.",
@@ -191,6 +248,122 @@ export function synthesizeSkillMarkdown(cases, options = {}) {
     "| Case | Revenue signal | Pattern signals | Source |",
     "| --- | --- | --- | --- |",
     ...(evidenceRows.length ? evidenceRows : ["| No cases yet |  |  |  |"]),
+    "",
+  ].join("\n");
+}
+
+export function synthesizeGuideResourceMarkdown(guide, resources, options = {}) {
+  const skillName = options.skillName ?? "indie-hackers-starting-up";
+  const sourceUrl = guide.sourceUrl ?? "https://www.indiehackers.com/starting-up";
+  const indexedResources = guide.sections.reduce((total, section) => total + section.resources.length, 0);
+  const analyzedResources = resources.map((item) => ({
+    ...item,
+    signals: item.signals ?? extractGuideResourceSignals(item),
+  }));
+  const fetchedResources = analyzedResources.filter((item) => item.status === "fetched");
+  const failedResources = analyzedResources.filter((item) => item.status !== "fetched");
+  const stageRows = guide.sections.map((section) => {
+    const stageResources = analyzedResources.filter((item) => item.section === section.name);
+    const topicCounts = countSignals(stageResources, "topics");
+    return `| ${escapeMarkdown(section.name)} | ${section.resources.length} | ${stageResources.filter((item) => item.status === "fetched").length} | ${escapeMarkdown(topicCounts.slice(0, 5).map(([label, count]) => `${label} ${count}`).join(", "))} |`;
+  });
+  const topicCounts = countSignals(analyzedResources, "topics");
+  const validationCounts = countSignals(analyzedResources, "validation");
+  const channelCounts = countSignals(analyzedResources, "channels");
+  const resourceRows = analyzedResources
+    .filter((item) => item.status === "fetched")
+    .slice(0, 24)
+    .map((item) => `| ${escapeMarkdown(item.section ?? "")} | ${escapeMarkdown(item.title ?? "Untitled")} | ${escapeMarkdown(topSignals(item.signals ?? {}).join(", "))} | ${item.url ?? ""} |`);
+
+  return [
+    "---",
+    `name: ${skillName}`,
+    "description: Use when guiding a new startup project through indie-hacker style starting, validation, building, launch, growth, or solo-founder operating decisions.",
+    "---",
+    "",
+    "# Indie Hackers Starting Up",
+    "",
+    "Use this skill as a startup-role checklist. It summarizes the Indie Hackers Starting Up guide and downloaded guide resources into practical operating prompts. Keep source links as evidence; do not copy or republish full guide articles.",
+    "",
+    "## Source",
+    "",
+    `- Guide hub: ${sourceUrl}`,
+    `- Indexed resources: ${indexedResources}`,
+    `- Downloaded/readable resources: ${fetchedResources.length}`,
+    `- Failed, blocked, or non-HTML resources: ${failedResources.length}`,
+    "",
+    "## Stage Evidence",
+    "",
+    "| Stage | Indexed | Downloaded | Dominant topics |",
+    "| --- | ---: | ---: | --- |",
+    ...stageRows,
+    "",
+    "## Startup Sequence",
+    "",
+    "1. **See What's Possible**: use founder examples to pick a business shape, constraint set, and proof standard before falling in love with an idea.",
+    "2. **Take the Leap**: turn the idea into a time-boxed validation plan with runway, founder-fit, and willingness-to-pay constraints.",
+    "3. **Build in Public**: ship a small complete product while making progress visible to likely users, creators, bloggers, and communities.",
+    "4. **Grow and Thrive**: build repeatable acquisition, retention, sales, and founder operating systems after the first users arrive.",
+    "",
+    "## Downloaded Resource Patterns",
+    "",
+    "### Topics",
+    ...formatCounts(topicCounts),
+    "",
+    "### Validation Signals",
+    ...formatCounts(validationCounts),
+    "",
+    "### Channel Signals",
+    ...formatCounts(channelCounts),
+    "",
+    "## Operating Rules",
+    "",
+    "- Start from examples, but convert them into tests for the current idea.",
+    "- Prefer paid demand, time-boxed validation, and concrete user channels over abstract motivation.",
+    "- Build small enough that learning speed stays higher than engineering ambition.",
+    "- Make distribution visible before launch; do not wait until the product is finished to find users.",
+    "- Treat growth as a separate operating system: acquisition, activation, retention, revenue, and founder energy.",
+    "- When a resource is external, use its lesson as a hypothesis and preserve the original source URL.",
+    "",
+    "## Stage Prompts",
+    "",
+    "### See What's Possible",
+    "",
+    "- Which founder examples match the user's constraints, skills, desired lifestyle, and business model?",
+    "- What problem category appears valuable enough that users already spend time or money on it?",
+    "- What should be copied as a hypothesis, and what should not be copied because the context differs?",
+    "",
+    "### Take the Leap",
+    "",
+    "- What is the smallest proof that the idea deserves more time?",
+    "- What validation move can happen before building: sale, preorder, paid service, customer interview, community demand, or landing-page conversion?",
+    "- What runway, time budget, and opportunity-cost constraints define a stop condition?",
+    "",
+    "### Build in Public",
+    "",
+    "- What can be launched as a simple, lovable, complete version?",
+    "- Where will the first users see progress before the product is complete?",
+    "- What launch surfaces and creator/community channels fit the user segment?",
+    "",
+    "### Grow and Thrive",
+    "",
+    "- Which acquisition channel has a credible reason to work now?",
+    "- What retention, churn, sales, or word-of-mouth problem should be improved first?",
+    "- Is the founder building a sustainable operating cadence or only chasing spikes?",
+    "",
+    "## Resource Evidence Index",
+    "",
+    "| Stage | Resource | Signals | Source |",
+    "| --- | --- | --- | --- |",
+    ...(resourceRows.length ? resourceRows : ["| No downloaded resources yet |  |  |  |"]),
+    "",
+    "## How To Use With A New Idea",
+    "",
+    "1. Use `idea-validation` to check whether the idea has real demand.",
+    "2. Use this skill to choose which stage the project is actually in.",
+    "3. Pull 3-5 source resources from the matching stage and convert them into concrete experiments.",
+    "4. Use `product-development-loop` only after a validation threshold is defined.",
+    "5. Use `seo-aso-growth-research` and `founder-case-patterns` when choosing channels.",
     "",
   ].join("\n");
 }
@@ -335,11 +508,20 @@ function normalizeGuideLink(link) {
     .split(/\r?\n/)
     .map((part) => part.trim())
     .filter(Boolean);
+  const url = normalizeGuideUrl(link.href ?? link.url ?? "");
   return {
     title: parts[0] ?? "",
     author: parts[1] ?? "",
-    url: link.href ?? link.url ?? "",
+    url,
   };
+}
+
+function normalizeGuideUrl(value) {
+  const text = String(value ?? "").trim().replace(/[)\]]+$/g, "");
+  if (text === "https://blog.asmartbear.com/slc.html") {
+    return "https://longform.asmartbear.com/slc/";
+  }
+  return text;
 }
 
 function isChromeLink(link) {
@@ -552,9 +734,32 @@ function confidenceForSampleSize(size) {
   return "weak";
 }
 
+function buildCaseApplicationRules({ channelCounts, validationCounts, pricingCounts, modelCounts }) {
+  const topChannel = channelCounts[0]?.[0];
+  const topValidation = validationCounts[0]?.[0];
+  const topPricing = pricingCounts[0]?.[0];
+  const topModel = modelCounts[0]?.[0];
+  const rules = [
+    "- If the buyer is reachable in a named community, validate from raw posts and replies before writing product code.",
+    "- If a founder cannot name the first acquisition surface, treat the idea as unvalidated even when the product sounds useful.",
+    "- If pricing evidence is vague, force a paid test: preorder, paid consultation, manual service, or explicit budget confirmation.",
+    "- If the idea looks like SaaS, start with the smallest repeatable workflow and one concrete buyer segment instead of a broad platform.",
+    "- If growth depends on content or SEO, choose a problem where users already search with purchase intent and long-tail phrasing.",
+  ];
+  const evidenceLine = [
+    topChannel ? `top channel signal: ${topChannel}` : "",
+    topValidation ? `top validation signal: ${topValidation}` : "",
+    topPricing ? `top pricing signal: ${topPricing}` : "",
+    topModel ? `top business model signal: ${topModel}` : "",
+  ].filter(Boolean).join("; ");
+
+  return evidenceLine ? [`- Current evidence baseline: ${evidenceLine}.`, ...rules] : rules;
+}
+
 function topSignals(signals) {
   return [
     ...(signals.channels ?? []),
+    ...(signals.topics ?? []),
     ...(signals.validation ?? []),
     ...(signals.pricing ?? []),
     ...(signals.businessModels ?? []),

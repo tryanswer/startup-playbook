@@ -5,9 +5,11 @@ import {
   cleanHtmlText,
   extractArticleText,
   extractCaseSignals,
+  extractGuideResourceSignals,
   extractGuideSections,
   extractStoryCards,
   isCloudflareChallenge,
+  synthesizeGuideResourceMarkdown,
   synthesizeGuideSkillMarkdown,
   synthesizeSkillMarkdown,
 } from "../src/miner-utils.mjs";
@@ -116,7 +118,7 @@ James Fleischmann`;
   const links = [
     { text: "Turning side projects into profitable startups\nPieter Levels", href: "https://levels.io/startups" },
     { text: "Focus: Do Less, So You Can Do It Better\nCourtland Allen", href: "https://www.indiehackers.com/post/do-less" },
-    { text: "Validation is Backwards\nAmy Hoy", href: "https://stackingthebricks.com/validation-is-backwards" },
+    { text: "Validation is Backwards\nAmy Hoy", href: "https://stackingthebricks.com/validation-is-backwards)" },
     { text: "19 Tactics for Validating Your Product\nJames Fleischmann", href: "https://www.indiehackers.com/post/validate" },
   ];
 
@@ -128,6 +130,7 @@ James Fleischmann`;
     "Focus: Do Less, So You Can Do It Better",
   ]);
   assert.deepEqual(sections[1].resources.map((item) => item.author), ["Amy Hoy", "James Fleischmann"]);
+  assert.equal(sections[1].resources[0].url, "https://stackingthebricks.com/validation-is-backwards");
 });
 
 test("synthesizeGuideSkillMarkdown turns guide sections into startup guidance", () => {
@@ -151,6 +154,51 @@ test("synthesizeGuideSkillMarkdown turns guide sections into startup guidance", 
   assert.match(markdown, /## Startup Sequence/);
   assert.match(markdown, /Sell Before You Build/);
   assert.doesNotMatch(markdown, /Full guide text/i);
+});
+
+test("extractGuideResourceSignals maps guide articles to startup topics", () => {
+  const signals = extractGuideResourceSignals({
+    section: "Take the Leap",
+    title: "19 Tactics for Validating Your Product",
+    text: "Run customer interviews, build a landing page, collect preorders, and launch to first users.",
+  });
+
+  assert.deepEqual(signals.topics.slice(0, 4), ["validation", "first-users", "landing-page", "launch"]);
+  assert.deepEqual(signals.validation, ["customer-interviews", "preorders", "launch-test"]);
+});
+
+test("synthesizeGuideResourceMarkdown includes downloaded resource coverage", () => {
+  const markdown = synthesizeGuideResourceMarkdown({
+    sourceUrl: "https://www.indiehackers.com/starting-up",
+    sections: [
+      {
+        name: "Take the Leap",
+        resources: [
+          { title: "19 Tactics for Validating Your Product", url: "https://example.com/validate" },
+        ],
+      },
+    ],
+  }, [
+    {
+      section: "Take the Leap",
+      title: "19 Tactics for Validating Your Product",
+      url: "https://example.com/validate",
+      status: "fetched",
+      textLength: 2000,
+      signals: {
+        topics: ["validation"],
+        channels: [],
+        validation: ["preorders"],
+        pricing: [],
+        businessModels: [],
+      },
+    },
+  ]);
+
+  assert.match(markdown, /^---\nname: indie-hackers-starting-up/m);
+  assert.match(markdown, /Downloaded\/readable resources: 1/);
+  assert.match(markdown, /Stage Evidence/);
+  assert.match(markdown, /validation/);
 });
 
 test("synthesizeSkillMarkdown converts cases into a concise reusable skill", () => {

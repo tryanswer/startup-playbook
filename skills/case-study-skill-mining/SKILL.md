@@ -44,3 +44,10 @@ Preserve source links and claims, but commit only patterns, summaries, and skill
 
 If this repository is available, use `tools/case-study-skill-miner` for repeatable extraction and skill synthesis.
 
+For Indie Hackers, the current full public run is:
+
+- stories index: 499 URLs discovered, 498 readable, 1 historical 404;
+- Starting Up guide: 80 resources indexed, 78 readable, 2 Twitter/X links blocked;
+- generated outputs: `founder-case-patterns` and `indie-hackers-starting-up`.
+
+Keep raw HTML/text in the ignored tool `output/` directory and commit only summaries, source links, counts, and reusable decision rules.

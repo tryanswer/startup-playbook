@@ -30,3 +30,9 @@
 4. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
 5. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
 6. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。
+
+## Current Research Corpus
+
+- Indie Hackers stories: 499 public case URLs indexed, 498 readable pages learned into `skills/founder-case-patterns`.
+- Indie Hackers Starting Up: 80 guide resources indexed, 78 readable pages learned into `skills/indie-hackers-starting-up`.
+- Raw HTML/text is kept in ignored tool `output/` directories; committed files contain only source-linked summaries, counts, and reusable operating rules.
