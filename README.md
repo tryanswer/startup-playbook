@@ -11,6 +11,8 @@
 - `skills/`: 可复制到 Codex / agent 环境使用的技能。
 - `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
 - `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。
+- `plugins/startup-playbook-advisor`: 可安装到 Codex 的创业顾问插件。
+- `agents/startup-playbook-advisor.md`: 可复制到 Claude / Codex / OpenClaw 的创业顾问 agent 设定。
 - `templates/`: 可直接复制使用的实验、PRD、SEO/ASO 和落地页模板。
 - `case-studies/beauty-log`: Beauty Log 的实战记录。
 
@@ -30,6 +32,31 @@
 4. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
 5. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
 6. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。
+
+## Startup Advisor Plugin / Skill
+
+`startup-playbook-advisor` 是面向项目启动前期的创业顾问 skill / agent。它会先围绕需求真实性、用户在哪里、付费意愿、验证实验、MVP 范围和增长路径进行对话，再输出 kill / pivot / continue 决策和下一步方案。
+
+安装入口：
+
+```bash
+node scripts/install-startup-advisor.mjs --target claude
+node scripts/install-startup-advisor.mjs --target codex-skill
+node scripts/install-startup-advisor.mjs --target codex-plugin
+node scripts/install-startup-advisor.mjs --target openclaw --openclaw-root /Users/neal/Documents/Projects/fatclaw/openclaw-monorepo --run-openclaw-sync
+```
+
+也可以预览全量安装动作：
+
+```bash
+node scripts/install-startup-advisor.mjs --target all --dry-run
+```
+
+常用启动提示：
+
+- `Help me validate a startup idea.`
+- `Ask me the key questions before I build.`
+- `Turn this idea into a 7-day validation plan.`
 
 ## Current Research Corpus
 

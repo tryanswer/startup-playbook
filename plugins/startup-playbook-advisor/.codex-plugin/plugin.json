@@ -1,0 +1,38 @@
+{
+  "name": "startup-playbook-advisor",
+  "version": "0.1.0",
+  "description": "Early-stage startup advisory skill for validating ideas before building.",
+  "author": {
+    "name": "Startup Playbook"
+  },
+  "homepage": "https://github.com/tryanswer/startup-playbook",
+  "repository": "https://github.com/tryanswer/startup-playbook",
+  "license": "MIT",
+  "keywords": [
+    "startup",
+    "validation",
+    "gtm",
+    "mvp",
+    "seo",
+    "founder"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Startup Playbook Advisor",
+    "shortDescription": "Validate startup ideas before building.",
+    "longDescription": "Guides founders through early-stage idea validation, target user discovery, paid demand checks, MVP scope, pricing tests, and go-to-market planning using Startup Playbook evidence.",
+    "developerName": "Startup Playbook",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Research",
+      "Planning"
+    ],
+    "defaultPrompt": [
+      "Help me validate a startup idea.",
+      "Ask me the key questions before I build.",
+      "Turn this idea into a 7-day validation plan."
+    ],
+    "brandColor": "#0F766E"
+  }
+}
