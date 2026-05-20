@@ -23,7 +23,7 @@ If any answer is missing, treat the idea as unvalidated.
    Define a three-level segment: user group, situation, and one core pain. The idea must be understandable in one second.
 
 2. **Check founder patterns**
-   If available, load `founder-case-patterns` and look for similar user, pain, channel, pricing, or validation patterns. Use case studies as hypotheses to test, not proof.
+   If available, load `indie-hackers-starting-up` to identify the project stage, then load `founder-case-patterns` for similar user, pain, channel, pricing, or validation patterns. Use guides and cases as hypotheses to test, not proof.
 
 3. **Mine pain ore**
    Collect raw complaints from Reddit, app reviews, Discord, forums, social comments, support tickets, or interviews. Store original quotes, source, link, and pain theme.

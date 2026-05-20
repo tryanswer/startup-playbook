@@ -18,7 +18,7 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 ## Workflow
 
 1. Convert the validated pain into one user-visible promise.
-2. Check `founder-case-patterns` for similar MVP, pricing, validation, or distribution moves.
+2. Check `indie-hackers-starting-up` for the current stage and `founder-case-patterns` for similar MVP, pricing, validation, or distribution moves.
 3. Define the first successful user journey from entry to value.
 4. Split scope into `must have`, `later`, and `do not build`.
 5. Write a PRD with acceptance criteria and measurable success.

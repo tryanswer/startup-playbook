@@ -8,10 +8,14 @@
     "test": "node --test",
     "discover:indie-hackers": "node scripts/discover-indie-hackers.mjs",
     "fetch": "node scripts/fetch-cases.mjs",
-    "synthesize": "node scripts/synthesize-skill.mjs"
+    "render:starting-up": "node scripts/render-starting-up.mjs",
+    "synthesize": "node scripts/synthesize-skill.mjs",
+    "synthesize:starting-up": "node scripts/synthesize-starting-up.mjs"
   },
   "engines": {
     "node": ">=20"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.60.0"
   }
 }
-

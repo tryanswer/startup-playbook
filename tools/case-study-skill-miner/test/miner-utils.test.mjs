@@ -5,8 +5,10 @@ import {
   cleanHtmlText,
   extractArticleText,
   extractCaseSignals,
+  extractGuideSections,
   extractStoryCards,
   isCloudflareChallenge,
+  synthesizeGuideSkillMarkdown,
   synthesizeSkillMarkdown,
 } from "../src/miner-utils.mjs";
 
@@ -88,6 +90,67 @@ test("extractCaseSignals finds repeatable startup patterns", () => {
   assert.deepEqual(signals.validation, ["community-pain", "customer-interviews", "launch-test"]);
   assert.deepEqual(signals.pricing, ["subscription", "price-point"]);
   assert.deepEqual(signals.revenueMentions, ["$10k MRR", "$19/mo"]);
+});
+
+test("extractGuideSections extracts ordered starting-up guide links", () => {
+  const text = `
+Guide to Starting Up
+1
+See What's Possible
+2
+Take the Leap
+1
+See what's possible.
+Learn from people who have done it before.
+Turning side projects into profitable startups
+Pieter Levels
+Focus: Do Less, So You Can Do It Better
+Courtland Allen
+2
+Take the leap.
+Turn dreams into actions.
+Validation is Backwards
+Amy Hoy
+19 Tactics for Validating Your Product
+James Fleischmann`;
+  const links = [
+    { text: "Turning side projects into profitable startups\nPieter Levels", href: "https://levels.io/startups" },
+    { text: "Focus: Do Less, So You Can Do It Better\nCourtland Allen", href: "https://www.indiehackers.com/post/do-less" },
+    { text: "Validation is Backwards\nAmy Hoy", href: "https://stackingthebricks.com/validation-is-backwards" },
+    { text: "19 Tactics for Validating Your Product\nJames Fleischmann", href: "https://www.indiehackers.com/post/validate" },
+  ];
+
+  const sections = extractGuideSections(text, links);
+
+  assert.deepEqual(sections.map((section) => section.name), ["See What's Possible", "Take the Leap"]);
+  assert.deepEqual(sections[0].resources.map((item) => item.title), [
+    "Turning side projects into profitable startups",
+    "Focus: Do Less, So You Can Do It Better",
+  ]);
+  assert.deepEqual(sections[1].resources.map((item) => item.author), ["Amy Hoy", "James Fleischmann"]);
+});
+
+test("synthesizeGuideSkillMarkdown turns guide sections into startup guidance", () => {
+  const markdown = synthesizeGuideSkillMarkdown([
+    {
+      name: "See What's Possible",
+      resources: [
+        { title: "Sell Before You Build to Avoid the #1 Mistake", author: "Amy Hoy", url: "https://example.com/sell" },
+      ],
+    },
+    {
+      name: "Take the Leap",
+      resources: [
+        { title: "19 Tactics for Validating Your Product", author: "James Fleischmann", url: "https://example.com/validate" },
+      ],
+    },
+  ]);
+
+  assert.match(markdown, /^---\nname: indie-hackers-starting-up/m);
+  assert.match(markdown, /Use when guiding a new startup project/);
+  assert.match(markdown, /## Startup Sequence/);
+  assert.match(markdown, /Sell Before You Build/);
+  assert.doesNotMatch(markdown, /Full guide text/i);
 });
 
 test("synthesizeSkillMarkdown converts cases into a concise reusable skill", () => {

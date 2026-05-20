@@ -195,6 +195,118 @@ export function synthesizeSkillMarkdown(cases, options = {}) {
   ].join("\n");
 }
 
+export function extractGuideSections(text, links = []) {
+  const normalizedLinks = links
+    .map((link) => normalizeGuideLink(link))
+    .filter((link) => link.title && link.url)
+    .filter((link) => !isChromeLink(link));
+  const lines = String(text ?? "")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const sectionNames = discoverGuideSectionNames(lines);
+  const sections = sectionNames.map((name) => ({ name, resources: [] }));
+
+  if (!sections.length) {
+    return [{ name: "Guide Resources", resources: normalizedLinks }];
+  }
+
+  for (const link of normalizedLinks) {
+    const lineIndex = lines.findIndex((line) => sameGuideTitle(line, link.title));
+    const sectionIndex = findSectionForLine(lines, sectionNames, lineIndex);
+    sections[sectionIndex >= 0 ? sectionIndex : 0].resources.push(link);
+  }
+
+  return sections.filter((section) => section.resources.length > 0);
+}
+
+export function synthesizeGuideSkillMarkdown(sections, options = {}) {
+  const skillName = options.skillName ?? "indie-hackers-starting-up";
+  const sourceUrl = options.sourceUrl ?? "https://www.indiehackers.com/starting-up";
+  const totalResources = sections.reduce((total, section) => total + section.resources.length, 0);
+  const sequence = [
+    ["See What's Possible", "Study plausible paths and pick a narrow aspiration before committing to a product shape.", "Define what kind of business the founder wants and what examples make that path believable."],
+    ["Take the Leap", "Turn the aspiration into concrete validation, runway, time, and founder-setup decisions.", "Convert an idea into a risk-managed experiment with time, money, and validation constraints."],
+    ["Build in Public", "Build the smallest useful product while making the work observable to potential users.", "Ship a narrow artifact, expose it to likely buyers, and create a feedback loop before scaling scope."],
+    ["Grow and Thrive", "After launch, improve acquisition, retention, sales, and founder sustainability.", "Treat growth and founder operating rhythm as systems to improve, not as afterthoughts."],
+  ];
+
+  return [
+    "---",
+    `name: ${skillName}`,
+    "description: Use when guiding a new startup project through indie-hacker style starting, validation, building, launch, growth, or solo-founder operating decisions.",
+    "---",
+    "",
+    "# Indie Hackers Starting Up",
+    "",
+    "Use this skill as a startup-role checklist. It summarizes the Indie Hackers Starting Up guide into a practical sequence for new projects. Keep source links as evidence; do not copy or republish full guide articles.",
+    "",
+    "## Source",
+    "",
+    `- Guide hub: ${sourceUrl}`,
+    `- Indexed resources: ${totalResources}`,
+    "",
+    "## Startup Sequence",
+    "",
+    ...sequence.flatMap(([name, guidance, agentJob], index) => [
+      `${index + 1}. **${name}**`,
+      `   ${guidance}`,
+      `   Agent job: ${agentJob}`,
+    ]),
+    "",
+    "## Operating Rules",
+    "",
+    "- Start from examples, but convert them into tests for the current idea.",
+    "- Prefer paid demand, time-boxed validation, and concrete user channels over abstract motivation.",
+    "- Build small enough that learning speed stays higher than engineering ambition.",
+    "- Make distribution visible before launch; do not wait until the product is finished to find users.",
+    "- Treat growth as a separate operating system: acquisition, activation, retention, revenue, and founder energy.",
+    "",
+    "## Stage Prompts",
+    "",
+    "### See What's Possible",
+    "",
+    "- Which founder examples are closest to the user's constraints, skills, and desired lifestyle?",
+    "- What business shape is being implied: SaaS, service, tiny product, marketplace, content, course, template, or community?",
+    "- What should be copied as a hypothesis, and what should not be copied because the context differs?",
+    "",
+    "### Take the Leap",
+    "",
+    "- What is the smallest proof that the idea deserves more time?",
+    "- What validation move can happen before building: sale, preorder, paid service, customer interview, community demand, or landing-page conversion?",
+    "- What runway, time budget, and opportunity cost constraints matter?",
+    "",
+    "### Build in Public",
+    "",
+    "- What can be launched as a simple, lovable, complete version?",
+    "- Where will the first users see progress before the product is complete?",
+    "- What launch surfaces and creator/community channels fit the user segment?",
+    "",
+    "### Grow and Thrive",
+    "",
+    "- Which acquisition channel has a credible reason to work now?",
+    "- What retention, churn, sales, or word-of-mouth problem should be improved first?",
+    "- Is the founder building a sustainable operating cadence or only chasing spikes?",
+    "",
+    "## Resource Map",
+    "",
+    ...sections.flatMap((section) => [
+      `### ${section.name}`,
+      "",
+      ...section.resources.slice(0, 20).map((resource) => `- ${resource.title}${resource.author ? ` (${resource.author})` : ""}: ${resource.url}`),
+      "",
+    ]),
+    "## How To Use With A New Idea",
+    "",
+    "1. Use `idea-validation` to check whether the idea has real demand.",
+    "2. Use this skill to choose which stage the project is actually in.",
+    "3. Pull 3-5 source resources from the matching stage and convert them into concrete experiments.",
+    "4. Use `product-development-loop` only after a validation threshold is defined.",
+    "5. Use `seo-aso-growth-research` and `founder-case-patterns` when choosing channels.",
+    "",
+  ].join("\n");
+}
+
 export function parseArgs(argv) {
   const args = {};
   for (let index = 0; index < argv.length; index += 1) {
@@ -208,9 +320,104 @@ export function parseArgs(argv) {
   return args;
 }
 
+export function writeTextFile(filePath, value) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, value, "utf8");
+}
+
 export function writeJsonFile(filePath, value) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function normalizeGuideLink(link) {
+  const parts = String(link.text ?? "")
+    .split(/\r?\n/)
+    .map((part) => part.trim())
+    .filter(Boolean);
+  return {
+    title: parts[0] ?? "",
+    author: parts[1] ?? "",
+    url: link.href ?? link.url ?? "",
+  };
+}
+
+function isChromeLink(link) {
+  if (/^©\s*Indie Hackers/i.test(link.title)) return true;
+  return [
+    "Home",
+    "Starting Up",
+    "Case Studies DB",
+    "Case Studies",
+    "Products",
+    "Products DB",
+    "Ideas DB",
+    "Ideas",
+    "Stories",
+    "Vibe Coding Tools",
+    "Subscribe to IH+",
+    "Join",
+    "Get Started",
+    "FAQ",
+    "Terms",
+    "Privacy",
+    "Manage Cookies",
+    "Policy",
+    "COMMUNITY",
+    "DATABASES",
+    "Groups",
+    "Meetups",
+    "Top Today",
+    "Top This Week",
+    "Top This Month",
+    "PRODUCTS",
+    "All Products",
+    "Highest Revenue",
+    "Side Projects",
+    "Self-Funded",
+    "Add Yours",
+  ].includes(link.title) || link.url.endsWith("/sign-up") || link.url.includes("#");
+}
+
+function discoverGuideSectionNames(lines) {
+  const names = [];
+  const allowed = [
+    "See What's Possible",
+    "Take the Leap",
+    "Build in Public",
+    "Grow and Thrive",
+  ];
+  for (const line of lines) {
+    const normalized = normalizeSectionName(line);
+    if (allowed.includes(normalized) && !names.includes(normalized)) {
+      names.push(normalized);
+    }
+  }
+  return names;
+}
+
+function normalizeSectionName(value) {
+  const text = String(value ?? "").replace(/\.$/, "").trim().toLowerCase();
+  if (text === "see what's possible") return "See What's Possible";
+  if (text === "take the leap") return "Take the Leap";
+  if (text === "build in public") return "Build in Public";
+  if (text === "grow and thrive") return "Grow and Thrive";
+  return String(value ?? "").trim();
+}
+
+function findSectionForLine(lines, sectionNames, lineIndex) {
+  if (lineIndex < 0) return -1;
+  let active = -1;
+  for (let index = 0; index <= lineIndex; index += 1) {
+    const normalized = normalizeSectionName(lines[index]);
+    const sectionIndex = sectionNames.indexOf(normalized);
+    if (sectionIndex >= 0) active = sectionIndex;
+  }
+  return active;
+}
+
+function sameGuideTitle(line, title) {
+  return String(line ?? "").trim().toLowerCase() === String(title ?? "").trim().toLowerCase();
 }
 
 export function readJsonlFile(filePath) {

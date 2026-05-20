@@ -29,4 +29,4 @@
 3. 用 `templates/landing-page-checklist.md` 快速建页验证转化。
 4. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
 5. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
-6. 需要参考创业案例时，用 `skills/case-study-skill-mining` 和 `skills/founder-case-patterns` 把案例转成可执行经验。
+6. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。

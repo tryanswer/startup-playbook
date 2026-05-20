@@ -10,4 +10,5 @@ This directory stores pattern summaries mined from Indie Hackers founder stories
 - anti-patterns and caveats;
 - source-linked evidence rows;
 - updates to `skills/founder-case-patterns`.
-
+- staged guide summaries such as `starting-up-guide.md`;
+- updates to `skills/indie-hackers-starting-up`.

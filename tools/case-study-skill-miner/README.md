@@ -10,6 +10,8 @@ Turns founder case studies into reusable startup playbook skills. The goal is no
 4. Synthesize repeated patterns into `skills/founder-case-patterns/SKILL.md`.
 5. Save a readable pattern report under `case-studies/<source>/`.
 
+For JavaScript-rendered guide hubs such as Indie Hackers Starting Up, render the visible guide index first, then synthesize the index into a stage-based skill.
+
 ## Guardrails
 
 - Respect robots.txt and site terms.
@@ -52,6 +54,19 @@ npm run synthesize -- \
   --report-out ../../case-studies/indie-hackers/patterns.md
 ```
 
+Render and synthesize the Indie Hackers Starting Up guide:
+
+```bash
+npm install
+npm run render:starting-up -- \
+  --chrome-path "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --out output/starting-up-guide
+npm run synthesize:starting-up -- \
+  --input output/starting-up-guide.json \
+  --skill-out ../../skills/indie-hackers-starting-up/SKILL.md \
+  --report-out ../../case-studies/indie-hackers/starting-up-guide.md
+```
+
 ## Output Contract
 
 The synthesized skill should contain:
@@ -62,3 +77,9 @@ The synthesized skill should contain:
 - source-linked evidence rows;
 - conditional application rules for future products.
 
+Guide-hub skills should contain:
+
+- staged startup sequence;
+- source resource map;
+- practical operating rules;
+- pointers into the other startup-playbook skills.

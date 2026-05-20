@@ -10,7 +10,7 @@ Use this skill to translate validated user pain into search, app-store, and cont
 ## Workflow
 
 1. Define market, country, language, user segment, and buying intent.
-2. Check `founder-case-patterns` for acquisition channels that worked in similar markets.
+2. Check `indie-hackers-starting-up` and `founder-case-patterns` for acquisition channels that worked in similar markets.
 3. Build keyword clusters: problem, solution, comparison, purchase, brand, and adjacent use cases.
 4. Check Google Trends for direction, geography, related queries, and seasonality.
 5. Add Keywords Everywhere data when available: volume, CPC, competition, and 12-month trend.
