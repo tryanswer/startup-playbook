@@ -1,0 +1,64 @@
+group,market,country,language,keyword,intent,priority,notes
+core,global,us,en,personal color analysis,diagnosis,1,Head term for service positioning
+core,global,us,en,seasonal color analysis,diagnosis,1,Seasonal style term
+core,global,us,en,color analysis,diagnosis,1,Broadest English head term
+core,global,us,en,personal color test,diagnosis,1,Quiz and app-friendly term
+core,global,us,en,what colors look good on me,problem,1,High-intent user question
+core,global,us,en,best colors for my skin tone,problem,2,Skin tone advice
+core,global,us,en,AI color analysis,ai,2,AI positioning test
+core,global,us,en,online color analysis,diagnosis,2,Remote service intent
+core,global,gb,en,personal colour analysis,diagnosis,2,UK spelling
+core,global,gb,en,seasonal colour analysis,diagnosis,2,UK spelling
+hair,global,us,en,what hair color suits me,hair,1,High-intent hair color question
+hair,global,us,en,best hair color for my skin tone,hair,1,Hair color recommendation
+hair,global,us,en,hair color analysis,hair,2,Hair-specific diagnosis
+makeup,global,us,en,best lipstick color for my skin tone,makeup,1,Lipstick shopping intent
+makeup,global,us,en,makeup colors for my skin tone,makeup,1,Makeup recommendation
+makeup,global,us,en,foundation shade match,makeup,2,Related beauty utility
+outfit,global,us,en,outfit color matching,outfit,2,Styling utility
+outfit,global,us,en,clothes color matching,outfit,2,Wardrobe intent
+outfit,global,us,en,capsule wardrobe colors,outfit,3,Wardrobe planning
+app,global,us,en,personal color analysis app,app,1,ASO and web app intent
+app,global,us,en,color analysis app,app,1,ASO core term
+app,global,us,en,AI personal color analysis app,app,2,AI ASO term
+japan,jp,jp,ja,パーソナルカラー診断,diagnosis,1,Japanese core term
+japan,jp,jp,ja,パーソナルカラー診断 アプリ,app,1,Japanese app intent
+japan,jp,jp,ja,AIカラー診断,ai,2,Japanese AI term
+japan,jp,jp,ja,イエベ ブルベ,diagnosis,1,Warm/cool undertone term
+japan,jp,jp,ja,似合う髪色,hair,1,Hair color fit
+japan,jp,jp,ja,似合うリップ,makeup,2,Lipstick fit
+japan,jp,jp,ja,骨格診断,style,3,Adjacent style diagnosis
+korea,kr,kr,ko,퍼스널 컬러,diagnosis,1,Korean core term
+korea,kr,kr,ko,퍼스널 컬러 진단,diagnosis,1,Korean diagnosis term
+korea,kr,kr,ko,퍼스널 컬러 테스트,app,1,Korean test/app term
+korea,kr,kr,ko,쿨톤 웜톤,diagnosis,1,Cool/warm undertone term
+korea,kr,kr,ko,헤어 컬러 추천,hair,2,Hair recommendation
+korea,kr,kr,ko,립 컬러 추천,makeup,2,Lip color recommendation
+china,cn,cn,zh,个人色彩诊断,diagnosis,1,Simplified Chinese core term
+china,cn,cn,zh,四季色彩测试,diagnosis,1,Seasonal color test
+china,cn,cn,zh,12季型色彩分析,diagnosis,2,Advanced seasonal analysis
+china,cn,cn,zh,适合我的发色,hair,1,Hair color fit
+china,cn,cn,zh,适合我的口红色号,makeup,1,Lipstick shade fit
+china,cn,cn,zh,穿搭配色,outfit,2,Outfit color matching
+traditional,tw,tw,zh,個人色彩診斷,diagnosis,1,Traditional Chinese core term
+traditional,tw,tw,zh,四季色彩測試,diagnosis,1,Traditional Chinese seasonal term
+traditional,hk,hk,zh,個人色彩分析,diagnosis,2,Hong Kong term
+germany,de,de,de,farbtyp analyse,diagnosis,1,German core term
+germany,de,de,de,farbberatung online,diagnosis,1,German online advice
+germany,de,de,de,welche farben passen zu mir,problem,1,German question intent
+germany,de,de,de,hautfarbe farbtyp test,diagnosis,2,German skin tone test
+france,fr,fr,fr,colorimétrie personnelle,diagnosis,1,French core term
+france,fr,fr,fr,test colorimétrie,diagnosis,1,French test term
+france,fr,fr,fr,quelles couleurs me vont,problem,1,French question intent
+france,fr,fr,fr,couleur cheveux teint,hair,2,French hair color term
+spain,es,es,es,colorimetría personal,diagnosis,1,Spanish core term
+spain,es,es,es,análisis de color,diagnosis,1,Spanish broad term
+spain,es,es,es,qué colores me quedan bien,problem,1,Spanish question intent
+spain,es,es,es,color de pelo según tono de piel,hair,2,Spanish hair color term
+russia,ru,ru,ru,цветотип внешности,diagnosis,1,Russian core term
+russia,ru,ru,ru,анализ цвета внешности,diagnosis,1,Russian analysis term
+russia,ru,ru,ru,какие цвета мне подходят,problem,1,Russian question intent
+india,in,in,en,personal color analysis app,app,1,India English ASO term
+india,in,in,en,skin tone color test,diagnosis,1,India English utility term
+india,in,in,en,what colors suit my skin tone,problem,1,India English question intent
+india,in,in,en,best lipstick shade for Indian skin,makeup,2,India beauty intent

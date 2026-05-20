@@ -1,0 +1,17 @@
+{
+  "name": "startup-playbook-google-trends-seo",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "SEO and ASO keyword research scripts for startup market validation.",
+  "scripts": {
+    "test": "node --test",
+    "keywords": "node --use-env-proxy scripts/keywords-everywhere.mjs",
+    "trends": "node --use-env-proxy scripts/google-trends.mjs",
+    "trends:report": "node scripts/trends-report.mjs",
+    "merge": "node scripts/merge-keyword-report.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
