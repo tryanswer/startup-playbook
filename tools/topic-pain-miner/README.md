@@ -13,6 +13,31 @@ npm run fetch -- --config data/beauty-log.reddit.json --output output/beauty-log
 npm run analyze -- --config data/beauty-log.reddit.json --input output/beauty-log-posts.json --output output/beauty-log-pain-report.md
 ```
 
+Generate Markdown, JSON, HTML heatmap, and an LLM-ready prompt:
+
+```bash
+npm run analyze:beauty-log
+```
+
+Generate a live LLM summary with an OpenAI-compatible API:
+
+```bash
+export OPENAI_API_KEY=...
+npm run analyze -- \
+  --config data/beauty-log.reddit.json \
+  --input output/beauty-log-posts.json \
+  --output output/beauty-log-pain-report.md \
+  --html-output output/beauty-log-heatmap.html \
+  --llm \
+  --llm-output output/beauty-log-llm-summary.md
+```
+
+Optional LLM settings:
+
+- `--llm-model`: defaults to `OPENAI_MODEL` or `gpt-4o-mini`.
+- `--llm-base-url`: defaults to `OPENAI_BASE_URL` or `https://api.openai.com/v1`.
+- `--html-title`: overrides the generated HTML page title.
+
 ## Generic Use
 
 1. Copy `data/beauty-log.reddit.json`.
@@ -45,6 +70,9 @@ Config shape:
 - `*-posts.json`: sanitized public post sample.
 - `*-analysis.json`: deterministic heatmap data.
 - `*-pain-report.md`: founder-readable demand report and AI deep-analysis prompt.
+- `*-heatmap.html`: self-contained visual heatmap page for sharing or review.
+- `*-llm-prompt.txt`: evidence-bounded prompt for manual LLM review.
+- `*-llm-summary.md`: optional live LLM summary when `--llm` is enabled.
 
 ## Demand Gate
 
@@ -63,3 +91,4 @@ Small samples stay in `validation-needed` even when all three signals are positi
 - Respect platform rules and rate limits.
 - Do not scrape, store, or reuse user photos.
 - Do not automate posting, commenting, voting, account creation, or private-message outreach.
+- Do not let the LLM invent market size, search volume, revenue, demographics, or paid intent beyond the aggregated evidence.

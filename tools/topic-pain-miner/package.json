@@ -7,7 +7,8 @@
   "scripts": {
     "test": "node --test",
     "fetch": "node --use-env-proxy scripts/fetch-topic.mjs",
-    "analyze": "node scripts/analyze-topic.mjs"
+    "analyze": "node scripts/analyze-topic.mjs",
+    "analyze:beauty-log": "node scripts/analyze-topic.mjs --config data/beauty-log.reddit.json --input output/beauty-log-posts.json --output output/beauty-log-pain-report.md --analysis-output output/beauty-log-analysis.json --html-output output/beauty-log-heatmap.html --llm-prompt-output output/beauty-log-llm-prompt.txt"
   },
   "engines": {
     "node": ">=20"

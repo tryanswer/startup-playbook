@@ -135,6 +135,321 @@ export function renderPainReport(analysis) {
   return `${lines.join("\n")}`;
 }
 
+export function renderHeatmapHtml(analysis, options = {}) {
+  const maxHeat = Math.max(...analysis.heatmap.map((theme) => theme.heat), 1);
+  const title = options.title ?? `${analysis.project} Demand Heatmap`;
+  const llmSummary = options.llmSummary ? renderMarkdownishHtml(options.llmSummary) : "";
+  const heatmapCards = analysis.heatmap.map((theme, index) => {
+    const width = Math.max(8, Math.round((theme.heat / maxHeat) * 100));
+    const evidence = theme.evidence.map((item) => `
+              <li>
+                <a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.title)}</a>
+                <span>${escapeHtml(item.community)} · ${item.comments} comments</span>
+              </li>`).join("");
+    const moves = theme.productMoves.map((move) => `<li>${escapeHtml(move)}</li>`).join("");
+
+    return `
+        <article class="theme-card" data-theme-id="${escapeHtml(theme.id)}">
+          <div class="theme-rank">${index + 1}</div>
+          <div class="theme-main">
+            <div class="theme-heading">
+              <h3>${escapeHtml(theme.label)}</h3>
+              <strong>${theme.heat}</strong>
+            </div>
+            <div class="heat-track" aria-label="${escapeHtml(theme.label)} heat ${theme.heat}">
+              <div class="heat-fill" style="width: ${width}%"></div>
+            </div>
+            <dl class="theme-stats">
+              <div><dt>Posts</dt><dd>${theme.count}</dd></div>
+              <div><dt>Avg comments</dt><dd>${theme.avgComments}</dd></div>
+              <div><dt>Avg score</dt><dd>${theme.avgScore}</dd></div>
+            </dl>
+            <div class="theme-grid">
+              <section>
+                <h4>Evidence</h4>
+                <ul>${evidence}</ul>
+              </section>
+              <section>
+                <h4>Product moves</h4>
+                <ul>${moves}</ul>
+              </section>
+            </div>
+          </div>
+        </article>`;
+  }).join("\n");
+  const communityRows = analysis.communities.map((row) => `
+            <tr>
+              <td>${escapeHtml(row.community)}</td>
+              <td>${row.posts}</td>
+              <td>${row.avgComments}</td>
+              <td>${row.avgScore}</td>
+            </tr>`).join("");
+
+  return `<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>${escapeHtml(title)}</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #141414;
+        --muted: #64625f;
+        --line: #e7e1db;
+        --paper: #fbfaf8;
+        --panel: #ffffff;
+        --accent: #9f3b35;
+        --accent-2: #28453f;
+        --soft: #f2eee9;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        line-height: 1.5;
+      }
+      main {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 56px 24px 72px;
+      }
+      header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 32px;
+        align-items: end;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+      }
+      .eyebrow {
+        margin: 0 0 10px;
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0;
+        max-width: 820px;
+        font-size: clamp(40px, 7vw, 92px);
+        line-height: .94;
+        letter-spacing: 0;
+      }
+      .meta {
+        min-width: 220px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+        padding: 18px;
+      }
+      .meta p, .summary p { margin: 0; color: var(--muted); }
+      .gate {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        margin-bottom: 12px;
+        border-radius: 999px;
+        background: var(--ink);
+        color: white;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .summary {
+        margin: 28px 0;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .summary-card, .llm-summary, .community-table {
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .summary-card { padding: 18px; min-height: 120px; }
+      .summary-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 700;
+      }
+      .summary-card strong {
+        display: block;
+        margin-top: 12px;
+        font-size: 30px;
+        line-height: 1;
+      }
+      .llm-summary {
+        margin: 28px 0;
+        padding: 24px;
+      }
+      .llm-summary h2, .community-table h2, .heatmap h2 {
+        margin: 0 0 16px;
+        font-size: 24px;
+      }
+      .llm-summary .summary-content {
+        color: var(--ink);
+        white-space: pre-wrap;
+      }
+      .heatmap {
+        display: grid;
+        gap: 14px;
+        margin-top: 28px;
+      }
+      .theme-card {
+        display: grid;
+        grid-template-columns: 52px minmax(0, 1fr);
+        gap: 18px;
+        padding: 20px;
+        border: 1px solid var(--line);
+        background: var(--panel);
+      }
+      .theme-rank {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--soft);
+        color: var(--accent);
+        font-weight: 900;
+      }
+      .theme-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      .theme-heading h3 {
+        margin: 0;
+        font-size: 22px;
+      }
+      .theme-heading strong {
+        color: var(--accent);
+        font-size: 28px;
+      }
+      .heat-track {
+        height: 12px;
+        margin: 12px 0 14px;
+        background: var(--soft);
+        overflow: hidden;
+      }
+      .heat-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      }
+      .theme-stats {
+        display: flex;
+        gap: 10px;
+        margin: 0 0 18px;
+      }
+      .theme-stats div {
+        min-width: 120px;
+        padding: 10px 12px;
+        background: var(--paper);
+      }
+      dt {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+      dd {
+        margin: 3px 0 0;
+        font-weight: 900;
+      }
+      .theme-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 20px;
+      }
+      h4 {
+        margin: 0 0 8px;
+        font-size: 14px;
+        color: var(--accent-2);
+      }
+      ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+      li + li { margin-top: 8px; }
+      a { color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+      li span {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .community-table {
+        margin-top: 28px;
+        padding: 22px;
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 12px 10px;
+        border-top: 1px solid var(--line);
+        text-align: left;
+      }
+      th {
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+      }
+      @media (max-width: 820px) {
+        main { padding: 34px 16px 48px; }
+        header, .summary, .theme-grid { grid-template-columns: 1fr; }
+        h1 { font-size: 46px; }
+        .theme-card { grid-template-columns: 1fr; }
+        .theme-stats { flex-wrap: wrap; }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <div>
+          <p class="eyebrow">Reddit Demand Heatmap</p>
+          <h1>${escapeHtml(title)}</h1>
+        </div>
+        <aside class="meta">
+          <span class="gate">${escapeHtml(analysis.demand.gate)}</span>
+          <p>${escapeHtml(analysis.demand.notes)}</p>
+        </aside>
+      </header>
+
+      <section class="summary" aria-label="Demand summary">
+        <div class="summary-card"><span>Sample size</span><strong>${analysis.totalPosts}</strong></div>
+        <div class="summary-card"><span>Communities</span><strong>${analysis.communities.length}</strong></div>
+        <div class="summary-card"><span>Heat clusters</span><strong>${analysis.heatmap.length}</strong></div>
+        <div class="summary-card"><span>Purchase signals</span><strong>${analysis.demand.purchaseSignals}</strong></div>
+      </section>
+
+      ${llmSummary ? `<section class="llm-summary"><h2>LLM Demand Summary</h2><div class="summary-content">${llmSummary}</div></section>` : ""}
+
+      <section class="heatmap">
+        <h2>Pain Heatmap</h2>
+${heatmapCards}
+      </section>
+
+      <section class="community-table">
+        <h2>Community Coverage</h2>
+        <table>
+          <thead><tr><th>Community</th><th>Posts</th><th>Avg comments</th><th>Avg score</th></tr></thead>
+          <tbody>${communityRows}</tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
+`;
+}
+
 export function buildAiAnalysisPrompt(analysis) {
   const heatmap = analysis.heatmap
     .map((theme) => {
@@ -155,6 +470,45 @@ export function buildAiAnalysisPrompt(analysis) {
     "",
     "Heatmap evidence:",
     heatmap || "No matched themes.",
+  ].join("\n");
+}
+
+export function buildDemandHeatmapSummaryPrompt(analysis) {
+  const payload = {
+    project: analysis.project,
+    generatedAt: analysis.generatedAt,
+    sampleSize: analysis.totalPosts,
+    demandGate: analysis.demand,
+    communities: analysis.communities,
+    heatmap: analysis.heatmap.map((theme) => ({
+      id: theme.id,
+      label: theme.label,
+      heat: theme.heat,
+      posts: theme.count,
+      avgComments: theme.avgComments,
+      avgScore: theme.avgScore,
+      evidence: theme.evidence,
+      productMoves: theme.productMoves,
+    })),
+  };
+
+  return [
+    "你是一名面向早期创业验证的需求研究分析师。",
+    "请输出中文报告，主题是：需求热力分布。",
+    "只能基于提供的 Reddit 聚合数据，不要编造搜索量、市场规模、用户身份、收入、付费意愿或未出现的社区反馈。",
+    "请明确区分：已知事实、合理推断、仍需验证。",
+    "",
+    "输出结构：",
+    "1. 需求热力分布排序：按热度说明每个痛点簇为什么热。",
+    "2. 目标用户在哪里：指出最值得继续观察的 subreddit 或社区。",
+    "3. 购买/替代方案信号：只总结数据里出现的信号。",
+    "4. 产品机会：给出 Beauty Log 或类似色彩诊断产品的下一步功能/落地页角度。",
+    "5. 风险与缺口：说明哪些证据不足，下一轮应该抓取或访谈什么。",
+    "6. 下一步实验：给出 3 个一周内能执行的验证动作。",
+    "",
+    `项目：${analysis.project}`,
+    "Reddit 聚合数据：",
+    JSON.stringify(payload, null, 2),
   ].join("\n");
 }
 
@@ -265,4 +619,19 @@ function formatBoolean(value) {
 
 function escapeMarkdown(value) {
   return String(value ?? "").replaceAll("|", "\\|").replace(/\s+/g, " ").trim();
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+}
+
+function renderMarkdownishHtml(markdown) {
+  return escapeHtml(markdown)
+    .replace(/^### (.*)$/gm, "<strong>$1</strong>")
+    .replace(/^## (.*)$/gm, "<strong>$1</strong>")
+    .replace(/^# (.*)$/gm, "<strong>$1</strong>");
 }

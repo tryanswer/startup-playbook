@@ -4,9 +4,12 @@ import test from "node:test";
 import {
   analyzePain,
   buildAiAnalysisPrompt,
+  buildDemandHeatmapSummaryPrompt,
   normalizeRedditPost,
+  renderHeatmapHtml,
   renderPainReport,
 } from "../src/pain-miner.mjs";
+import { summarizeDemandWithOpenAI } from "../src/llm-summary.mjs";
 import { buildRedditListingUrl, redditChildrenToPosts } from "../src/reddit-source.mjs";
 
 const beautyLogThemes = [
@@ -167,4 +170,63 @@ test("renderPainReport and AI prompt preserve evidence without dumping raw corpu
   assert.match(prompt, /Do not invent evidence/);
   assert.doesNotMatch(report, /private-user/);
   assert.doesNotMatch(report, /private-face/);
+});
+
+test("renderHeatmapHtml builds a self-contained demand heatmap page", () => {
+  const analysis = analyzePain(redditChildrenToPosts(redditJson), {
+    project: "Beauty Log",
+    themes: beautyLogThemes,
+  });
+  const html = renderHeatmapHtml(analysis, {
+    title: "Color Diagnosis Reddit Heatmap",
+    llmSummary: "Hair color and undertone confusion are the strongest clusters.",
+  });
+
+  assert.match(html, /<!doctype html>/i);
+  assert.match(html, /Color Diagnosis Reddit Heatmap/);
+  assert.match(html, /data-theme-id="undertone-makeup-confusion"/);
+  assert.match(html, /Hair color and undertone confusion/);
+  assert.match(html, /https:\/\/www\.reddit\.com\/r\/coloranalysis\/comments\/a1\/hair_color\//);
+  assert.doesNotMatch(html, /private-user/);
+  assert.doesNotMatch(html, /private-face/);
+});
+
+test("buildDemandHeatmapSummaryPrompt asks LLM for evidence-bounded heat distribution", () => {
+  const analysis = analyzePain(redditChildrenToPosts(redditJson), {
+    project: "Beauty Log",
+    themes: beautyLogThemes,
+  });
+  const prompt = buildDemandHeatmapSummaryPrompt(analysis);
+
+  assert.match(prompt, /需求热力分布/);
+  assert.match(prompt, /只能基于提供的 Reddit 聚合数据/);
+  assert.match(prompt, /Hair color uncertainty/);
+  assert.match(prompt, /validation-needed/);
+});
+
+test("summarizeDemandWithOpenAI sends an evidence-bounded prompt and returns summary text", async () => {
+  const analysis = analyzePain(redditChildrenToPosts(redditJson), {
+    project: "Beauty Log",
+    themes: beautyLogThemes,
+  });
+  const calls = [];
+  const summary = await summarizeDemandWithOpenAI(analysis, {
+    apiKey: "test-key",
+    model: "test-model",
+    fetchImpl: async (url, init) => {
+      calls.push({ url, init });
+      return {
+        ok: true,
+        async json() {
+          return { choices: [{ message: { content: "LLM heatmap summary" } }] };
+        },
+      };
+    },
+  });
+
+  assert.equal(summary, "LLM heatmap summary");
+  assert.equal(calls.length, 1);
+  assert.match(calls[0].url, /\/chat\/completions$/);
+  assert.equal(calls[0].init.headers.Authorization, "Bearer test-key");
+  assert.match(calls[0].init.body, /需求热力分布/);
 });

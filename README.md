@@ -11,7 +11,7 @@
 - `skills/`: 可复制到 Codex / agent 环境使用的技能。
 - `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
 - `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。
-- `tools/topic-pain-miner`: 抓取公开社区主题内容，生成痛点热力图和需求真伪判断。
+- `tools/topic-pain-miner`: 抓取 Reddit 公共话题，生成痛点热力图、HTML 页面和可选 LLM 需求总结。
 - `plugins/startup-playbook-advisor`: 可安装到 Codex 的创业顾问插件。
 - `agents/startup-playbook-advisor.md`: 可复制到 Claude / Codex / OpenClaw 的创业顾问 agent 设定。
 - `templates/`: 可直接复制使用的实验、PRD、SEO/ASO 和落地页模板。
