@@ -26,7 +26,7 @@ If any answer is missing, treat the idea as unvalidated.
    If available, load `indie-hackers-starting-up` to identify the project stage, then load `founder-case-patterns` for similar user, pain, channel, pricing, or validation patterns. Use guides and cases as hypotheses to test, not proof.
 
 3. **Mine pain ore**
-   Collect raw complaints from Reddit, app reviews, Discord, forums, social comments, support tickets, or interviews. Store original quotes, source, link, and pain theme.
+   Collect raw complaints from Reddit, app reviews, Discord, forums, social comments, support tickets, or interviews. Store short excerpts, source, link, and pain theme. If this repository is available and Reddit/forum evidence is in scope, use `reddit-demand-validation` and `tools/topic-pain-miner`.
 
 4. **Quantify pain**
    Cluster the quotes with AI and calculate theme frequency. Prioritize pains that appear in more than 40% of the corpus. Preserve vivid language from users instead of rewriting everything into neutral product wording.

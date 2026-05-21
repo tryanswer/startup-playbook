@@ -1,0 +1,165 @@
+{
+  "project": "Beauty Log",
+  "description": "Public Reddit demand mining for AI color analysis, makeup matching, hair color, and styling decisions.",
+  "thresholds": {
+    "minThemeCount": 3,
+    "minPurchaseSignals": 2,
+    "minContinueSample": 60
+  },
+  "sources": [
+    {
+      "type": "reddit",
+      "community": "coloranalysis",
+      "listing": "top",
+      "time": "month",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "coloranalysis",
+      "listing": "new",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "MakeupAddiction",
+      "search": "warm vs cool makeup",
+      "sort": "relevance",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "femalehairadvice",
+      "listing": "top",
+      "time": "month",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "HairDye",
+      "listing": "top",
+      "time": "month",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "AsianBeauty",
+      "listing": "top",
+      "time": "month",
+      "limit": 25
+    },
+    {
+      "type": "reddit",
+      "community": "OliveMUA",
+      "listing": "top",
+      "time": "month",
+      "limit": 25
+    }
+  ],
+  "themes": [
+    {
+      "id": "hair-color-uncertainty",
+      "label": "Hair color uncertainty",
+      "patterns": [
+        "hair color",
+        "blonde",
+        "brown",
+        "red",
+        "dye",
+        "best on me",
+        "too much for me"
+      ],
+      "productMoves": [
+        "Add a before/after hair color comparison flow before users commit to dye or salon changes.",
+        "Show confidence and tradeoffs by shade family instead of a single answer."
+      ]
+    },
+    {
+      "id": "undertone-makeup-confusion",
+      "label": "Undertone and makeup confusion",
+      "patterns": [
+        "warm vs cool",
+        "undertone",
+        "olive",
+        "lipstick",
+        "foundation",
+        "shade match",
+        "cool olive",
+        "yellow olive"
+      ],
+      "productMoves": [
+        "Separate skin undertone, makeup shade, and clothing color analysis in the report.",
+        "Add olive and neutral undertone guidance instead of forcing every user into simple warm/cool labels."
+      ]
+    },
+    {
+      "id": "season-typing-conflict",
+      "label": "Season typing conflict",
+      "patterns": [
+        "type me",
+        "spring or summer",
+        "winter or summer",
+        "light summer",
+        "bright winter",
+        "bright spring",
+        "soft",
+        "colorwise"
+      ],
+      "productMoves": [
+        "Explain why two adjacent seasons are close and what real-life decisions change between them.",
+        "Include a confidence band and 'most actionable next step' instead of only a season label."
+      ]
+    },
+    {
+      "id": "photo-quality-friction",
+      "label": "Photo quality friction",
+      "patterns": [
+        "photo",
+        "lighting",
+        "no makeup",
+        "drapes",
+        "direct sun",
+        "overcast",
+        "white paper"
+      ],
+      "productMoves": [
+        "Add guided capture checks for natural light, no makeup, face visibility, and reference color.",
+        "Reject or downgrade low-confidence photos with a clear reason."
+      ]
+    },
+    {
+      "id": "style-change-regret-risk",
+      "label": "Style change regret risk",
+      "patterns": [
+        "regret",
+        "worst haircut",
+        "help",
+        "bangs or no bangs",
+        "cut my hair",
+        "which hair style"
+      ],
+      "productMoves": [
+        "Prioritize pre-change simulation for bangs, length, color, and high-regret decisions.",
+        "Create a quick 'before you cut or dye' checklist."
+      ]
+    },
+    {
+      "id": "product-recommendation-intent",
+      "label": "Product recommendation intent",
+      "patterns": [
+        "drugstore",
+        "similar shade",
+        "recommendation",
+        "brand",
+        "dupe",
+        "sunscreen",
+        "eyeliner",
+        "lipgloss"
+      ],
+      "productMoves": [
+        "Map analysis results to affordable product categories before naming specific products.",
+        "Use purchase-intent posts to test affiliate, marketplace, or paid recommendation opportunities."
+      ]
+    }
+  ]
+}

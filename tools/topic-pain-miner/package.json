@@ -1,0 +1,15 @@
+{
+  "name": "startup-playbook-topic-pain-miner",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mine public topic discussions into demand validation pain heatmaps.",
+  "scripts": {
+    "test": "node --test",
+    "fetch": "node --use-env-proxy scripts/fetch-topic.mjs",
+    "analyze": "node scripts/analyze-topic.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

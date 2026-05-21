@@ -11,9 +11,12 @@
 - `skills/`: 可复制到 Codex / agent 环境使用的技能。
 - `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
 - `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。
+- `tools/topic-pain-miner`: 抓取公开社区主题内容，生成痛点热力图和需求真伪判断。
 - `plugins/startup-playbook-advisor`: 可安装到 Codex 的创业顾问插件。
 - `agents/startup-playbook-advisor.md`: 可复制到 Claude / Codex / OpenClaw 的创业顾问 agent 设定。
 - `templates/`: 可直接复制使用的实验、PRD、SEO/ASO 和落地页模板。
+- `playbooks/03-growth-and-marketing/ai-distribution.md`: AI 辅助内容分发、社区回复、外联和日报的 70/30 分工与人工审批规则。
+- `templates/ai-distribution-action-sort.md`: 将一周分发动作拆成 AI can / Human owns / Hybrid 的执行模板。
 - `case-studies/beauty-log`: Beauty Log 的实战记录。
 
 ## Operating Principles
@@ -27,11 +30,13 @@
 ## Suggested Flow
 
 1. 用 `skills/idea-validation` 验证 idea，输出 kill / pivot / continue 结论。
-2. 通过 `tools/google-trends-seo` 检查关键词趋势和国家/语言机会。
-3. 用 `templates/landing-page-checklist.md` 快速建页验证转化。
-4. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
-5. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
-6. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。
+2. 用 `skills/reddit-demand-validation` 和 `tools/topic-pain-miner` 从公开社区抓取用户原话，判断需求是否真实、频繁、可触达、有购买信号。
+3. 通过 `tools/google-trends-seo` 检查关键词趋势和国家/语言机会。
+4. 用 `templates/landing-page-checklist.md` 快速建页验证转化。
+5. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
+6. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
+7. 如果要用 AI 做内容分发、社区回复或外联，先用 `playbooks/03-growth-and-marketing/ai-distribution.md` 和 `templates/ai-distribution-action-sort.md` 做 40-action sort，保留创始人必须亲自处理的 30%。
+8. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。
 
 ## Startup Advisor Plugin / Skill
 

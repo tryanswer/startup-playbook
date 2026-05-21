@@ -43,6 +43,7 @@ Load `references/advisor-dialogue.md` for the question bank and `references/evid
 When the repository is available, combine this advisor with:
 
 - `idea-validation` for raw pain mining, trend checks, paid-intent tests, and the kill/pivot/continue gate.
+- `reddit-demand-validation` for public community pain heatmaps and demand truth checks before product work.
 - `founder-case-patterns` for case-derived channel, validation, pricing, and MVP patterns.
 - `indie-hackers-starting-up` for stage selection and solo-founder operating constraints.
 - `seo-aso-growth-research` for country, language, SEO, ASO, and keyword opportunity work.
