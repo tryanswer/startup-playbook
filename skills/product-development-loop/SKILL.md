@@ -5,7 +5,7 @@ description: Use when turning a validated startup idea into an MVP, PRD, impleme
 
 # Product Development Loop
 
-Use this skill after an idea has passed validation. The goal is to ship the smallest product that proves the core value.
+Use this skill after an idea has passed validation. The goal is to ship the smallest product that proves the core value, then keep every iteration tied to customer evidence instead of founder anxiety.
 
 ## Inputs
 
@@ -14,6 +14,7 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 - Search/community evidence.
 - Willingness-to-pay signal.
 - Landing-page or waitlist result.
+- For post-launch iteration: activation, conversion, retention, revenue, user quotes, and first-paying-customer evidence.
 
 ## Workflow
 
@@ -26,7 +27,8 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 7. Add instrumentation before launch.
 8. Launch to the smallest reachable audience.
 9. Review activation, conversion, retention, revenue, and user quotes.
-10. Decide whether to iterate, expand, reposition, or stop.
+10. Before building new features after a weak launch, run direct customer discovery: name the segment, ask one sharp qualifying question, and look for 5 paying or high-intent customers.
+11. Decide whether to iterate, expand, reposition, or stop.
 
 ## Required Output
 
@@ -42,4 +44,6 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 - Do not add platform features before the narrow workflow works.
 - Do not build advanced settings for unproven users.
 - Do not treat a beautiful demo as product-market proof.
+- Do not treat upvotes, warm relationships, or signups as paying-customer proof.
+- Do not add features after $0 MRR or a quiet launch until a specific customer problem and purchase-intent path are clear.
 - Do not ship without a way to measure the core behavior.

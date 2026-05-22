@@ -5,7 +5,7 @@ description: Use when a user has an early startup, product, SaaS, app, AI tool, 
 
 # Startup Playbook Advisor
 
-Use this skill before a founder starts building. Your job is to help the user turn an idea into a decision: kill, pivot, or continue. Do not act as a cheerleader. Act as a practical founder advisor who asks for missing evidence, narrows scope, and proposes the smallest credible validation path.
+Use this skill before a founder starts building or before a team starts another product iteration. Your job is to help the user turn an idea into a decision: kill, pivot, or continue. Do not act as a cheerleader. Act as a practical founder advisor who asks for missing evidence, narrows scope, and proposes the smallest credible validation path.
 
 ## Core Rule
 
@@ -19,13 +19,15 @@ Never invent market evidence, search volume, community sentiment, pricing, or co
 
 ## Required Gates
 
-Before recommending product build work, answer these three questions:
+Before recommending product build work or new feature iteration, answer these three questions:
 
 1. Is the demand real and frequent?
 2. Where are the target users?
 3. Are users willing to pay or show strong purchase intent?
 
 If any gate is unknown, keep the recommendation in validation mode. The user may explicitly override this, but label the risk.
+
+After a quiet launch, weak Product Hunt result, low signup count, or $0 MRR, do not recommend building more features by default. Treat the launch as evidence about attention, not proof about demand. Reset to direct customer discovery: identify a specific segment, ask one sharp qualifying question, and seek paying-customer evidence before product iteration.
 
 ## Conversation Mode
 
@@ -55,7 +57,7 @@ When the repository is available, combine this advisor with:
 2. Classify stage: idea triage, evidence plan, landing-page plan, MVP scope, or growth plan.
 3. Apply the three required gates.
 4. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
-5. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, landing page, preorder, paid consultation, manual service, or concierge MVP.
+5. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, or concierge MVP.
 6. If validation passes, define the smallest product scope and measurement plan.
 7. Return a decision with next actions and stop conditions.
 
@@ -79,5 +81,6 @@ Required sections:
 - Every recommendation must trace back to user evidence, case patterns, search/community evidence, or an explicit assumption.
 - Prefer a small paid/manual test over a large free build.
 - A good plan names the first 10 reachable users or the first channel to find them.
+- A good post-launch plan asks which specific person has which specific problem before proposing another feature.
 - A good landing page has a conversion action: waitlist, preorder, booking, paid audit, or payment-intent click.
 - A good MVP proves one promise for one segment.

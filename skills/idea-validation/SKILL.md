@@ -5,7 +5,7 @@ description: Use when evaluating a startup or product idea before building, espe
 
 # Idea Validation
 
-Use this skill before building a new product or feature idea. The goal is to decide whether to kill, pivot, or continue based on evidence.
+Use this skill before building a new product or feature idea, and before iterating after a weak launch. The goal is to decide whether to kill, pivot, or continue based on evidence.
 
 ## Required Gate
 
@@ -37,10 +37,13 @@ If any answer is missing, treat the idea as unvalidated.
 6. **Check willingness to pay**
    Look for buying behavior: paid alternatives, high CPC, marketplace demand, explicit user budget, service purchases, affiliate products, paid communities, preorder clicks, or payment-page clicks.
 
-7. **Build a fast landing page**
+7. **Run the first-paying-customer check**
+   A launch post, warm relationship, Product Hunt listing, upvote, like, or signup does not prove paid demand. Before adding features after a weak launch, identify a specific person with a specific problem and ask one sharp qualifying question. Continue product iteration only when there is payment, preorder, paid pilot, booked sales call with clear pain, or another strong purchase-intent signal. A useful default constraint is: find 5 paying or high-intent customers before building another feature.
+
+8. **Build a fast landing page**
    Use raw user language for headline, pain points, FAQ, and CTA. Include a waitlist, preorder, buy-now, consultation booking, or payment-intent action.
 
-8. **Decide**
+9. **Decide**
    Output one of: kill, pivot, continue. Include the evidence threshold and next experiment.
 
 ## Required Output
@@ -50,6 +53,7 @@ If any answer is missing, treat the idea as unvalidated.
 - Pain frequency summary.
 - Keyword and trend evidence.
 - Willingness-to-pay evidence.
+- First-paying-customer plan or qualifying question.
 - Landing-page message map.
 - Decision: kill / pivot / continue.
 
@@ -65,4 +69,5 @@ If any answer is missing, treat the idea as unvalidated.
 - Segmenting too broadly.
 - Trusting one viral trend without long-tail demand.
 - Treating free interest as paid demand.
+- Treating a quiet launch as a product-feature problem before testing sales conversations.
 - Building a landing page without a conversion action.
