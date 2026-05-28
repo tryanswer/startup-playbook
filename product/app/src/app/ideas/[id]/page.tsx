@@ -30,7 +30,25 @@ export default function IdeaDetailPage() {
     refreshProject();
   }, [refreshProject]);
 
-  if (!project) {
+  // Derive active stage — safe even when project is null
+  const activeStage = project?.stages.find(s => s.id === activeStageId) ?? project?.stages[0] ?? null;
+
+  // Load existing report from artifacts — must run before any conditional return
+  useEffect(() => {
+    if (!activeStage) return;
+    const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
+    if (reportArtifact?.content) setValidationHtml(reportArtifact.content);
+    else setValidationHtml(null);
+
+    const summaryArtifact = activeStage.artifacts.find(a => a.id === 'report-json');
+    if (summaryArtifact?.content) {
+      try { setValidationSummary(JSON.parse(summaryArtifact.content)); } catch { /* ignore */ }
+    } else {
+      setValidationSummary(null);
+    }
+  }, [activeStage]);
+
+  if (!project || !activeStage) {
     return (
       <div className="flex items-center justify-center min-h-[50vh]" data-testid="detail-loading">
         <Loader2 className="h-6 w-6 animate-spin text-[var(--text-muted)]" />
@@ -38,19 +56,7 @@ export default function IdeaDetailPage() {
     );
   }
 
-  const activeStage = project.stages.find(s => s.id === activeStageId) ?? project.stages[0];
   const stageConfig = STAGE_CONFIG[activeStage.id];
-
-  // Load existing report from artifacts — must be before any conditional returns
-  useEffect(() => {
-    const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
-    if (reportArtifact?.content) setValidationHtml(reportArtifact.content);
-
-    const summaryArtifact = activeStage.artifacts.find(a => a.id === 'report-json');
-    if (summaryArtifact?.content) {
-      try { setValidationSummary(JSON.parse(summaryArtifact.content)); } catch { /* ignore */ }
-    }
-  }, [activeStage]);
 
   async function handleRunValidation() {
     const currentProject = getProject(projectId);
