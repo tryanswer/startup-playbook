@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getProject, updateStage, makeDecision, forkProject, backtrackToStage } from '@/lib/store';
+import { getProject, getProjectThreads, updateStage, makeDecision, forkProject, backtrackToStage } from '@/lib/store';
 import { Project, Stage, StageId, STAGE_CONFIG, STAGE_ORDER, ValidationSummary } from '@/lib/types';
 import { StagePipeline } from '@/components/stage-pipeline';
 import { DecisionGate } from '@/components/decision-gate';
@@ -57,6 +57,7 @@ export default function IdeaDetailPage() {
   }
 
   const stageConfig = STAGE_CONFIG[activeStage.id];
+  const threads = getProjectThreads(projectId);
 
   async function handleRunValidation() {
     const currentProject = getProject(projectId);
@@ -130,6 +131,7 @@ export default function IdeaDetailPage() {
   }
 
   function handleDecision(decision: 'continue' | 'pivot' | 'kill') {
+    if (!activeStage) return;
     makeDecision(projectId, activeStage.id as StageId, decision);
     refreshProject();
 
@@ -145,6 +147,7 @@ export default function IdeaDetailPage() {
   }
 
   function handleFork() {
+    // Fork stays on the same idea — creates a thread, navigates to it within context
     const forked = forkProject(projectId);
     if (forked) {
       router.push(`/ideas/${forked.id}`);
@@ -192,16 +195,15 @@ export default function IdeaDetailPage() {
         />
       </div>
 
-      {/* Stage Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left panel: tasks & artifacts */}
+      {/* Stage Content — full width, stacked vertically */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        {/* Left: tasks, run button, decision */}
         <div className="space-y-4">
           <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
             <h2 className="text-sm font-medium text-[var(--text-secondary)] mb-3">
               {stageConfig.icon} {stageConfig.label}
             </h2>
 
-            {/* Auto Tasks */}
             {activeStage.autoTasks.length > 0 ? (
               <div className="space-y-2 mb-4">
                 {activeStage.autoTasks.map(task => (
@@ -218,7 +220,6 @@ export default function IdeaDetailPage() {
               <p className="text-sm text-[var(--text-muted)] mb-4">{stageConfig.description}</p>
             )}
 
-            {/* Run button */}
             {activeStageId === 'validate' && activeStage.status === 'pending' && (
               <button
                 onClick={handleRunValidation}
@@ -237,21 +238,6 @@ export default function IdeaDetailPage() {
               </div>
             )}
           </div>
-
-          {/* Artifacts */}
-          {activeStage.artifacts.length > 0 && (
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
-              <h3 className="text-sm font-medium text-[var(--text-secondary)] mb-3">Artifacts</h3>
-              <div className="space-y-2">
-                {activeStage.artifacts.map(artifact => (
-                  <div key={artifact.id} className="flex items-center gap-2 text-sm">
-                    <FileText className="h-3.5 w-3.5 text-[var(--text-muted)]" />
-                    <span>{artifact.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
 
           {/* Decision Gate */}
           {activeStage.status === 'waiting_decision' && (
@@ -272,7 +258,7 @@ export default function IdeaDetailPage() {
             </div>
           )}
 
-          {/* Fork Thread button */}
+          {/* Fork Thread */}
           <button
             onClick={handleFork}
             data-testid="detail-btn-fork"
@@ -280,25 +266,65 @@ export default function IdeaDetailPage() {
           >
             🔀 New Thread
           </button>
-        </div>
 
-        {/* Right panel: report viewer + agent terminal */}
-        <div className="lg:col-span-2 flex flex-col gap-4">
-          {/* Report viewer - 占上半部分，有内容时显示 */}
-          {validationHtml && (
-            <div className="rounded-xl overflow-hidden border border-[var(--border)]">
-              <iframe srcDoc={validationHtml} className="w-full h-[350px] bg-white" title="Report" />
+          {/* Threads list */}
+          {threads.length > 1 && (
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+              <h3 className="text-sm font-medium text-[var(--text-secondary)] mb-2">Threads</h3>
+              <div className="space-y-1">
+                {threads.map(thread => (
+                  <Link
+                    key={thread.id}
+                    href={`/ideas/${thread.id}`}
+                    className={`block text-sm px-2 py-1 rounded ${thread.id === projectId ? 'bg-[var(--accent-blue)]/20 text-[var(--accent-blue)]' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'}`}
+                  >
+                    {thread.parentId ? `Thread ${thread.version}: ${thread.threadLabel || ''}` : 'Original'}
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
-          {/* Agent Terminal - 始终显示 */}
-          <div className="flex-1 min-h-[350px]">
-            <AgentTerminal
-              projectId={projectId}
-              projectName={project.name}
-              stageId={activeStageId}
-            />
-          </div>
         </div>
+
+        {/* Right: report viewer + artifacts */}
+        <div className="lg:col-span-2 space-y-4">
+          {validationHtml && (
+            <div className="rounded-xl overflow-hidden border border-[var(--border)]">
+              <iframe srcDoc={validationHtml} className="w-full h-[400px] bg-white" title="Report" />
+            </div>
+          )}
+
+          {activeStage.artifacts.length > 0 && !validationHtml && (
+            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+              <h3 className="text-sm font-medium text-[var(--text-secondary)] mb-3">Artifacts</h3>
+              <div className="space-y-2">
+                {activeStage.artifacts.map(artifact => (
+                  <div key={artifact.id} className="flex items-center gap-2 text-sm">
+                    <FileText className="h-3.5 w-3.5 text-[var(--text-muted)]" />
+                    <span>{artifact.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {!validationHtml && activeStage.artifacts.length === 0 && (
+            <div className="flex items-center justify-center h-[200px] rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+              <p className="text-sm text-[var(--text-muted)]">
+                {activeStage.status === 'pending' ? 'Run validation or use the agent below to explore' : activeStage.status === 'running' ? 'Validation in progress...' : 'No report available'}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Agent Terminal — fixed at bottom, always visible */}
+      <div className="rounded-xl border border-[var(--border)] overflow-hidden">
+        <AgentTerminal
+          projectId={projectId}
+          projectName={project.name}
+          stageId={activeStageId}
+        />
       </div>
     </div>
   );
