@@ -19,7 +19,8 @@ description: Use when building a product with AI coding agents. Covers the full 
 2. Add a DESIGN.md to the project root from [awesome-design-md](https://github.com/voltagent/awesome-design-md) matching the product's visual positioning.
 3. Install taste-skill (`npx skills add https://github.com/Leonxlnx/taste-skill`) for anti-slop UI generation.
 4. Create the project's AGENTS.md with stability rules from `playbooks/02-product-development/ai-native-stability.md`.
-5. Set up CLI tools for infrastructure: `aliyun configure` for China, `vercel && supabase && stripe` for international.
+5. Install security skills: `npx @bytehide/ai-security-toolkit` for OWASP Top 10 scanning. For payment/auth products, also add Trail of Bits skills. See `playbooks/02-product-development/ai-native-security.md`.
+6. Set up CLI tools for infrastructure: `aliyun configure` for China, `vercel && supabase && stripe` for international.
 
 ### Build
 

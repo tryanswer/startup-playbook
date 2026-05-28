@@ -25,7 +25,7 @@ Every guide, template, and tool in this repo is designed to prevent the most com
 | Stage | Playbook | What it covers |
 |---|---|---|
 | **① Validate** | [`01-idea-validation`](playbooks/01-idea-validation/) | Three-gate validation: real demand? reachable users? willing to pay? |
-| **② Build** | [`02-product-development`](playbooks/02-product-development/) | AI-native development & stability, tech stack, MVP scoping, launch checklist, post-launch iteration |
+| **② Build** | [`02-product-development`](playbooks/02-product-development/) | AI-native development, stability & security, tech stack, MVP scoping, launch checklist, post-launch iteration |
 | **③ Grow** | [`03-growth-and-marketing`](playbooks/03-growth-and-marketing/) | SEO, Google Ads cold start, Search Console, UTM attribution, AI distribution, China market growth |
 | **④ Operate** | [`04-operations-and-analytics`](playbooks/04-operations-and-analytics/) | GA4/Baidu event tracking, retention decision trees, weekly review protocol |
 
