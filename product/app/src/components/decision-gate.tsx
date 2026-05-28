@@ -25,16 +25,36 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
 
       {summary ? (
         <>
-          {/* Score */}
+          {/* Score + Decision */}
           <div className="text-center mb-4">
             <div className="text-3xl font-bold" style={{ color }}>
-              {t(`decision.${summary.decision}`)}
+              {summary.score}<span className="text-lg text-[var(--text-muted)]">/100</span>
             </div>
-            <div className="text-sm text-[var(--text-muted)] mt-1">
-              {t('decision.score', { score: summary.score })}
+            <div className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-semibold" style={{ background: `${color}22`, color }}>
+              {t(`decision.${summary.decision}`)}
             </div>
             <p className="text-xs text-[var(--text-secondary)] mt-2">{summary.reasoning}</p>
           </div>
+
+          {/* Analysis sections */}
+          {summary.painAnalysis && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">😤 Pain Analysis</p>
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.painAnalysis}</p>
+            </div>
+          )}
+          {summary.demandAnalysis && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🔍 Demand</p>
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.demandAnalysis}</p>
+            </div>
+          )}
+          {summary.marketAnalysis && (
+            <div className="mb-3">
+              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🏢 Market</p>
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.marketAnalysis}</p>
+            </div>
+          )}
 
           {/* Evidence */}
           {summary.evidence.length > 0 && (
@@ -53,13 +73,28 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
 
           {/* Concerns */}
           {summary.concerns.length > 0 && (
-            <div className="mb-4">
+            <div className="mb-3">
               <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">{t('decision.concerns')}</p>
               <ul className="space-y-1">
                 {summary.concerns.map((item, index) => (
                   <li key={index} className="text-xs text-[var(--text-secondary)] flex gap-1.5">
                     <span className="text-[var(--accent-yellow)]">⚠</span>
                     {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Next Steps */}
+          {summary.suggestedNextSteps && summary.suggestedNextSteps.length > 0 && (
+            <div className="mb-4">
+              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🚀 Next Steps</p>
+              <ul className="space-y-1">
+                {summary.suggestedNextSteps.map((step, index) => (
+                  <li key={index} className="text-xs text-[var(--text-muted)] flex gap-1.5">
+                    <span className="text-[var(--accent-blue)]">{index + 1}.</span>
+                    {step}
                   </li>
                 ))}
               </ul>

@@ -71,13 +71,17 @@ export interface AgentTab {
   isActive: boolean;
 }
 
-/** Validation report summary (from idea-validator output) */
+/** Validation report summary (from LLM analysis) */
 export interface ValidationSummary {
   score: number;
   decision: 'continue' | 'pivot' | 'kill';
   reasoning: string;
   evidence: string[];
   concerns: string[];
+  painAnalysis?: string;
+  demandAnalysis?: string;
+  marketAnalysis?: string;
+  suggestedNextSteps?: string[];
 }
 
 export const STAGE_CONFIG: Record<StageId, { label: string; icon: string; description: string }> = {
