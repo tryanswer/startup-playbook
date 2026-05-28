@@ -31,7 +31,13 @@ export default function IdeaDetailPage() {
     refreshProject();
   }, [refreshProject]);
 
-  if (!project) return null;
+  if (!project) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]" data-testid="detail-loading">
+        <Loader2 className="h-6 w-6 animate-spin text-[var(--text-muted)]" />
+      </div>
+    );
+  }
 
   const activeStage = project.stages.find(s => s.id === activeStageId)!;
   const stageConfig = STAGE_CONFIG[activeStageId];

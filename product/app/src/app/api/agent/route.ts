@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
 import { captureError } from '@/lib/error-tracking';
+import { agentLimiter } from '@/lib/rate-limit';
+import { getClientIp } from '@/lib/get-client-ip';
 
 /**
  * Agent API route — proxies chat to an LLM with stage-specific context.
@@ -33,6 +35,13 @@ const STAGE_SYSTEM_PROMPTS: Record<string, string> = {
 
 export async function POST(request: NextRequest) {
   const traceId = generateTraceId();
+  
+  // 速率限制检查
+  const clientIp = getClientIp(request);
+  const rateCheck = agentLimiter(clientIp);
+  if (!rateCheck.allowed) {
+    return createErrorResponse('Rate limit exceeded', 'RATE_LIMITED', 429, traceId);
+  }
   
   try {
     const body: AgentRequestBody = await request.json();

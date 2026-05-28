@@ -7,6 +7,8 @@ import { tmpdir } from 'node:os';
 import { mkdtemp } from 'node:fs/promises';
 import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
 import { captureError } from '@/lib/error-tracking';
+import { validateLimiter } from '@/lib/rate-limit';
+import { getClientIp } from '@/lib/get-client-ip';
 
 const execFileAsync = promisify(execFile);
 
@@ -20,6 +22,13 @@ const MAX_SUBREDDITS_LENGTH = 500;
 
 export async function POST(request: NextRequest) {
   const traceId = generateTraceId();
+  
+  // 速率限制检查
+  const clientIp = getClientIp(request);
+  const rateCheck = validateLimiter(clientIp);
+  if (!rateCheck.allowed) {
+    return createErrorResponse('Rate limit exceeded', 'RATE_LIMITED', 429, traceId);
+  }
   
   try {
     const body = await request.json();
