@@ -9,11 +9,11 @@ Use this skill after idea validation passes. The goal is to match the product po
 
 ## Core Principle
 
-> 商业模式不是拍脑袋选的，是由产品定位决定的。产品定位 = 谁的什么痛 + 多频繁 + 多愿意付费。
+> Business models are not chosen arbitrarily; they are determined by product positioning. Product positioning = whose pain + how frequent + how willing to pay.
 
 ## Step 1: Classify Product Positioning
 
-先回答四个问题，确定产品定位类型：
+Answer these four questions to determine product positioning type:
 
 | Question | Options | Implications |
 |---|---|---|
@@ -26,203 +26,203 @@ Use this skill after idea validation passes. The goal is to match the product po
 
 基于 499 个案例的统计分布，按产品定位推荐商业模式：
 
-### Model A: SaaS 订阅（479/499 案例，96%）
+### Model A: SaaS Subscription (479/499 cases, 96%)
 
-**适合**：用户需要持续使用的工具型产品。
-
-| Signal | Evidence |
-|---|---|
-| 使用频率 | 每天或每周 |
-| 替代方案 | 用户现在手动做，或用功能不够的免费工具 |
-| 交付物 | 持续运行的工具 / dashboard / 自动化 |
-| 典型客单价 | $9-49/mo (B2C/Prosumer), $49-299/mo (B2B), $299+/mo (Enterprise) |
-
-**定价阶梯**：
-
-```
-免费试用 (7-14 天，不是 freemium)
-    ↓
-Starter: $9-19/mo — 个人用户，核心功能
-    ↓
-Pro: $29-49/mo — 高级功能，更多用量
-    ↓
-Team/Business: $99-299/mo — 多人协作，优先支持
-    ↓
-Enterprise: 按需报价 — 定制、SLA、专属部署
-```
-
-**案例证据**：93% 的成功 indie hacker 使用订阅制。订阅的核心优势是 **MRR 可预测**，让创始人能规划而不是靠单次爆发。
-
-**关键规则**：
-- 不要从 freemium 开始，除非产品有明确的网络效应或病毒传播机制（只有 22% 的案例用 freemium）。
-- 免费试用 > freemium。试用有时间压力促成转化，freemium 容易养出永远不付费的用户。
-- 价格定在用户替代方案成本的 1/3 到 1/2。如果用户现在花 $100/月雇人做，定价 $29-49/月。
-
-### Model B: Productized Service（151/499 案例，30%）
-
-**适合**：从服务起步，逐步产品化的路径。这是 indie hacker 最安全的起步方式。
+**Suitable for**: Tool-based products that users need to use continuously.
 
 | Signal | Evidence |
 |---|---|
-| 使用频率 | 每周到每月 |
-| 替代方案 | 用户现在雇人做或找 freelancer |
-| 交付物 | 标准化的服务成果 |
-| 典型客单价 | $200-2000/次 或 $500-5000/月 |
+| Usage frequency | Daily or weekly |
+| Alternative solution | Users currently do it manually, or use free tools with insufficient features |
+| Deliverable | Continuously running tool / dashboard / automation |
+| Typical price point | $9-49/mo (B2C/Prosumer), $49-299/mo (B2B), $299+/mo (Enterprise) |
 
-**进化路径**：
+**Pricing tiers**:
 
 ```
-阶段 1: 纯手动服务
-  ↓  收费验证需求，积累交付经验
-  ↓  找到最可重复的部分
-阶段 2: 半自动化
-  ↓  用工具替代 50% 的手动工作
-  ↓  服务价格不变，利润率提升
-阶段 3: 全自动 SaaS
-  ↓  客户自助使用，按月订阅
-  ↓  保留高端服务作为 premium tier
+Free trial (7-14 days, not freemium)
+    ↓
+Starter: $9-19/mo — Individual users, core features
+    ↓
+Pro: $29-49/mo — Advanced features, more usage
+    ↓
+Team/Business: $99-299/mo — Multi-user collaboration, priority support
+    ↓
+Enterprise: Custom quote — Customization, SLA, dedicated deployment
 ```
 
-**案例证据**：72% 的成功案例先做了 manual service。$1.7M/yr 的咨询公司就是把一个 2 周服务产品化。
+**Case evidence**: 93% of successful indie hackers use subscription model. The core advantage of subscription is **predictable MRR**, allowing founders to plan rather than rely on one-time spikes.
 
-**关键规则**：
-- 先收服务费再写代码。如果没人愿意为手动服务付费，自动化版本也不会有人买。
-- 服务定价比 SaaS 高是正常的——你在卖时间和专业性。
-- 保留 "Done for you" 选项作为最高价 tier，即使产品已经自动化。
+**Key rules**:
+- Don't start with freemium unless the product has clear network effects or viral propagation mechanisms (only 22% of cases use freemium).
+- Free trial > freemium. Trials create time pressure that drives conversion; freemium easily breeds users who never pay.
+- Price at 1/3 to 1/2 of the user's alternative solution cost. If users currently spend $100/month hiring someone, price at $29-49/month.
 
-### Model C: 内容/课程/模板（242+85 案例，49%+17%）
+### Model B: Productized Service (151/499 cases, 30%)
 
-**适合**：知识型产品，创始人有专业领域经验。
+**Suitable for**: Starting with a service and gradually productizing it. This is the safest way for indie hackers to start.
 
 | Signal | Evidence |
 |---|---|
-| 使用频率 | 一次性学习 + 偶尔回顾 |
-| 替代方案 | 免费博客/YouTube/文档 |
-| 交付物 | 课程 / 电子书 / 模板 / 社区 |
-| 典型客单价 | $29-199 一次性，或 $9-29/mo 社区订阅 |
+| Usage frequency | Weekly to monthly |
+| Alternative solution | Users currently hire people or find freelancers |
+| Deliverable | Standardized service outcomes |
+| Typical price point | $200-2000/time or $500-5000/month |
 
-**定价模型**：
+**Evolution path**:
 
 ```
-Option A: 一次性付费课程
-  $29-99 入门课 → $199-499 高级课 → $999+ 辅导包
-
-Option B: 模板/资源包
-  $19-49 单个模板 → $99-199 全套包 → 持续更新订阅
-
-Option C: 付费社区
-  $9-29/mo 社区会员 → 包含课程+模板+社区+直播
+Phase 1: Pure manual service
+  ↓  Charge to validate demand, accumulate delivery experience
+  ↓  Find the most repeatable parts
+Phase 2: Semi-automated
+  ↓  Use tools to replace 50% of manual work
+  ↓  Service price stays the same, profit margin improves
+Phase 3: Fully automated SaaS
+  ↓  Customers self-serve, monthly subscription
+  ↓  Keep high-end services as premium tier
 ```
 
-**关键规则**：
-- 一次性付费产品需要持续获取新客，没有 MRR 的安全感。优先考虑 **课程 + 社区订阅** 的组合。
-- 模板是最快盈利的产品形态——开发周期短、边际成本零。
-- 不要和免费内容竞争功能，竞争 **结构化 + 省时间 + 社区归属感**。
+**Case evidence**: 72% of successful cases started with manual service. The $1.7M/yr consulting company productized a 2-week service.
 
-### Model D: Marketplace / 平台（69 案例，14%）
+**Key rules**:
+- Collect service fees before writing code. If no one is willing to pay for manual service, the automated version won't sell either.
+- It's normal for service pricing to be higher than SaaS—you're selling time and expertise.
+- Keep the "Done for you" option as the highest-priced tier, even after the product is automated.
 
-**适合**：连接供需双方的产品。风险最高，回报最大。
+### Model C: Content/Course/Templates (242+85 cases, 49%+17%)
+
+**Suitable for**: Knowledge-based products where the founder has domain expertise.
 
 | Signal | Evidence |
 |---|---|
-| 使用频率 | 取决于品类 |
-| 替代方案 | 用户在其他平台或线下交易 |
-| 交付物 | 交易撮合 + 信任保障 |
-| 典型抽成 | 5-20% 交易佣金 |
+| Usage frequency | One-time learning + occasional review |
+| Alternative solution | Free blogs/YouTube/documentation |
+| Deliverable | Course / eBook / templates / community |
+| Typical price point | $29-199 one-time, or $9-29/mo community subscription |
 
-**关键规则**：
-- 只有 14% 的案例走 marketplace 路径，因为冷启动极难。
-- 先做 **一端的工具**，再扩展成平台。例如先做「给卖家的管理工具」，积累卖家后再引入买家。
-- 不要试图做通用平台，先做 **垂直品类** 的撮合。
+**Pricing models**:
 
-### Model E: Developer Tool / API（438 案例，88%）
+```
+Option A: One-time paid course
+  $29-99 introductory course → $199-499 advanced course → $999+ coaching package
 
-**适合**：面向开发者的工具、SDK、API 服务。
+Option B: Template/resource pack
+  $19-49 single template → $99-199 full bundle → ongoing update subscription
+
+Option C: Paid community
+  $9-29/mo community membership → includes courses + templates + community + live sessions
+```
+
+**Key rules**:
+- One-time payment products require continuous customer acquisition without the security of MRR. Prioritize the **course + community subscription** combination.
+- Templates are the fastest product to monetize—short development cycle, zero marginal cost.
+- Don't compete with free content on features; compete on **structure + time-saving + community belonging**.
+
+### Model D: Marketplace / Platform (69 cases, 14%)
+
+**Suitable for**: Products that connect supply and demand. Highest risk, highest reward.
 
 | Signal | Evidence |
 |---|---|
-| 使用频率 | 集成后持续使用 |
-| 替代方案 | 自己写、用开源替代 |
-| 交付物 | API / SDK / CLI / SaaS 工具 |
-| 典型定价 | Free tier + Usage-based + Team plan |
+| Usage frequency | Depends on category |
+| Alternative solution | Users transact on other platforms or offline |
+| Deliverable | Transaction matching + trust assurance |
+| Typical commission | 5-20% transaction fee |
 
-**定价模型**：
+**Key rules**:
+- Only 14% of cases follow the marketplace path because cold starts are extremely difficult.
+- First build a **tool for one side**, then expand into a platform. For example, start with "management tools for sellers," accumulate sellers before introducing buyers.
+- Don't try to build a general-purpose platform; start with **vertical category** matching.
+
+### Model E: Developer Tool / API (438 cases, 88%)
+
+**Suitable for**: Tools, SDKs, and API services for developers.
+
+| Signal | Evidence |
+|---|---|
+| Usage frequency | Continuous use after integration |
+| Alternative solution | Write it yourself, use open-source alternatives |
+| Deliverable | API / SDK / CLI / SaaS tool |
+| Typical pricing | Free tier + Usage-based + Team plan |
+
+**Pricing model**:
 
 ```
-Free: 有限额度（吸引开发者试用）
+Free: Limited quota (attracts developers to try)
     ↓
-Pro: $29-99/mo 或按用量 — 生产环境使用
+Pro: $29-99/mo or usage-based — Production environment use
     ↓
-Team: $99-299/mo — 多人协作 + 更高额度
+Team: $99-299/mo — Multi-user collaboration + higher quotas
     ↓
-Enterprise: 按需 — SLA + 私有部署 + 优先支持
+Enterprise: Custom — SLA + private deployment + priority support
 ```
 
-**关键规则**：
-- 开发者工具几乎必须有 free tier（但不是无限免费）。
-- 按用量计费（usage-based）是开发者最能接受的模式——用多少付多少。
-- 文档是产品的一部分。差文档 = 差产品。
+**Key rules**:
+- Developer tools almost always require a free tier (but not unlimited free).
+- Usage-based pricing is the most acceptable model for developers—pay for what you use.
+- Documentation is part of the product. Poor documentation = poor product.
 
 ## Step 3: Revenue Progression Path
 
-不管选哪个模式，indie hacker 的收入增长路径通常遵循这个阶段：
+Regardless of the model chosen, indie hacker revenue growth typically follows this progression:
 
 ```
-$0 → $1 MRR        验证期（1-4 周）
-  方法：手动服务 / 预售 / 咨询
-  目标：找到 1 个付费用户
+$0 → $1 MRR        Validation phase (1-4 weeks)
+  Method: Manual service / pre-sale / consulting
+  Goal: Find 1 paying user
   
-$1 → $1K MRR       种子期（1-3 个月）
-  方法：产品上线 + 内容获客 + 社区参与
-  目标：找到 10-30 个付费用户
-  关键：确认用户在续费，不只是尝鲜
+$1 → $1K MRR       Seed phase (1-3 months)
+  Method: Product launch + content acquisition + community engagement
+  Goal: Find 10-30 paying users
+  Key: Confirm users are renewing, not just trying out
   
-$1K → $10K MRR     增长期（3-12 个月）
-  方法：SEO + 内容 + 口碑 + 一个主渠道
-  目标：找到可重复的获客渠道
-  关键：CAC < LTV/3，留存 > 85%/月
+$1K → $10K MRR     Growth phase (3-12 months)
+  Method: SEO + content + word-of-mouth + one main channel
+  Goal: Find repeatable acquisition channels
+  Key: CAC < LTV/3, retention > 85%/month
   
-$10K → $50K MRR    规模期（6-24 个月）
-  方法：扩渠道 + 加价 + 企业客户 + 合作伙伴
-  目标：建立可预测的增长引擎
-  关键：从创始人驱动转向系统驱动
+$10K → $50K MRR    Scale phase (6-24 months)
+  Method: Expand channels + raise prices + enterprise customers + partnerships
+  Goal: Build a predictable growth engine
+  Key: Shift from founder-driven to system-driven
 ```
 
 ### Revenue Milestones Decision
 
 | MRR | Decision |
 |---|---|
-| $0 持续 4 周 | 回到验证阶段，检查需求是否真实 |
-| < $500 持续 3 个月 | 审视定价——是太低还是产品价值不够 |
-| $1K-3K 增长停滞 | 增长瓶颈通常在获客渠道，不在产品功能 |
-| $5K+ 但留存 < 80% | 产品价值不够持续，修产品比扩渠道重要 |
-| $10K+ 留存 > 90% | 可以考虑全职投入 |
+| $0 for 4 consecutive weeks | Return to validation phase, check if demand is real |
+| < $500 for 3 consecutive months | Review pricing—is it too low or is product value insufficient |
+| $1K-3K growth stagnation | Growth bottleneck is usually in acquisition channels, not product features |
+| $5K+ but retention < 80% | Product value isn't sustained; fixing product is more important than expanding channels |
+| $10K+ retention > 90% | Consider going full-time |
 
 ## Step 4: Pricing Design Checklist
 
 | Rule | Evidence |
 |---|---|
-| **价格要明确标出来** | 96% 的案例有清晰价格（478/499） |
-| **默认用订阅制** | 93% 的案例用订阅（464/499） |
-| **不要太便宜** | 太低的价格吸引低质量用户，且无法覆盖获客成本 |
-| **年付打折** | 提供年付 = 月付 × 10（省 2 个月），改善现金流 |
-| **价格随价值涨** | 第一年至少涨价一次，早期用户锁定老价格 |
-| **企业客户另算** | Enterprise 不放在定价页，用"联系我们"收更高价 |
-| **先贵后便宜** | 先从高价服务开始，验证后再降到 SaaS 价格 |
+| **Prices must be clearly displayed** | 96% of cases have clear pricing (478/499) |
+| **Default to subscription** | 93% of cases use subscription (464/499) |
+| **Don't price too low** | Too-low prices attract low-quality users and can't cover acquisition costs |
+| **Annual discount** | Offer annual = monthly × 10 (save 2 months), improves cash flow |
+| **Price increases with value** | Raise prices at least once in the first year; lock early users into old prices |
+| **Enterprise is separate** | Don't put Enterprise on the pricing page; use "Contact us" to charge higher prices |
+| **Start high, then go low** | Start with high-priced services, validate, then drop to SaaS pricing |
 
 ## Step 5: Anti-Patterns
 
-从案例中总结的失败模式：
+Failure patterns summarized from cases:
 
 | Anti-Pattern | Why It Fails | Better Move |
 |---|---|---|
-| 全免费 + 未来再想怎么收费 | 免费用户不会自动变成付费用户 | 第一天就收费，哪怕很少 |
-| Freemium 无上限 | 免费版太好，没人升级 | 免费版有明确限制 |
-| 只做一次性付费 | 没有 MRR，需要持续找新客 | 加入订阅或持续服务 |
-| 按成本定价 | 用户不关心你的成本 | 按用户获得的价值定价 |
-| 模仿大公司定价 | 大公司有品牌、流量、销售团队 | 按 indie hacker 的获客能力定价 |
-| 做平台从 Day 1 | 冷启动需要两端同时有人 | 先做一端的工具 |
-| 不涨价 | 低价限制了增长天花板 | 定期涨价，老用户锁定 |
+| All free + figure out pricing later | Free users don't automatically become paying users | Charge from day one, even if it's little |
+| Freemium with no limits | Free version is too good, no one upgrades | Free version has clear limitations |
+| Only one-time payments | No MRR, need to continuously find new customers | Add subscription or ongoing service |
+| Price based on cost | Users don't care about your costs | Price based on the value users receive |
+| Imitate big company pricing | Big companies have brand, traffic, sales teams | Price according to indie hacker acquisition capabilities |
+| Build platform from Day 1 | Cold start requires both sides to have people | First build a tool for one side |
+| Never raise prices | Low prices limit growth ceiling | Regularly raise prices, lock in old users |
 
 ## Conditional Rules
 

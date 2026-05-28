@@ -103,12 +103,12 @@ Config file format (config.json):
   const previousEnd = formatDate(8);
   const weekLabel = `${formatDateReadable(7)} → ${formatDateReadable(1)}`;
 
-  console.log(`\n📊 生成周报 (${weekLabel})...\n`);
+  console.log(`\n📊 Generating weekly report (${weekLabel})...\n`);
 
   const lines = [
-    '# 每周增长报告\n',
-    `- **周期**: ${weekLabel}`,
-    `- **生成时间**: ${new Date().toISOString()}`,
+    '# Weekly Growth Report\n',
+    `- **Period**: ${weekLabel}`,
+    `- **Generated at**: ${new Date().toISOString()}`,
     '',
   ];
 
@@ -145,18 +145,18 @@ Config file format (config.json):
     const current = sumMetrics(overviewCurrent);
     const previous = sumMetrics(overviewPrevious);
 
-    lines.push('## 概览\n');
-    lines.push('| 指标 | 本周 | 环比 |');
+    lines.push('## Overview\n');
+    lines.push('| Metric | This Week | WoW Change |');
     lines.push('|---|---|---|');
-    lines.push(`| 浏览量 (PV) | ${current[0]} | ${changeIndicator(current[0], previous[0])} |`);
-    lines.push(`| 访客数 (UV) | ${current[1]} | ${changeIndicator(current[1], previous[1])} |`);
-    lines.push(`| IP 数 | ${current[2]} | ${changeIndicator(current[2], previous[2])} |`);
-    lines.push(`| 跳出率 | ${current[3].toFixed(1)}% | ${changeIndicator(current[3], previous[3])} |`);
-    lines.push(`| 平均访问时长 | ${current[4].toFixed(0)}s | ${changeIndicator(current[4], previous[4])} |`);
-    lines.push(`| 平均访问页数 | ${current[5].toFixed(1)} | ${changeIndicator(current[5], previous[5])} |`);
+    lines.push(`| Page Views (PV) | ${current[0]} | ${changeIndicator(current[0], previous[0])} |`);
+    lines.push(`| Unique Visitors (UV) | ${current[1]} | ${changeIndicator(current[1], previous[1])} |`);
+    lines.push(`| IP Count | ${current[2]} | ${changeIndicator(current[2], previous[2])} |`);
+    lines.push(`| Bounce Rate | ${current[3].toFixed(1)}% | ${changeIndicator(current[3], previous[3])} |`);
+    lines.push(`| Avg Visit Duration | ${current[4].toFixed(0)}s | ${changeIndicator(current[4], previous[4])} |`);
+    lines.push(`| Avg Pages per Visit | ${current[5].toFixed(1)} | ${changeIndicator(current[5], previous[5])} |`);
     lines.push('');
   } catch (error) {
-    lines.push(`## 概览\n\n⚠️ 获取失败: ${error.message}\n`);
+    lines.push(`## Overview\n\n⚠️ Fetch failed: ${error.message}\n`);
   }
 
   // Search keywords
@@ -168,8 +168,8 @@ Config file format (config.json):
 
     if (searchData?.result?.items?.[1]) {
       const rows = searchData.result.items[1];
-      lines.push('## 搜索关键词 Top 20\n');
-      lines.push('| 关键词 | PV | UV | 跳出率 |');
+      lines.push('## Top 20 Search Keywords\n');
+      lines.push('| Keyword | PV | UV | Bounce Rate |');
       lines.push('|---|---|---|---|');
       for (const row of rows.slice(0, 20)) {
         lines.push(`| ${row[0]?.name || '—'} | ${row[1] || 0} | ${row[2] || 0} | ${row[3] ? row[3] + '%' : '—'} |`);
@@ -177,7 +177,7 @@ Config file format (config.json):
       lines.push('');
     }
   } catch (error) {
-    lines.push(`## 搜索关键词\n\n⚠️ 获取失败: ${error.message}\n`);
+    lines.push(`## Search Keywords\n\n⚠️ Fetch failed: ${error.message}\n`);
   }
 
   // Traffic sources
@@ -189,8 +189,8 @@ Config file format (config.json):
 
     if (sourceData?.result?.items?.[1]) {
       const rows = sourceData.result.items[1];
-      lines.push('## 流量来源\n');
-      lines.push('| 来源 | PV | UV |');
+      lines.push('## Traffic Sources\n');
+      lines.push('| Source | PV | UV |');
       lines.push('|---|---|---|');
       for (const row of rows.slice(0, 15)) {
         lines.push(`| ${row[0]?.name || '—'} | ${row[1] || 0} | ${row[2] || 0} |`);
@@ -198,7 +198,7 @@ Config file format (config.json):
       lines.push('');
     }
   } catch (error) {
-    lines.push(`## 流量来源\n\n⚠️ 获取失败: ${error.message}\n`);
+    lines.push(`## Traffic Sources\n\n⚠️ Fetch failed: ${error.message}\n`);
   }
 
   // Top pages
@@ -210,8 +210,8 @@ Config file format (config.json):
 
     if (pageData?.result?.items?.[1]) {
       const rows = pageData.result.items[1];
-      lines.push('## 热门页面\n');
-      lines.push('| 页面 | PV | UV | 跳出率 |');
+      lines.push('## Top Pages\n');
+      lines.push('| Page | PV | UV | Bounce Rate |');
       lines.push('|---|---|---|---|');
       for (const row of rows.slice(0, 15)) {
         const pageName = row[0]?.name || '—';
@@ -221,29 +221,29 @@ Config file format (config.json):
       lines.push('');
     }
   } catch (error) {
-    lines.push(`## 热门页面\n\n⚠️ 获取失败: ${error.message}\n`);
+    lines.push(`## Top Pages\n\n⚠️ Fetch failed: ${error.message}\n`);
   }
 
   // Decision section
-  lines.push('## 周决策\n');
-  lines.push('_根据以上数据填写:_\n');
-  lines.push('1. **本周最大的增长信号**: ');
-  lines.push('2. **本周最大的流失点**: ');
-  lines.push('3. **获客成本最低的渠道**: ');
-  lines.push('4. **激活率变化**: ');
-  lines.push('5. **下周只做一件事**: ');
+  lines.push('## Weekly Decisions\n');
+  lines.push('_Fill in based on the above data:_\n');
+  lines.push('1. **Biggest growth signal this week**: ');
+  lines.push('2. **Biggest churn point this week**: ');
+  lines.push('3. **Channel with lowest acquisition cost**: ');
+  lines.push('4. **Activation rate change**: ');
+  lines.push('5. **One thing to do next week**: ');
   lines.push('');
-  lines.push('| 决策 | 渠道/功能 | 原因 |');
+  lines.push('| Decision | Channel/Feature | Reason |');
   lines.push('|---|---|---|');
-  lines.push('| 继续 | | |');
-  lines.push('| 调整 | | |');
-  lines.push('| 停止 | | |');
+  lines.push('| Continue | | |');
+  lines.push('| Adjust | | |');
+  lines.push('| Stop | | |');
   lines.push('');
 
   const report = lines.join('\n');
   mkdirSync(dirname(options.output), { recursive: true });
   writeFileSync(options.output, report, 'utf-8');
-  console.log(`✅ 周报已保存 → ${options.output}\n`);
+  console.log(`✅ Weekly report saved → ${options.output}\n`);
 }
 
 main().catch((error) => {

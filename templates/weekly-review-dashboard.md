@@ -1,6 +1,6 @@
 # Weekly Review Dashboard
 
-基于 Looker Studio 连接 GA4 + Google Search Console + Google Ads 的统一复盘视图。每周五用 15 分钟看一遍，做出 continue / adjust / stop 决策。
+A unified review dashboard based on Looker Studio connecting GA4 + Google Search Console + Google Ads. Spend 15 minutes every Friday to review and make continue / adjust / stop decisions.
 
 ## Data Sources
 
@@ -15,7 +15,7 @@
 
 ### Page 1: Weekly Snapshot
 
-一页看全貌，不超过 6 个核心数字。
+One page to see the full picture, no more than 6 core metrics.
 
 | Card | Metric | Source | Compare |
 |---|---|---|---|
@@ -35,38 +35,38 @@ Below cards:
 
 | Chart | Data | Decision |
 |---|---|---|
-| Traffic by source/medium | GA4 session source | 哪个渠道在涨、哪个在跌 |
-| Top landing pages | GA4 page_view + bounce rate | 哪些页面留人、哪些流失 |
-| Top search queries | Search Console queries | 哪些词带来点击 |
-| Search impressions vs clicks | Search Console | CTR 低的高展示词 = 优化机会 |
-| Ads performance | Google Ads | CPC、转化、ROAS 是否合理 |
+| Traffic by source/medium | GA4 session source | Which channel is growing, which is declining |
+| Top landing pages | GA4 page_view + bounce rate | Which pages retain users, which lose them |
+| Top search queries | Search Console queries | Which keywords drive clicks |
+| Search impressions vs clicks | Search Console | High-impression, low-CTR keywords = optimization opportunities |
+| Ads performance | Google Ads | Are CPC, conversions, and ROAS reasonable |
 
 ### Page 3: Activation & Engagement
 
 | Chart | Data | Decision |
 |---|---|---|
-| Signup → first_value funnel | GA4 events | 激活率是否健康 |
-| Time to value distribution | first_value_delivered.time_to_value_seconds | 用户多快获得价值 |
-| Feature usage ranking | feature_used by feature_name | 哪些功能被用、哪些没人用 |
-| Onboarding drop-off | onboarding_complete steps | 引导流程哪一步流失最多 |
+| Signup → first_value funnel | GA4 events | Is activation rate healthy |
+| Time to value distribution | first_value_delivered.time_to_value_seconds | How quickly do users get value |
+| Feature usage ranking | feature_used by feature_name | Which features are used, which are ignored |
+| Onboarding drop-off | onboarding_complete steps | Where does the onboarding flow lose most users |
 
 ### Page 4: Revenue & Retention
 
 | Chart | Data | Decision |
 |---|---|---|
-| Revenue trend (weekly) | purchase value | 收入是否增长 |
-| Conversion rate | checkout_start → purchase | 支付流程是否顺畅 |
-| Cohort retention | GA4 cohort exploration | D1/D7/D30 留存趋势 |
-| Pricing page → checkout | pricing_page_view → checkout_start | 定价页转化率 |
+| Revenue trend (weekly) | purchase value | Is revenue growing |
+| Conversion rate | checkout_start → purchase | Is the payment flow smooth |
+| Cohort retention | GA4 cohort exploration | D1/D7/D30 retention trends |
+| Pricing page → checkout | pricing_page_view → checkout_start | Pricing page conversion rate |
 
 ### Page 5: SEO Health
 
 | Chart | Data | Decision |
 |---|---|---|
-| Total impressions trend | Search Console | 搜索可见度趋势 |
-| Average position by page | Search Console | 排名变化 |
-| New vs lost queries | Search Console week-over-week | 新增/流失关键词 |
-| Country breakdown | Search Console by country | 哪个国家增长最快 |
+| Total impressions trend | Search Console | Search visibility trend |
+| Average position by page | Search Console | Ranking changes |
+| New vs lost queries | Search Console week-over-week | Gained/lost keywords |
+| Country breakdown | Search Console by country | Which country is growing fastest |
 
 ## Setup Steps
 
@@ -80,13 +80,13 @@ Below cards:
 
 ## Weekly Review Protocol
 
-每周五对照 dashboard 回答 5 个问题：
+Every Friday, answer these 5 questions against the dashboard:
 
-1. **本周最大的增长信号是什么？** → 加码
-2. **本周最大的流失点在哪？** → 修复或砍掉
-3. **哪个渠道的 cost-per-outcome 最低？** → 集中资源
-4. **用户激活率有没有变化？** → 产品是否偏离价值
-5. **下周只做一件事，做什么？** → 写入下周实验
+1. **What is the biggest growth signal this week?** → Double down
+2. **Where is the biggest drop-off point?** → Fix or cut
+3. **Which channel has the lowest cost-per-outcome?** → Concentrate resources
+4. **Has user activation rate changed?** → Is the product deviating from value
+5. **If you can only do one thing next week, what is it?** → Write into next week's experiment
 
 ## Decision Thresholds
 
@@ -99,4 +99,4 @@ Below cards:
 | D7 retention | > 30% | 15-30% | < 15% |
 | Ads ROAS | > 3x | 1-3x | < 1x |
 
-Red = 本周必须修复或砍掉。Yellow = 下周实验改善。Green = 继续当前策略。
+Red = Must fix or cut this week. Yellow = Experiment improvements next week. Green = Continue current strategy.

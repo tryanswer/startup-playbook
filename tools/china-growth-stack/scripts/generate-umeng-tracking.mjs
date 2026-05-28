@@ -24,18 +24,18 @@ function parseArgs() {
 }
 
 const EVENTS = [
-  { id: 'sign_up', params: { method: 'String' }, description: '注册完成' },
-  { id: 'onboarding_complete', params: { steps_completed: 'Int', time_seconds: 'Int' }, description: '引导流程完成' },
-  { id: 'first_value_delivered', params: { feature_name: 'String', time_to_value_seconds: 'Int' }, description: '首次获得核心价值' },
-  { id: 'feature_used', params: { feature_name: 'String', usage_count: 'Int' }, description: '使用核心功能' },
-  { id: 'content_generated', params: { content_type: 'String' }, description: '生成内容' },
-  { id: 'share', params: { method: 'String', content_type: 'String' }, description: '分享' },
-  { id: 'feedback_submitted', params: { rating: 'String', feedback_type: 'String' }, description: '提交反馈' },
-  { id: 'pricing_view', params: { source_page: 'String' }, description: '查看定价页' },
-  { id: 'checkout_start', params: { plan_name: 'String', price: 'Double' }, description: '开始支付' },
-  { id: 'purchase', params: { plan_name: 'String', price: 'Double', currency: 'String' }, description: '支付成功' },
-  { id: 'subscription_renewed', params: { plan_name: 'String', period: 'String' }, description: '续费' },
-  { id: 'refund', params: { transaction_id: 'String', reason: 'String' }, description: '退款' },
+  { id: 'sign_up', params: { method: 'String' }, description: 'Registration completed' },
+  { id: 'onboarding_complete', params: { steps_completed: 'Int', time_seconds: 'Int' }, description: 'Onboarding flow completed' },
+  { id: 'first_value_delivered', params: { feature_name: 'String', time_to_value_seconds: 'Int' }, description: 'First core value delivered' },
+  { id: 'feature_used', params: { feature_name: 'String', usage_count: 'Int' }, description: 'Core feature used' },
+  { id: 'content_generated', params: { content_type: 'String' }, description: 'Content generated' },
+  { id: 'share', params: { method: 'String', content_type: 'String' }, description: 'Shared' },
+  { id: 'feedback_submitted', params: { rating: 'String', feedback_type: 'String' }, description: 'Feedback submitted' },
+  { id: 'pricing_view', params: { source_page: 'String' }, description: 'Pricing page viewed' },
+  { id: 'checkout_start', params: { plan_name: 'String', price: 'Double' }, description: 'Checkout started' },
+  { id: 'purchase', params: { plan_name: 'String', price: 'Double', currency: 'String' }, description: 'Purchase completed' },
+  { id: 'subscription_renewed', params: { plan_name: 'String', period: 'String' }, description: 'Subscription renewed' },
+  { id: 'refund', params: { transaction_id: 'String', reason: 'String' }, description: 'Refunded' },
 ];
 
 function generateSwiftCode(appKey) {
@@ -59,18 +59,18 @@ function generateSwiftCode(appKey) {
   return `import UMCommon
 import UMCommonLog
 
-// MARK: - 友盟+ 初始化 (在 AppDelegate 中调用)
+// MARK: - Umeng+ (友盟+) Initialization (Call in AppDelegate)
 
-/// 在用户同意隐私政策后调用
+/// Call after user agrees to privacy policy
 func initUmeng() {
     UMConfigure.initWithAppkey("${appKey}", channel: "App Store")
-    // Debug 模式下开启日志
+    // Enable logs in Debug mode
     #if DEBUG
     UMCommonLogManager.setUp()
     #endif
 }
 
-// MARK: - AARRR 事件追踪
+// MARK: - AARRR Event Tracking
 
 enum Analytics {
 
@@ -103,16 +103,16 @@ import com.umeng.commonsdk.UMConfigure
 import android.content.Context
 
 /**
- * 友盟+ 初始化 - 在 Application.onCreate 中，用户同意隐私政策后调用
+ * Umeng+ (友盟+) Initialization - Call in Application.onCreate after user agrees to privacy policy
  */
 fun initUmeng(context: Context) {
-    // 必须在用户同意隐私政策后调用
+    // Must be called after user agrees to privacy policy
     UMConfigure.preInit(context, "${appKey}", "default")
     UMConfigure.init(context, "${appKey}", "default", UMConfigure.DEVICE_TYPE_PHONE, null)
 }
 
 /**
- * AARRR 事件追踪
+ * AARRR Event Tracking
  */
 class Analytics(private val context: Context) {
 
@@ -124,8 +124,8 @@ ${functions}
 
 function generateEventDoc() {
   const lines = [
-    '# 友盟+ 事件定义\n',
-    '| Event ID | 参数 | 说明 |',
+    '# Umeng+ (友盟+) Event Definitions\n',
+    '| Event ID | Parameters | Description |',
     '|---|---|---|',
   ];
   for (const event of EVENTS) {
@@ -133,7 +133,7 @@ function generateEventDoc() {
     lines.push(`| \`${event.id}\` | ${params} | ${event.description} |`);
   }
   lines.push('');
-  lines.push(`共 ${EVENTS.length} 个事件。友盟+免费版限制 500 个事件 ID。`);
+  lines.push(`Total ${EVENTS.length} events. Umeng+ free version limits to 500 event IDs.`);
   return lines.join('\n');
 }
 
@@ -158,17 +158,17 @@ function main() {
   writeFileSync(kotlinPath, generateKotlinCode(options.appKey), 'utf-8');
   writeFileSync(docPath, generateEventDoc(), 'utf-8');
 
-  console.log(`\n✅ 友盟+ 追踪代码已生成:\n`);
+  console.log(`\n✅ Umeng+ (友盟+) tracking code generated:\n`);
   console.log(`   Swift:   ${swiftPath}`);
   console.log(`   Kotlin:  ${kotlinPath}`);
   console.log(`   Events:  ${docPath}`);
   console.log(`\n   AppKey: ${options.appKey}`);
   console.log(`   Events: ${EVENTS.length}`);
-  console.log(`\n📋 下一步:`);
-  console.log(`   1. 集成友盟+ SDK (iOS: pod 'UMCommon' / Android: implementation 'com.umeng.umsdk:common')`);
-  console.log(`   2. 将生成的代码文件复制到项目中`);
-  console.log(`   3. 在用户同意隐私政策后调用 initUmeng()`);
-  console.log(`   4. 在友盟+后台 → 自定义事件 中确认数据上报\n`);
+  console.log(`\n📋 Next steps:`);
+  console.log(`   1. Integrate Umeng+ SDK (iOS: pod 'UMCommon' / Android: implementation 'com.umeng.umsdk:common')`);
+  console.log(`   2. Copy generated code files to your project`);
+  console.log(`   3. Call initUmeng() after user agrees to privacy policy`);
+  console.log(`   4. Confirm data reporting in Umeng+ backend → Custom Events\n`);
 }
 
 main();

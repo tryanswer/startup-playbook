@@ -74,10 +74,10 @@ async function fetchBaiduTongji(siteId, accessToken, startDate, endDate, metrics
 
 function generateReport(searchData, sourceData, siteId, startDateReadable, endDateReadable) {
   const lines = [
-    '# 百度搜索数据报告\n',
-    `- **站点**: ${siteId}`,
-    `- **周期**: ${startDateReadable} → ${endDateReadable}`,
-    `- **生成时间**: ${new Date().toISOString()}`,
+    '# Baidu Search Data Report\n',
+    `- **Site**: ${siteId}`,
+    `- **Period**: ${startDateReadable} → ${endDateReadable}`,
+    `- **Generated at**: ${new Date().toISOString()}`,
     '',
   ];
 
@@ -86,8 +86,8 @@ function generateReport(searchData, sourceData, siteId, startDateReadable, endDa
     const headers = searchData.result.items[0] || [];
     const rows = searchData.result.items[1] || [];
 
-    lines.push('## 搜索关键词\n');
-    lines.push('| 关键词 | 浏览量(PV) | 访客数(UV) | 跳出率 | 平均访问时长 |');
+    lines.push('## Search Keywords\n');
+    lines.push('| Keyword | Page Views (PV) | Unique Visitors (UV) | Bounce Rate | Avg Visit Duration |');
     lines.push('|---|---|---|---|---|');
 
     for (const row of rows.slice(0, 30)) {
@@ -100,15 +100,15 @@ function generateReport(searchData, sourceData, siteId, startDateReadable, endDa
     }
     lines.push('');
   } else {
-    lines.push('## 搜索关键词\n\n> 无数据或 API 返回异常。\n');
+    lines.push('## Search Keywords\n\n> No data or API returned an error.\n');
   }
 
   // Traffic sources
   if (sourceData?.result?.items) {
     const rows = sourceData.result.items[1] || [];
 
-    lines.push('## 流量来源\n');
-    lines.push('| 来源 | 浏览量(PV) | 访客数(UV) | 跳出率 |');
+    lines.push('## Traffic Sources\n');
+    lines.push('| Source | Page Views (PV) | Unique Visitors (UV) | Bounce Rate |');
     lines.push('|---|---|---|---|');
 
     for (const row of rows.slice(0, 20)) {
@@ -122,11 +122,11 @@ function generateReport(searchData, sourceData, siteId, startDateReadable, endDa
   }
 
   // Action items
-  lines.push('## 本周行动建议\n');
-  lines.push('1. **高 PV 高跳出率的词** → 落地页和搜索意图不匹配，需要优化页面内容');
-  lines.push('2. **有 UV 但没有转化事件的词** → 流量质量不够或 CTA 不清晰');
-  lines.push('3. **新出现的关键词** → 可能的新需求，值得创建对应内容');
-  lines.push('4. **消失的关键词** → 检查是否被竞品超过或页面被降权');
+  lines.push('## This Week\'s Action Items\n');
+  lines.push('1. **High PV, high bounce rate keywords** → Landing page doesn\'t match search intent, optimize page content');
+  lines.push('2. **Keywords with UV but no conversion events** → Low traffic quality or unclear CTA');
+  lines.push('3. **Newly appeared keywords** → Potential new demand, worth creating corresponding content');
+  lines.push('4. **Disappeared keywords** → Check if outranked by competitors or page de-ranked');
   lines.push('');
 
   return lines.join('\n');
@@ -156,7 +156,7 @@ Config file format (config.json):
   const startDateReadable = formatDateReadable(options.days);
   const endDateReadable = formatDateReadable(1);
 
-  console.log(`\n🔍 拉取百度搜索数据 (最近 ${options.days} 天)...\n`);
+  console.log(`\n🔍 Pulling Baidu Search data (last ${options.days} days)...\n`);
 
   let searchData = null;
   let sourceData = null;
@@ -167,7 +167,7 @@ Config file format (config.json):
       'pv_count,visitor_count,bounce_ratio,avg_visit_time', 'source/searchword/a'
     );
   } catch (error) {
-    console.warn(`⚠  搜索关键词数据获取失败: ${error.message}`);
+    console.warn(`⚠  Failed to fetch search keyword data: ${error.message}`);
   }
 
   try {
@@ -176,7 +176,7 @@ Config file format (config.json):
       'pv_count,visitor_count,bounce_ratio', 'source/all/a'
     );
   } catch (error) {
-    console.warn(`⚠  流量来源数据获取失败: ${error.message}`);
+    console.warn(`⚠  Failed to fetch traffic source data: ${error.message}`);
   }
 
   const report = generateReport(searchData, sourceData, options.siteId, startDateReadable, endDateReadable);
@@ -184,7 +184,7 @@ Config file format (config.json):
   if (options.output) {
     mkdirSync(dirname(options.output), { recursive: true });
     writeFileSync(options.output, report, 'utf-8');
-    console.log(`✅ 报告已保存 → ${options.output}\n`);
+    console.log(`✅ Report saved → ${options.output}\n`);
   } else {
     console.log(report);
   }

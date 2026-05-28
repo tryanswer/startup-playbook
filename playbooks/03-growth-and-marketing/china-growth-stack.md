@@ -1,148 +1,148 @@
-# 国内增长运营 Playbook
+# China Growth Operations Playbook
 
-面向中国大陆市场的增长获客、投放验证、SEO/ASO 和运营分析全流程。覆盖百度、抖音、小红书、微信四大生态。
+A complete guide for growth acquisition, paid validation, SEO/ASO, and operational analysis in the mainland China market. Covers the four major ecosystems: Baidu, Douyin (TikTok), Xiaohongshu (Little Red Book), and WeChat.
 
-## 渠道地图
+## Channel Map
 
-国内用户不在一个平台上，需要分生态规划：
+Chinese users are not on a single platform; planning must be done by ecosystem:
 
-| 生态 | 覆盖场景 | 核心工具 | 数据来源 |
+| Ecosystem | Coverage Scenarios | Core Tools | Data Sources |
 |---|---|---|---|
-| **百度** | 搜索引擎 SEO + SEM | 百度搜索资源平台、百度推广 | 百度统计、百度指数 |
-| **抖音/字节** | 短视频引流、信息流广告 | 巨量引擎、巨量算数 | 巨量引擎后台 |
-| **小红书** | 种草、口碑、搜索 | 小红书蒲公英、千瓜数据 | 小红书创作者后台 |
-| **微信** | 小程序、公众号、社群、朋友圈广告 | 腾讯广告、微信公众平台 | 小程序数据助手 |
-| **应用商店** | App 分发 | 七麦数据、蝉大师 | 各商店开发者后台 |
+| **Baidu** | Search Engine SEO + SEM | Baidu Search Resource Platform, Baidu Promotion | Baidu Analytics (百度统计), Baidu Index |
+| **Douyin/ByteDance** | Short video traffic, feed ads | Ocean Engine (巨量引擎), Ocean Arithmetic (巨量算数) | Ocean Engine Dashboard |
+| **Xiaohongshu** | Seeding, word-of-mouth, search | Xiaohongshu蒲公英 (Pugongying), Qiangua Data | Xiaohongshu Creator Dashboard |
+| **WeChat** | Mini Programs, Official Accounts, Communities, Moments Ads | Tencent Ads, WeChat Official Account Platform | Mini Program Data Assistant |
+| **App Stores** | App Distribution | Qimai Data, Chan Masters | Developer Dashboards of each store |
 
 ## Workflow
 
-### 1. 需求验证阶段
+### 1. Demand Validation Stage
 
-对标海外的 Google Trends + Reddit，国内用：
+Benchmarking against overseas tools like Google Trends + Reddit, domestic alternatives include:
 
-| 海外工具 | 国内替代 | 作用 |
+| Overseas Tool | Domestic Alternative | Purpose |
 |---|---|---|
-| Google Trends | **百度指数** + **微信指数** + **巨量算数** | 搜索趋势、人群画像 |
-| Reddit 痛点挖掘 | **小红书** + **知乎** + **抖音评论** | 用户原话、真实吐槽 |
-| Keywords Everywhere | **5118** + **站长工具** | 关键词搜索量、长尾词 |
+| Google Trends | **Baidu Index** + **WeChat Index** + **Ocean Arithmetic** | Search trends, user demographics |
+| Reddit Pain Point Mining | **Xiaohongshu** + **Zhihu** + **Douyin Comments** | User quotes, real complaints |
+| Keywords Everywhere | **5118** + **Chinaz Webmaster Tools** | Keyword search volume, long-tail keywords |
 
 ```
-百度指数 / 微信指数 → 验证搜索趋势
+Baidu Index / WeChat Index → Validate search trends
         ↓
-小红书/知乎/抖音评论 → 收集用户原话
+Xiaohongshu/Zhihu/Douyin Comments → Collect user quotes
         ↓
-5118 / 站长工具 → 关键词搜索量和竞争度
+5118 / Chinaz → Keyword search volume and competition
         ↓
-结论：需求是否真实且频繁
+Conclusion: Is the demand real and frequent?
 ```
 
-### 2. 落地页验证
+### 2. Landing Page Validation
 
-- Web 落地页：接入百度统计，追踪来源 + 转化事件。
-- 微信落地页：公众号文章 / 小程序落地页，追踪阅读 → 关注 → 注册。
-- 抖音落地页：巨量引擎橙子建站，追踪表单提交。
+- Web Landing Pages: Integrate Baidu Analytics to track sources + conversion events.
+- WeChat Landing Pages: Official Account articles / Mini Program landing pages, track reads → follows → registrations.
+- Douyin Landing Pages: Ocean Engine Orange Site Builder, track form submissions.
 
-### 3. 付费验证（小预算测试）
+### 3. Paid Validation (Small Budget Test)
 
-| 平台 | 最低测试预算 | 适合场景 | 核心指标 |
+| Platform | Minimum Test Budget | Suitable Scenarios | Core Metrics |
 |---|---|---|---|
-| **百度推广** | ¥200-500 | 搜索意图明确的产品 | CPC、转化率、关键词报告 |
-| **巨量引擎** | ¥300-500 | 短视频可展示的产品 | CPM、点击率、表单转化 |
-| **腾讯广告** | ¥300-500 | 微信生态产品 | 加粉成本、小程序打开率 |
-| **小红书聚光** | ¥200-500 | 种草型、女性用户多的产品 | 笔记互动、私信咨询 |
+| **Baidu Promotion** | ¥200-500 | Products with clear search intent | CPC, Conversion Rate, Keyword Report |
+| **Ocean Engine** | ¥300-500 | Products demonstrable via short video | CPM, CTR, Form Conversions |
+| **Tencent Ads** | ¥300-500 | WeChat ecosystem products | Follower acquisition cost, Mini Program open rate |
+| **Xiaohongshu Spotlight** | ¥200-500 | Seeding-type products, female-dominant users | Note interactions, DM inquiries |
 
-决策规则和 `google-ads-cold-start.md` 一致：
-- 高曝光 + 高点击 + 有转化 → 需求验证通过
-- 高曝光 + 低点击 → 素材/文案问题
-- 高点击 + 零转化 → 落地页或产品承诺不匹配
-- CPA > LTV → 付费获客不可持续
+Decision rules are consistent with `google-ads-cold-start.md`:
+- High impressions + high clicks + conversions → Demand validated
+- High impressions + low clicks → Creative/copy issue
+- High clicks + zero conversions → Landing page or product promise mismatch
+- CPA > LTV → Paid acquisition unsustainable
 
-### 4. SEO（百度）
+### 4. SEO (Baidu)
 
-#### 百度搜索资源平台
+#### Baidu Search Resource Platform
 
-对标 Google Search Console，百度搜索资源平台提供：
+Benchmarking Google Search Console, Baidu Search Resource Platform provides:
 
-| 功能 | 作用 | 操作 |
+| Feature | Purpose | Action |
 |---|---|---|
-| 搜索展现 | 展现量、点击量、平均排名 | 每周查看趋势 |
-| 索引量 | 被收录的页面数 | 确保新页面被收录 |
-| 流量与关键词 | 用户搜什么词进来的 | 发现内容机会 |
-| 抓取异常 | 哪些页面抓取失败 | 及时修复 404/500 |
-| 移动适配 | 移动端适配状态 | 百度对移动端权重更高 |
+| Search Impressions | Impressions, clicks, average ranking | Check trends weekly |
+| Index Volume | Number of indexed pages | Ensure new pages are indexed |
+| Traffic & Keywords | Terms users searched to enter | Discover content opportunities |
+| Crawl Errors | Pages that failed to crawl | Fix 404/500 errors promptly |
+| Mobile Adaptation | Mobile adaptation status | Baidu gives higher weight to mobile |
 
-#### 百度 SEO 特殊规则
+#### Special Rules for Baidu SEO
 
-- **备案是前提**：没有 ICP 备案的域名在百度基本没有排名。
-- **百度小程序加权**：接入百度智能小程序可获得搜索排名加权。
-- **原创保护**：提交原创内容标记，可获得排名优先。
-- **MIP / AMP**：百度有自己的 MIP 加速页面标准。
-- **外链权重下降**：百度现在更看重内容质量和用户行为数据。
+- **ICP Filing is Prerequisite**: Domains without ICP filing basically have no rankings on Baidu.
+- **Baidu Mini Program Weighting**: Integrating Baidu Smart Mini Programs can gain search ranking boosts.
+- **Original Content Protection**: Submit original content markers for ranking priority.
+- **MIP / AMP**: Baidu has its own MIP accelerated page standard.
+- **Backlink Weight Declining**: Baidu now values content quality and user behavior data more.
 
-### 5. ASO（应用商店）
+### 5. ASO (App Stores)
 
-国内 Android 没有统一应用商店，主要商店：
+Domestic Android has no unified app store; main stores include:
 
-| 商店 | 覆盖用户 | ASO 重点 |
+| Store | Covered Users | ASO Focus |
 |---|---|---|
-| 华为应用市场 | 华为/荣耀用户 | 标题、描述、应用内容评级 |
-| 小米应用商店 | 小米/红米用户 | 标题、截图、评论 |
-| OPPO/vivo 软件商店 | OPPO/vivo 用户 | 标题、分类排名 |
-| 应用宝 | 腾讯系推荐 | 微下载、社交推荐 |
-| Apple App Store | iOS 用户 | 标题、副标题、关键词、描述 |
+| Huawei AppGallery | Huawei/Honor users | Title, description, app content rating |
+| Xiaomi GetApps | Xiaomi/Redmi users | Title, screenshots, reviews |
+| OPPO/vivo App Market | OPPO/vivo users | Title, category ranking |
+| Tencent MyApp | Tencent ecosystem recommendations | Micro-download, social referrals |
+| Apple App Store | iOS users | Title, subtitle, keywords, description |
 
-工具：
-- **七麦数据**：关键词排名、下载量估算、竞品分析。
-- **蝉大师**：ASO 关键词优化、评论监控。
+Tools:
+- **Qimai Data**: Keyword rankings, download estimates, competitor analysis.
+- **Chan Masters**: ASO keyword optimization, review monitoring.
 
-### 6. 内容分发
+### 6. Content Distribution
 
-| 平台 | 内容形式 | 适合产品 | 关键指标 |
+| Platform | Content Format | Suitable Products | Key Metrics |
 |---|---|---|---|
-| 小红书 | 图文笔记、短视频 | 消费品、工具、生活方式 | 收藏、互动、搜索排名 |
-| 抖音 | 短视频、直播 | 可视化展示的产品 | 完播率、转化率 |
-| 知乎 | 长文回答 | 专业工具、B2B、决策型产品 | 赞同、收藏、引流 |
-| 公众号 | 长文、教程 | 需要深度理解的产品 | 阅读、分享、留资 |
-| B 站 | 中长视频 | 技术产品、教程型 | 播放、弹幕、三连 |
+| Xiaohongshu | Image-text notes, short videos | Consumer goods, tools, lifestyle | Saves, interactions, search ranking |
+| Douyin | Short videos, live streaming | Visually demonstrable products | Completion rate, conversion rate |
+| Zhihu | Long-form answers | Professional tools, B2B, decision-making products | Upvotes, saves, traffic referral |
+| Official Accounts | Long articles, tutorials | Products requiring deep understanding | Reads, shares, lead generation |
+| Bilibili | Medium-long videos | Tech products, tutorial-based | Views, danmaku, triple-actions (like/coin/fav) |
 
-AI 分发规则参照 `ai-distribution.md`，国内额外注意：
-- **绝对禁止**：AI 自动发小红书笔记、自动回复知乎、自动发抖音评论（平台风控严格，封号风险极高）。
-- AI 可以做：总结热帖、拟标题草稿、分析评论情绪、生成内容大纲。
-- 人工必须做：最终发布、回复互动、私信沟通。
+AI distribution rules refer to `ai-distribution.md`, with additional domestic considerations:
+- **Strictly Prohibited**: AI auto-posting Xiaohongshu notes, auto-replying Zhihu, auto-commenting Douyin (platform risk control is strict, high ban risk).
+- AI Can Do: Summarize hot posts, draft titles, analyze comment sentiment, generate content outlines.
+- Humans Must Do: Final publishing, reply interactions, DM communication.
 
-## 数据看板
+## Data Dashboard
 
-### 百度统计看板
+### Baidu Analytics Dashboard
 
-百度统计后台自带基础看板，覆盖：
-- 流量概况（PV、UV、来源）
-- 转化分析（设置的转化目标）
-- 受访页面排名
-- 搜索词报告（百度搜索进入的关键词）
+Baidu Analytics backend provides basic dashboards covering:
+- Traffic overview (PV, UV, sources)
+- Conversion analysis (set conversion goals)
+- Top visited pages
+- Search term report (keywords entering via Baidu search)
 
-### 进阶看板方案
+### Advanced Dashboard Solutions
 
-| 需求 | 方案 | 成本 |
+| Requirement | Solution | Cost |
 |---|---|---|
-| 简单够用 | 百度统计后台 | 免费 |
-| 跨端数据 | 友盟+ 后台 | 免费 |
-| 自定义分析 | Metabase + MySQL | 开源免费，需要自己部署 |
-| 专业级 | 神策数据 | 按数据量付费 |
+| Simple & Sufficient | Baidu Analytics Backend | Free |
+| Cross-platform Data | Umeng+ Backend | Free |
+| Custom Analysis | Metabase + MySQL | Open source free, requires self-deployment |
+| Professional Grade | Sensors Data | Paid by data volume |
 
-## 周复盘协议
+## Weekly Review Protocol
 
-每周五对照数据回答 5 个问题（和海外版一致）：
+Every Friday, answer 5 questions based on data (consistent with the overseas version):
 
-1. **本周最大的增长信号是什么？** → 加码
-2. **本周最大的流失点在哪？** → 修复或砍掉
-3. **哪个渠道的获客成本最低？** → 集中资源
-4. **用户激活率有没有变化？** → 产品是否偏离价值
-5. **下周只做一件事，做什么？** → 写入下周实验
+1. **What was the biggest growth signal this week?** → Double down
+2. **Where was the biggest churn point this week?** → Fix or cut
+3. **Which channel had the lowest customer acquisition cost?** → Concentrate resources
+4. **Did user activation rate change?** → Is the product deviating from value?
+5. **If you could only do one thing next week, what would it be?** → Write into next week's experiments
 
-## 国内 vs 海外决策路由
+## China vs Overseas Decision Routing
 
-| 判断条件 | 使用方案 |
+| Condition | Use Plan |
 |---|---|
-| 目标用户在中国大陆 | 本文档 + `china-analytics-tracking.md` + `tools/china-growth-stack` |
-| 目标用户在海外 | `google-search-console.md` + `google-ads-cold-start.md` + `tools/google-growth-stack` |
-| 两者都有 | 分别接入两套，用后端统一用户 ID 关联 |
+| Target users in mainland China | This document + `china-analytics-tracking.md` + `tools/china-growth-stack` |
+| Target users overseas | `google-search-console.md` + `google-ads-cold-start.md` + `tools/google-growth-stack` |
+| Both present | Integrate both sets separately, associate via unified backend user ID |

@@ -1,23 +1,23 @@
 # Google Ads Cold Start Validation
 
-用 $50-100 的小预算在 Google Ads 上快速验证付费意愿。比纯 SEO 快 10 倍得到反馈——SEO 要 3-6 个月见效，Ads 24 小时就有数据。
+Use a small budget of $50-100 on Google Ads to quickly validate willingness to pay. Get feedback 10x faster than pure SEO—SEO takes 3-6 months to show results, while Ads provides data within 24 hours.
 
 ## When To Use
 
-- idea 验证阶段：落地页做好了，需要快速导入精准流量。
-- SEO 还没起量：自然搜索排名需要时间，先用付费流量测试转化。
-- 验证关键词价值：哪些词搜索的用户真的会付费。
-- 验证定价：用户看到价格后是否点击购买。
+- Idea validation stage: Landing page is ready, need to quickly import precise traffic.
+- SEO hasn't gained traction yet: Organic search rankings take time, use paid traffic first to test conversion.
+- Validate keyword value: Which search terms actually lead to paying users.
+- Validate pricing: Whether users click to buy after seeing the price.
 
 ## Budget Rule
 
-首次测试不超过 $100。目标不是盈利，是买到足够的数据做决策。
+Initial test budget should not exceed $100. The goal is not profitability, but buying enough data to make decisions.
 
-| 阶段 | 预算 | 目标 |
+| Stage | Budget | Goal |
 |---|---|---|
-| 关键词验证 | $30-50 | 确认哪些词有点击、哪些没人搜 |
-| 落地页转化测试 | $50-100 | 测试 CTA 点击率和注册/购买转化 |
-| 扩量验证 | $100-300 | 确认 CPA 和 ROAS 是否可持续 |
+| Keyword validation | $30-50 | Confirm which keywords get clicks and which have no searches |
+| Landing page conversion test | $50-100 | Test CTA click-through rate and registration/purchase conversion |
+| Scaling validation | $100-300 | Confirm if CPA and ROAS are sustainable |
 
 ## Setup Steps
 
@@ -26,100 +26,100 @@
 ```
 Account
 └── Campaign: [Product] - Search - Validation
-    └── Ad Group 1: Problem keywords (用户搜痛点)
-    └── Ad Group 2: Solution keywords (用户搜方案)
-    └── Ad Group 3: Comparison keywords (用户搜对比)
+    └── Ad Group 1: Problem keywords (users search for pain points)
+    └── Ad Group 2: Solution keywords (users search for solutions)
+    └── Ad Group 3: Comparison keywords (users search for comparisons)
 ```
 
 ### 2. Keyword Selection
 
-从已有的 SEO 关键词研究中选取：
+Select from existing SEO keyword research:
 
-- **问题词**：`how to [solve pain]`、`why [problem] happens`
-- **方案词**：`[solution] tool`、`best [solution] app`
-- **对比词**：`[competitor] alternative`、`[tool A] vs [tool B]`
-- **购买词**：`[solution] pricing`、`buy [solution]`
+- **Problem keywords**: `how to [solve pain]`, `why [problem] happens`
+- **Solution keywords**: `[solution] tool`, `best [solution] app`
+- **Comparison keywords**: `[competitor] alternative`, `[tool A] vs [tool B]`
+- **Purchase keywords**: `[solution] pricing`, `buy [solution]`
 
-Tips：
-- 用 Phrase Match 或 Exact Match，不要用 Broad Match（会烧预算在无关词上）。
-- 每个 Ad Group 不超过 15 个关键词。
-- 加 Negative Keywords 排除不相关搜索。
+Tips:
+- Use Phrase Match or Exact Match, not Broad Match (will burn budget on irrelevant terms).
+- No more than 15 keywords per Ad Group.
+- Add Negative Keywords to exclude irrelevant searches.
 
 ### 3. Ad Copy
 
-用验证过的用户原话写广告文案，不要用营销套话。
+Write ad copy using validated user quotes, not marketing jargon.
 
 ```
-Headline 1: [核心痛点，用用户原话]
-Headline 2: [产品承诺，一句话]
+Headline 1: [Core pain point, using user's own words]
+Headline 2: [Product promise, one sentence]
 Headline 3: [CTA: Free trial / See pricing / Get started]
-Description: [场景 + 价值 + 行动]
+Description: [Scenario + Value + Action]
 ```
 
 ### 4. Landing Page
 
-指向已埋 GA4 事件的落地页。确保：
+Point to a landing page with GA4 events installed. Ensure:
 
-- 广告关键词和落地页标题一致（提高 Quality Score）。
-- 页面有明确的转化动作（注册 / 购买 / 预约）。
-- GA4 追踪 `landing_page_view` → `sign_up` / `checkout_start` → `purchase`。
+- Ad keywords match landing page titles (improves Quality Score).
+- Page has clear conversion actions (register / purchase / book).
+- GA4 tracks `landing_page_view` → `sign_up` / `checkout_start` → `purchase`.
 
 ### 5. Conversion Tracking
 
-在 Google Ads 中导入 GA4 的转化事件：
+Import GA4 conversion events into Google Ads:
 
-- Primary conversion: `purchase` 或 `sign_up`
-- Secondary conversion: `checkout_start`、`pricing_page_view`
+- Primary conversion: `purchase` or `sign_up`
+- Secondary conversion: `checkout_start`, `pricing_page_view`
 
 ## Reading The Data
 
-24-48 小时后看第一批数据。
+Check the first batch of data after 24-48 hours.
 
 ### Key Metrics
 
 | Metric | Meaning | Healthy Range |
 |---|---|---|
-| Impressions | 广告展示次数 | > 100/day 说明有搜索量 |
-| CTR | 广告点击率 | > 3% 算健康 |
-| CPC | 单次点击成本 | 取决于行业，$0.5-5 常见 |
-| Conversion Rate | 点击→转化 | > 2% 注册，> 1% 付费 |
-| CPA | 单次转化成本 | 必须 < 用户 LTV |
-| Search Terms | 用户实际搜索词 | 发现意料之外的需求 |
+| Impressions | Ad display count | > 100/day indicates search volume |
+| CTR | Ad click-through rate | > 3% is healthy |
+| CPC | Cost per click | Depends on industry, $0.5-5 common |
+| Conversion Rate | Click-to-conversion | > 2% for registration, > 1% for payment |
+| CPA | Cost per acquisition | Must be < user LTV |
+| Search Terms | Actual user search terms | Discover unexpected needs |
 
 ### Decision Framework
 
 | Signal | Action |
 |---|---|
-| 高 impressions + 高 CTR + 有转化 | ✅ 需求验证通过，可以扩量或转 SEO |
-| 高 impressions + 低 CTR | 广告文案不吸引人，重写 headline |
-| 高 CTR + 零转化 | 落地页有问题，或产品承诺和搜索意图不匹配 |
-| 低 impressions | 关键词搜索量不够，换词或换市场 |
-| Search Terms 里出现意外高转化词 | 发现新的用户需求，加入 SEO 策略 |
-| CPA > LTV | 付费获客不可持续，必须靠 SEO/内容/口碑 |
+| High impressions + high CTR + conversions | ✅ Demand validated, can scale or shift to SEO |
+| High impressions + low CTR | Ad copy not attractive, rewrite headline |
+| High CTR + zero conversions | Landing page issue, or product promise doesn't match search intent |
+| Low impressions | Keyword search volume insufficient, change keywords or market |
+| Unexpected high-converting terms in Search Terms | Discovered new user needs, add to SEO strategy |
+| CPA > LTV | Paid acquisition unsustainable, must rely on SEO/content/referrals |
 
 ## Search Terms → SEO Feedback Loop
 
-Google Ads 最大的隐藏价值：**Search Terms 报告**。
+The biggest hidden value of Google Ads: **Search Terms Report**.
 
 ```
-Ads Search Terms 报告 → 发现用户真实搜索词
+Ads Search Terms Report → Discover actual user search terms
         ↓
-高转化词 → 写 SEO 内容覆盖这些词
+High-converting terms → Write SEO content to cover these terms
         ↓
-Search Console 追踪自然排名
+Track organic rankings in Search Console
         ↓
-排名上来后 → 暂停对应 Ads 关键词
+When rankings improve → Pause corresponding Ads keywords
         ↓
-Ads 预算转移到下一批待验证的词
+Shift Ads budget to next batch of terms to validate
 ```
 
-这样 Ads 不是持续的成本，而是 SEO 的加速器。
+This way, Ads is not a continuous cost, but an accelerator for SEO.
 
 ## Common Mistakes
 
-- 用 Broad Match 导致预算花在无关搜索上。
-- 落地页和广告文案不一致，Quality Score 低、CPC 高。
-- 没设每日预算上限，一夜花光。
-- 只看 CTR 不看转化，点击多不代表有价值。
-- 跑了 1 天就下结论——至少跑 3-5 天、积累 100+ 点击再决策。
-- 不看 Search Terms 报告，错过最有价值的用户洞察。
+- Using Broad Match causes budget to be spent on irrelevant searches.
+- Landing page inconsistent with ad copy, resulting in low Quality Score and high CPC.
+- Not setting daily budget cap, spending it all overnight.
+- Only looking at CTR without conversions, many clicks don't mean value.
+- Drawing conclusions after 1 day—run for at least 3-5 days, accumulate 100+ clicks before deciding.
+- Not checking Search Terms report, missing the most valuable user insights.

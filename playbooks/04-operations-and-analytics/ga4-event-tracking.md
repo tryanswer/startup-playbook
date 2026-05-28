@@ -1,65 +1,65 @@
 # GA4 Event Tracking Spec
 
-产品上线前必须完成埋点。没有埋点的产品等于盲飞——无法判断用户是否获得价值、在哪流失、为什么不付费。
+Event tracking must be completed before product launch. A product without tracking is flying blind—you cannot determine whether users are receiving value, where they drop off, or why they don't pay.
 
 ## Setup Checklist
 
-1. 注册 Google Analytics 4 property。
-2. 安装 `gtag.js`（Web）或 Firebase SDK（App）。
-3. 启用 Enhanced Measurement：page_view、scroll、outbound_click、file_download。
-4. 配置下方的自定义事件。
-5. 在 GA4 后台将关键转化事件标记为 Conversion。
-6. 连接 Google Search Console。
-7. 连接 Google Ads（如有）。
+1. Register a Google Analytics 4 property.
+2. Install `gtag.js` (Web) or Firebase SDK (App).
+3. Enable Enhanced Measurement: page_view, scroll, outbound_click, file_download.
+4. Configure the custom events below.
+5. Mark key conversion events as Conversions in GA4 Admin.
+6. Connect Google Search Console.
+7. Connect Google Ads (if applicable).
 
 ## Required Events
 
-按 AARRR 分层。每个事件保持 snake_case 命名，参数不超过 25 个。
+Organized by AARRR framework. Each event uses snake_case naming with no more than 25 parameters.
 
-### Acquisition（获客）
-
-| Event | Trigger | Key Parameters | Purpose |
-|---|---|---|---|
-| `page_view` | Enhanced Measurement 自带 | page_location, page_referrer, source, medium, campaign | 流量来源归因 |
-| `landing_page_view` | 落地页首次加载 | page_variant, keyword, country, language | 落地页 A/B 测试 |
-
-### Activation（激活）
+### Acquisition
 
 | Event | Trigger | Key Parameters | Purpose |
 |---|---|---|---|
-| `sign_up` | 注册完成 | method (email/google/apple) | 注册转化率 |
-| `onboarding_complete` | 引导流程完成 | steps_completed, time_seconds | 引导完成率和耗时 |
-| `first_value_delivered` | 用户首次获得核心价值 | feature_name, time_to_value_seconds | **最重要的激活指标** |
+| `page_view` | Provided by Enhanced Measurement | page_location, page_referrer, source, medium, campaign | Traffic source attribution |
+| `landing_page_view` | First load of landing page | page_variant, keyword, country, language | Landing page A/B testing |
 
-### Engagement（参与）
-
-| Event | Trigger | Key Parameters | Purpose |
-|---|---|---|---|
-| `feature_used` | 使用核心功能 | feature_name, usage_count | 功能使用频率 |
-| `content_generated` | 用户生成/获得产出物 | content_type, quality_score | 核心价值交付 |
-| `share` | 用户分享内容 | method, content_type | 自然传播 |
-| `feedback_submitted` | 提交反馈/评分 | rating, feedback_type | 用户满意度 |
-
-### Revenue（收入）
+### Activation
 
 | Event | Trigger | Key Parameters | Purpose |
 |---|---|---|---|
-| `pricing_page_view` | 查看定价页 | source_page | 付费兴趣 |
-| `checkout_start` | 开始支付流程 | plan_name, price, currency | 支付漏斗入口 |
-| `purchase` | 支付成功 | transaction_id, plan_name, value, currency | **核心收入指标** |
-| `subscription_renewed` | 续费成功 | plan_name, period, value | 续费健康度 |
-| `refund` | 退款 | transaction_id, reason | 退款原因分析 |
+| `sign_up` | Registration completed | method (email/google/apple) | Registration conversion rate |
+| `onboarding_complete` | Onboarding flow completed | steps_completed, time_seconds | Onboarding completion rate and time |
+| `first_value_delivered` | User receives core value for the first time | feature_name, time_to_value_seconds | **Most important activation metric** |
 
-### Retention（留存）
+### Engagement
 
 | Event | Trigger | Key Parameters | Purpose |
 |---|---|---|---|
-| `session_start` | GA4 自带 | engagement_time_msec | 回访频率 |
-| `return_visit` | 非首次访问且距上次 >24h | days_since_last_visit | 自然回访信号 |
+| `feature_used` | Core feature used | feature_name, usage_count | Feature usage frequency |
+| `content_generated` | User generates/receives output | content_type, quality_score | Core value delivery |
+| `share` | User shares content | method, content_type | Organic spread |
+| `feedback_submitted` | Feedback/rating submitted | rating, feedback_type | User satisfaction |
+
+### Revenue
+
+| Event | Trigger | Key Parameters | Purpose |
+|---|---|---|---|
+| `pricing_page_view` | Pricing page viewed | source_page | Payment interest |
+| `checkout_start` | Payment flow started | plan_name, price, currency | Payment funnel entry |
+| `purchase` | Payment successful | transaction_id, plan_name, value, currency | **Core revenue metric** |
+| `subscription_renewed` | Renewal successful | plan_name, period, value | Renewal health |
+| `refund` | Refund issued | transaction_id, reason | Refund reason analysis |
+
+### Retention
+
+| Event | Trigger | Key Parameters | Purpose |
+|---|---|---|---|
+| `session_start` | Provided by GA4 | engagement_time_msec | Return visit frequency |
+| `return_visit` | Non-first visit and >24h since last | days_since_last_visit | Natural return signal |
 
 ## Must-Mark Conversions
 
-在 GA4 Admin → Events → Mark as Conversion：
+In GA4 Admin → Events → Mark as Conversion:
 
 1. `sign_up`
 2. `first_value_delivered`
@@ -70,24 +70,24 @@
 
 | Property | Value | Purpose |
 |---|---|---|
-| `user_plan` | free / trial / paid / churned | 按付费状态分群 |
-| `user_signup_date` | ISO date | Cohort 分析 |
-| `user_country` | ISO code | 地域分群 |
-| `user_language` | en / zh / ja ... | 本地化效果 |
+| `user_plan` | free / trial / paid / churned | Segment by payment status |
+| `user_signup_date` | ISO date | Cohort analysis |
+| `user_country` | ISO code | Geographic segmentation |
+| `user_language` | en / zh / ja ... | Localization effectiveness |
 
 ## Implementation Example (gtag.js)
 
 ```javascript
-// 注册完成
+// Registration completed
 gtag('event', 'sign_up', { method: 'google' });
 
-// 首次获得核心价值
+// First core value delivered
 gtag('event', 'first_value_delivered', {
   feature_name: 'color_analysis',
   time_to_value_seconds: 45
 });
 
-// 支付成功
+// Payment successful
 gtag('event', 'purchase', {
   transaction_id: 'T12345',
   plan_name: 'pro_monthly',
@@ -98,14 +98,14 @@ gtag('event', 'purchase', {
 
 ## Debug
 
-1. 用 GA4 DebugView 实时验证事件。
-2. 安装 Chrome 插件 Google Analytics Debugger。
-3. 上线后 24-48 小时内确认 Realtime 报告有数据。
+1. Use GA4 DebugView to verify events in real-time.
+2. Install the Chrome extension Google Analytics Debugger.
+3. Confirm data appears in Realtime reports within 24-48 hours after launch.
 
 ## Common Mistakes
 
-- 事件名用 camelCase 而非 snake_case，导致 GA4 无法自动归类。
-- 把所有事件都标为 Conversion，稀释了真正的转化信号。
-- 没有 `first_value_delivered` 事件，无法判断用户是否真正激活。
-- 上线后才发现漏埋关键事件，丢失初始数据。
-- 参数值硬编码而非动态传入，导致数据不可分析。
+- Using camelCase instead of snake_case for event names, causing GA4 to fail automatic categorization.
+- Marking all events as Conversions, diluting true conversion signals.
+- Missing `first_value_delivered` event, making it impossible to determine if users are truly activated.
+- Discovering missing key events only after launch, losing initial data.
+- Hardcoding parameter values instead of passing them dynamically, resulting in unanalyzable data.

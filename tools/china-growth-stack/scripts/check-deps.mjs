@@ -52,10 +52,10 @@ async function main() {
   if (existsSync(configPath)) {
     const config = JSON.parse(readFileSync(configPath, 'utf-8'));
     console.log('✅');
-    if (config.baiduSiteId) console.log(`    百度统计 Site ID: ${config.baiduSiteId}`);
-    if (config.baiduAccessToken) console.log('    百度统计 Access Token: ✅ configured');
-    if (config.baiduSearchSiteUrl) console.log(`    百度搜索资源平台 Site: ${config.baiduSearchSiteUrl}`);
-    if (config.umengAppKey) console.log(`    友盟+ AppKey: ${config.umengAppKey}`);
+    if (config.baiduSiteId) console.log(`    Baidu Analytics (百度统计) Site ID: ${config.baiduSiteId}`);
+    if (config.baiduAccessToken) console.log('    Baidu Analytics (百度统计) Access Token: ✅ configured');
+    if (config.baiduSearchSiteUrl) console.log(`    Baidu Search Resource Platform (百度搜索资源平台) Site: ${config.baiduSearchSiteUrl}`);
+    if (config.umengAppKey) console.log(`    Umeng+ (友盟+) AppKey: ${config.umengAppKey}`);
   } else {
     console.log('⚠  not found (optional)');
     console.log(`    Create ${configPath} with:`);
@@ -68,7 +68,7 @@ async function main() {
   }
 
   // API connectivity
-  process.stdout.write('  百度统计 API: ');
+  process.stdout.write('  Baidu Analytics (百度统计) API: ');
   if (existsSync(configPath)) {
     const config = JSON.parse(readFileSync(configPath, 'utf-8'));
     if (config.baiduAccessToken) {
@@ -88,9 +88,9 @@ async function main() {
   }
 
   console.log('\n📋 Setup guide:');
-  console.log('  百度统计: https://tongji.baidu.com → 管理 → API');
-  console.log('  友盟+:    https://www.umeng.com → 应用管理 → AppKey');
-  console.log('  百度搜索: https://ziyuan.baidu.com → 站点管理');
+  console.log('  Baidu Analytics (百度统计): https://tongji.baidu.com → Management → API');
+  console.log('  Umeng+ (友盟+):    https://www.umeng.com → App Management → AppKey');
+  console.log('  Baidu Search (百度搜索): https://ziyuan.baidu.com → Site Management');
   console.log('');
 }
 

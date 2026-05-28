@@ -1,38 +1,38 @@
 # Growth And Marketing
 
-增长不是发更多内容，而是持续找到用户已经在表达需求的位置，并用他们能理解的语言连接到产品。
+Growth is not about posting more content, but continuously finding where users are already expressing their needs and connecting to your product in language they understand.
 
 ## Workflow
 
-1. **渠道地图**
-   列出目标用户出现的位置：搜索、Reddit、TikTok、YouTube、Instagram、Pinterest、App Store、Google Play、论坛、Newsletter。
+1. **Channel Map**
+   List where target users appear: search, Reddit, TikTok, YouTube, Instagram, Pinterest, App Store, Google Play, forums, Newsletter.
 
-2. **关键词分层**
-   区分问题词、方案词、对比词、购买词、品牌词。先覆盖长尾问题和高意图方案词。
+2. **Keyword Layering**
+   Distinguish problem keywords, solution keywords, comparison keywords, purchase keywords, and brand keywords. First cover long-tail problems and high-intent solution keywords.
 
-3. **SEO / ASO 验证**
-   使用 `tools/google-trends-seo` 做国家、语言、关键词趋势研究。Keywords Everywhere 可用于搜索量、CPC 和竞争度；没有付费接口时，用 Google Trends 和社区证据降低置信度标注。
+3. **SEO / ASO Validation**
+   Use `tools/google-trends-seo` for country, language, and keyword trend research. Keywords Everywhere can be used for search volume, CPC, and competition; without paid API access, use Google Trends and community evidence to lower confidence labels.
 
-4. **内容转化**
-   内容要回答真实疑问，并让用户进入下一步：诊断、报告、等待名单、下载、购买、预约。
+4. **Content Conversion**
+   Content should answer real questions and lead users to the next step: diagnosis, report, waitlist, download, purchase, booking.
 
-5. **本地化**
-   多语言不是翻译 UI，而是重写用户关心的痛点、搜索词和行动理由。
+5. **Localization**
+   Multilingual is not about translating UI, but rewriting pain points, search terms, and reasons for action that users care about.
 
-6. **AI 分发分工**
-   使用 `ai-distribution.md` 先做 40-action sort。AI 负责扫描、总结、打分、草稿和日报；创始人保留选择、最终编辑、客户回复、冷启动触达、竞品表述和所有会影响信任的收尾动作。禁止自动发帖、自动评论、自动私信和未审核外发。
+6. **AI Distribution Division of Labor**
+   Use `ai-distribution.md` to do a 40-action sort first. AI handles scanning, summarizing, scoring, drafting, and daily reports; founders retain selection, final editing, customer replies, cold-start outreach, competitor descriptions, and all closing actions that affect trust. No automatic posting, commenting, DMs, or unapproved outbound messages.
 
 ## Google Ecosystem Guides
 
-- `google-search-console.md`: Search Console 接入、核心报告解读、每周 SEO 动作和内容策略闭环。
-- `google-ads-cold-start.md`: 用 $50-100 小预算快速验证付费意愿，Search Terms → SEO 反馈循环。
-- `utm-attribution.md`: UTM 参数命名规范、归因模型选择和每周归因复盘。
-- `ai-distribution.md`: AI 辅助内容分发的 70/30 分工、never-write list 和审批规则。
+- `google-search-console.md`: Search Console integration, core report interpretation, weekly SEO actions, and content strategy loop.
+- `google-ads-cold-start.md`: Quickly validate paid intent with $50-100 small budget, Search Terms → SEO feedback loop.
+- `utm-attribution.md`: UTM parameter naming conventions, attribution model selection, and weekly attribution review.
+- `ai-distribution.md`: AI-assisted content distribution 70/30 division of labor, never-write list, and approval rules.
 
 ## Output
 
-- SEO/ASO 关键词报告。
-- 每个目标国家/语言的主张、关键词、落地页标题和 CTA。
-- 30 天内容实验表。
-- AI 分发动作分拣表、never-write list、人工审批规则和 outcome 追踪。
-- 每周复盘：曝光、点击、转化、留资、付费、用户反馈。
+- SEO/ASO keyword reports.
+- Propositions, keywords, landing page titles, and CTAs for each target country/language.
+- 30-day content experiment table.
+- AI distribution action sorting table, never-write list, human approval rules, and outcome tracking.
+- Weekly review: impressions, clicks, conversions, leads, payments, user feedback.
