@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
+import { captureError } from '@/lib/error-tracking';
 
 /**
  * Agent API route — proxies chat to an LLM with stage-specific context.
@@ -77,7 +78,7 @@ Keep your responses concise and actionable. Use markdown formatting.`;
     }, traceId);
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error(`[agent] Error (traceId: ${traceId}):`, errorMessage);
+    captureError(error, { traceId, route: '/api/agent' });
     return createErrorResponse(errorMessage, 'INTERNAL_ERROR', 500, traceId);
   }
 }

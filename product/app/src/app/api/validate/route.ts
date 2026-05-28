@@ -6,6 +6,7 @@ import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { mkdtemp } from 'node:fs/promises';
 import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
+import { captureError } from '@/lib/error-tracking';
 
 const execFileAsync = promisify(execFile);
 
@@ -130,7 +131,7 @@ export async function POST(request: NextRequest) {
     }, traceId);
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    console.error(`[validate] Error (traceId: ${traceId}):`, errorMessage);
+    captureError(error, { traceId, route: '/api/validate' });
     return createErrorResponse(errorMessage, 'INTERNAL_ERROR', 500, traceId);
   }
 }

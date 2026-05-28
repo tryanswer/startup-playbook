@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Nav } from '@/components/nav';
 import { I18nProvider } from '@/lib/i18n-context';
+import { ErrorTrackingInit } from '@/components/error-tracking-init';
 
 export const metadata: Metadata = {
   title: 'Startup Playbook',
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen">
         <I18nProvider>
+          <ErrorTrackingInit />
           <Nav />
           <main className="pt-14">{children}</main>
         </I18nProvider>
