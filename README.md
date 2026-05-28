@@ -5,7 +5,10 @@ A repository of reusable startup workflows from idea to product, growth, and ope
 ## Structure
 
 - `playbooks/01-idea-validation`: Validate whether demand is real, where target users are, and whether they're willing to pay.
-- `playbooks/02-product-development`: Turn validated problems into MVP, PRD, acceptance criteria, and release loop.
+- `playbooks/02-product-development`: Turn validated problems into MVP, PRD, acceptance criteria, and release loop. Includes tech stack selection, launch checklist, and post-launch iteration guides.
+- `playbooks/02-product-development/tech-stack-selection.md`: Tech stack guide for indie hackers—recommended stacks by product type, $0-50/mo infrastructure, payment providers.
+- `playbooks/02-product-development/mvp-launch-checklist.md`: Three-phase launch checklist (pre-launch, launch day, post-launch 7 days).
+- `playbooks/02-product-development/post-launch-iteration.md`: Data-driven decision trees for post-launch scenarios, iteration cadence, and pivot/kill criteria.
 - `playbooks/03-growth-and-marketing`: SEO, ASO, content, community, landing pages, and paid intent validation.
 - `playbooks/04-operations-and-analytics`: Metrics, experiment reviews, user feedback, and operational rhythm.
 - `skills/business-model-design`: Business model design guide based on 499 cases—choose models by product positioning, pricing structure, and revenue growth path.

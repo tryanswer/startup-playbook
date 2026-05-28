@@ -1,28 +1,48 @@
 # Product Development
 
-产品开发只服务于已验证的问题。MVP 的目标不是功能完整，而是在最短路径上验证用户是否获得核心价值。
+Product development only serves validated problems. The goal of an MVP is not feature completeness — it is the shortest path to proving that users receive core value.
+
+## Guides
+
+- `tech-stack-selection.md`: How to choose a tech stack as an indie hacker — recommended stacks by product type, infrastructure defaults ($0-50/mo), payment providers, and anti-patterns.
+- `mvp-launch-checklist.md`: Three-phase launch process (pre-launch, launch day, post-launch first 7 days) with checklists for product readiness, analytics, payments, and distribution.
+- `post-launch-iteration.md`: Data-driven decision trees for common post-launch scenarios (no signups, no activation, no payment, high churn, growth stalling). Includes weekly/monthly iteration cadence and pivot/kill criteria.
 
 ## Workflow
 
-1. **定义用户和场景**
-   写清楚目标用户、触发场景、当前替代方案和为什么现有方案失败。
+1. **Define user and scenario**
+   Write down the target user, trigger scenario, current workaround, and why existing options fail.
 
-2. **收敛核心承诺**
-   一句话说明用户完成什么动作后会获得什么可感知收益。不要把技术能力当价值主张。
+2. **Narrow the core promise**
+   One sentence: what action the user takes and what perceivable benefit they receive. Do not use technical capabilities as the value proposition.
 
-3. **拆 MVP**
-   只保留完成核心承诺所需的最小路径：输入、处理、输出、支付或留资、反馈。
+3. **Choose business model and pricing**
+   Use `skills/business-model-design` to match product positioning to the right model (SaaS/service/course/marketplace/devtool) and pricing structure.
 
-4. **写 PRD**
-   用验收标准描述行为，用风险列表约束边界。每个需求必须对应验证目标或留存/转化指标。
+4. **Choose tech stack**
+   Use `tech-stack-selection.md` to pick tools based on what you know, not what is trending. Ship in days, not weeks.
 
-5. **发布与学习**
-   上线前埋点，上线后看激活、完成率、复访、付费、用户反馈。每次迭代只解决一个主问题。
+5. **Scope the MVP**
+   Keep only the minimum path to deliver the core promise: input → process → output → payment or signup → feedback.
+
+6. **Write a PRD**
+   Use `templates/product-requirements.md`. Describe behavior with acceptance criteria and bound scope with a risk list. Every requirement must map to a validation goal or a retention/conversion metric.
+
+7. **Add instrumentation**
+   Implement analytics before launch (see `ga4-event-tracking.md` or `china-analytics-tracking.md`). Set up payment integration on day one.
+
+8. **Launch**
+   Follow `mvp-launch-checklist.md`. Launch to the smallest reachable audience first.
+
+9. **Iterate with data**
+   Use `post-launch-iteration.md` to diagnose and decide based on real metrics. Every iteration solves one main problem.
 
 ## Guardrails
 
-- 不用技术新颖性替代用户价值。
-- 不为假想用户做复杂设置项。
-- 不在没有转化数据前扩展太多功能。
-- 不把首版做成平台，先解决一个尖锐问题。
+- Do not substitute technical novelty for user value.
+- Do not build complex settings for hypothetical users.
+- Do not expand features before you have conversion data.
+- Do not build a platform in version one — solve one sharp problem first.
+- Do not ship without a way to measure the core behavior.
+- Do not build more features as a response to $0 MRR — sell manually first.
 
