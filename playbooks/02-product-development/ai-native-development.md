@@ -25,9 +25,52 @@ The founder becomes a **product director**, not a code writer. This changes whic
 
 ## Phase 1: Brainstorming & Specification
 
-### Tool: [Superpowers](https://github.com/obra/superpowers)
+### The Core Problem: Misalignment
 
-An agentic skills framework that enforces a disciplined development workflow. Install it in your coding agent (Claude Code, Codex, Cursor, etc.) and it automatically:
+> "No-one knows exactly what they want." — David Thomas & Andrew Hunt, *The Pragmatic Programmer*
+
+The most common failure mode in AI-native development is **misalignment** — you think the agent understands what you want, then you see what it built and realize it did not. The fix is a **grilling session** before any code is written.
+
+### Tool Stack for Phase 1
+
+| Tool | Purpose | Install |
+|---|---|---|
+| [Superpowers](https://github.com/obra/superpowers) | Spec-first workflow, subagent-driven development, TDD | `/plugin install superpowers@claude-plugins-official` |
+| [Matt Pocock's `/grill-with-docs`](https://github.com/mattpocock/skills) | Deep requirement grilling + domain language + ADRs | `npx skills@latest add mattpocock/skills` |
+| [Matt Pocock's `/to-prd`](https://github.com/mattpocock/skills) | Convert grilling session into a PRD issue | Included in mattpocock/skills |
+
+### Requirement Understanding: `/grill-with-docs`
+
+This is the single most powerful technique for AI-native development. The agent **interviews you relentlessly** about every aspect of a plan, walking down each branch of the design tree and resolving dependencies one by one.
+
+What makes it different from a generic brainstorm:
+
+- **Challenges against the glossary**: If you use a term that conflicts with existing project language in `CONTEXT.md`, the agent calls it out. *"Your glossary defines 'cancellation' as X, but you seem to mean Y — which is it?"*
+- **Sharpens fuzzy language**: Proposes precise canonical terms for vague words. *"You're saying 'account' — do you mean the Customer or the User?"*
+- **Cross-references with code**: When you state how something works, the agent checks whether the code agrees. Contradictions are surfaced immediately.
+- **Stress-tests with scenarios**: Invents edge cases that force you to be precise about boundaries.
+- **Updates CONTEXT.md inline**: When a term is resolved, the glossary is updated in real-time — not batched up.
+- **Offers ADRs sparingly**: Only when a decision is hard to reverse, surprising without context, and the result of a real trade-off.
+
+```
+Project structure after grilling:
+/
+├── CONTEXT.md                    ← shared domain language (glossary only, no implementation)
+├── docs/
+│   └── adr/
+│       ├── 0001-event-sourced-orders.md
+│       └── 0002-postgres-for-write-model.md
+└── src/
+```
+
+**Why CONTEXT.md matters**: Agents use 20 words where 1 will do because they lack domain language. A shared glossary means:
+- Variables, functions, and files are named consistently.
+- The codebase is easier to navigate for the agent.
+- The agent spends fewer tokens on thinking.
+
+### Superpowers: Spec-First Workflow
+
+Superpowers enforces a disciplined development workflow on top of the grilling:
 
 1. **Stops the agent from jumping into code** — forces it to ask what you are really trying to build.
 2. **Produces a spec in digestible chunks** — so you actually read and validate the design.
@@ -36,29 +79,27 @@ An agentic skills framework that enforces a disciplined development workflow. In
 5. **Enforces TDD** — RED-GREEN-REFACTOR, no code before tests.
 
 ```bash
-# Install in Claude Code
-/plugin install superpowers@claude-plugins-official
+# Install Superpowers
+/plugin install superpowers@claude-plugins-official  # Claude Code
+/plugins → search "superpowers" → Install             # Codex CLI
+/add-plugin superpowers                                # Cursor
 
-# Install in Codex CLI
-/plugins → search "superpowers" → Install
-
-# Install in Cursor
-/add-plugin superpowers
+# Install Matt Pocock's skills (grill-with-docs, tdd, diagnose, architecture, etc.)
+npx skills@latest add mattpocock/skills
+# Select the skills you want, and run /setup-matt-pocock-skills in your agent
 ```
 
 ### Brainstorming Workflow
 
 ```
-1. Open your coding agent with Superpowers installed
-2. Describe the product idea in 2-3 sentences
-3. Agent asks clarifying questions (does NOT start coding)
-4. Agent produces a design document in sections
-5. You review each section, approve or redirect
-6. Agent creates an implementation plan with bite-sized tasks
-7. You say "go" → agent dispatches subagents per task
+1. /grill-with-docs → agent interviews you, builds CONTEXT.md and ADRs
+2. /to-prd → agent converts the grilling session into a PRD
+3. Agent creates an implementation plan with bite-sized vertical slices
+4. You review the plan, approve or redirect
+5. You say "go" → agent dispatches subagents per task
 ```
 
-**Key discipline**: Do not skip the brainstorming phase. The 30 minutes spent on spec saves 3 days of rework.
+**Key discipline**: Do not skip the grilling phase. The 30 minutes spent on `/grill-with-docs` saves 3 days of rework.
 
 ### Spec Quality Checklist
 
@@ -69,6 +110,8 @@ Before approving the agent's spec, verify:
 - [ ] Data model is simple enough for MVP.
 - [ ] Edge cases are acknowledged, not over-engineered.
 - [ ] The spec references validated user pain (from `idea-validation`).
+- [ ] CONTEXT.md has all resolved terms (no fuzzy language remaining).
+- [ ] Any hard-to-reverse decisions are recorded as ADRs.
 
 ## Phase 2: Design & UI
 
@@ -223,7 +266,93 @@ China traffic → Aliyun ECS + CDN + OSS
 DNS split → Cloudflare (international) + Aliyun DNS (China)
 ```
 
-## Phase 4: Building Stable Products
+## Phase 4: Architecture & Code Quality
+
+### The Architecture Problem
+
+> "Most apps built with agents are complex and hard to change. Because agents can radically speed up coding, they also accelerate software entropy." — Matt Pocock
+
+AI agents generate code fast, but without architectural discipline, that speed produces a ball of mud. The fix is **caring about the design of the code** — not just whether it works.
+
+### Tool: `/improve-codebase-architecture`
+
+Matt Pocock's architecture skill finds **deepening opportunities** — refactors that turn shallow modules into deep ones. Uses consistent vocabulary:
+
+| Term | Definition |
+|---|---|
+| **Module** | Anything with an interface and an implementation |
+| **Depth** | High leverage: a lot of behaviour behind a small interface |
+| **Seam** | Where an interface lives; where behaviour can be altered without editing in place |
+| **Deletion test** | Imagine deleting the module. If complexity vanishes, it was a pass-through. If complexity reappears across N callers, it was earning its keep |
+
+**Run this every few days** on your codebase:
+
+```
+/improve-codebase-architecture
+```
+
+The agent will:
+1. **Explore** the codebase organically, noting where understanding one concept requires bouncing between many small modules.
+2. **Generate an HTML report** with before/after diagrams for each candidate refactor.
+3. **Grill you** on the candidate you pick — walking the design tree, constraints, dependencies, the shape of the deepened module.
+4. **Update CONTEXT.md** as terms are resolved, and offer ADRs for hard-to-reverse decisions.
+
+### Tool: `/tdd` (Test-Driven Development)
+
+**Core principle**: Tests verify behavior through public interfaces, not implementation details. Code can change entirely; tests should not.
+
+The critical workflow is **vertical slices**, not horizontal:
+
+```
+WRONG (horizontal):
+  Write all tests → write all implementation
+
+RIGHT (vertical):
+  RED→GREEN: test1→impl1 → test2→impl2 → test3→impl3
+  Each test responds to what you learned from the previous cycle.
+```
+
+Anti-pattern to watch: Writing tests in bulk that test *imagined* behavior. Tests written one-at-a-time after seeing the implementation test *actual* behavior.
+
+### Tool: `/diagnose` (Debugging Hard Bugs)
+
+A discipline for hard bugs: **Build a feedback loop → Reproduce → Hypothesise → Instrument → Fix → Regression-test**.
+
+The key insight: *"If you have a fast, deterministic, agent-runnable pass/fail signal for the bug, you will find the cause. If you don't, no amount of staring at code will save you."*
+
+Ways to construct a feedback loop (in priority order):
+1. Failing test at whatever seam reaches the bug
+2. Curl/HTTP script against a running dev server
+3. CLI invocation with fixture input, diffing against known-good snapshot
+4. Headless browser script (Playwright)
+5. Replay a captured trace
+6. Throwaway harness — minimal subset exercising the bug code path
+7. Property/fuzz loop for "sometimes wrong output" bugs
+8. Bisection harness for regressions between two known states
+
+### Tool: `/zoom-out`
+
+When the agent (or you) gets lost in implementation details, `/zoom-out` forces it to explain code in the context of the whole system. Useful for onboarding into unfamiliar areas of your own codebase.
+
+### Recommended Engineering Skills Install
+
+```bash
+# Install all Matt Pocock engineering skills
+npx skills@latest add mattpocock/skills
+
+# Key skills for daily use:
+# /grill-with-docs  — deep requirement understanding + CONTEXT.md + ADRs
+# /tdd              — red-green-refactor vertical slices
+# /diagnose         — disciplined bug diagnosis loop
+# /improve-codebase-architecture — find deepening opportunities
+# /zoom-out         — explain code in system context
+# /to-prd           — convert discussion into PRD
+# /to-issues        — break PRD into vertical-slice GitHub issues
+# /prototype        — throwaway prototype for design exploration
+# /caveman          — 75% token reduction mode
+```
+
+## Phase 5: Building Stable Products
 
 AI-generated code ships fast but breaks fast. Stability requires deliberate practices.
 
@@ -331,7 +460,10 @@ Test every change in a real environment before merging to production.
 | No tests because "AI writes correct code" | AI hallucinates edge cases | Enforce TDD with Superpowers |
 | Deploy manually via web console | Slow, error-prone, not repeatable | CLI-first for everything |
 | Trust AI's first implementation | AI optimizes for looking done, not being correct | Review every PR, run every test |
-| Let AI decide architecture | AI has no product context | Founder decides architecture, AI implements |
+| Let AI decide architecture | AI has no product context | Founder decides architecture, AI implements. Run `/improve-codebase-architecture` weekly |
+| Never grilling requirements | Builds the wrong thing confidently | `/grill-with-docs` every time before starting |
+| Debug by staring at code | No feedback loop = no progress | `/diagnose` with a fast pass/fail signal |
+| Ball of mud after 2 weeks | Agent accelerates entropy | `/improve-codebase-architecture` every few days |
 | Ignore type errors "because it works" | Works today, breaks tomorrow | TypeScript strict from the start |
 | No error monitoring | Silent failures in production | Sentry before launch |
 

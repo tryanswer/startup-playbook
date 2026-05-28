@@ -16,18 +16,22 @@ description: Use when building a product with AI coding agents. Covers the full 
 ### Setup
 
 1. Install Superpowers in your coding agent (Claude Code, Codex, Cursor) for spec-first development. See `playbooks/02-product-development/ai-native-development.md`.
-2. Add a DESIGN.md to the project root from [awesome-design-md](https://github.com/voltagent/awesome-design-md) matching the product's visual positioning.
-3. Install taste-skill (`npx skills add https://github.com/Leonxlnx/taste-skill`) for anti-slop UI generation.
-4. Create the project's AGENTS.md with stability rules from `playbooks/02-product-development/ai-native-stability.md`.
-5. Install security skills: `npx @bytehide/ai-security-toolkit` for OWASP Top 10 scanning. For payment/auth products, also add Trail of Bits skills. See `playbooks/02-product-development/ai-native-security.md`.
-6. Set up CLI tools for infrastructure: `aliyun configure` for China, `vercel && supabase && stripe` for international.
+2. Install Matt Pocock's engineering skills (`npx skills@latest add mattpocock/skills`) for requirement grilling, TDD, architecture improvement, and debugging. Run `/setup-matt-pocock-skills` once per repo.
+3. Add a DESIGN.md to the project root from [awesome-design-md](https://github.com/voltagent/awesome-design-md) matching the product's visual positioning.
+4. Install taste-skill (`npx skills add https://github.com/Leonxlnx/taste-skill`) for anti-slop UI generation.
+5. Create the project's AGENTS.md with stability rules from `playbooks/02-product-development/ai-native-stability.md`.
+6. Install security skills: `npx @bytehide/ai-security-toolkit` for OWASP Top 10 scanning. For payment/auth products, also add Trail of Bits skills. See `playbooks/02-product-development/ai-native-security.md`.
+7. Set up CLI tools for infrastructure: `aliyun configure` for China, `vercel && supabase && stripe` for international.
+
+### Understand & Specify
+
+8. Run `/grill-with-docs` — agent interviews you relentlessly about the plan, challenges against existing domain language in CONTEXT.md, sharpens fuzzy terms, updates ADRs inline. Do NOT skip this.
+9. Run `/to-prd` — agent converts the grilling session into a PRD with acceptance criteria.
+10. Agent creates an implementation plan with bite-sized vertical slices. Review the plan before saying "go."
 
 ### Build
 
-6. Describe the product idea in 2-3 sentences to the coding agent. Let Superpowers drive the brainstorming — do not skip to code.
-7. Review the agent's spec in sections. Verify: core user flow exists, scope is limited, data model is simple, edge cases acknowledged.
-8. Agent creates an implementation plan with bite-sized tasks (2-5 min each). Review the plan before saying "go."
-9. Agent implements via subagent-driven development with TDD enforced: write failing test → watch it fail → write minimal code → watch it pass → commit.
+11. Agent implements via subagent-driven development with `/tdd` enforced: write one failing test → write minimal code → watch it pass → next slice. Vertical slices, not horizontal.
 10. For every UI component: agent must add `data-testid` attributes on all interactive elements following `{page}-{component}-{action}` naming.
 11. For every API endpoint: a typed contract must exist in `contracts/` before implementation. Agent implements against the contract.
 12. For every HTTP request: `x-trace-id` header must be propagated end-to-end.
@@ -48,12 +52,17 @@ description: Use when building a product with AI coding agents. Covers the full 
 
 ### Maintain
 
-21. Run weekly entropy auditor: dead code scan, doc-code sync check, architecture violation scan, naming convention drift.
-22. Use `playbooks/02-product-development/post-launch-iteration.md` for data-driven decisions on what to build next.
-23. Never build more features as a response to $0 MRR. Sell manually to 5 people first.
+21. Run `/improve-codebase-architecture` every few days to find deepening opportunities — refactors that turn shallow modules into deep ones.
+22. Run weekly entropy auditor: dead code scan, doc-code sync check, architecture violation scan, naming convention drift.
+23. When debugging hard bugs, use `/diagnose` — build a feedback loop first, then reproduce → hypothesise → instrument → fix → regression-test.
+24. Use `/zoom-out` when lost in implementation details to see code in system context.
+25. Use `playbooks/02-product-development/post-launch-iteration.md` for data-driven decisions on what to build next.
+26. Never build more features as a response to $0 MRR. Sell manually to 5 people first.
 
 ## Required Output
 
+- `CONTEXT.md` with resolved domain glossary (from `/grill-with-docs`).
+- ADRs for hard-to-reverse decisions in `docs/adr/`.
 - Working product with all interactive elements tagged with `data-testid`.
 - TraceId propagated through every request chain.
 - Typed API contracts in `contracts/` directory.
@@ -65,7 +74,7 @@ description: Use when building a product with AI coding agents. Covers the full 
 
 ## Guardrails
 
-- Do not let the agent start coding before a spec is approved. Use Superpowers brainstorming phase.
+- Do not let the agent start coding before a spec is approved. Use `/grill-with-docs` + Superpowers brainstorming phase.
 - Do not ship UI without DESIGN.md or taste-skill — default AI-generated UI is slop.
 - Do not trust a single agent's implementation. Always run a separate review agent.
 - Do not deploy without CI. A broken main branch costs more time than the 5 minutes to set up GitHub Actions.
