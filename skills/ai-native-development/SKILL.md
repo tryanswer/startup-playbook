@@ -22,6 +22,7 @@ description: Use when building a product with AI coding agents. Covers the full 
 5. Create the project's AGENTS.md with stability rules from `playbooks/02-product-development/ai-native-stability.md`.
 6. Install security skills: `npx @bytehide/ai-security-toolkit` for OWASP Top 10 scanning. For payment/auth products, also add Trail of Bits skills. See `playbooks/02-product-development/ai-native-security.md`.
 7. Set up CLI tools for infrastructure: `aliyun configure` for China, `vercel && supabase && stripe` for international.
+8. Check the cross-project service registry (`~/.service-registry/REGISTRY.md`) for existing reusable services (auth, payments, email, storage, AI inference). Integrate existing services before building new ones. See `playbooks/02-product-development/cross-project-reuse.md`.
 
 ### Understand & Specify
 
@@ -57,7 +58,8 @@ description: Use when building a product with AI coding agents. Covers the full 
 23. When debugging hard bugs, use `/diagnose` — build a feedback loop first, then reproduce → hypothesise → instrument → fix → regression-test.
 24. Use `/zoom-out` when lost in implementation details to see code in system context.
 25. Use `playbooks/02-product-development/post-launch-iteration.md` for data-driven decisions on what to build next.
-26. Never build more features as a response to $0 MRR. Sell manually to 5 people first.
+26. If this project produced new reusable services, write a SERVICE.md and register in `~/.service-registry/REGISTRY.md`.
+27. Never build more features as a response to $0 MRR. Sell manually to 5 people first.
 
 ## Required Output
 
