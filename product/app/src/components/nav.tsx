@@ -3,15 +3,17 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Lightbulb, Package, Terminal, Rocket } from 'lucide-react';
-
-const navItems = [
-  { href: '/ideas', label: 'Ideas', icon: Lightbulb },
-  { href: '/products', label: 'Products', icon: Package },
-  { href: '/agent', label: 'Agent', icon: Terminal },
-];
+import { useI18n } from '@/lib/i18n-context';
 
 export function Nav() {
   const pathname = usePathname();
+  const { t, locale, switchLocale } = useI18n();
+
+  const navItems = [
+    { href: '/ideas', label: t('nav.ideas'), icon: Lightbulb },
+    { href: '/products', label: t('nav.products'), icon: Package },
+    { href: '/agent', label: t('nav.agent'), icon: Terminal },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
@@ -39,6 +41,12 @@ export function Nav() {
               </Link>
             );
           })}
+          <button
+            onClick={switchLocale}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
+          >
+            {t('lang.switch')}
+          </button>
         </div>
       </div>
     </nav>

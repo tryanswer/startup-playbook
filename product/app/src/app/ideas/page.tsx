@@ -6,8 +6,10 @@ import { getProjects } from '@/lib/store';
 import { Project } from '@/lib/types';
 import { StagePipeline } from '@/components/stage-pipeline';
 import { Plus, Terminal } from 'lucide-react';
+import { useI18n } from '@/lib/i18n-context';
 
 export default function IdeasPage() {
+  const { t } = useI18n();
   const [projects, setProjects] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -20,9 +22,9 @@ export default function IdeasPage() {
     <div className="max-w-4xl mx-auto px-6 py-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold">Ideas</h1>
+          <h1 className="text-2xl font-bold">{t('ideas.title')}</h1>
           <p className="text-[var(--text-secondary)] text-sm mt-1">
-            {ideas.length} idea{ideas.length !== 1 ? 's' : ''} in incubation
+            {t('ideas.count', { count: ideas.length })}
           </p>
         </div>
         <Link
@@ -30,19 +32,19 @@ export default function IdeasPage() {
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-sm font-medium hover:brightness-110 transition-all"
         >
           <Plus className="h-4 w-4" />
-          New Idea
+          {t('ideas.new')}
         </Link>
       </div>
 
       {ideas.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-[var(--text-muted)] mb-4">No ideas yet. Start by submitting one.</p>
+          <p className="text-[var(--text-muted)] mb-4">{t('ideas.empty')}</p>
           <Link
             href="/ideas/new"
             className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-sm"
           >
             <Plus className="h-4 w-4" />
-            New Idea
+            {t('ideas.new')}
           </Link>
         </div>
       ) : (
@@ -73,9 +75,9 @@ export default function IdeasPage() {
                   <StagePipeline stages={project.stages} />
                   {currentStage && (
                     <span className="text-xs text-[var(--text-muted)]">
-                      {currentStage.status === 'running' ? '🔄 Running' :
-                       currentStage.status === 'waiting_decision' ? '⏳ Needs decision' :
-                       'Next: ' + currentStage.id}
+                      {currentStage.status === 'running' ? t('ideas.status.running') :
+                       currentStage.status === 'waiting_decision' ? t('ideas.status.waiting') :
+                       t('ideas.status.next', { stage: currentStage.id })}
                     </span>
                   )}
                 </div>

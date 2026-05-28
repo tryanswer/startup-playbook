@@ -6,8 +6,10 @@ import { getProjects } from '@/lib/store';
 import { Project } from '@/lib/types';
 import { StagePipeline } from '@/components/stage-pipeline';
 import { Package, Terminal } from 'lucide-react';
+import { useI18n } from '@/lib/i18n-context';
 
 export default function ProductsPage() {
+  const { t } = useI18n();
   const [products, setProducts] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -17,24 +19,24 @@ export default function ProductsPage() {
   return (
     <div className="max-w-4xl mx-auto px-6 py-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold">Products</h1>
+        <h1 className="text-2xl font-bold">{t('products.title')}</h1>
         <p className="text-[var(--text-secondary)] text-sm mt-1">
-          {products.length} product{products.length !== 1 ? 's' : ''} running
+          {t('products.count', { count: products.length })}
         </p>
       </div>
 
       {products.length === 0 ? (
         <div className="text-center py-20">
           <Package className="h-12 w-12 text-[var(--text-muted)] mx-auto mb-4" />
-          <p className="text-[var(--text-muted)] mb-2">No products yet.</p>
+          <p className="text-[var(--text-muted)] mb-2">{t('products.empty')}</p>
           <p className="text-sm text-[var(--text-muted)]">
-            Ideas graduate to Products after completing the Build stage.
+            {t('products.empty.hint')}
           </p>
           <Link
             href="/ideas"
             className="inline-block mt-4 px-4 py-2 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] text-sm hover:border-[var(--accent-blue)] transition-colors"
           >
-            Go to Ideas →
+            {t('products.goIdeas')}
           </Link>
         </div>
       ) : (

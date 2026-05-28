@@ -5,6 +5,7 @@ import { getProjects } from '@/lib/store';
 import { Project } from '@/lib/types';
 import { AgentTerminal } from '@/components/agent-terminal';
 import { Plus, X } from 'lucide-react';
+import { useI18n } from '@/lib/i18n-context';
 
 interface Tab {
   id: string;
@@ -14,6 +15,7 @@ interface Tab {
 }
 
 export default function AgentPage() {
+  const { t } = useI18n();
   const [projects, setProjects] = useState<Project[]>([]);
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTabId, setActiveTabId] = useState<string | null>(null);
@@ -79,17 +81,17 @@ export default function AgentPage() {
       <div className="flex-1 p-4 overflow-hidden">
         {showNewTab && (
           <div className="max-w-md mx-auto mt-12">
-            <h2 className="text-lg font-medium mb-4">New Agent Tab</h2>
+            <h2 className="text-lg font-medium mb-4">{t('agent.newTab')}</h2>
             <p className="text-sm text-[var(--text-muted)] mb-4">
-              Choose a project to connect the agent to, or start a free session.
+              {t('agent.newTab.desc')}
             </p>
             <div className="space-y-2">
               <button
                 onClick={() => createTab('', 'Free Session')}
                 className="w-full text-left px-4 py-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent-purple)] transition-colors"
               >
-                <span className="font-medium">Free Session</span>
-                <span className="block text-xs text-[var(--text-muted)] mt-0.5">No project context — general exploration</span>
+                <span className="font-medium">{t('agent.freeSession')}</span>
+                <span className="block text-xs text-[var(--text-muted)] mt-0.5">{t('agent.freeSession.desc')}</span>
               </button>
               {projects.map(project => (
                 <button
@@ -103,7 +105,7 @@ export default function AgentPage() {
               ))}
               {projects.length === 0 && (
                 <p className="text-sm text-[var(--text-muted)] text-center py-4">
-                  No projects yet. Create an idea first.
+                  {t('agent.noProjects')}
                 </p>
               )}
             </div>
@@ -111,7 +113,7 @@ export default function AgentPage() {
               onClick={() => setShowNewTab(false)}
               className="mt-4 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)]"
             >
-              Cancel
+              {t('agent.cancel')}
             </button>
           </div>
         )}
@@ -127,13 +129,13 @@ export default function AgentPage() {
 
         {!activeTab && !showNewTab && tabs.length === 0 && (
           <div className="flex flex-col items-center justify-center h-full">
-            <p className="text-[var(--text-muted)] mb-4">No agent tabs open.</p>
+            <p className="text-[var(--text-muted)] mb-4">{t('agent.noTabs')}</p>
             <button
               onClick={() => setShowNewTab(true)}
               className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-purple)] text-white text-sm hover:brightness-110"
             >
               <Plus className="h-4 w-4" />
-              New Tab
+              {t('ideas.new')}
             </button>
           </div>
         )}
