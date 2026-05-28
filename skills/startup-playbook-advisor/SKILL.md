@@ -51,15 +51,80 @@ When the repository is available, combine this advisor with:
 - `seo-aso-growth-research` for country, language, SEO, ASO, and keyword opportunity work.
 - `product-development-loop` only after the idea passes validation.
 
+## Google Growth Stack
+
+When the product targets international markets (especially Google ecosystem), use these guides at the right stage:
+
+### Pre-Launch (before shipping MVP)
+
+- `playbooks/04-operations-and-analytics/ga4-event-tracking.md`: define and implement GA4 events before launch. No analytics means blind iteration.
+- `playbooks/03-growth-and-marketing/utm-attribution.md`: set UTM naming conventions before any external link is shared.
+- Use `tools/google-growth-stack check-deps` to verify gcloud, node, and API access are ready.
+
+### Launch Week
+
+- `playbooks/03-growth-and-marketing/google-ads-cold-start.md`: run a $50-100 Google Ads test to validate paid intent within 24-48 hours.
+- `playbooks/03-growth-and-marketing/google-search-console.md`: connect Search Console and submit sitemap on day one.
+- Use `tools/google-growth-stack generate-gtag` to scaffold GA4 tracking code.
+- Use `tools/google-growth-stack build-utm` to generate campaign URLs with consistent naming.
+
+### Post-Launch (weekly cycle)
+
+- `templates/weekly-review-dashboard.md`: build Looker Studio dashboard connecting GA4 + Search Console + Ads.
+- `playbooks/04-operations-and-analytics/retention-decision-tree.md`: diagnose retention problems by D1/D7/D30 thresholds.
+- Use `tools/google-growth-stack weekly-report` to pull GA4 and Search Console data into a Markdown summary.
+- Use `tools/google-growth-stack pull-search-console` to export query and page performance data.
+
+### Decision Rules
+
+- If D1 retention < 10%, stop growth experiments and fix activation (see retention decision tree).
+- If Ads CPA > estimated LTV, stop paid acquisition and focus on SEO/community.
+- If Search Console shows high impressions but low CTR, rewrite page titles and meta descriptions.
+- If no conversion events fire within 48 hours of launch, debug GA4 setup before any other work.
+
+## China Growth Stack
+
+When the product targets mainland China, use the China-specific guides instead of the Google stack:
+
+### Market Routing
+
+| Target Market | Analytics | Search | Ads | Tools |
+|---|---|---|---|---|
+| International / Overseas | GA4 | Google Search Console | Google Ads | `tools/google-growth-stack` |
+| China Mainland | 百度统计 (Web) + 友盟+ (App) | 百度搜索资源平台 | 百度推广 / 巨量引擎 | `tools/china-growth-stack` |
+| Both | 两套并行，后端统一用户 ID | 分别接入 | 分别投放 | 两套工具都用 |
+
+### China Pre-Launch
+
+- `playbooks/04-operations-and-analytics/china-analytics-tracking.md`: 百度统计 + 友盟+ 埋点规范，AARRR 事件定义，隐私合规（《个人信息保护法》）。
+- Use `tools/china-growth-stack generate-baidu-tracking` for Web tracking code.
+- Use `tools/china-growth-stack generate-umeng-tracking` for App tracking code (Swift + Kotlin).
+
+### China Launch & Growth
+
+- `playbooks/03-growth-and-marketing/china-growth-stack.md`: 百度/抖音/小红书/微信四大生态的渠道地图、SEO/ASO 策略、付费验证和内容分发。
+- Use `tools/china-growth-stack pull-baidu-search` to export search keyword data.
+- Use `tools/china-growth-stack weekly-report` for combined weekly report.
+
+### China-Specific Rules
+
+- ICP 备案是百度 SEO 的前提，无备案基本无排名。
+- App 首次启动必须弹隐私政策弹窗，用户同意后才初始化 SDK。
+- 绝对禁止 AI 自动发小红书/知乎/抖音内容，平台风控封号风险极高。
+- 微信小程序是独立生态，需要额外的数据追踪方案。
+
 ## Advisory Workflow
 
 1. Capture the idea, user, painful situation, current workaround, and desired outcome.
-2. Classify stage: idea triage, evidence plan, landing-page plan, MVP scope, or growth plan.
+2. Classify stage: idea triage, evidence plan, landing-page plan, MVP scope, growth plan, or **post-launch ops**.
 3. Apply the three required gates.
 4. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
 5. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, or concierge MVP.
 6. If validation passes, define the smallest product scope and measurement plan.
-7. Return a decision with next actions and stop conditions.
+7. **Pre-launch**: ensure GA4 events are defined (`ga4-event-tracking.md`), UTM conventions set (`utm-attribution.md`), and Search Console connected (`google-search-console.md`). Run `tools/google-growth-stack check-deps` to verify tooling.
+8. **Launch week**: run Google Ads cold start test (`google-ads-cold-start.md`), verify GA4 events fire in DebugView within 48 hours.
+9. **Post-launch weekly**: review Looker Studio dashboard (`weekly-review-dashboard.md`), diagnose retention (`retention-decision-tree.md`), decide continue / adjust / stop.
+10. Return a decision with next actions and stop conditions.
 
 ## Required Output
 

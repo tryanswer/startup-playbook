@@ -1,0 +1,20 @@
+{
+  "name": "startup-playbook-google-growth-stack",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CLI tools for GA4 tracking setup, UTM URL building, Google Search Console data export, and weekly growth reports.",
+  "scripts": {
+    "check-deps": "node scripts/check-deps.mjs",
+    "generate-gtag": "node scripts/generate-gtag.mjs",
+    "build-utm": "node scripts/build-utm.mjs",
+    "pull-search-console": "node scripts/pull-search-console.mjs",
+    "weekly-report": "node scripts/weekly-report.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "googleapis": "^144.0.0"
+  }
+}

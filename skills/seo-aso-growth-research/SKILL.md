@@ -33,6 +33,11 @@ Use this skill to translate validated user pain into search, app-store, and cont
 ## Tool Notes
 
 - Prefer `tools/google-trends-seo` when this repository is available.
+- Use `tools/google-growth-stack pull-search-console` to export Search Console query and page data for analysis.
+- Use `tools/google-growth-stack weekly-report` to generate a combined GA4 + Search Console Markdown summary.
+- Connect Google Search Console per `playbooks/03-growth-and-marketing/google-search-console.md` to get real click, impression, CTR, and position data.
+- Use `playbooks/03-growth-and-marketing/google-ads-cold-start.md` for paid keyword validation; feed Ads Search Terms back into SEO keyword clusters.
+- Apply `playbooks/03-growth-and-marketing/utm-attribution.md` to all external links for consistent channel attribution.
 - Google Trends is relative interest, not absolute search volume.
 - If paid keyword data is unavailable, mark volume/CPC confidence as limited.
 - SEO/ASO should inform landing page and product positioning, not only metadata.

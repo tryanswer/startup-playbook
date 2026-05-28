@@ -1,0 +1,17 @@
+{
+  "name": "startup-playbook-china-growth-stack",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CLI tools for Baidu Analytics tracking setup, Baidu Search Resource Platform data export, and weekly growth reports for China market.",
+  "scripts": {
+    "check-deps": "node scripts/check-deps.mjs",
+    "generate-baidu-tracking": "node scripts/generate-baidu-tracking.mjs",
+    "generate-umeng-tracking": "node scripts/generate-umeng-tracking.mjs",
+    "pull-baidu-search": "node scripts/pull-baidu-search.mjs",
+    "weekly-report": "node scripts/weekly-report.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

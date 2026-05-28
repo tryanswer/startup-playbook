@@ -24,8 +24,9 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 4. Split scope into `must have`, `later`, and `do not build`.
 5. Write a PRD with acceptance criteria and measurable success.
 6. Identify risk: technical, product, distribution, compliance, cost.
-7. Add instrumentation before launch.
-8. Launch to the smallest reachable audience.
+7. Add instrumentation before launch: implement GA4 events per `playbooks/04-operations-and-analytics/ga4-event-tracking.md`. At minimum: `sign_up`, `first_value_delivered`, `checkout_start`, `purchase`. Set UTM conventions per `playbooks/03-growth-and-marketing/utm-attribution.md`. Run `tools/google-growth-stack check-deps` and `tools/google-growth-stack generate-gtag` to scaffold tracking code.
+8. Connect Google Search Console on launch day (see `playbooks/03-growth-and-marketing/google-search-console.md`).
+9. Launch to the smallest reachable audience.
 9. Review activation, conversion, retention, revenue, and user quotes.
 10. Before building new features after a weak launch, run direct customer discovery: name the segment, ask one sharp qualifying question, and look for 5 paying or high-intent customers.
 11. Decide whether to iterate, expand, reposition, or stop.

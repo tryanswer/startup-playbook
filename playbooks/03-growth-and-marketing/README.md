@@ -22,6 +22,13 @@
 6. **AI 分发分工**
    使用 `ai-distribution.md` 先做 40-action sort。AI 负责扫描、总结、打分、草稿和日报；创始人保留选择、最终编辑、客户回复、冷启动触达、竞品表述和所有会影响信任的收尾动作。禁止自动发帖、自动评论、自动私信和未审核外发。
 
+## Google Ecosystem Guides
+
+- `google-search-console.md`: Search Console 接入、核心报告解读、每周 SEO 动作和内容策略闭环。
+- `google-ads-cold-start.md`: 用 $50-100 小预算快速验证付费意愿，Search Terms → SEO 反馈循环。
+- `utm-attribution.md`: UTM 参数命名规范、归因模型选择和每周归因复盘。
+- `ai-distribution.md`: AI 辅助内容分发的 70/30 分工、never-write list 和审批规则。
+
 ## Output
 
 - SEO/ASO 关键词报告。
