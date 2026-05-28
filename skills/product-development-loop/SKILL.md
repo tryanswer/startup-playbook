@@ -22,7 +22,8 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 2. Check `indie-hackers-starting-up` for the current stage and `founder-case-patterns` for similar MVP, pricing, validation, or distribution moves.
 3. Use `business-model-design` to choose the right model and pricing structure before writing code.
 4. Choose tech stack using `playbooks/02-product-development/tech-stack-selection.md`. Use what you know, ship in days.
-5. Define the first successful user journey from entry to value.
+5. Set up AI-native development workflow using `ai-native-development` skill: Superpowers for spec, DESIGN.md + taste-skill for UI, stability pillars for reliability.
+6. Define the first successful user journey from entry to value.
 6. Split scope into `must have`, `later`, and `do not build`.
 5. Write a PRD with acceptance criteria and measurable success.
 6. Identify risk: technical, product, distribution, compliance, cost.

@@ -42,6 +42,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 | [`reddit-demand-validation`](skills/reddit-demand-validation/) | Mine Reddit/forums for demand evidence before building |
 | [`founder-case-patterns`](skills/founder-case-patterns/) | 499 case-derived patterns for channels, pricing, validation, and MVP |
 | [`indie-hackers-starting-up`](skills/indie-hackers-starting-up/) | Stage-based founder guide from 80 startup resources |
+| [`ai-native-development`](skills/ai-native-development/) | AI-native build workflow: Superpowers spec, DESIGN.md + taste-skill, six stability pillars, agent audit |
 | [`startup-playbook-advisor`](skills/startup-playbook-advisor/) | Full advisor agent: ask the right questions, output kill/pivot/continue |
 
 ### Tools (CLI Scripts)
