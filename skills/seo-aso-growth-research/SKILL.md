@@ -30,6 +30,39 @@ Use this skill to translate validated user pain into search, app-store, and cont
 - Measurement plan.
 - AI distribution action split and never-write list when AI-assisted posting, replies, or outreach are in scope.
 
+## Standardized Artifact Output
+
+After completing growth research, write a structured JSON report to:
+
+```
+product/app/.playbook-output/{projectId}/grow/report.json
+```
+
+The JSON must conform to this schema:
+
+```json
+{
+  "stage": "grow",
+  "score": 50,
+  "decision": "pivot",
+  "reasoning": "One sentence summarizing growth readiness.",
+  "evidence": ["Positive signal 1", "Positive signal 2"],
+  "concerns": ["Risk factor 1", "Risk factor 2"],
+  "analysis": {
+    "seo": "Target keywords, domain authority, content plan cadence.",
+    "distribution": "Primary and secondary channels with rationale.",
+    "growth_model": "Viral coefficient target, referral mechanics.",
+    "channels": "Ranked channel list with expected CAC for each."
+  },
+  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
+  "generatedAt": "2026-05-28T21:20:00Z"
+}
+```
+
+Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+
+The `{projectId}` is provided by the caller.
+
 ## Tool Notes
 
 - Prefer `tools/google-trends-seo` when this repository is available.

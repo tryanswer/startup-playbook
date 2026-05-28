@@ -57,6 +57,38 @@ If any answer is missing, treat the idea as unvalidated.
 - Landing-page message map.
 - Decision: kill / pivot / continue.
 
+## Standardized Artifact Output
+
+After completing validation, write a structured JSON report to:
+
+```
+product/app/.playbook-output/{projectId}/validate/report.json
+```
+
+The JSON must conform to this schema:
+
+```json
+{
+  "stage": "validate",
+  "score": 65,
+  "decision": "continue",
+  "reasoning": "One sentence summarizing the decision rationale.",
+  "evidence": ["Positive signal 1", "Positive signal 2"],
+  "concerns": ["Risk factor 1", "Risk factor 2"],
+  "analysis": {
+    "pain": "2-3 sentences about pain signal strength, frustration rate, workaround quality.",
+    "demand": "2-3 sentences about search demand, trend direction, long-tail density.",
+    "market": "2-3 sentences about competitive landscape, gaps, market maturity."
+  },
+  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
+  "generatedAt": "2026-05-28T20:50:00Z"
+}
+```
+
+Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+
+The `{projectId}` is provided by the caller. If not provided, use the idea name slugified as the project ID.
+
 ## Tool Notes
 
 - Google Trends is normalized relative interest from 0 to 100, not search volume.

@@ -244,6 +244,39 @@ Failure patterns summarized from cases:
 4. Use `seo-aso-growth-research` to validate the acquisition channel implied by the model.
 5. Use this skill's revenue progression path during `weekly-review-dashboard` to set MRR targets.
 
+## Standardized Artifact Output
+
+After completing business model design, write a structured JSON report to:
+
+```
+product/app/.playbook-output/{projectId}/business-model/report.json
+```
+
+The JSON must conform to this schema:
+
+```json
+{
+  "stage": "business-model",
+  "score": 55,
+  "decision": "pivot",
+  "reasoning": "One sentence summarizing model viability.",
+  "evidence": ["Positive signal 1", "Positive signal 2"],
+  "concerns": ["Risk factor 1", "Risk factor 2"],
+  "analysis": {
+    "model": "Chosen model type and rationale (SaaS/service/course/marketplace/devtool).",
+    "pricing": "Pricing tiers, anchor point, and competitive positioning.",
+    "revenue": "MRR projection at 1K/5K/20K user milestones.",
+    "cac": "Estimated CAC by channel, LTV calculation, LTV/CAC ratio."
+  },
+  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
+  "generatedAt": "2026-05-28T21:00:00Z"
+}
+```
+
+Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+
+The `{projectId}` is provided by the caller.
+
 ## Evidence Base
 
 - 499 Indie Hackers cases analyzed.

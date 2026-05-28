@@ -142,6 +142,26 @@ Required sections:
 - Risks and stop conditions.
 - Next 7 days.
 
+## Standardized Artifact Output
+
+When running a specific stage for a project, delegate to the stage-specific skill and ensure it writes a `report.json` to the shared output directory:
+
+```
+product/app/.playbook-output/{projectId}/{stageId}/report.json
+```
+
+Stage-to-skill mapping:
+- `validate` → `idea-validation`
+- `business-model` → `business-model-design`
+- `build` → `product-development-loop`
+- `grow` → `seo-aso-growth-research`
+- `operate` → manual (metrics review, retention diagnosis)
+
+Each skill's SKILL.md defines its own artifact schema. The advisor ensures:
+1. The `{projectId}` is passed to the delegated skill.
+2. The output directory exists before writing.
+3. The JSON conforms to the `StageArtifactOutput` base schema (see `product/app/ARTIFACT-SPEC.md`).
+
 ## Quality Bar
 
 - Every recommendation must trace back to user evidence, case patterns, search/community evidence, or an explicit assumption.
