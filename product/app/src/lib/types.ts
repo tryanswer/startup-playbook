@@ -71,7 +71,40 @@ export interface AgentTab {
   isActive: boolean;
 }
 
-/** Validation report summary (from LLM analysis) */
+/**
+ * Standard artifact output from CLI (startup-playbook).
+ * CLI writes to: .playbook-output/<projectId>/<stageId>/report.json
+ * UI reads this to render stage results.
+ */
+export interface StageArtifactOutput {
+  /** Which stage produced this */
+  stage: StageId;
+  /** Overall score 0-100 */
+  score: number;
+  /** Recommended decision */
+  decision: 'continue' | 'pivot' | 'kill';
+  /** One-line reasoning */
+  reasoning: string;
+  /** Positive signals */
+  evidence: string[];
+  /** Risk factors */
+  concerns: string[];
+  /** Detailed analysis sections (stage-specific) */
+  analysis?: {
+    pain?: string;
+    demand?: string;
+    market?: string;
+    [key: string]: string | undefined;
+  };
+  /** Actionable next steps */
+  suggestedNextSteps?: string[];
+  /** Pre-rendered HTML report (optional) */
+  html?: string;
+  /** ISO timestamp when CLI produced this */
+  generatedAt: string;
+}
+
+/** Alias for backward compat with DecisionGate */
 export interface ValidationSummary {
   score: number;
   decision: 'continue' | 'pivot' | 'kill';
@@ -82,6 +115,21 @@ export interface ValidationSummary {
   demandAnalysis?: string;
   marketAnalysis?: string;
   suggestedNextSteps?: string[];
+}
+
+/** Convert CLI artifact to UI summary */
+export function artifactToSummary(artifact: StageArtifactOutput): ValidationSummary {
+  return {
+    score: artifact.score,
+    decision: artifact.decision,
+    reasoning: artifact.reasoning,
+    evidence: artifact.evidence,
+    concerns: artifact.concerns,
+    painAnalysis: artifact.analysis?.pain,
+    demandAnalysis: artifact.analysis?.demand,
+    marketAnalysis: artifact.analysis?.market,
+    suggestedNextSteps: artifact.suggestedNextSteps,
+  };
 }
 
 export const STAGE_CONFIG: Record<StageId, { label: string; icon: string; description: string }> = {

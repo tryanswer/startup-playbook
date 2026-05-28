@@ -3,11 +3,10 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { getProject, getProjectThreads, updateStage, makeDecision, forkProject, backtrackToStage } from '@/lib/store';
-import { Project, Stage, StageId, STAGE_CONFIG, STAGE_ORDER, ValidationSummary } from '@/lib/types';
+import { Project, StageId, STAGE_CONFIG, STAGE_ORDER, ValidationSummary, StageArtifactOutput, artifactToSummary } from '@/lib/types';
 import { StagePipeline } from '@/components/stage-pipeline';
 import { DecisionGate } from '@/components/decision-gate';
-import { AgentTerminal } from '@/components/agent-terminal';
-import { ArrowLeft, Play, Terminal, FileText, Loader2 } from 'lucide-react';
+import { ArrowLeft, FileText, Loader2, RefreshCw } from 'lucide-react';
 import Link from 'next/link';
 
 export default function IdeaDetailPage() {
@@ -17,8 +16,9 @@ export default function IdeaDetailPage() {
 
   const [project, setProject] = useState<Project | null>(null);
   const [activeStageId, setActiveStageId] = useState<StageId>('validate');
-  const [validationHtml, setValidationHtml] = useState<string | null>(null);
-  const [validationSummary, setValidationSummary] = useState<ValidationSummary | null>(null);
+  const [reportHtml, setReportHtml] = useState<string | null>(null);
+  const [summary, setSummary] = useState<ValidationSummary | null>(null);
+  const [artifactLoading, setArtifactLoading] = useState(false);
 
   const refreshProject = useCallback(() => {
     const proj = getProject(projectId);
@@ -26,6 +26,7 @@ export default function IdeaDetailPage() {
     else router.push('/ideas');
   }, [projectId, router]);
 
+  // Load project from localStorage
   useEffect(() => {
     refreshProject();
   }, [refreshProject]);
@@ -33,20 +34,42 @@ export default function IdeaDetailPage() {
   // Derive active stage — safe even when project is null
   const activeStage = project?.stages.find(s => s.id === activeStageId) ?? project?.stages[0] ?? null;
 
-  // Load existing report from artifacts — must run before any conditional return
-  useEffect(() => {
-    if (!activeStage) return;
-    const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
-    if (reportArtifact?.content) setValidationHtml(reportArtifact.content);
-    else setValidationHtml(null);
+  // Auto-load artifacts from shared directory when stage changes
+  const loadArtifacts = useCallback(async () => {
+    if (!activeStageId || !projectId) return;
+    setArtifactLoading(true);
+    try {
+      const response = await fetch(`/api/artifacts?projectId=${encodeURIComponent(projectId)}&stageId=${encodeURIComponent(activeStageId)}`);
+      const data = await response.json();
+      const artifact = data.data?.artifact as StageArtifactOutput | null;
 
-    const summaryArtifact = activeStage.artifacts.find(a => a.id === 'report-json');
-    if (summaryArtifact?.content) {
-      try { setValidationSummary(JSON.parse(summaryArtifact.content)); } catch { /* ignore */ }
-    } else {
-      setValidationSummary(null);
+      if (artifact) {
+        setSummary(artifactToSummary(artifact));
+        setReportHtml(artifact.html ?? null);
+
+        // Sync stage status if artifact exists but stage is still pending
+        if (activeStage?.status === 'pending') {
+          updateStage(projectId, activeStageId, stage => ({
+            ...stage,
+            status: 'waiting_decision',
+          }));
+          refreshProject();
+        }
+      } else {
+        setSummary(null);
+        setReportHtml(null);
+      }
+    } catch {
+      setSummary(null);
+      setReportHtml(null);
+    } finally {
+      setArtifactLoading(false);
     }
-  }, [activeStage]);
+  }, [activeStageId, projectId, activeStage?.status, refreshProject]);
+
+  useEffect(() => {
+    loadArtifacts();
+  }, [loadArtifacts]);
 
   if (!project || !activeStage) {
     return (
@@ -58,77 +81,6 @@ export default function IdeaDetailPage() {
 
   const stageConfig = STAGE_CONFIG[activeStage.id];
   const threads = getProjectThreads(projectId);
-
-  async function handleRunValidation() {
-    const currentProject = getProject(projectId);
-    if (!currentProject) return;
-
-    updateStage(projectId, 'validate', stage => ({
-      ...stage,
-      status: 'running',
-      startedAt: new Date().toISOString(),
-      autoTasks: [
-        { id: 'reddit', label: 'Reddit Pain Mining', status: 'running' },
-        { id: 'trends', label: 'Trends & Demand Check', status: 'pending' },
-        { id: 'competitors', label: 'Competitor Scan', status: 'pending' },
-        { id: 'report', label: 'Generate Report', status: 'pending' },
-      ],
-    }));
-    refreshProject();
-
-    try {
-      const response = await fetch('/api/validate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          idea: currentProject.description,
-          keywords: currentProject.validationConfig.keywords,
-          subreddits: currentProject.validationConfig.subreddits,
-          geo: currentProject.validationConfig.geo,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (data.error) {
-        updateStage(projectId, 'validate', stage => ({
-          ...stage,
-          status: 'waiting_decision',
-          autoTasks: stage.autoTasks.map(t => ({ ...t, status: 'failed' as const })),
-        }));
-        refreshProject();
-        return;
-      }
-
-      updateStage(projectId, 'validate', stage => ({
-        ...stage,
-        status: 'waiting_decision',
-        autoTasks: [
-          { id: 'reddit', label: 'Reddit Pain Mining', status: 'completed' },
-          { id: 'trends', label: 'Trends & Demand Check', status: 'completed' },
-          { id: 'competitors', label: 'Competitor Scan', status: 'completed' },
-          { id: 'report', label: 'Generate Report', status: 'completed' },
-        ],
-        artifacts: [
-          { id: 'report-html', name: 'Validation Report', type: 'html', content: data.html, createdAt: new Date().toISOString() },
-          { id: 'report-json', name: 'Validation Data', type: 'json', content: JSON.stringify(data.summary), createdAt: new Date().toISOString() },
-        ],
-      }));
-
-      setValidationHtml(data.html);
-      setValidationSummary(data.summary);
-      refreshProject();
-    } catch {
-      updateStage(projectId, 'validate', stage => ({
-        ...stage,
-        status: 'waiting_decision',
-        autoTasks: stage.autoTasks.map(t =>
-          t.status === 'running' ? { ...t, status: 'failed' as const } : t
-        ),
-      }));
-      refreshProject();
-    }
-  }
 
   function handleDecision(decision: 'continue' | 'pivot' | 'kill') {
     if (!activeStage) return;
@@ -147,7 +99,6 @@ export default function IdeaDetailPage() {
   }
 
   function handleFork() {
-    // Fork stays on the same idea — creates a thread, navigates to it within context
     const forked = forkProject(projectId);
     if (forked) {
       router.push(`/ideas/${forked.id}`);
@@ -195,54 +146,47 @@ export default function IdeaDetailPage() {
         />
       </div>
 
-      {/* Stage Content — full width, stacked vertically */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
-        {/* Left: tasks, run button, decision */}
+      {/* Stage Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Left: stage info, decision, threads */}
         <div className="space-y-4">
           <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
-            <h2 className="text-sm font-medium text-[var(--text-secondary)] mb-3">
-              {stageConfig.icon} {stageConfig.label}
-            </h2>
-
-            {activeStage.autoTasks.length > 0 ? (
-              <div className="space-y-2 mb-4">
-                {activeStage.autoTasks.map(task => (
-                  <div key={task.id} className="flex items-center gap-2 text-sm">
-                    {task.status === 'completed' && <span className="text-[var(--accent-green)]">✓</span>}
-                    {task.status === 'running' && <Loader2 className="h-3.5 w-3.5 text-[var(--accent-blue)] animate-spin" />}
-                    {task.status === 'pending' && <span className="text-[var(--text-muted)]">○</span>}
-                    {task.status === 'failed' && <span className="text-[var(--accent-red)]">✕</span>}
-                    <span className={task.status === 'pending' ? 'text-[var(--text-muted)]' : ''}>{task.label}</span>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p className="text-sm text-[var(--text-muted)] mb-4">{stageConfig.description}</p>
-            )}
-
-            {activeStageId === 'validate' && activeStage.status === 'pending' && (
+            <div className="flex items-center justify-between mb-3">
+              <h2 className="text-sm font-medium text-[var(--text-secondary)]">
+                {stageConfig.icon} {stageConfig.label}
+              </h2>
               <button
-                onClick={handleRunValidation}
-                data-testid="detail-btn-run"
-                className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-sm font-medium hover:brightness-110"
+                onClick={loadArtifacts}
+                disabled={artifactLoading}
+                className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                aria-label="Refresh artifacts"
+                title="Reload artifacts from CLI output"
               >
-                <Play className="h-4 w-4" />
-                Run Validation
+                <RefreshCw className={`h-3.5 w-3.5 ${artifactLoading ? 'animate-spin' : ''}`} />
               </button>
+            </div>
+
+            <p className="text-sm text-[var(--text-muted)] mb-3">{stageConfig.description}</p>
+
+            {/* Status indicator */}
+            {activeStage.status === 'pending' && !summary && (
+              <div className="p-3 rounded-lg bg-[var(--bg-tertiary)] text-xs text-[var(--text-muted)]">
+                Awaiting CLI output. Run <code className="px-1 py-0.5 rounded bg-[var(--bg-secondary)] text-[var(--accent-blue)]">codex</code> with startup-playbook to generate artifacts.
+              </div>
             )}
 
-            {activeStage.status === 'running' && (
+            {artifactLoading && (
               <div className="flex items-center gap-2 text-sm text-[var(--accent-blue)]">
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Running...
+                Loading artifacts...
               </div>
             )}
           </div>
 
-          {/* Decision Gate */}
-          {activeStage.status === 'waiting_decision' && (
+          {/* Decision Gate — shown when artifacts are loaded */}
+          {summary && activeStage.status !== 'completed' && (
             <DecisionGate
-              summary={validationSummary}
+              summary={summary}
               onDecision={handleDecision}
             />
           )}
@@ -286,46 +230,32 @@ export default function IdeaDetailPage() {
           )}
         </div>
 
-        {/* Right: report viewer + artifacts */}
+        {/* Right: report viewer */}
         <div className="lg:col-span-2 space-y-4">
-          {validationHtml && (
+          {reportHtml ? (
             <div className="rounded-xl overflow-hidden border border-[var(--border)]">
-              <iframe srcDoc={validationHtml} className="w-full h-[400px] bg-white" title="Report" />
+              <iframe srcDoc={reportHtml} className="w-full h-[500px] bg-white" title="Report" />
             </div>
-          )}
-
-          {activeStage.artifacts.length > 0 && !validationHtml && (
-            <div className="p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
-              <h3 className="text-sm font-medium text-[var(--text-secondary)] mb-3">Artifacts</h3>
-              <div className="space-y-2">
-                {activeStage.artifacts.map(artifact => (
-                  <div key={artifact.id} className="flex items-center gap-2 text-sm">
-                    <FileText className="h-3.5 w-3.5 text-[var(--text-muted)]" />
-                    <span>{artifact.name}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {!validationHtml && activeStage.artifacts.length === 0 && (
-            <div className="flex items-center justify-center h-[200px] rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+          ) : summary ? (
+            <div className="p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
               <p className="text-sm text-[var(--text-muted)]">
-                {activeStage.status === 'pending' ? 'Run validation or use the agent below to explore' : activeStage.status === 'running' ? 'Validation in progress...' : 'No report available'}
+                Artifact loaded — detailed report view coming soon.
+              </p>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center h-[300px] rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
+              <FileText className="h-8 w-8 text-[var(--text-muted)] mb-3 opacity-40" />
+              <p className="text-sm text-[var(--text-muted)] mb-1">No artifacts yet</p>
+              <p className="text-xs text-[var(--text-muted)] opacity-70">
+                Use Codex CLI with startup-playbook to run the {stageConfig.label.toLowerCase()} stage
               </p>
             </div>
           )}
         </div>
       </div>
 
-      {/* Agent Terminal — fixed at bottom, always visible */}
-      <div className="rounded-xl border border-[var(--border)] overflow-hidden">
-        <AgentTerminal
-          projectId={projectId}
-          projectName={project.name}
-          stageId={activeStageId}
-        />
-      </div>
+      {/* Agent Terminal placeholder — hidden for Phase 1, preserved for future */}
+      {/* <AgentTerminal projectId={projectId} projectName={project.name} stageId={activeStageId} /> */}
     </div>
   );
 }
