@@ -1,0 +1,23 @@
+{
+  "source": "indiehackers",
+  "url": "https://www.indiehackers.com/post/validating-a-startup-idea-example",
+  "capturedAt": "2026-05-28T15:00:00.000Z",
+  "comments": [
+    {
+      "id": "-sample1",
+      "author": "perfectstereotype",
+      "text": "The validation problem is real. Shipping fast is solved, knowing if the business actually works is not.",
+      "permalink": "https://www.indiehackers.com/post/validating-a-startup-idea-example?commentId=-sample1",
+      "replyCount": 0,
+      "hasOwnReply": false
+    },
+    {
+      "id": "-sample2",
+      "author": "aryan_sinh",
+      "text": "I would not position this as generic data quality. The sharper wedge is business invariant monitoring.",
+      "permalink": "https://www.indiehackers.com/post/validating-a-startup-idea-example?commentId=-sample2",
+      "replyCount": 0,
+      "hasOwnReply": false
+    }
+  ]
+}

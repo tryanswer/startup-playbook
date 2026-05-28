@@ -1,0 +1,17 @@
+{
+  "name": "startup-playbook-indie-hackers-reply",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Capture Indie Hackers comments, draft founder replies, and post only after explicit confirmation.",
+  "scripts": {
+    "test": "node --test",
+    "ih-reply": "node scripts/ih-reply.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "optionalDependencies": {
+    "playwright": "^1.60.0"
+  }
+}

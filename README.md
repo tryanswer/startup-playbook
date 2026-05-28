@@ -46,6 +46,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 | [`indie-hackers-starting-up`](skills/indie-hackers-starting-up/) | Stage-based founder guide from 80 startup resources |
 | [`ai-native-development`](skills/ai-native-development/) | AI-native build workflow: Superpowers spec, DESIGN.md + taste-skill, six stability pillars, agent audit |
 | [`startup-playbook-advisor`](skills/startup-playbook-advisor/) | Full advisor agent: ask the right questions, output kill/pivot/continue |
+| [`indie-hackers-reply`](skills/indie-hackers-reply/) | Draft and publish Indie Hackers validation replies with explicit confirmation |
 
 ### Tools (CLI Scripts)
 
@@ -57,6 +58,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 | [`idea-validator`](tools/idea-validator/) | Automated idea validation: Reddit pain + Trends demand + competitor scan → HTML decision report |
 | [`google-growth-stack`](tools/google-growth-stack/) | GA4 code gen, UTM builder, Search Console export, weekly report |
 | [`china-growth-stack`](tools/china-growth-stack/) | Baidu Analytics + Umeng+ code gen, Baidu search export, weekly report |
+| [`indie-hackers-reply`](tools/indie-hackers-reply/) | Indie Hackers comment capture, reply drafting, and confirmation-gated posting |
 
 ### Templates
 
