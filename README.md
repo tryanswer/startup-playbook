@@ -1,89 +1,158 @@
 # Startup Playbook
 
-A repository of reusable startup workflows from idea to product, growth, and operations. The core principle is to validate real demand first, then develop the product, and finally grow through quantifiable channels—rather than letting AI fabricate stories without evidence.
+> Evidence first. Build second. Grow with data.
 
-## Structure
+An open-source, end-to-end startup methodology for indie hackers and solo founders — from idea validation to product launch, growth, and operational analytics. Powered by real-world patterns from **499 founder case studies**.
 
-- `playbooks/01-idea-validation`: Validate whether demand is real, where target users are, and whether they're willing to pay.
-- `playbooks/02-product-development`: Turn validated problems into MVP, PRD, acceptance criteria, and release loop. Includes tech stack selection, launch checklist, and post-launch iteration guides.
-- `playbooks/02-product-development/tech-stack-selection.md`: Tech stack guide for indie hackers—recommended stacks by product type, $0-50/mo infrastructure, payment providers.
-- `playbooks/02-product-development/mvp-launch-checklist.md`: Three-phase launch checklist (pre-launch, launch day, post-launch 7 days).
-- `playbooks/02-product-development/post-launch-iteration.md`: Data-driven decision trees for post-launch scenarios, iteration cadence, and pivot/kill criteria.
-- `playbooks/03-growth-and-marketing`: SEO, ASO, content, community, landing pages, and paid intent validation.
-- `playbooks/04-operations-and-analytics`: Metrics, experiment reviews, user feedback, and operational rhythm.
-- `skills/business-model-design`: Business model design guide based on 499 cases—choose models by product positioning, pricing structure, and revenue growth path.
-- `skills/`: Skills that can be copied to Codex / agent environments.
-- `tools/google-trends-seo`: Google Trends / Keywords Everywhere keyword research tool.
-- `tools/case-study-skill-miner`: Distill founder case studies into startup experience skills.
-- `tools/topic-pain-miner`: Scrape Reddit public topics, generate pain point heatmaps, HTML pages, and optional LLM demand summaries.
-- `tools/google-growth-stack`: GA4 tracking code generation, UTM URL construction, Search Console data export, and weekly growth reports. Supports automatic dependency detection and installation.
-- `tools/china-growth-stack`: Baidu Analytics tracking code generation, Umeng+ App tracking code generation (Swift/Kotlin), Baidu Search data export, and weekly growth reports. For mainland China market.
-- `plugins/startup-playbook-advisor`: Startup advisor plugin installable to Codex.
-- `agents/startup-playbook-advisor.md`: Startup advisor agent settings copyable to Claude / Codex / OpenClaw.
-- `templates/`: Ready-to-use templates for experiments, PRDs, SEO/ASO, and landing pages.
-- `playbooks/03-growth-and-marketing/ai-distribution.md`: AI-assisted content distribution, community replies, outreach, and daily report 70/30 division of labor with human approval rules.
-- `playbooks/03-growth-and-marketing/google-search-console.md`: Google Search Console integration, SEO data interpretation, and content strategy loop.
-- `playbooks/03-growth-and-marketing/google-ads-cold-start.md`: Quickly validate paid intent with $50-100 small budget, Search Terms → SEO feedback loop.
-- `playbooks/03-growth-and-marketing/utm-attribution.md`: UTM parameter naming conventions, attribution models, and channel effectiveness review.
-- `playbooks/04-operations-and-analytics/ga4-event-tracking.md`: GA4 tracking specifications, AARRR-layered event definitions, must complete before launch.
-- `playbooks/04-operations-and-analytics/retention-decision-tree.md`: Retention analysis decision tree, D1/D7/D30 thresholds and diagnostic paths.
-- `playbooks/04-operations-and-analytics/china-analytics-tracking.md`: Domestic tracking specifications (Baidu Analytics + Umeng+), AARRR event definitions, and privacy compliance.
-- `playbooks/03-growth-and-marketing/china-growth-stack.md`: Domestic growth operations Playbook, covering Baidu/Douyin/Xiaohongshu/WeChat four major ecosystems.
-- `templates/ai-distribution-action-sort.md`: Template for splitting weekly distribution actions into AI can / Human owns / Hybrid execution.
-- `templates/weekly-review-dashboard.md`: Looker Studio weekly review dashboard setup guide, connecting GA4 + Search Console + Ads.
-- `case-studies/beauty-log`: Beauty Log practical records.
+## Why This Exists
 
-## Operating Principles
+Most founders fail not because they cannot build, but because they **build before validating**. They fall in love with an idea, spend months coding, launch to silence, then blame the market.
 
-1. First answer three questions: Is the demand real and frequent, where are the target users, and are users willing to pay.
-2. Pain points come from real user quotes, not AI guesses.
-3. Market segmentation should drill down to one core pain point so users understand it in one second.
-4. Look at both search data and community evidence; a single trend doesn't represent a business opportunity.
-5. Validation pages must have conversion actions: waitlist, booking, purchase, or paid reservation.
+This playbook enforces a different discipline:
 
-## Suggested Flow
+1. **Prove the pain is real** — with user quotes, not AI-generated stories.
+2. **Prove someone will pay** — with preorders or manual services, not signup counts.
+3. **Then build** — the smallest product that delivers the core value.
+4. **Then grow** — with measurable channels, not spray-and-pray content.
+5. **Then iterate** — with data-driven decisions, not founder anxiety.
 
-1. Use `skills/idea-validation` to validate the idea, outputting kill / pivot / continue conclusions.
-2. Use `skills/reddit-demand-validation` and `tools/topic-pain-miner` to scrape user quotes from public communities, judging whether demand is real, frequent, reachable, and has purchase signals.
-3. Use `tools/google-trends-seo` to check keyword trends and country/language opportunities.
-4. Use `templates/landing-page-checklist.md` to quickly build a page for conversion validation.
-5. After idea passes, use `skills/product-development-loop` to scope the MVP.
-6. Before launch, complete GA4 tracking according to `playbooks/04-operations-and-analytics/ga4-event-tracking.md`, ensuring activation, conversion, and retention events are all trackable.
-7. Before launch, unify UTM parameter naming according to `playbooks/03-growth-and-marketing/utm-attribution.md`.
-8. After launch, integrate Google Search Console (see `playbooks/03-growth-and-marketing/google-search-console.md`) to track search rankings and organic traffic.
-9. Use `playbooks/03-growth-and-marketing/google-ads-cold-start.md` with a small budget to validate paid intent, feeding Search Terms back to SEO.
-10. Use `skills/seo-aso-growth-research` for SEO / ASO / market operations iteration.
-11. If using AI for content distribution, community replies, or outreach, first use `playbooks/03-growth-and-marketing/ai-distribution.md` and `templates/ai-distribution-action-sort.md` to do a 40-action sort, keeping the 30% that founders must handle personally.
-12. Every week, review using the Looker Studio dashboard built with `templates/weekly-review-dashboard.md`, and diagnose retention issues using `playbooks/04-operations-and-analytics/retention-decision-tree.md`.
-13. When referencing startup cases, use `skills/case-study-skill-mining`, `skills/founder-case-patterns`, and `skills/indie-hackers-starting-up` to turn cases and guides into actionable experience.
+Every guide, template, and tool in this repo is designed to prevent the most common indie hacker mistake: **building something nobody wants.**
 
-## Startup Advisor Plugin / Skill
+## What's Inside
 
-`startup-playbook-advisor` is a startup advisor skill/agent for the early stages of project launch. It will first converse around demand authenticity, where users are, willingness to pay, validation experiments, MVP scope, and growth path, then output kill/pivot/continue decisions and next steps.
+### Playbooks (Step-by-Step Guides)
 
-Installation entry:
+| Stage | Playbook | What it covers |
+|---|---|---|
+| **① Validate** | [`01-idea-validation`](playbooks/01-idea-validation/) | Three-gate validation: real demand? reachable users? willing to pay? |
+| **② Build** | [`02-product-development`](playbooks/02-product-development/) | Tech stack selection, MVP scoping, launch checklist, post-launch iteration |
+| **③ Grow** | [`03-growth-and-marketing`](playbooks/03-growth-and-marketing/) | SEO, Google Ads cold start, Search Console, UTM attribution, AI distribution, China market growth |
+| **④ Operate** | [`04-operations-and-analytics`](playbooks/04-operations-and-analytics/) | GA4/Baidu event tracking, retention decision trees, weekly review protocol |
+
+### Skills (AI Agent-Ready)
+
+Reusable skill files for Claude, Codex, or any AI agent environment:
+
+| Skill | Purpose |
+|---|---|
+| [`idea-validation`](skills/idea-validation/) | Validate demand with community pain, search trends, and paid-intent signals |
+| [`business-model-design`](skills/business-model-design/) | Choose business model and pricing based on 499 case patterns |
+| [`product-development-loop`](skills/product-development-loop/) | Turn validated ideas into MVP → launch → data-driven iteration |
+| [`seo-aso-growth-research`](skills/seo-aso-growth-research/) | SEO/ASO keyword research and growth channel planning |
+| [`reddit-demand-validation`](skills/reddit-demand-validation/) | Mine Reddit/forums for demand evidence before building |
+| [`founder-case-patterns`](skills/founder-case-patterns/) | 499 case-derived patterns for channels, pricing, validation, and MVP |
+| [`indie-hackers-starting-up`](skills/indie-hackers-starting-up/) | Stage-based founder guide from 80 startup resources |
+| [`startup-playbook-advisor`](skills/startup-playbook-advisor/) | Full advisor agent: ask the right questions, output kill/pivot/continue |
+
+### Tools (CLI Scripts)
+
+| Tool | What it does |
+|---|---|
+| [`google-trends-seo`](tools/google-trends-seo/) | Google Trends & Keywords Everywhere keyword research |
+| [`topic-pain-miner`](tools/topic-pain-miner/) | Reddit public topic scraping → pain heatmaps + HTML reports |
+| [`case-study-skill-miner`](tools/case-study-skill-miner/) | Extract founder case studies into reusable skills |
+| [`google-growth-stack`](tools/google-growth-stack/) | GA4 code gen, UTM builder, Search Console export, weekly report |
+| [`china-growth-stack`](tools/china-growth-stack/) | Baidu Analytics + Umeng+ code gen, Baidu search export, weekly report |
+
+### Templates
+
+| Template | Purpose |
+|---|---|
+| [`experiment-brief.md`](templates/experiment-brief.md) | Record validation experiments and decisions |
+| [`product-requirements.md`](templates/product-requirements.md) | MVP PRD with acceptance criteria and metrics |
+| [`landing-page-checklist.md`](templates/landing-page-checklist.md) | Landing page message, proof, conversion, and measurement checklist |
+| [`seo-aso-report.md`](templates/seo-aso-report.md) | SEO/ASO keyword cluster and action report |
+| [`weekly-review-dashboard.md`](templates/weekly-review-dashboard.md) | Looker Studio dashboard setup (GA4 + Search Console + Ads) |
+| [`ai-distribution-action-sort.md`](templates/ai-distribution-action-sort.md) | AI can / Human owns / Hybrid weekly action split |
+
+## Quick Start
+
+### Option 1: Use the Advisor Agent
+
+Install the startup advisor as a skill in your AI environment:
 
 ```bash
+# Claude
 node scripts/install-startup-advisor.mjs --target claude
+
+# Codex skill
 node scripts/install-startup-advisor.mjs --target codex-skill
+
+# Codex plugin
 node scripts/install-startup-advisor.mjs --target codex-plugin
-node scripts/install-startup-advisor.mjs --target openclaw --openclaw-root /Users/neal/Documents/Projects/fatclaw/openclaw-monorepo --run-openclaw-sync
-```
 
-You can also preview full installation actions:
-
-```bash
+# Preview all targets
 node scripts/install-startup-advisor.mjs --target all --dry-run
 ```
 
-Common startup prompts:
+Then start with one of these prompts:
 
 - `Help me validate a startup idea.`
 - `Ask me the key questions before I build.`
 - `Turn this idea into a 7-day validation plan.`
 
-## Current Research Corpus
+### Option 2: Follow the Playbook Manually
 
-- Indie Hackers stories: 499 public case URLs indexed, 498 readable pages learned into `skills/founder-case-patterns`.
-- Indie Hackers Starting Up: 80 guide resources indexed, 78 readable pages learned into `skills/indie-hackers-starting-up`.
-- Raw HTML/text is kept in ignored tool `output/` directories; committed files contain only source-linked summaries, counts, and reusable operating rules.
+**Week 1 — Validate**
+
+1. Read [`playbooks/01-idea-validation`](playbooks/01-idea-validation/) and answer the three gate questions.
+2. Run `tools/topic-pain-miner` to collect real user pain from Reddit.
+3. Run `tools/google-trends-seo` to check keyword trends.
+4. Build a landing page using [`templates/landing-page-checklist.md`](templates/landing-page-checklist.md).
+5. Decide: **kill / pivot / continue**.
+
+**Week 2-3 — Build**
+
+6. Choose your business model with [`skills/business-model-design`](skills/business-model-design/).
+7. Pick a tech stack from [`tech-stack-selection.md`](playbooks/02-product-development/tech-stack-selection.md).
+8. Scope the MVP using [`templates/product-requirements.md`](templates/product-requirements.md).
+9. Set up analytics before launch: [`ga4-event-tracking.md`](playbooks/04-operations-and-analytics/ga4-event-tracking.md).
+10. Follow the [`mvp-launch-checklist.md`](playbooks/02-product-development/mvp-launch-checklist.md).
+
+**Week 4+ — Grow & Iterate**
+
+11. Connect [Google Search Console](playbooks/03-growth-and-marketing/google-search-console.md) and run a [$50 Google Ads test](playbooks/03-growth-and-marketing/google-ads-cold-start.md).
+12. Set up your [weekly review dashboard](templates/weekly-review-dashboard.md).
+13. Use the [post-launch iteration guide](playbooks/02-product-development/post-launch-iteration.md) to diagnose and decide.
+
+### Option 3: China Market
+
+For products targeting mainland China, use the parallel China stack:
+
+- [`china-growth-stack.md`](playbooks/03-growth-and-marketing/china-growth-stack.md) — Baidu (百度), Douyin (抖音), Xiaohongshu (小红书), WeChat (微信) ecosystems
+- [`china-analytics-tracking.md`](playbooks/04-operations-and-analytics/china-analytics-tracking.md) — Baidu Analytics (百度统计) + Umeng+ (友盟+)
+- [`tools/china-growth-stack`](tools/china-growth-stack/) — CLI tools for Baidu tracking, search data, and weekly reports
+
+## Operating Principles
+
+1. **Demand must be real and frequent.** If you cannot find 20 real user complaints, the problem may not exist.
+2. **Pain comes from user quotes, not AI guesses.** Collect raw language from communities, reviews, and support tickets.
+3. **Segment until one-second clarity.** One user group, one situation, one pain. If a stranger cannot understand it instantly, it is too broad.
+4. **Search data and community evidence together.** A single trend does not prove a business opportunity.
+5. **Every validation page needs a conversion action.** Waitlist, booking, purchase, or paid reservation — not just "learn more."
+6. **Revenue validates demand faster than signups.** Charge from day one, even if it is a manual service.
+7. **AI handles the mechanical 70%, founders own the converting 30%.** Never auto-send messages that could damage trust.
+
+## Research Corpus
+
+This playbook's case-derived skills are built on real founder data:
+
+| Source | Cases | Readable | Output |
+|---|---|---|---|
+| Indie Hackers founder stories | 499 | 498 | [`skills/founder-case-patterns`](skills/founder-case-patterns/) |
+| Indie Hackers Starting Up guides | 80 | 78 | [`skills/indie-hackers-starting-up`](skills/indie-hackers-starting-up/) |
+
+Raw HTML/text is kept in ignored `output/` directories. Committed files contain only source-linked summaries, counts, and reusable operating rules.
+
+## Contributing
+
+This is a living playbook. Contributions welcome:
+
+- **New case studies** — add to `case-studies/` with source links and pattern tags.
+- **New tools** — add to `tools/` following the existing Node.js ESM pattern.
+- **Playbook improvements** — PRs that add evidence-backed guides or fix errors.
+- **Translations** — the project is English-first; translations should reference the original files.
+
+## License
+
+MIT
