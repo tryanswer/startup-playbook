@@ -4,6 +4,7 @@ Product development only serves validated problems. The goal of an MVP is not fe
 
 ## Guides
 
+- `ai-native-development.md`: **AI-native product development methodology** — brainstorming with Superpowers, UI design with DESIGN.md + taste-skill, infrastructure via CLI (Aliyun/Vercel/Supabase), and building stable products with TDD, TypeScript strict, CI/CD, and error monitoring.
 - `tech-stack-selection.md`: How to choose a tech stack as an indie hacker — recommended stacks by product type, infrastructure defaults ($0-50/mo), payment providers, and anti-patterns.
 - `mvp-launch-checklist.md`: Three-phase launch process (pre-launch, launch day, post-launch first 7 days) with checklists for product readiness, analytics, payments, and distribution.
 - `post-launch-iteration.md`: Data-driven decision trees for common post-launch scenarios (no signups, no activation, no payment, high churn, growth stalling). Includes weekly/monthly iteration cadence and pivot/kill criteria.
@@ -19,23 +20,26 @@ Product development only serves validated problems. The goal of an MVP is not fe
 3. **Choose business model and pricing**
    Use `skills/business-model-design` to match product positioning to the right model (SaaS/service/course/marketplace/devtool) and pricing structure.
 
-4. **Choose tech stack**
+4. **Set up AI development workflow**
+   Install Superpowers in your coding agent, add DESIGN.md + taste-skill for design direction. See `ai-native-development.md`.
+
+5. **Choose tech stack**
    Use `tech-stack-selection.md` to pick tools based on what you know, not what is trending. Ship in days, not weeks.
 
-5. **Scope the MVP**
+6. **Scope the MVP**
    Keep only the minimum path to deliver the core promise: input → process → output → payment or signup → feedback.
 
-6. **Write a PRD**
+7. **Write a PRD**
    Use `templates/product-requirements.md`. Describe behavior with acceptance criteria and bound scope with a risk list. Every requirement must map to a validation goal or a retention/conversion metric.
 
-7. **Add instrumentation**
+8. **Add instrumentation**
    Implement analytics before launch (see `ga4-event-tracking.md` or `china-analytics-tracking.md`). Set up payment integration on day one.
 
-8. **Launch**
+9. **Launch**
    Follow `mvp-launch-checklist.md`. Launch to the smallest reachable audience first.
 
-9. **Iterate with data**
-   Use `post-launch-iteration.md` to diagnose and decide based on real metrics. Every iteration solves one main problem.
+10. **Iterate with data**
+    Use `post-launch-iteration.md` to diagnose and decide based on real metrics. Every iteration solves one main problem.
 
 ## Guardrails
 
