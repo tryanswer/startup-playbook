@@ -8,6 +8,7 @@
 - `playbooks/02-product-development`: 把已验证的问题转成 MVP、PRD、验收标准和发布闭环。
 - `playbooks/03-growth-and-marketing`: SEO、ASO、内容、社区、落地页和付费意愿验证。
 - `playbooks/04-operations-and-analytics`: 指标、实验复盘、用户反馈和运营节奏。
+- `skills/business-model-design`: 基于 499 个案例的商业模式设计指南——按产品定位选模式、定价结构和收入增长路径。
 - `skills/`: 可复制到 Codex / agent 环境使用的技能。
 - `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
 - `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。

@@ -49,6 +49,7 @@ When the repository is available, combine this advisor with:
 - `founder-case-patterns` for case-derived channel, validation, pricing, and MVP patterns.
 - `indie-hackers-starting-up` for stage selection and solo-founder operating constraints.
 - `seo-aso-growth-research` for country, language, SEO, ASO, and keyword opportunity work.
+- `business-model-design` for choosing business model, pricing structure, and revenue progression based on product positioning.
 - `product-development-loop` only after the idea passes validation.
 
 ## Google Growth Stack
