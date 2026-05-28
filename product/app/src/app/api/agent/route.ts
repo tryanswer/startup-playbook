@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
 
 /**
  * Agent API route — proxies chat to an LLM with stage-specific context.
@@ -17,6 +18,10 @@ interface AgentRequestBody {
   history: Array<{ role: string; content: string }>;
 }
 
+// Input validation limits
+const MAX_MESSAGE_LENGTH = 2000;
+const MAX_HISTORY_LENGTH = 20;
+
 const STAGE_SYSTEM_PROMPTS: Record<string, string> = {
   validate: `You are a startup validation expert. You help founders validate their ideas by analyzing Reddit pain points, Google Trends data, and competitor landscapes. Be direct and evidence-based. If the data is weak, say so honestly.`,
   'business-model': `You are a startup business model advisor. You help founders choose the right business model (SaaS, one-time, marketplace, etc.), set pricing, and project revenue. Reference real indie hacker case studies when possible.`,
@@ -26,9 +31,24 @@ const STAGE_SYSTEM_PROMPTS: Record<string, string> = {
 };
 
 export async function POST(request: NextRequest) {
+  const traceId = generateTraceId();
+  
   try {
     const body: AgentRequestBody = await request.json();
+    
+    // Validate request body size (max 1MB)
+    validateRequestBody(body, 1024 * 1024);
+    
     const { message, projectName, stageId, history } = body;
+
+    // Validate input lengths
+    if (typeof message !== 'string' || message.length > MAX_MESSAGE_LENGTH) {
+      return createErrorResponse(`message too long (max ${MAX_MESSAGE_LENGTH} chars)`, 'MESSAGE_TOO_LONG', 400, traceId);
+    }
+
+    if (Array.isArray(history) && history.length > MAX_HISTORY_LENGTH) {
+      return createErrorResponse(`history too long (max ${MAX_HISTORY_LENGTH} items)`, 'HISTORY_TOO_LONG', 400, traceId);
+    }
 
     const systemPrompt = `${STAGE_SYSTEM_PROMPTS[stageId || 'validate'] || STAGE_SYSTEM_PROMPTS.validate}
 
@@ -41,23 +61,24 @@ Keep your responses concise and actionable. Use markdown formatting.`;
     const anthropicKey = process.env.ANTHROPIC_API_KEY;
     if (anthropicKey) {
       const reply = await callAnthropic(anthropicKey, systemPrompt, history, message);
-      return NextResponse.json({ reply });
+      return createSuccessResponse({ reply }, traceId);
     }
 
     // Try OpenAI API
     const openaiKey = process.env.OPENAI_API_KEY;
     if (openaiKey) {
       const reply = await callOpenAI(openaiKey, systemPrompt, history, message);
-      return NextResponse.json({ reply });
+      return createSuccessResponse({ reply }, traceId);
     }
 
     // Fallback: simulated response
-    return NextResponse.json({
+    return createSuccessResponse({
       reply: generateSimulatedResponse(message, stageId),
-    });
+    }, traceId);
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ reply: `Error: ${errorMessage}` }, { status: 500 });
+    console.error(`[agent] Error (traceId: ${traceId}):`, errorMessage);
+    return createErrorResponse(errorMessage, 'INTERNAL_ERROR', 500, traceId);
   }
 }
 

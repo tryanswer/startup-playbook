@@ -34,6 +34,7 @@ export default function ProductsPage() {
           </p>
           <Link
             href="/ideas"
+            data-testid="products-link-ideas"
             className="inline-block mt-4 px-4 py-2 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] text-sm hover:border-[var(--accent-blue)] transition-colors"
           >
             {t('products.goIdeas')}

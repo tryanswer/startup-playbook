@@ -139,7 +139,7 @@ export default function IdeaDetailPage() {
     <div className="max-w-6xl mx-auto px-6 py-6">
       {/* Header */}
       <div className="flex items-center gap-3 mb-6">
-        <Link href="/ideas" className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
+        <Link href="/ideas" data-testid="detail-link-back" aria-label="Back to ideas" className="text-[var(--text-muted)] hover:text-[var(--text-primary)]">
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div className="flex-1">
@@ -187,6 +187,7 @@ export default function IdeaDetailPage() {
             {activeStageId === 'validate' && activeStage.status === 'pending' && (
               <button
                 onClick={handleRunValidation}
+                data-testid="detail-btn-run"
                 className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-sm font-medium hover:brightness-110"
               >
                 <Play className="h-4 w-4" />
@@ -239,6 +240,7 @@ export default function IdeaDetailPage() {
           {/* Agent toggle */}
           <button
             onClick={() => setShowAgent(!showAgent)}
+            data-testid="detail-btn-agent"
             className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
             <Terminal className="h-4 w-4" />

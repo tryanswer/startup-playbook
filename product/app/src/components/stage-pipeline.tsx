@@ -43,6 +43,8 @@ export function StagePipeline({ stages, onStageClick, activeStageId, compact = f
             <button
               onClick={() => isClickable && onStageClick?.(stageId)}
               disabled={!isClickable}
+              data-testid={`pipeline-stage-${stageId}`}
+              aria-label={`${config.label} stage, status: ${stage.status}`}
               className={`flex items-center gap-1.5 px-2 py-1 rounded-md text-xs transition-colors ${
                 isActive
                   ? 'bg-[var(--accent-blue)]/20 text-[var(--accent-blue)] border border-[var(--accent-blue)]/40'

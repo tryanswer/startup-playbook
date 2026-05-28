@@ -76,6 +76,8 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
       <div className="space-y-2">
         <button
           onClick={() => onDecision('continue')}
+          data-testid="decision-btn-continue"
+          aria-label="Continue to next stage"
           className="flex items-center justify-center gap-2 w-full px-3 py-2 rounded-lg bg-[var(--accent-green)]/20 text-[var(--accent-green)] text-sm font-medium hover:bg-[var(--accent-green)]/30 transition-colors"
         >
           <ArrowRight className="h-4 w-4" />
@@ -84,6 +86,8 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
         <div className="flex gap-2">
           <button
             onClick={() => onDecision('pivot')}
+            data-testid="decision-btn-pivot"
+            aria-label="Pivot idea"
             className="flex items-center justify-center gap-2 flex-1 px-3 py-2 rounded-lg bg-[var(--accent-yellow)]/20 text-[var(--accent-yellow)] text-sm hover:bg-[var(--accent-yellow)]/30 transition-colors"
           >
             <RotateCcw className="h-3.5 w-3.5" />
@@ -91,6 +95,8 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
           </button>
           <button
             onClick={() => onDecision('kill')}
+            data-testid="decision-btn-kill"
+            aria-label="Kill idea"
             className="flex items-center justify-center gap-2 flex-1 px-3 py-2 rounded-lg bg-[var(--accent-red)]/20 text-[var(--accent-red)] text-sm hover:bg-[var(--accent-red)]/30 transition-colors"
           >
             <X className="h-3.5 w-3.5" />

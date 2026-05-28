@@ -23,9 +23,10 @@ function ModeButton({ active, onClick, label }: { active: boolean; onClick: () =
   );
 }
 
-function Suggestion({ text, onClick }: { text: string; onClick: (text: string) => void }) {
+function Suggestion({ text, onClick, index }: { text: string; onClick: (text: string) => void; index: number }) {
   return (
     <button
+      data-testid={`agent-suggest-${index}`}
       onClick={() => onClick(text)}
       className="px-3 py-1.5 rounded-full text-xs bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border)] transition-colors"
     >
@@ -194,8 +195,8 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
         {/* Mode selector */}
         <div className="flex gap-1">
           <ModeButton active={mode === 'chat'} onClick={() => setMode('chat')} label={t('agent.title')} />
-          <ModeButton active={mode === 'codex'} onClick={() => setMode('codex')} label="Codex" />
-          <ModeButton active={mode === 'claude'} onClick={() => setMode('claude')} label="Claude" />
+          <button data-testid="agent-mode-codex" onClick={() => setMode('codex')} className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${mode === 'codex' ? 'bg-[var(--accent-purple)] text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>Codex</button>
+          <button data-testid="agent-mode-claude" onClick={() => setMode('claude')} className={`px-2.5 py-1 rounded-md text-xs font-medium transition-colors ${mode === 'claude' ? 'bg-[var(--accent-purple)] text-white' : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]'}`}>Claude</button>
         </div>
       </div>
 
@@ -213,25 +214,25 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
                 <div className="flex flex-wrap gap-2 justify-center mt-4">
                   {stageId === 'validate' && (
                     <>
-                      <Suggestion text={t('agent.suggest.subreddits')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
-                      <Suggestion text={t('agent.suggest.japan')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
-                      <Suggestion text={t('agent.suggest.pain')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
+                      <Suggestion text={t('agent.suggest.subreddits')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={0} />
+                      <Suggestion text={t('agent.suggest.japan')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={1} />
+                      <Suggestion text={t('agent.suggest.pain')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={2} />
                     </>
                   )}
                   {stageId === 'business-model' && (
                     <>
-                      <Suggestion text={t('agent.suggest.saas')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
-                      <Suggestion text={t('agent.suggest.ltv')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
+                      <Suggestion text={t('agent.suggest.saas')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={0} />
+                      <Suggestion text={t('agent.suggest.ltv')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={1} />
                     </>
                   )}
                   {!stageId && (
-                    <Suggestion text={t('agent.suggest.brainstorm')} onClick={text => { setInput(text); inputRef.current?.focus(); }} />
+                    <Suggestion text={t('agent.suggest.brainstorm')} onClick={text => { setInput(text); inputRef.current?.focus(); }} index={0} />
                   )}
                 </div>
               </div>
             )}
 
-            {messages.map(message => (
+            {messages.map((message, msgIndex) => (
               <div key={message.id} className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : ''}`}>
                 {message.role === 'assistant' && (
                   <div className="flex-shrink-0 w-7 h-7 rounded-full bg-[var(--accent-purple)]/20 flex items-center justify-center">
@@ -294,6 +295,7 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
           <div className="flex gap-2">
             <textarea
               ref={inputRef}
+              data-testid="agent-input"
               value={input}
               onChange={event => setInput(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -303,6 +305,8 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
             />
             <button
               onClick={handleSend}
+              data-testid="agent-btn-send"
+              aria-label="Send message"
               disabled={!input.trim() || isLoading}
               className="px-3 py-2 rounded-lg bg-[var(--accent-purple)] text-white hover:brightness-110 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -314,6 +318,7 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
             <input
               ref={inputRef as any}
               type="text"
+              data-testid="agent-input"
               value={input}
               onChange={event => setInput(event.target.value)}
               onKeyDown={handleKeyDown}
@@ -323,6 +328,8 @@ export function AgentTerminal({ projectId, projectName, stageId, className = '' 
             />
             <button
               onClick={handleSend}
+              data-testid="agent-btn-send"
+              aria-label="Send message"
               disabled={!input.trim() || !bridgeConnected}
               className="px-3 py-2 rounded-lg bg-[var(--accent-green)] text-white hover:brightness-110 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             >

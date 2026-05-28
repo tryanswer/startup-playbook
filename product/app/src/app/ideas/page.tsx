@@ -29,6 +29,7 @@ export default function IdeasPage() {
         </div>
         <Link
           href="/ideas/new"
+          data-testid="ideas-btn-new"
           className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[var(--accent-blue)] text-white text-sm font-medium hover:brightness-110 transition-all"
         >
           <Plus className="h-4 w-4" />
@@ -58,6 +59,7 @@ export default function IdeasPage() {
               <Link
                 key={project.id}
                 href={`/ideas/${project.id}`}
+                data-testid={`ideas-card-${ideas.indexOf(project)}`}
                 className="block p-4 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent-blue)]/50 transition-colors"
               >
                 <div className="flex items-start justify-between mb-3">

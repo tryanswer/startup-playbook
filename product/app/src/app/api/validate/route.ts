@@ -5,19 +5,44 @@ import { readFile, readdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
 import { mkdtemp } from 'node:fs/promises';
+import { generateTraceId, createErrorResponse, createSuccessResponse, validateRequestBody } from '@/lib/api-utils';
 
 const execFileAsync = promisify(execFile);
 
 // Path to idea-validator scripts (relative to project root)
 const VALIDATOR_DIR = join(process.cwd(), '..', '..', 'tools', 'idea-validator');
 
+// Input validation limits
+const MAX_IDEA_LENGTH = 2000;
+const MAX_KEYWORDS_LENGTH = 500;
+const MAX_SUBREDDITS_LENGTH = 500;
+
 export async function POST(request: NextRequest) {
+  const traceId = generateTraceId();
+  
   try {
     const body = await request.json();
+    
+    // Validate request body size (max 1MB)
+    validateRequestBody(body, 1024 * 1024);
+    
     const { idea, keywords, subreddits, geo } = body;
 
     if (!idea) {
-      return NextResponse.json({ error: 'idea is required' }, { status: 400 });
+      return createErrorResponse('idea is required', 'MISSING_IDEA', 400, traceId);
+    }
+
+    // Validate input lengths
+    if (typeof idea === 'string' && idea.length > MAX_IDEA_LENGTH) {
+      return createErrorResponse(`idea too long (max ${MAX_IDEA_LENGTH} chars)`, 'IDEA_TOO_LONG', 400, traceId);
+    }
+
+    if (keywords && typeof keywords === 'string' && keywords.length > MAX_KEYWORDS_LENGTH) {
+      return createErrorResponse(`keywords too long (max ${MAX_KEYWORDS_LENGTH} chars)`, 'KEYWORDS_TOO_LONG', 400, traceId);
+    }
+
+    if (subreddits && typeof subreddits === 'string' && subreddits.length > MAX_SUBREDDITS_LENGTH) {
+      return createErrorResponse(`subreddits too long (max ${MAX_SUBREDDITS_LENGTH} chars)`, 'SUBREDDITS_TOO_LONG', 400, traceId);
     }
 
     // Create a temp output directory for this run
@@ -91,20 +116,22 @@ export async function POST(request: NextRequest) {
     await rm(outputDir, { recursive: true, force: true });
 
     if (!htmlContent && !summaryData) {
-      return NextResponse.json({
-        error: 'Validation produced no output. Check network connectivity (Reddit/Google may be blocked).',
-        html: generateFallbackHtml(idea),
-        summary: { score: 0, decision: 'kill' as const, reasoning: 'No data collected', evidence: [], concerns: ['All data sources failed'] },
-      });
+      return createErrorResponse(
+        'Validation produced no output. Check network connectivity (Reddit/Google may be blocked).',
+        'NO_OUTPUT',
+        500,
+        traceId
+      );
     }
 
-    return NextResponse.json({
+    return createSuccessResponse({
       html: htmlContent,
       summary: summaryData,
-    });
+    }, traceId);
   } catch (error: unknown) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    console.error(`[validate] Error (traceId: ${traceId}):`, errorMessage);
+    return createErrorResponse(errorMessage, 'INTERNAL_ERROR', 500, traceId);
   }
 }
 

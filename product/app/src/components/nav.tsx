@@ -18,7 +18,7 @@ export function Nav() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 h-14 border-b border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
       <div className="flex h-full items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2 text-[var(--text-primary)] font-semibold">
+        <Link href="/" className="flex items-center gap-2 text-[var(--text-primary)] font-semibold" data-testid="nav-logo-home" aria-label="Home">
           <Rocket className="h-5 w-5 text-[var(--accent-blue)]" />
           Startup Playbook
         </Link>
@@ -30,19 +30,22 @@ export function Nav() {
               <Link
                 key={href}
                 href={href}
+                data-testid={`nav-link-${href.slice(1)}`}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm transition-colors ${
                   isActive
                     ? 'bg-[var(--bg-tertiary)] text-[var(--text-primary)]'
                     : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]'
                 }`}
               >
-                <Icon className="h-4 w-4" />
-                {label}
+                <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden sm:inline">{label}</span>
               </Link>
             );
           })}
           <button
             onClick={switchLocale}
+            data-testid="nav-btn-lang"
+            aria-label={locale === 'en' ? 'Switch to Chinese' : '切换到英文'}
             className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)] transition-colors"
           >
             {t('lang.switch')}

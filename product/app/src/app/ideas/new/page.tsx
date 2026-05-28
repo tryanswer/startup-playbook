@@ -45,6 +45,7 @@ export default function NewIdeaPage() {
           <input
             id="name"
             type="text"
+            data-testid="new-input-name"
             value={name}
             onChange={event => setName(event.target.value)}
             placeholder={t('new.name.placeholder')}
@@ -58,6 +59,7 @@ export default function NewIdeaPage() {
           </label>
           <textarea
             id="description"
+            data-testid="new-input-desc"
             value={description}
             onChange={event => setDescription(event.target.value)}
             placeholder={t('new.desc.placeholder')}
@@ -70,6 +72,7 @@ export default function NewIdeaPage() {
         <button
           type="button"
           onClick={() => setShowAdvanced(!showAdvanced)}
+          data-testid="new-btn-advanced"
           className="flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
         >
           {showAdvanced ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
@@ -127,6 +130,7 @@ export default function NewIdeaPage() {
 
         <button
           type="submit"
+          data-testid="new-btn-submit"
           disabled={!description.trim()}
           className="flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--accent-blue)] text-white font-medium hover:brightness-110 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
         >

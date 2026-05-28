@@ -63,6 +63,7 @@ export default function AgentPage() {
             <span className="max-w-[120px] truncate">{tab.projectName}</span>
             <button
               onClick={(event) => { event.stopPropagation(); closeTab(tab.id); }}
+              aria-label="Close tab"
               className="hover:text-[var(--accent-red)] transition-colors"
             >
               <X className="h-3 w-3" />
@@ -71,6 +72,7 @@ export default function AgentPage() {
         ))}
         <button
           onClick={() => setShowNewTab(true)}
+          data-testid="agent-btn-newtab"
           className="flex items-center gap-1 px-3 py-2 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
         >
           <Plus className="h-3.5 w-3.5" />
@@ -88,6 +90,7 @@ export default function AgentPage() {
             <div className="space-y-2">
               <button
                 onClick={() => createTab('', 'Free Session')}
+                data-testid="agent-btn-free"
                 className="w-full text-left px-4 py-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent-purple)] transition-colors"
               >
                 <span className="font-medium">{t('agent.freeSession')}</span>
@@ -111,6 +114,7 @@ export default function AgentPage() {
             </div>
             <button
               onClick={() => setShowNewTab(false)}
+              data-testid="agent-btn-cancel"
               className="mt-4 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)]"
             >
               {t('agent.cancel')}
