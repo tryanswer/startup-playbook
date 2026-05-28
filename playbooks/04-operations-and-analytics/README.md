@@ -1,20 +1,19 @@
 # Operations And Analytics
 
-运营的目标是让产品学习速度变快。每个动作都要能回答：用户是否更快理解、更愿意尝试、更愿意付费、更愿意回来。
+The goal of operations is to make product learning faster. Every action should help answer whether users understand faster, are more willing to try, are more willing to pay, and are more willing to return.
 
 ## Core Metrics
 
-- Acquisition: 展示、点击、来源、关键词、国家、语言。
-- Activation: 注册、上传、生成、完成核心任务。
-- Revenue: 支付点击、购买、退款、复购。
-- Retention: 次日/7日/30日回访、报告重复查看、功能复用。
-- Feedback: 用户原话、投诉、阻塞点、愿望清单。
+- Acquisition: impressions, clicks, source, keyword, country, language.
+- Activation: signup, upload, generation, core task completion.
+- Revenue: payment clicks, purchases, refunds, repeat purchases.
+- Retention: next-day / 7-day / 30-day return visits, repeated report views, feature reuse.
+- Feedback: user quotes, complaints, blockers, wishlist items.
 
 ## Weekly Review
 
-1. 复盘本周最大的增长机会和最大阻塞点。
-2. 对照用户原话检查文案和产品是否偏离。
-3. 看一个主指标，不同时追太多目标。
-4. 决定下周实验：继续、停止、调整。
-5. 把结论写回 case study，形成下次可复用资产。
-
+1. Review the biggest growth opportunity and the biggest blocker from the week.
+2. Compare copy and product behavior against raw user language to check for drift.
+3. Focus on one primary metric instead of chasing too many goals at once.
+4. Decide next week's experiment: continue, stop, or adjust.
+5. Write conclusions back into the case study so they become reusable assets.

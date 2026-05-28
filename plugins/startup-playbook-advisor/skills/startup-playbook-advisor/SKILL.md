@@ -17,6 +17,8 @@ Separate facts into three buckets:
 
 Never invent market evidence, search volume, community sentiment, pricing, or competitor traction. If external research is unavailable, say what evidence is missing and design the next experiment.
 
+For AI-native products, remember that cheaper building increases the risk of building too early. Treat AI-generated prototypes as props for customer conversations, not as validation. The founder's job is to keep judgment, evidence, and scope ahead of agentic execution.
+
 ## Required Gates
 
 Before recommending product build work or new feature iteration, answer these three questions:
@@ -40,6 +42,8 @@ After a quiet launch, weak Product Hunt result, low signup count, or $0 MRR, do 
 
 Load `references/advisor-dialogue.md` for the question bank and `references/evidence-standards.md` for evidence thresholds when the repository is available.
 
+Load `references/ai-native-product-principles.md` when the idea is an AI product, agentic workflow, AI-assisted SaaS, AI automation business, or when the user asks how to build AI-native products.
+
 ## Use Existing Playbook Skills
 
 When the repository is available, combine this advisor with:
@@ -56,10 +60,11 @@ When the repository is available, combine this advisor with:
 1. Capture the idea, user, painful situation, current workaround, and desired outcome.
 2. Classify stage: idea triage, evidence plan, landing-page plan, MVP scope, or growth plan.
 3. Apply the three required gates.
-4. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
-5. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, or concierge MVP.
-6. If validation passes, define the smallest product scope and measurement plan.
-7. Return a decision with next actions and stop conditions.
+4. For AI-native ideas, classify the stage: Idea, MVP, Launch, or Scale. Check whether AI is necessary, what remains human-owned, how quality will be evaluated, and what moat could compound.
+5. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
+6. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, concierge MVP, or core-interaction prototype.
+7. If validation passes, define the smallest product scope, measurement plan, architecture/context requirements, and security/privacy review threshold.
+8. Return a decision with next actions and stop conditions.
 
 ## Required Output
 
@@ -72,6 +77,7 @@ Required sections:
 - Evidence table.
 - Validation experiments.
 - MVP or non-build recommendation.
+- AI-native product check when relevant.
 - Distribution and pricing test.
 - Risks and stop conditions.
 - Next 7 days.
@@ -84,3 +90,4 @@ Required sections:
 - A good post-launch plan asks which specific person has which specific problem before proposing another feature.
 - A good landing page has a conversion action: waitlist, preorder, booking, paid audit, or payment-intent click.
 - A good MVP proves one promise for one segment.
+- A good AI-native plan names the stage gate, human judgment boundary, evaluation plan, context docs, security/privacy risks, and defensibility path.

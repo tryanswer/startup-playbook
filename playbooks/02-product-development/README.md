@@ -1,28 +1,27 @@
 # Product Development
 
-产品开发只服务于已验证的问题。MVP 的目标不是功能完整，而是在最短路径上验证用户是否获得核心价值。
+Product development should serve only validated problems. The goal of an MVP is not feature completeness; it is the shortest path to proving whether users receive the core value.
 
 ## Workflow
 
-1. **定义用户和场景**
-   写清楚目标用户、触发场景、当前替代方案和为什么现有方案失败。
+1. **Define the user and situation**
+   Write down the target user, trigger situation, current alternative, and why existing options fail.
 
-2. **收敛核心承诺**
-   一句话说明用户完成什么动作后会获得什么可感知收益。不要把技术能力当价值主张。
+2. **Narrow the core promise**
+   In one sentence, state what action the user takes and what visible benefit they receive. Do not treat technical capability as the value proposition.
 
-3. **拆 MVP**
-   只保留完成核心承诺所需的最小路径：输入、处理、输出、支付或留资、反馈。
+3. **Slice the MVP**
+   Keep only the smallest path required to deliver the core promise: input, processing, output, payment or lead capture, and feedback.
 
-4. **写 PRD**
-   用验收标准描述行为，用风险列表约束边界。每个需求必须对应验证目标或留存/转化指标。
+4. **Write the PRD**
+   Describe behavior through acceptance criteria and constrain boundaries with a risk list. Every requirement must map to a validation goal or a retention/conversion metric.
 
-5. **发布与学习**
-   上线前埋点，上线后看激活、完成率、复访、付费、用户反馈。每次迭代只解决一个主问题。
+5. **Launch and learn**
+   Add instrumentation before launch. After launch, review activation, completion rate, return visits, payment, and user feedback. Each iteration should solve one primary problem.
 
 ## Guardrails
 
-- 不用技术新颖性替代用户价值。
-- 不为假想用户做复杂设置项。
-- 不在没有转化数据前扩展太多功能。
-- 不把首版做成平台，先解决一个尖锐问题。
-
+- Do not substitute technical novelty for user value.
+- Do not build complex settings for imaginary users.
+- Do not expand too many features before conversion data exists.
+- Do not make the first version a platform; solve one sharp problem first.

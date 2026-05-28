@@ -1,48 +1,48 @@
 # Startup Playbook
 
-用于沉淀从 idea 到产品、增长、运营的可复用创业工作流。核心原则是先验证真实需求，再开发产品，最后用可量化渠道增长，而不是让 AI 在没有证据的情况下编故事。
+Reusable startup workflows from idea to product, growth, and operations. The core principle is to validate real demand before building, then grow through measurable channels instead of letting AI invent stories without evidence.
 
 ## Structure
 
-- `playbooks/01-idea-validation`: 验证需求是否真实、目标用户在哪里、是否愿意付费。
-- `playbooks/02-product-development`: 把已验证的问题转成 MVP、PRD、验收标准和发布闭环。
-- `playbooks/03-growth-and-marketing`: SEO、ASO、内容、社区、落地页和付费意愿验证。
-- `playbooks/04-operations-and-analytics`: 指标、实验复盘、用户反馈和运营节奏。
-- `skills/`: 可复制到 Codex / agent 环境使用的技能。
-- `tools/google-trends-seo`: Google Trends / Keywords Everywhere 关键词研究工具。
-- `tools/case-study-skill-miner`: 把 founder case studies 提炼成创业经验 skill。
-- `tools/topic-pain-miner`: 抓取 Reddit 公共话题，生成痛点热力图、HTML 页面和可选 LLM 需求总结。
-- `plugins/startup-playbook-advisor`: 可安装到 Codex 的创业顾问插件。
-- `agents/startup-playbook-advisor.md`: 可复制到 Claude / Codex / OpenClaw 的创业顾问 agent 设定。
-- `templates/`: 可直接复制使用的实验、PRD、SEO/ASO 和落地页模板。
-- `playbooks/03-growth-and-marketing/ai-distribution.md`: AI 辅助内容分发、社区回复、外联和日报的 70/30 分工与人工审批规则。
-- `templates/ai-distribution-action-sort.md`: 将一周分发动作拆成 AI can / Human owns / Hybrid 的执行模板。
-- `case-studies/beauty-log`: Beauty Log 的实战记录。
+- `playbooks/01-idea-validation`: Validate whether demand is real, where target users are, and whether they are willing to pay.
+- `playbooks/02-product-development`: Turn validated problems into MVP scope, PRDs, acceptance criteria, and launch loops.
+- `playbooks/03-growth-and-marketing`: SEO, ASO, content, community, landing-page, and paid-intent validation.
+- `playbooks/04-operations-and-analytics`: Metrics, experiment reviews, user feedback, and operating cadence.
+- `skills/`: Skills that can be copied into Codex or agent environments.
+- `tools/google-trends-seo`: Google Trends / Keywords Everywhere keyword research tools.
+- `tools/case-study-skill-miner`: Convert founder case studies into reusable startup skills.
+- `tools/topic-pain-miner`: Fetch public Reddit topics and generate pain heatmaps, HTML pages, and optional LLM demand summaries.
+- `plugins/startup-playbook-advisor`: Installable Codex startup advisor plugin.
+- `agents/startup-playbook-advisor.md`: Startup advisor agent instructions for Claude, Codex, or OpenClaw.
+- `templates/`: Copy-ready experiment, PRD, SEO/ASO, and landing-page templates.
+- `playbooks/03-growth-and-marketing/ai-distribution.md`: 70/30 operating rules for AI-assisted content distribution, community replies, outreach, and daily reports.
+- `templates/ai-distribution-action-sort.md`: Template for splitting a week's distribution work into AI can / Human owns / Hybrid.
+- `case-studies/beauty-log`: Beauty Log field case study.
 
 ## Operating Principles
 
-1. 先回答三个问题：需求是否真实且频繁，目标用户在哪里，用户是否愿意付费。
-2. 痛点来自真实用户原话，不来自 AI 猜测。
-3. 市场要三级细分到一个核心痛点，让用户一秒看懂。
-4. 搜索数据和社区证据都要看，单一趋势不能代表商业机会。
-5. 验证页必须有转化动作：等待名单、预约、购买或付费预订。
+1. Answer three questions first: Is demand real and frequent? Where are the target users? Are they willing to pay?
+2. Pain must come from real user language, not AI guesses.
+3. Segment the market down to one audience, one situation, and one core pain so users can understand the product in one second.
+4. Check both search data and community evidence; a single trend does not prove a business opportunity.
+5. Validation pages must include a conversion action: waitlist, booking, purchase, or paid preorder.
 
 ## Suggested Flow
 
-1. 用 `skills/idea-validation` 验证 idea，输出 kill / pivot / continue 结论。
-2. 用 `skills/reddit-demand-validation` 和 `tools/topic-pain-miner` 从公开社区抓取用户原话，判断需求是否真实、频繁、可触达、有购买信号。
-3. 通过 `tools/google-trends-seo` 检查关键词趋势和国家/语言机会。
-4. 用 `templates/landing-page-checklist.md` 快速建页验证转化。
-5. idea 通过后，用 `skills/product-development-loop` 收敛 MVP。
-6. 上线后，用 `skills/seo-aso-growth-research` 做 SEO / ASO / 市场运营迭代。
-7. 如果要用 AI 做内容分发、社区回复或外联，先用 `playbooks/03-growth-and-marketing/ai-distribution.md` 和 `templates/ai-distribution-action-sort.md` 做 40-action sort，保留创始人必须亲自处理的 30%。
-8. 需要参考创业案例时，用 `skills/case-study-skill-mining`、`skills/founder-case-patterns` 和 `skills/indie-hackers-starting-up` 把案例和 guide 转成可执行经验。
+1. Use `skills/idea-validation` to validate the idea and decide kill / pivot / continue.
+2. Use `skills/reddit-demand-validation` and `tools/topic-pain-miner` to collect user language from public communities and judge whether demand is real, frequent, reachable, and tied to buying signals.
+3. Use `tools/google-trends-seo` to check keyword trends and country/language opportunities.
+4. Use `templates/landing-page-checklist.md` to build a fast conversion test.
+5. After the idea passes validation, use `skills/product-development-loop` to narrow the MVP.
+6. After launch, use `skills/seo-aso-growth-research` for SEO / ASO / market operations iteration.
+7. If AI is used for content distribution, community replies, or outreach, first use `playbooks/03-growth-and-marketing/ai-distribution.md` and `templates/ai-distribution-action-sort.md` for a 40-action sort, preserving the 30% that the founder must personally own.
+8. When startup examples are needed, use `skills/case-study-skill-mining`, `skills/founder-case-patterns`, and `skills/indie-hackers-starting-up` to convert cases and guides into executable lessons.
 
 ## Startup Advisor Plugin / Skill
 
-`startup-playbook-advisor` 是面向项目启动前期的创业顾问 skill / agent。它会先围绕需求真实性、用户在哪里、付费意愿、验证实验、MVP 范围和增长路径进行对话，再输出 kill / pivot / continue 决策和下一步方案。
+`startup-playbook-advisor` is a startup advisor skill / agent for the pre-build stage. It first guides a conversation around demand reality, user reachability, willingness to pay, validation experiments, MVP scope, and growth path, then outputs a kill / pivot / continue decision and next steps.
 
-安装入口：
+Install targets:
 
 ```bash
 node scripts/install-startup-advisor.mjs --target claude
@@ -51,13 +51,13 @@ node scripts/install-startup-advisor.mjs --target codex-plugin
 node scripts/install-startup-advisor.mjs --target openclaw --openclaw-root /Users/neal/Documents/Projects/fatclaw/openclaw-monorepo --run-openclaw-sync
 ```
 
-也可以预览全量安装动作：
+Preview the full install plan:
 
 ```bash
 node scripts/install-startup-advisor.mjs --target all --dry-run
 ```
 
-常用启动提示：
+Common starting prompts:
 
 - `Help me validate a startup idea.`
 - `Ask me the key questions before I build.`

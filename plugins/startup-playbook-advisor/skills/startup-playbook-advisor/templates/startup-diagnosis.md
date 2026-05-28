@@ -35,6 +35,21 @@
 - Must have:
 - Do not build yet:
 - Manual fallback:
+- Context / architecture docs needed:
+- Security / privacy review needed:
+
+## AI-Native Product Check
+
+- Applies? yes / no
+- Stage: Idea / MVP / Launch / Scale
+- AI role in the product or company:
+- Workflow AI improves:
+- Why AI is necessary:
+- Human-owned decisions:
+- Evaluation plan:
+- False-positive signal to avoid:
+- Data, domain, integration, or workflow moat:
+- Security, privacy, or compliance risk:
 
 ## Distribution And Pricing
 

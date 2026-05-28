@@ -1,31 +1,31 @@
 # Growth And Marketing
 
-增长不是发更多内容，而是持续找到用户已经在表达需求的位置，并用他们能理解的语言连接到产品。
+Growth is not about publishing more content. It is about repeatedly finding the places where users already express demand and connecting those users to the product in language they understand.
 
 ## Workflow
 
-1. **渠道地图**
-   列出目标用户出现的位置：搜索、Reddit、TikTok、YouTube、Instagram、Pinterest、App Store、Google Play、论坛、Newsletter。
+1. **Channel map**
+   List where target users already appear: search, Reddit, TikTok, YouTube, Instagram, Pinterest, App Store, Google Play, forums, and newsletters.
 
-2. **关键词分层**
-   区分问题词、方案词、对比词、购买词、品牌词。先覆盖长尾问题和高意图方案词。
+2. **Keyword layering**
+   Separate problem terms, solution terms, comparison terms, purchase terms, and brand terms. Cover long-tail problem terms and high-intent solution terms first.
 
-3. **SEO / ASO 验证**
-   使用 `tools/google-trends-seo` 做国家、语言、关键词趋势研究。Keywords Everywhere 可用于搜索量、CPC 和竞争度；没有付费接口时，用 Google Trends 和社区证据降低置信度标注。
+3. **SEO / ASO validation**
+   Use `tools/google-trends-seo` for country, language, and keyword trend research. Keywords Everywhere can add search volume, CPC, and competition. Without paid keyword data, use Google Trends and community evidence with lower confidence labels.
 
-4. **内容转化**
-   内容要回答真实疑问，并让用户进入下一步：诊断、报告、等待名单、下载、购买、预约。
+4. **Content conversion**
+   Content should answer real questions and move users into the next step: diagnosis, report, waitlist, download, purchase, or booking.
 
-5. **本地化**
-   多语言不是翻译 UI，而是重写用户关心的痛点、搜索词和行动理由。
+5. **Localization**
+   Multilingual work is not UI translation; it is rewriting the pain, search terms, and reasons to act that local users care about.
 
-6. **AI 分发分工**
-   使用 `ai-distribution.md` 先做 40-action sort。AI 负责扫描、总结、打分、草稿和日报；创始人保留选择、最终编辑、客户回复、冷启动触达、竞品表述和所有会影响信任的收尾动作。禁止自动发帖、自动评论、自动私信和未审核外发。
+6. **AI distribution split**
+   Use `ai-distribution.md` for a 40-action sort first. AI may scan, summarize, score, draft, and produce daily reports. The founder keeps selection, final editing, customer replies, cold-start outreach, competitor wording, and every trust-sensitive closing action. Do not automate posting, commenting, private messages, or unreviewed outbound messages.
 
 ## Output
 
-- SEO/ASO 关键词报告。
-- 每个目标国家/语言的主张、关键词、落地页标题和 CTA。
-- 30 天内容实验表。
-- AI 分发动作分拣表、never-write list、人工审批规则和 outcome 追踪。
-- 每周复盘：曝光、点击、转化、留资、付费、用户反馈。
+- SEO/ASO keyword report.
+- Proposition, keywords, landing-page title, and CTA for each target country/language.
+- 30-day content experiment table.
+- AI distribution action sort, never-write list, human approval rules, and outcome tracking.
+- Weekly review: impressions, clicks, conversion, leads, payment, and user feedback.

@@ -9,6 +9,7 @@ const repoRoot = path.resolve(scriptDir, "..");
 const skillName = "startup-playbook-advisor";
 const requiredSkillFiles = [
   "SKILL.md",
+  "references/ai-native-product-principles.md",
   "references/advisor-dialogue.md",
   "references/evidence-standards.md",
   "templates/startup-diagnosis.md",
