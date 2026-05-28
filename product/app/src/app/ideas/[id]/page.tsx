@@ -38,14 +38,24 @@ export default function IdeaDetailPage() {
     );
   }
 
-  const activeStage = project.stages.find(s => s.id === activeStageId)!;
-  const stageConfig = STAGE_CONFIG[activeStageId];
+  const activeStage = project.stages.find(s => s.id === activeStageId) ?? project.stages[0];
+  const stageConfig = STAGE_CONFIG[activeStage.id];
+
+  // Load existing report from artifacts — must be before any conditional returns
+  useEffect(() => {
+    const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
+    if (reportArtifact?.content) setValidationHtml(reportArtifact.content);
+
+    const summaryArtifact = activeStage.artifacts.find(a => a.id === 'report-json');
+    if (summaryArtifact?.content) {
+      try { setValidationSummary(JSON.parse(summaryArtifact.content)); } catch { /* ignore */ }
+    }
+  }, [activeStage]);
 
   async function handleRunValidation() {
     const currentProject = getProject(projectId);
     if (!currentProject) return;
 
-    // Update stage to running
     updateStage(projectId, 'validate', stage => ({
       ...stage,
       status: 'running',
@@ -83,7 +93,6 @@ export default function IdeaDetailPage() {
         return;
       }
 
-      // Update with results
       updateStage(projectId, 'validate', stage => ({
         ...stage,
         status: 'waiting_decision',
@@ -115,11 +124,11 @@ export default function IdeaDetailPage() {
   }
 
   function handleDecision(decision: 'continue' | 'pivot' | 'kill') {
-    makeDecision(projectId, activeStageId, decision);
+    makeDecision(projectId, activeStage.id as StageId, decision);
     refreshProject();
 
     if (decision === 'continue') {
-      const currentIndex = STAGE_ORDER.indexOf(activeStageId);
+      const currentIndex = STAGE_ORDER.indexOf(activeStage.id);
       if (currentIndex < STAGE_ORDER.length - 1) {
         setActiveStageId(STAGE_ORDER[currentIndex + 1]);
       }
@@ -141,17 +150,6 @@ export default function IdeaDetailPage() {
     refreshProject();
     setActiveStageId(stageId as StageId);
   }
-
-  // Load existing report from artifacts
-  useEffect(() => {
-    const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
-    if (reportArtifact?.content) setValidationHtml(reportArtifact.content);
-
-    const summaryArtifact = activeStage.artifacts.find(a => a.id === 'report-json');
-    if (summaryArtifact?.content) {
-      try { setValidationSummary(JSON.parse(summaryArtifact.content)); } catch { /* ignore */ }
-    }
-  }, [activeStage]);
 
   return (
     <div className="max-w-6xl mx-auto px-6 py-6">
