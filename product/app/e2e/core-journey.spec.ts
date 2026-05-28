@@ -11,15 +11,13 @@ test.describe('Core User Journey', () => {
   test('navigate home page and verify cards', async ({ page }) => {
     await page.goto('/');
 
-    // Verify three main cards are visible
+    // Verify two main cards are visible (Agent removed — embedded in stages)
     await expect(page.getByTestId('home-card-ideas')).toBeVisible();
     await expect(page.getByTestId('home-card-products')).toBeVisible();
-    await expect(page.getByTestId('home-card-agent')).toBeVisible();
 
-    // Verify nav links
+    // Verify nav links (only Ideas and Products)
     await expect(page.getByTestId('nav-link-ideas')).toBeVisible();
     await expect(page.getByTestId('nav-link-products')).toBeVisible();
-    await expect(page.getByTestId('nav-link-agent')).toBeVisible();
 
     // Verify language switch button exists
     await expect(page.getByTestId('nav-btn-lang')).toBeVisible();
@@ -76,10 +74,6 @@ test.describe('Core User Journey', () => {
     await page.getByTestId('nav-link-products').click();
     await expect(page).toHaveURL('/products');
 
-    // Go to Agent
-    await page.getByTestId('nav-link-agent').click();
-    await expect(page).toHaveURL('/agent');
-
     // Go home via logo
     await page.getByTestId('nav-logo-home').click();
     await expect(page).toHaveURL('/');
@@ -99,11 +93,6 @@ test.describe('Core User Journey', () => {
   test('products page shows empty state with link to ideas', async ({ page }) => {
     await page.goto('/products');
     await expect(page.getByTestId('products-link-ideas')).toBeVisible();
-  });
-
-  test('agent page loads with terminal UI', async ({ page }) => {
-    await page.goto('/agent');
-    await expect(page.getByTestId('agent-btn-newtab')).toBeVisible();
   });
 
   test('new idea form has advanced toggle', async ({ page }) => {

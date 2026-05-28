@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Lightbulb, Package, Terminal, Rocket } from 'lucide-react';
+import { Lightbulb, Package, Rocket } from 'lucide-react';
 import { useI18n } from '@/lib/i18n-context';
 
 export function Nav() {
@@ -12,7 +12,6 @@ export function Nav() {
   const navItems = [
     { href: '/ideas', label: t('nav.ideas'), icon: Lightbulb },
     { href: '/products', label: t('nav.products'), icon: Package },
-    { href: '/agent', label: t('nav.agent'), icon: Terminal },
   ];
 
   return (

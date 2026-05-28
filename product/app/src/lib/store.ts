@@ -44,11 +44,80 @@ export function createProject(name: string, description: string, config: { keywo
     validationConfig: config,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
+    version: 1,
   };
   const projects = getProjects();
   projects.unshift(project);
   localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
   return project;
+}
+
+/**
+ * Fork a new thread from an existing project.
+ * Creates a new project that inherits name/description but resets all stages.
+ * The original project is preserved unchanged.
+ */
+export function forkProject(parentId: string, threadLabel?: string): Project | undefined {
+  const parent = getProject(parentId);
+  if (!parent) return undefined;
+
+  // Count existing threads to determine version number
+  const siblings = getProjects().filter(p => p.parentId === parentId || p.id === parentId);
+  const nextVersion = siblings.length + 1;
+
+  const forked: Project = {
+    id: generateId(),
+    name: parent.name,
+    description: parent.description,
+    lifecycle: 'idea',
+    stages: createDefaultStages(),
+    validationConfig: { ...parent.validationConfig },
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+    parentId,
+    version: nextVersion,
+    threadLabel: threadLabel || `Thread ${nextVersion}`,
+  };
+
+  const projects = getProjects();
+  projects.unshift(forked);
+  localStorage.setItem(PROJECTS_KEY, JSON.stringify(projects));
+  return forked;
+}
+
+/** Get all threads (forks) of a project, including the original */
+export function getProjectThreads(projectId: string): Project[] {
+  const project = getProject(projectId);
+  if (!project) return [];
+  // Find the root project ID
+  const rootId = project.parentId || project.id;
+  return getProjects().filter(p => p.id === rootId || p.parentId === rootId);
+}
+
+/**
+ * Backtrack a stage: reset it and all subsequent stages to pending.
+ * This allows revisiting earlier decisions without losing the project.
+ */
+export function backtrackToStage(projectId: string, targetStageId: StageId): Project | undefined {
+  const targetIndex = STAGE_ORDER.indexOf(targetStageId);
+  return updateProject(projectId, project => ({
+    ...project,
+    lifecycle: targetIndex <= 2 ? 'idea' as const : project.lifecycle, // If backtracking before Build, revert to idea
+    stages: project.stages.map((stage, index) => {
+      if (index >= targetIndex) {
+        return {
+          ...stage,
+          status: index === targetIndex ? 'pending' as const : 'pending' as const,
+          decision: null,
+          decisionReason: undefined,
+          completedAt: undefined,
+          autoTasks: [],
+          artifacts: index === targetIndex ? stage.artifacts : [], // Keep artifacts of target stage for reference
+        };
+      }
+      return stage;
+    }),
+  }));
 }
 
 export function updateProject(projectId: string, updater: (project: Project) => Project): Project | undefined {

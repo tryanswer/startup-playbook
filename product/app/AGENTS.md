@@ -43,9 +43,24 @@
 - `src/app/` — pages and API routes. Data fetching happens here.
 - `bridge/` — standalone Node.js server. No shared code with the Next.js app except message types.
 
+## Agent Architecture
+
+- **No standalone agent page.** Agents are embedded within each Stage View, not accessed independently.
+- Each stage's agent terminal is injected with that stage's specific playbook skills (validate → pain mining expert, build → technical co-founder, etc.).
+- Stage agents are independent — they do not share conversation history across stages.
+- The user workflow within each stage is: **UI input → Agent brainstorm → iterate → Decision Gate**.
+
+## Project Lifecycle
+
+- Projects support **backtracking**: any completed stage can be reset along with all subsequent stages.
+- Projects support **forking/threads**: create a new version from an existing project that starts fresh while preserving the original.
+- Forked projects have `parentId`, `version`, and `threadLabel` fields.
+- Navigation: only Ideas and Products in the top nav. No agent entry point.
+
 ## Do Not
 
 - Do not add dependencies without checking if the functionality exists in Next.js or Node.js built-ins.
 - Do not create components larger than 200 lines. Split into subcomponents.
 - Do not use `useEffect` for data that can be fetched in a Server Component.
 - Do not commit `.env.local` or any file containing API keys.
+- Do not create a standalone agent page or global agent entry point.

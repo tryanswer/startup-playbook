@@ -1,6 +1,6 @@
 'use client';
 
-import { Stage, STAGE_CONFIG, STAGE_ORDER } from '@/lib/types';
+import { Stage, STAGE_CONFIG, STAGE_ORDER, StageId } from '@/lib/types';
 import { Check, X, Loader2, Circle } from 'lucide-react';
 
 interface StagePipelineProps {
@@ -8,6 +8,7 @@ interface StagePipelineProps {
   onStageClick?: (stageId: string) => void;
   activeStageId?: string;
   compact?: boolean;
+  onBacktrack?: (stageId: string) => void;
 }
 
 function StageIcon({ status }: { status: Stage['status'] }) {
@@ -25,7 +26,25 @@ function StageIcon({ status }: { status: Stage['status'] }) {
   }
 }
 
-export function StagePipeline({ stages, onStageClick, activeStageId, compact = false }: StagePipelineProps) {
+export function StagePipeline({ stages, onStageClick, activeStageId, compact = false, onBacktrack }: StagePipelineProps) {
+  const handleStageClick = (stageId: string) => {
+    const stageIndex = STAGE_ORDER.indexOf(stageId as StageId);
+    const activeIndex = activeStageId ? STAGE_ORDER.indexOf(activeStageId as StageId) : -1;
+
+    // If clicking a completed stage that is before the current active stage, prompt for backtrack
+    const stage = stages.find(s => s.id === stageId);
+    if (stage?.status === 'completed' && stageIndex < activeIndex && onBacktrack) {
+      const config = STAGE_CONFIG[stageId as StageId];
+      if (window.confirm(`回溯到 ${config.label}？这将重置后续阶段。`)) {
+        onBacktrack(stageId);
+      }
+      return;
+    }
+
+    // Otherwise, just navigate to the stage
+    onStageClick?.(stageId);
+  };
+
   return (
     <div className="flex items-center gap-1 flex-wrap">
       {STAGE_ORDER.map((stageId, index) => {
@@ -41,7 +60,7 @@ export function StagePipeline({ stages, onStageClick, activeStageId, compact = f
               <span className="text-[var(--text-muted)] text-xs mx-0.5">→</span>
             )}
             <button
-              onClick={() => isClickable && onStageClick?.(stageId)}
+              onClick={() => isClickable && handleStageClick(stageId)}
               disabled={!isClickable}
               data-testid={`pipeline-stage-${stageId}`}
               aria-label={`${config.label} stage, status: ${stage.status}`}

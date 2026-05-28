@@ -30,6 +30,7 @@ const translations = {
   // Nav
   'nav.ideas': { en: 'Ideas', zh: '想法' },
   'nav.products': { en: 'Products', zh: '产品' },
+  // @deprecated - Agent is now embedded in stages, not a standalone page
   'nav.agent': { en: 'Agent', zh: '智能体' },
 
   // Home
@@ -42,6 +43,7 @@ const translations = {
   'home.ideas.desc': { en: 'Validate & incubate', zh: '验证与孵化' },
   'home.products.label': { en: 'Products', zh: '产品' },
   'home.products.desc': { en: 'Grow & operate', zh: '增长与运营' },
+  // @deprecated - Agent card removed from home page
   'home.agent.label': { en: 'Agent', zh: '智能体' },
   'home.agent.desc': { en: 'AI collaboration', zh: 'AI 协作' },
   'home.cta': { en: 'Start with an Idea', zh: '从一个想法开始' },

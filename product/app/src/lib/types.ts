@@ -47,6 +47,12 @@ export interface Project {
   validationConfig: ValidationConfig;
   createdAt: string;
   updatedAt: string;
+  /** Parent project ID when this is a fork/thread */
+  parentId?: string;
+  /** Version number (1 = original, 2+ = forks) */
+  version: number;
+  /** Label for this thread, e.g. "Pivot to B2B", "V2 with AI" */
+  threadLabel?: string;
 }
 
 export interface AgentMessage {

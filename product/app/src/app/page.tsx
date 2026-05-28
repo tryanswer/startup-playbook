@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Lightbulb, Package, Terminal, ArrowRight } from 'lucide-react';
+import { Lightbulb, Package, ArrowRight } from 'lucide-react';
 import { useI18n } from '@/lib/i18n-context';
 
 export default function HomePage() {
@@ -17,7 +17,7 @@ export default function HomePage() {
           {t('home.subtitle')}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
           <Link
             href="/ideas"
             data-testid="home-card-ideas"
@@ -36,16 +36,6 @@ export default function HomePage() {
             <Package className="h-8 w-8 text-[var(--accent-green)] group-hover:scale-110 transition-transform" />
             <span className="font-medium">{t('home.products.label')}</span>
             <span className="text-sm text-[var(--text-muted)]">{t('home.products.desc')}</span>
-          </Link>
-
-          <Link
-            href="/agent"
-            data-testid="home-card-agent"
-            className="flex flex-col items-center gap-3 p-6 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] hover:border-[var(--accent-purple)] transition-colors group"
-          >
-            <Terminal className="h-8 w-8 text-[var(--accent-purple)] group-hover:scale-110 transition-transform" />
-            <span className="font-medium">{t('home.agent.label')}</span>
-            <span className="text-sm text-[var(--text-muted)]">{t('home.agent.desc')}</span>
           </Link>
         </div>
 

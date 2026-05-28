@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { getProject, updateStage, makeDecision } from '@/lib/store';
+import { getProject, updateStage, makeDecision, forkProject, backtrackToStage } from '@/lib/store';
 import { Project, Stage, StageId, STAGE_CONFIG, STAGE_ORDER, ValidationSummary } from '@/lib/types';
 import { StagePipeline } from '@/components/stage-pipeline';
 import { DecisionGate } from '@/components/decision-gate';
@@ -17,7 +17,6 @@ export default function IdeaDetailPage() {
 
   const [project, setProject] = useState<Project | null>(null);
   const [activeStageId, setActiveStageId] = useState<StageId>('validate');
-  const [showAgent, setShowAgent] = useState(false);
   const [validationHtml, setValidationHtml] = useState<string | null>(null);
   const [validationSummary, setValidationSummary] = useState<ValidationSummary | null>(null);
 
@@ -130,6 +129,19 @@ export default function IdeaDetailPage() {
     }
   }
 
+  function handleFork() {
+    const forked = forkProject(projectId);
+    if (forked) {
+      router.push(`/ideas/${forked.id}`);
+    }
+  }
+
+  function handleBacktrack(stageId: string) {
+    backtrackToStage(projectId, stageId as StageId);
+    refreshProject();
+    setActiveStageId(stageId as StageId);
+  }
+
   // Load existing report from artifacts
   useEffect(() => {
     const reportArtifact = activeStage.artifacts.find(a => a.id === 'report-html');
@@ -149,8 +161,20 @@ export default function IdeaDetailPage() {
           <ArrowLeft className="h-5 w-5" />
         </Link>
         <div className="flex-1">
-          <h1 className="text-xl font-bold">{project.name}</h1>
+          <div className="flex items-center gap-2 mb-1">
+            <h1 className="text-xl font-bold">{project.name}</h1>
+            {project.parentId && (
+              <span className="text-xs px-2 py-0.5 rounded bg-[var(--accent-blue)]/20 text-[var(--accent-blue)]">
+                Thread {project.version}: {project.threadLabel || `Thread ${project.version}`}
+              </span>
+            )}
+          </div>
           <p className="text-sm text-[var(--text-muted)]">{project.description}</p>
+          {project.parentId && (
+            <Link href={`/ideas/${project.parentId}`} className="text-xs text-[var(--accent-blue)] hover:underline mt-1 inline-block">
+              ← View original
+            </Link>
+          )}
         </div>
       </div>
 
@@ -160,6 +184,7 @@ export default function IdeaDetailPage() {
           stages={project.stages}
           activeStageId={activeStageId}
           onStageClick={id => setActiveStageId(id as StageId)}
+          onBacktrack={handleBacktrack}
         />
       </div>
 
@@ -243,52 +268,32 @@ export default function IdeaDetailPage() {
             </div>
           )}
 
-          {/* Agent toggle */}
+          {/* Fork Thread button */}
           <button
-            onClick={() => setShowAgent(!showAgent)}
-            data-testid="detail-btn-agent"
+            onClick={handleFork}
+            data-testid="detail-btn-fork"
             className="flex items-center gap-2 w-full px-4 py-2 rounded-lg bg-[var(--bg-tertiary)] text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
           >
-            <Terminal className="h-4 w-4" />
-            {showAgent ? 'Hide Agent' : 'Open Agent'}
+            🔀 New Thread
           </button>
         </div>
 
-        {/* Right panel: report or agent */}
-        <div className="lg:col-span-2">
-          {showAgent ? (
+        {/* Right panel: report viewer + agent terminal */}
+        <div className="lg:col-span-2 flex flex-col gap-4">
+          {/* Report viewer - 占上半部分，有内容时显示 */}
+          {validationHtml && (
+            <div className="rounded-xl overflow-hidden border border-[var(--border)]">
+              <iframe srcDoc={validationHtml} className="w-full h-[350px] bg-white" title="Report" />
+            </div>
+          )}
+          {/* Agent Terminal - 始终显示 */}
+          <div className="flex-1 min-h-[350px]">
             <AgentTerminal
               projectId={projectId}
               projectName={project.name}
               stageId={activeStageId}
             />
-          ) : validationHtml ? (
-            <div className="rounded-xl overflow-hidden border border-[var(--border)]">
-              <iframe
-                srcDoc={validationHtml}
-                className="w-full h-[700px] bg-white"
-                title="Validation Report"
-              />
-            </div>
-          ) : (
-            <div className="flex items-center justify-center h-[400px] rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)]">
-              <div className="text-center">
-                <p className="text-[var(--text-muted)] mb-2">
-                  {activeStage.status === 'pending'
-                    ? 'Run validation to see the report'
-                    : activeStage.status === 'running'
-                      ? 'Validation in progress...'
-                      : 'No report available'
-                  }
-                </p>
-                {activeStage.status === 'pending' && (
-                  <p className="text-xs text-[var(--text-muted)]">
-                    Or open the Agent to explore manually
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
+          </div>
         </div>
       </div>
     </div>
