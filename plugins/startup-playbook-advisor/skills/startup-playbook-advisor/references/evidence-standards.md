@@ -58,3 +58,31 @@ The local case-study corpus points to these reusable patterns:
 - Treat Google Trends as relative interest, not demand size.
 - Treat case studies as hypotheses, not proof.
 - Do not copy copyrighted articles into outputs; store only summaries, links, and decision rules.
+
+## AI-Native Product Standards
+
+Use these standards for AI products, agentic workflows, AI automation tools, and AI-assisted SaaS.
+
+### Stage Evidence
+
+- `Idea`: problem-solution fit from real conversations, competitive evidence, disconfirming evidence, and a narrowed workflow. A prototype is only a conversation prop.
+- `MVP`: product-market-fit evidence from retention, revenue, referral, or repeated usage by a specific user group. Require written scope, architecture/context docs, eval plan, and pre-user security review.
+- `Launch`: repeatable acquisition channel with defensible CAC/LTV/payback assumptions, production reliability, security/compliance readiness, and operations that no longer depend on founder memory.
+- `Scale`: systematic growth, auditable operations, enterprise-grade support/reliability, and a moat based on domain knowledge, user interaction data, integrations, or workflow lock-in.
+
+### Strong AI-Native Evidence
+
+- The user already spends time or money on the workflow AI will improve.
+- The founder can name the core interaction that proves AI changes the outcome.
+- Real users can judge output quality and describe what would make it trustworthy.
+- There is an evaluation plan with golden examples, edge cases, human review thresholds, and regression checks.
+- The product captures proprietary corrections, accepted/rejected outputs, workflow events, or integration data that can compound.
+- Data exposure, privacy, security, and compliance risks are named before real user data enters the system.
+
+### Weak AI-Native Evidence
+
+- "AI can build this quickly."
+- A polished demo, launch spike, or investor reaction without retention or payment behavior.
+- Generic model capability without a narrow workflow, buyer, evaluation plan, or data loop.
+- Feature expansion justified by low engineering cost rather than user evidence.
+- AI-generated code without scope boundaries, architecture notes, tests, or security review.

@@ -52,4 +52,3 @@ Product development only serves validated problems. The goal of an MVP is not fe
 - Do not build a platform in version one — solve one sharp problem first.
 - Do not ship without a way to measure the core behavior.
 - Do not build more features as a response to $0 MRR — sell manually first.
-

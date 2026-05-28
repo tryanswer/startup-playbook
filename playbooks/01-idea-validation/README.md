@@ -1,40 +1,39 @@
 # Idea Validation
 
-开始开发前必须回答三个问题：
+Before building, answer three questions:
 
-1. 需求是否真实存在，且频繁出现？
-2. 目标用户在哪里，能否被稳定触达？
-3. 用户是否愿意付费，或至少愿意留下强意向信号？
+1. Is the demand real and frequent?
+2. Where are the target users, and can they be reached reliably?
+3. Are users willing to pay, or at least willing to leave a strong intent signal?
 
 ## Workflow
 
-1. **三级细分**
-   把市场拆到一个具体人群、一个具体场景、一个核心痛点。用户应该在一秒内知道这个产品是不是为自己准备的。
+1. **Three-level segmentation**
+   Narrow the market to one specific audience, one specific situation, and one core pain. Users should know within one second whether the product is for them.
 
-2. **痛点挖矿**
-   去 Reddit、App Store 评论、TikTok / YouTube 评论、Discord、论坛、问答社区、客服记录里找真实吐槽。把原话作为原矿保存，不要先改写成营销文案。
+2. **Pain mining**
+   Look for real complaints in Reddit, App Store reviews, TikTok / YouTube comments, Discord, forums, Q&A communities, and support records. Preserve raw user language as source material before rewriting it into marketing copy.
 
-3. **痛点量化**
-   把用户原话整理成语料，让 AI 做主题聚类和频率统计。优先保留出现频率超过 40% 的痛点，并保留最有情绪密度的原句。
+3. **Pain quantification**
+   Turn user quotes into a corpus, then use AI for theme clustering and frequency counts. Prioritize pains that appear in more than 40% of the corpus, while preserving the highest-emotion quotes.
 
-4. **数据验证**
-   用 Keywords Everywhere 看长尾词密度、搜索量、CPC 和竞争度；用 Google Trends 看趋势方向、国家差异和季节性。拒绝搜索量持续下滑、没有具体长尾词、只有泛词热度的方向。
+4. **Data validation**
+   Use Keywords Everywhere to check long-tail density, search volume, CPC, and competition. Use Google Trends to check trend direction, country differences, and seasonality. Reject directions with long-term declining search interest, no concrete long-tail keywords, or only broad head-term heat.
 
-5. **急速建站**
-   用用户原话生成落地页标题、利益点、FAQ 和 CTA。页面必须包含等待名单、预约咨询、立即购买或预订按钮。
+5. **Fast landing page**
+   Use raw user language to generate the landing-page headline, benefits, FAQ, and CTA. The page must include a waitlist, consultation booking, buy-now action, or preorder button.
 
-6. **决策**
-   根据社区痛点强度、搜索趋势、付费意愿和落地页转化做结论：继续、调整细分、改定位、暂停。
+6. **Decision**
+   Decide based on community pain intensity, search trends, willingness to pay, and landing-page conversion: continue, narrow the segment, reposition, or pause.
 
 ## Evidence Checklist
 
-- 20 条以上真实用户原话，来源和链接可追溯。
-- 至少 3 个高频痛点主题，其中主痛点频率高于 40% 更优。
-- 10 个以上具体长尾关键词，而不是只有头部泛词。
-- Google Trends 趋势不处于明显长期下滑。
-- 至少一个付费或强意向动作被验证。
+- 20+ real user quotes with traceable sources and links.
+- At least 3 high-frequency pain themes, ideally with the primary pain above 40% frequency.
+- 10+ concrete long-tail keywords, not only broad head terms.
+- Google Trends does not show an obvious long-term decline.
+- At least one paid or high-intent action has been validated.
 
 ## Output
 
-使用 `templates/experiment-brief.md` 记录验证结果，并把原始用户语言沉淀到落地页和 SEO/ASO 文案中。
-
+Use `templates/experiment-brief.md` to record validation results, then carry raw user language into landing-page and SEO/ASO copy.

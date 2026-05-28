@@ -198,8 +198,8 @@ test("buildDemandHeatmapSummaryPrompt asks LLM for evidence-bounded heat distrib
   });
   const prompt = buildDemandHeatmapSummaryPrompt(analysis);
 
-  assert.match(prompt, /需求热力分布/);
-  assert.match(prompt, /只能基于提供的 Reddit 聚合数据/);
+  assert.match(prompt, /demand heat distribution/);
+  assert.match(prompt, /Use only the aggregated Reddit data provided/);
   assert.match(prompt, /Hair color uncertainty/);
   assert.match(prompt, /validation-needed/);
 });
@@ -228,5 +228,5 @@ test("summarizeDemandWithOpenAI sends an evidence-bounded prompt and returns sum
   assert.equal(calls.length, 1);
   assert.match(calls[0].url, /\/chat\/completions$/);
   assert.equal(calls[0].init.headers.Authorization, "Bearer test-key");
-  assert.match(calls[0].init.body, /需求热力分布/);
+  assert.match(calls[0].init.body, /demand heat distribution/);
 });

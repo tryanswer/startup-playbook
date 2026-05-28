@@ -17,6 +17,8 @@ Separate facts into three buckets:
 
 Never invent market evidence, search volume, community sentiment, pricing, or competitor traction. If external research is unavailable, say what evidence is missing and design the next experiment.
 
+For AI-native products, remember that cheaper building increases the risk of building too early. Treat AI-generated prototypes as props for customer conversations, not as validation. The founder's job is to keep judgment, evidence, and scope ahead of agentic execution.
+
 ## Required Gates
 
 Before recommending product build work or new feature iteration, answer these three questions:
@@ -39,6 +41,8 @@ After a quiet launch, weak Product Hunt result, low signup count, or $0 MRR, do 
 - Convert vague answers into tests, not opinions.
 
 Load `references/advisor-dialogue.md` for the question bank and `references/evidence-standards.md` for evidence thresholds when the repository is available.
+
+Load `references/ai-native-product-principles.md` when the idea is an AI product, agentic workflow, AI-assisted SaaS, AI automation business, or when the user asks how to build AI-native products.
 
 ## Use Existing Playbook Skills
 
@@ -119,13 +123,14 @@ When the product targets mainland China, use the China-specific guides instead o
 1. Capture the idea, user, painful situation, current workaround, and desired outcome.
 2. Classify stage: idea triage, evidence plan, landing-page plan, MVP scope, growth plan, or **post-launch ops**.
 3. Apply the three required gates.
-4. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
-5. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, or concierge MVP.
-6. If validation passes, define the smallest product scope and measurement plan.
-7. **Pre-launch**: ensure GA4 events are defined (`ga4-event-tracking.md`), UTM conventions set (`utm-attribution.md`), and Search Console connected (`google-search-console.md`). Run `tools/google-growth-stack check-deps` to verify tooling.
-8. **Launch week**: run Google Ads cold start test (`google-ads-cold-start.md`), verify GA4 events fire in DebugView within 48 hours.
-9. **Post-launch weekly**: review Looker Studio dashboard (`weekly-review-dashboard.md`), diagnose retention (`retention-decision-tree.md`), decide continue / adjust / stop.
-10. Return a decision with next actions and stop conditions.
+4. For AI-native ideas, classify the stage: Idea, MVP, Launch, or Scale. Check whether AI is necessary, what remains human-owned, how quality will be evaluated, and what moat could compound.
+5. Identify the first reachable user surface: community, search, marketplace, content, direct sales, app store, or existing audience.
+6. Decide the strongest validation experiment: raw pain mining, interviews, search trend check, direct qualifying question, landing page, preorder, paid consultation, manual service, concierge MVP, or core-interaction prototype.
+7. If validation passes, define the smallest product scope, measurement plan, architecture/context requirements, and security/privacy review threshold.
+8. **Pre-launch**: ensure GA4 events are defined (`ga4-event-tracking.md`), UTM conventions set (`utm-attribution.md`), and Search Console connected (`google-search-console.md`). Run `tools/google-growth-stack check-deps` to verify tooling.
+9. **Launch week**: run Google Ads cold start test (`google-ads-cold-start.md`), verify GA4 events fire in DebugView within 48 hours.
+10. **Post-launch weekly**: review Looker Studio dashboard (`weekly-review-dashboard.md`), diagnose retention (`retention-decision-tree.md`), decide continue / adjust / stop.
+11. Return a decision with next actions and stop conditions.
 
 ## Required Output
 
@@ -138,6 +143,7 @@ Required sections:
 - Evidence table.
 - Validation experiments.
 - MVP or non-build recommendation.
+- AI-native product check when relevant.
 - Distribution and pricing test.
 - Risks and stop conditions.
 - Next 7 days.
@@ -170,3 +176,4 @@ Each skill's SKILL.md defines its own artifact schema. The advisor ensures:
 - A good post-launch plan asks which specific person has which specific problem before proposing another feature.
 - A good landing page has a conversion action: waitlist, preorder, booking, paid audit, or payment-intent click.
 - A good MVP proves one promise for one segment.
+- A good AI-native plan names the stage gate, human judgment boundary, evaluation plan, context docs, security/privacy risks, and defensibility path.

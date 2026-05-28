@@ -24,4 +24,3 @@ The goal of operations is to accelerate product learning speed. Every action sho
 5. Check retention trends, use `retention-decision-tree.md` for diagnosis.
 6. Decide next week's experiments: continue, stop, adjust.
 7. Write conclusions back into case studies, forming reusable assets for next time.
-

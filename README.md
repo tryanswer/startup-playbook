@@ -4,6 +4,8 @@
 
 An open-source, end-to-end startup methodology for indie hackers and solo founders — from idea validation to product launch, growth, and operational analytics. Powered by real-world patterns from **499 founder case studies**.
 
+Reusable workflows are organized from idea to product, growth, and operations. The core principle is to validate real demand before building, then grow through measurable channels instead of letting AI invent stories without evidence.
+
 ## Why This Exists
 
 Most founders fail not because they cannot build, but because they **build before validating**. They fall in love with an idea, spend months coding, launch to silence, then blame the market.
@@ -70,6 +72,8 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 ## Quick Start
 
 ### Option 1: Use the Advisor Agent
+
+`startup-playbook-advisor` is a startup advisor skill / agent for the pre-build stage. It first guides a conversation around demand reality, user reachability, willingness to pay, validation experiments, MVP scope, and growth path, then outputs a kill / pivot / continue decision and next steps.
 
 Install the startup advisor as a skill in your AI environment:
 
