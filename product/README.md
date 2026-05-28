@@ -37,6 +37,7 @@ product/
 ## Status
 
 - [x] PRD: Product Overview (what the product carries, positioning, core UX, agent integration)
+- [x] PRD: Interaction Flow (navigation, idea pipeline, product management, agent multi-tab)
 - [ ] PRD: Stage Runner
 - [ ] PRD: Web Terminal + Context Layer Architecture
 - [ ] PRD: Stage Specs (5 stages)
