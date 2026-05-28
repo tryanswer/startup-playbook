@@ -52,6 +52,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 | [`google-trends-seo`](tools/google-trends-seo/) | Google Trends & Keywords Everywhere keyword research |
 | [`topic-pain-miner`](tools/topic-pain-miner/) | Reddit public topic scraping → pain heatmaps + HTML reports |
 | [`case-study-skill-miner`](tools/case-study-skill-miner/) | Extract founder case studies into reusable skills |
+| [`idea-validator`](tools/idea-validator/) | Automated idea validation: Reddit pain + Trends demand + competitor scan → HTML decision report |
 | [`google-growth-stack`](tools/google-growth-stack/) | GA4 code gen, UTM builder, Search Console export, weekly report |
 | [`china-growth-stack`](tools/china-growth-stack/) | Baidu Analytics + Umeng+ code gen, Baidu search export, weekly report |
 

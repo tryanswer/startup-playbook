@@ -1,0 +1,18 @@
+{
+  "name": "startup-playbook-idea-validator",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Automated idea validation: Reddit pain mining, Google Trends, competitor analysis, and willingness-to-pay signals → HTML decision report.",
+  "scripts": {
+    "test": "node --test",
+    "validate": "node scripts/validate.mjs",
+    "reddit": "node --use-env-proxy scripts/reddit-pain.mjs",
+    "trends": "node --use-env-proxy scripts/trends-check.mjs",
+    "competitors": "node --use-env-proxy scripts/competitor-scan.mjs",
+    "report": "node scripts/generate-report.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
