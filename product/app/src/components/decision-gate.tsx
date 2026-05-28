@@ -1,7 +1,8 @@
 'use client';
 
+import { useState } from 'react';
 import { ValidationSummary } from '@/lib/types';
-import { ArrowRight, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, RotateCcw, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useI18n } from '@/lib/i18n-context';
 
 interface DecisionGateProps {
@@ -11,6 +12,8 @@ interface DecisionGateProps {
 
 export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
   const { t } = useI18n();
+  const [expanded, setExpanded] = useState(false);
+
   const decisionColors = {
     continue: 'var(--accent-green)',
     pivot: 'var(--accent-yellow)',
@@ -25,85 +28,110 @@ export function DecisionGate({ summary, onDecision }: DecisionGateProps) {
 
       {summary ? (
         <>
-          {/* Score + Decision */}
-          <div className="text-center mb-4">
-            <div className="text-3xl font-bold" style={{ color }}>
-              {summary.score}<span className="text-lg text-[var(--text-muted)]">/100</span>
+          {/* Score + Decision — always visible */}
+          <div className="flex items-center gap-3 mb-3">
+            <div className="text-2xl font-bold" style={{ color }}>
+              {summary.score}<span className="text-sm text-[var(--text-muted)]">/100</span>
             </div>
-            <div className="inline-block mt-1 px-2.5 py-0.5 rounded-full text-xs font-semibold" style={{ background: `${color}22`, color }}>
-              {t(`decision.${summary.decision}`)}
+            <div>
+              <div className="inline-block px-2 py-0.5 rounded-full text-xs font-semibold" style={{ background: `${color}22`, color }}>
+                {t(`decision.${summary.decision}`)}
+              </div>
+              <p className="text-xs text-[var(--text-muted)] mt-0.5 line-clamp-2">{summary.reasoning}</p>
             </div>
-            <p className="text-xs text-[var(--text-secondary)] mt-2">{summary.reasoning}</p>
           </div>
 
-          {/* Analysis sections */}
-          {summary.painAnalysis && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">😤 Pain Analysis</p>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.painAnalysis}</p>
-            </div>
-          )}
-          {summary.demandAnalysis && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🔍 Demand</p>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.demandAnalysis}</p>
-            </div>
-          )}
-          {summary.marketAnalysis && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🏢 Market</p>
-              <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.marketAnalysis}</p>
-            </div>
-          )}
+          {/* Compact evidence/concerns count */}
+          <div className="flex gap-3 mb-3 text-xs">
+            {summary.evidence.length > 0 && (
+              <span className="text-[var(--accent-green)]">✓ {summary.evidence.length} {t('decision.evidence')}</span>
+            )}
+            {summary.concerns.length > 0 && (
+              <span className="text-[var(--accent-yellow)]">⚠ {summary.concerns.length} {t('decision.concerns')}</span>
+            )}
+          </div>
 
-          {/* Evidence */}
-          {summary.evidence.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">{t('decision.evidence')}</p>
-              <ul className="space-y-1">
-                {summary.evidence.map((item, index) => (
-                  <li key={index} className="text-xs text-[var(--text-secondary)] flex gap-1.5">
-                    <span className="text-[var(--accent-green)]">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {/* Expand/collapse details */}
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="flex items-center gap-1 text-xs text-[var(--accent-blue)] hover:underline mb-3"
+          >
+            {expanded ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
+            {expanded ? t('decision.title') : t('decision.title')}
+          </button>
 
-          {/* Concerns */}
-          {summary.concerns.length > 0 && (
-            <div className="mb-3">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">{t('decision.concerns')}</p>
-              <ul className="space-y-1">
-                {summary.concerns.map((item, index) => (
-                  <li key={index} className="text-xs text-[var(--text-secondary)] flex gap-1.5">
-                    <span className="text-[var(--accent-yellow)]">⚠</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+          {expanded && (
+            <div className="space-y-3 mb-4 pt-2 border-t border-[var(--border)]">
+              {/* Analysis sections */}
+              {summary.painAnalysis && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-0.5">😤 {t('decision.pain')}</p>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.painAnalysis}</p>
+                </div>
+              )}
+              {summary.demandAnalysis && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-0.5">🔍 {t('decision.demand')}</p>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.demandAnalysis}</p>
+                </div>
+              )}
+              {summary.marketAnalysis && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-0.5">🏢 {t('decision.market')}</p>
+                  <p className="text-xs text-[var(--text-muted)] leading-relaxed">{summary.marketAnalysis}</p>
+                </div>
+              )}
 
-          {/* Next Steps */}
-          {summary.suggestedNextSteps && summary.suggestedNextSteps.length > 0 && (
-            <div className="mb-4">
-              <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🚀 Next Steps</p>
-              <ul className="space-y-1">
-                {summary.suggestedNextSteps.map((step, index) => (
-                  <li key={index} className="text-xs text-[var(--text-muted)] flex gap-1.5">
-                    <span className="text-[var(--accent-blue)]">{index + 1}.</span>
-                    {step}
-                  </li>
-                ))}
-              </ul>
+              {/* Evidence */}
+              {summary.evidence.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">{t('decision.evidence')}</p>
+                  <ul className="space-y-0.5">
+                    {summary.evidence.map((item, index) => (
+                      <li key={index} className="text-xs text-[var(--text-muted)] flex gap-1.5">
+                        <span className="text-[var(--accent-green)] shrink-0">✓</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Concerns */}
+              {summary.concerns.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">{t('decision.concerns')}</p>
+                  <ul className="space-y-0.5">
+                    {summary.concerns.map((item, index) => (
+                      <li key={index} className="text-xs text-[var(--text-muted)] flex gap-1.5">
+                        <span className="text-[var(--accent-yellow)] shrink-0">⚠</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Next Steps */}
+              {summary.suggestedNextSteps && summary.suggestedNextSteps.length > 0 && (
+                <div>
+                  <p className="text-xs font-medium text-[var(--text-secondary)] mb-1">🚀 {t('decision.nextSteps')}</p>
+                  <ul className="space-y-0.5">
+                    {summary.suggestedNextSteps.map((step, index) => (
+                      <li key={index} className="text-xs text-[var(--text-muted)] flex gap-1.5">
+                        <span className="text-[var(--accent-blue)] shrink-0">{index + 1}.</span>
+                        {step}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
         </>
       ) : (
         <p className="text-sm text-[var(--text-muted)] mb-4">
-          {t('decision.completed')}
+          {t('decision.fallback')}
         </p>
       )}
 
