@@ -2,7 +2,7 @@
 
 ## One-Liner
 
-An AI-powered startup pipeline that turns an idea into a validated, built, and growing product — with a web terminal for human-agent collaboration at every stage.
+An AI-powered startup incubation platform — a **state machine + context layer + decision orchestrator** that turns an idea into a validated, built, and growing product, with a web agent terminal at every stage for human-AI collaboration.
 
 ## Problem
 
@@ -11,7 +11,64 @@ Solo founders and indie hackers face two failure modes:
 1. **Build before validating** — spend months coding, launch to silence.
 2. **Know the methodology but cannot execute it** — read playbooks, watch courses, but the gap between "knowing" and "doing" is too wide.
 
-Existing tools solve pieces (landing page builders, analytics dashboards, AI coding agents) but nothing **orchestrates the full journey** from idea to revenue with evidence-based decision gates.
+Existing tools solve pieces (landing page builders, analytics dashboards, AI coding agents) but nothing **orchestrates the full journey** from idea to revenue with evidence-based decision gates. More critically, these tools have no shared memory — context is lost every time you switch between stages, tools, or sessions.
+
+## What the Product Layer Carries
+
+Playbooks are knowledge. Tools are scripts. Skills are agent instructions. These are all **parts**. The product is the layer that wires them into a **startup state machine**:
+
+### 1. State & Memory
+
+```
+Without the product layer:
+  User reads docs → runs scripts locally → results scattered in files → context lost between stages
+
+With the product layer:
+  The full lifecycle of an idea is tracked
+  Every decision, data point, and artifact is persisted
+  Agent entering any stage auto-loads the complete history
+```
+
+An idea may take 3-6 months from birth to revenue. The user will pause, switch, and backtrack. The product layer ensures that **at any moment of resumption, the agent knows the full story of this idea**.
+
+### 2. Decision Orchestration
+
+```
+The real value chain:
+
+  Data → Evidence → Insight → Options → Decision → Execution → Feedback
+  ↑                              ↑                   ↑
+  Auto-collected                 Human decides        Auto-executed
+```
+
+The product does not make decisions for the user. It **structures decision points**:
+
+- Present the right data at the right time.
+- Turn vague "what should I do?" into concrete "A or B?".
+- Record the reason behind each decision (ADR) so the agent never re-litigates.
+
+### 3. Artifact Pipeline
+
+Each stage's output is the next stage's input:
+
+```
+Validate                    Business Model              Build
+┌────────────┐             ┌────────────┐             ┌────────────┐
+│ pain themes ├────────→   │ pricing     ├────────→   │ CONTEXT.md │
+│ user quotes │            │ model type  │            │ contracts/ │
+│ competitors │            │ revenue path│            │ deployed URL│
+│ demand score│            │ target seg  │            │ analytics  │
+└────────────┘             └────────────┘             └────────────┘
+       ↓                         ↓                         ↓
+  Grow                      Operate
+  ┌────────────┐           ┌────────────┐
+  │ content cal │          │ weekly rpt  │
+  │ UTM links   │          │ retention   │
+  │ SEO config  │          │ churn diag  │
+  └────────────┘           └────────────┘
+```
+
+The product manages this artifact chain. Without it, users manually carry files between tools, repeatedly explain context to agents, and lose track of what was decided and why.
 
 ## Solution
 
@@ -22,6 +79,7 @@ A product that:
 - **Flows through five stages** (Validate → Business Model → Build → Grow → Operate), each with auto-execution and a web terminal for agent collaboration.
 - **Produces artifacts at each stage** that feed the next stage (validation report → business model config → codebase → growth config → analytics dashboard).
 - **Keeps the human in control** — every stage has a decision gate where the founder decides to continue, pivot, or kill.
+- **Acts as a Context Provider** for external AI tools (Claude Code, Codex, Cursor) — not replacing them, but making them effective in the startup context.
 
 ## Target User
 
@@ -131,6 +189,101 @@ Every stage ends with a decision gate. The user sees the evidence and chooses:
 | **Pause** | Save state. Can resume later. |
 | **Back** | Return to previous stage (e.g., validation data changed the business model). |
 
+## Web Agent Integration: Context Layer Architecture
+
+The product does **not** replace Claude Code, Codex, or Cursor. It is their **Context Provider** — making them effective in the startup context.
+
+### Three Interaction Modes
+
+#### Mode 1: In-App Terminal (Lightweight)
+
+For non-coding interactions — research, analysis, strategy, content generation.
+
+```
+Web Terminal → Claude API
+  + Auto-injected: idea description, stage artifacts, stage-specific skills
+  + Results written back to artifact store
+```
+
+**When**: Validate stage follow-ups, business model discussions, growth copy, operational analysis.
+
+#### Mode 2: Context Export (Heavy Development)
+
+For coding — the product generates a context package that users import into their local tool.
+
+```bash
+# Product generates a context package for the Build stage:
+~/projects/ai-skin-analysis/
+├── CONTEXT.md              ← domain language from Validate + Business Model
+├── AGENTS.md               ← stability + security rules
+├── DESIGN.md               ← chosen design system
+├── .claude/skills/         ← ai-native-development, tdd, diagnose, grill-with-docs
+├── contracts/              ← API contracts from Business Model
+├── docs/
+│   ├── validation-report.html
+│   ├── business-model.json
+│   └── adr/                ← decision records
+└── SERVICE.md              ← reusable service definitions
+```
+
+The product periodically syncs progress back:
+
+```
+Claude Code / Codex (local) ←──sync──→ Product (cloud)
+  code progress                         artifact store
+  test status                           stage status
+  deploy URL                            metrics connection
+```
+
+**When**: Build stage — full project development.
+
+#### Mode 3: Hybrid (Most Realistic Usage)
+
+```
+1. Open product → see idea pipeline status
+2. Click Validate stage → review report, ask follow-ups in web terminal
+3. Decision: Continue → enter Business Model
+4. Business Model auto-recommends → discuss in terminal → Continue
+5. Enter Build → product generates context package
+6. Switch to local Claude Code for development → product syncs progress
+7. Development done → return to product, enter Grow
+8. Grow auto-generates content calendar → refine copy in terminal
+9. Enter Operate → product pulls metrics → weekly report → discuss iteration in terminal
+```
+
+### Technical Interface
+
+```typescript
+// Context Layer — the product's core capability
+interface ContextLayer {
+  // For the in-app web agent
+  getAgentSystemPrompt(projectId: string, stageId: string): string;
+  getAgentTools(stageId: string): Tool[];
+  getArtifacts(projectId: string, upToStage: string): Artifact[];
+
+  // For external tools (Claude Code / Codex / Cursor)
+  exportContextPackage(projectId: string, stageId: string): FileTree;
+  syncProgressFromExternal(projectId: string, gitRepoUrl: string): void;
+
+  // Artifact management
+  saveArtifact(projectId: string, stageId: string, artifact: Artifact): void;
+  getArtifactChain(projectId: string): Artifact[];
+}
+
+// Agent Gateway — unified agent interface
+interface AgentGateway {
+  // Lightweight interaction (in-app terminal)
+  chat(message: string, context: ContextLayer): Stream<Response>;
+
+  // Heavy tasks (delegate to external agent)
+  delegateToCodex(task: string, context: ContextLayer): Promise<Result>;
+  delegateToClaude(task: string, context: ContextLayer): Promise<Result>;
+
+  // Auto tasks (stage auto-run)
+  runAutoTask(task: AutoTask, context: ContextLayer): Promise<Artifact>;
+}
+```
+
 ## Key Design Principles
 
 1. **Pipeline, not dashboard** — the primary metaphor is forward progress through stages, not a static view of data.
@@ -140,6 +293,17 @@ Every stage ends with a decision gate. The user sees the evidence and chooses:
 5. **Agent remembers everything** — the terminal agent has access to all previous stage artifacts, project CONTEXT.md, and the service registry.
 6. **Evidence over vibes** — every decision gate shows the data. No "just trust the AI" moments.
 7. **Founder stays in control** — the product proposes, the founder disposes. No auto-advancing past decision gates.
+8. **Context Provider, not Agent Host** — the product does not replace Claude/Codex/Cursor; it makes them effective by providing structured startup context.
+
+## Product Positioning Summary
+
+| Dimension | Definition |
+|---|---|
+| **What it is** | A startup lifecycle **state machine + context layer + decision orchestrator** |
+| **What it is not** | Not another AI coding tool, not a no-code builder |
+| **Core value** | Turn startup methodology from "knowing" into "executing"; wire scattered AI tools into a coherent flow |
+| **Relation to Claude/Codex** | Does not replace them — acts as their **Context Provider**, making them effective in the startup context |
+| **User mental model** | "Where is my idea at? What's the next step? What does the data say?" |
 
 ## What This Is NOT
 
@@ -147,6 +311,7 @@ Every stage ends with a decision gate. The user sees the evidence and chooses:
 - Not a landing page builder (use any builder, we track the conversion).
 - Not an analytics dashboard (we generate reports from your analytics tool).
 - Not a replacement for talking to users (the product tells you when to talk to users).
+- Not an Agent Host — it's a Context Provider for existing agents.
 
 ## Success Metrics
 

@@ -36,10 +36,10 @@ product/
 
 ## Status
 
-- [ ] PRD: Product Overview
+- [x] PRD: Product Overview (what the product carries, positioning, core UX, agent integration)
 - [ ] PRD: Stage Runner
-- [ ] PRD: Web Terminal
+- [ ] PRD: Web Terminal + Context Layer Architecture
 - [ ] PRD: Stage Specs (5 stages)
 - [ ] Design: DESIGN.md + Wireframes
 - [ ] Architecture: System Design
-- [ ] Roadmap: Milestones
+- [x] Roadmap: Milestones (V0.1 → V1.0)
