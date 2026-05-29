@@ -47,36 +47,20 @@ Use this skill after an idea has passed validation. The goal is to ship the smal
 
 ## Standardized Artifact Output
 
-After completing the build stage, write a structured JSON report to:
+After completing the build stage, use `startup-playbook-artifacts` when the user asks to save, export, render, document, persist, or resume the result.
 
-```
-product/app/.playbook-output/{projectId}/build/report.json
-```
+Write or refresh:
 
-The JSON must conform to this schema:
-
-```json
-{
-  "stage": "build",
-  "score": 70,
-  "decision": "continue",
-  "reasoning": "One sentence summarizing build readiness.",
-  "evidence": ["Positive signal 1", "Positive signal 2"],
-  "concerns": ["Risk factor 1", "Risk factor 2"],
-  "analysis": {
-    "scope": "MVP scope: core flow, screen count, auth strategy.",
-    "stack": "Tech stack chosen and rationale.",
-    "timeline": "Sprint plan: week 1 goals, week 2 goals.",
-    "risks": "Key risks: technical, product, distribution, compliance."
-  },
-  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
-  "generatedAt": "2026-05-28T21:10:00Z"
-}
+```text
+playbook/stages/build/input.json
+playbook/stages/build/report.json
+playbook/stages/build/handoff.json
+playbook/stages/build/report.md
 ```
 
-Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.mvpScope`, `analysis.prd`, `analysis.techStack`, `analysis.aiNativeCheck` when relevant, `analysis.instrumentation`, and `analysis.launchChecklist`.
 
-The `{projectId}` is provided by the caller.
+The `handoff.json` must include the MVP promise, excluded scope, user flow, acceptance criteria, analytics events, launch channel, deployed URL if available, and security/privacy review status.
 
 ## Guardrails
 

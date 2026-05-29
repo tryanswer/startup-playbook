@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "project-id",
+  "fromStage": "validate",
+  "toStage": "business-model",
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "unknown"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/validate/report.json"
+    }
+  ],
+  "summary": {
+    "narrowedSegment": "unknown",
+    "painfulSituation": "unknown",
+    "strongestRawLanguage": null,
+    "evidenceRefs": [],
+    "firstReachableChannel": "unknown",
+    "paidIntentGaps": [],
+    "recommendedNextExperiment": "unknown"
+  }
+}

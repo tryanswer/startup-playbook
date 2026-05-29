@@ -55,6 +55,7 @@ When the repository is available, combine this advisor with:
 - `seo-aso-growth-research` for country, language, SEO, ASO, and keyword opportunity work.
 - `business-model-design` for choosing business model, pricing structure, and revenue progression based on product positioning.
 - `product-development-loop` only after the idea passes validation.
+- `startup-playbook-artifacts` when the user asks to save, export, render, document, persist, or resume Startup Playbook work.
 
 ## Google Growth Stack
 
@@ -150,23 +151,36 @@ Required sections:
 
 ## Standardized Artifact Output
 
-When running a specific stage for a project, delegate to the stage-specific skill and ensure it writes a `report.json` to the shared output directory:
+When running a specific stage for a project and the user asks to save, export, render, document, persist, or resume the work, delegate the analysis to the stage-specific skill, then use `startup-playbook-artifacts` to write project-local artifacts:
 
 ```
-product/app/.playbook-output/{projectId}/{stageId}/report.json
+playbook/
+  playbook.json
+  evidence.json
+  decision-log.md
+  stages/{stage}/input.json
+  stages/{stage}/report.json
+  stages/{stage}/handoff.json
+  stages/{stage}/report.md
+  index.html
 ```
 
 Stage-to-skill mapping:
+
 - `validate` → `idea-validation`
 - `business-model` → `business-model-design`
 - `build` → `product-development-loop`
 - `grow` → `seo-aso-growth-research`
 - `operate` → manual (metrics review, retention diagnosis)
 
-Each skill's SKILL.md defines its own artifact schema. The advisor ensures:
-1. The `{projectId}` is passed to the delegated skill.
-2. The output directory exists before writing.
-3. The JSON conforms to the `StageArtifactOutput` base schema (see `product/app/ARTIFACT-SPEC.md`).
+The advisor ensures:
+
+1. The `{projectId}` is stable and passed to the delegated skill.
+2. New evidence is added to `playbook/evidence.json` before the stage report references it.
+3. The stage receives the prior stage's `playbook/stages/{stage}/handoff.json` when continuing a pipeline.
+4. The stage writes or refreshes `input.json`, `report.json`, and `handoff.json` under `playbook/stages/{stage}/`.
+5. `playbook/index.html` is regenerated as a self-contained static page after stage output changes.
+6. Missing evidence is recorded in `assumed` or `toValidate`, not presented as fact.
 
 ## Quality Bar
 

@@ -246,36 +246,20 @@ Failure patterns summarized from cases:
 
 ## Standardized Artifact Output
 
-After completing business model design, write a structured JSON report to:
+After completing business model design, use `startup-playbook-artifacts` when the user asks to save, export, render, document, persist, or resume the result.
 
-```
-product/app/.playbook-output/{projectId}/business-model/report.json
-```
+Write or refresh:
 
-The JSON must conform to this schema:
-
-```json
-{
-  "stage": "business-model",
-  "score": 55,
-  "decision": "pivot",
-  "reasoning": "One sentence summarizing model viability.",
-  "evidence": ["Positive signal 1", "Positive signal 2"],
-  "concerns": ["Risk factor 1", "Risk factor 2"],
-  "analysis": {
-    "model": "Chosen model type and rationale (SaaS/service/course/marketplace/devtool).",
-    "pricing": "Pricing tiers, anchor point, and competitive positioning.",
-    "revenue": "MRR projection at 1K/5K/20K user milestones.",
-    "cac": "Estimated CAC by channel, LTV calculation, LTV/CAC ratio."
-  },
-  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
-  "generatedAt": "2026-05-28T21:00:00Z"
-}
+```text
+playbook/stages/business-model/input.json
+playbook/stages/business-model/report.json
+playbook/stages/business-model/handoff.json
+playbook/stages/business-model/report.md
 ```
 
-Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.positioning`, `analysis.recommendedModel`, `analysis.pricing`, `analysis.revenueProgression`, and `analysis.unitEconomics`.
 
-The `{projectId}` is provided by the caller.
+The `handoff.json` must include the buyer/user distinction, model type, pricing hypothesis, first paid test, revenue milestones, and monetization risks.
 
 ## Evidence Base
 

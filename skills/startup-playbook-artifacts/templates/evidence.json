@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "evidence-ledger",
+  "projectId": "project-id",
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "updatedAt": "2026-05-29T00:00:00.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "unknown"
+  },
+  "items": [
+    {
+      "id": "ev-001",
+      "sourceType": "founder-note",
+      "sourceName": "Founder note",
+      "url": null,
+      "capturedAt": "2026-05-29T00:00:00.000Z",
+      "quote": null,
+      "summary": "Initial founder-provided evidence placeholder.",
+      "actorRole": "founder",
+      "segment": "unknown",
+      "stage": "validate",
+      "supports": [],
+      "strength": "weak",
+      "caveats": ["Replace with sourced evidence before making a strong decision."],
+      "privacy": "private-summary"
+    }
+  ]
+}

@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, "..");
 const skillName = "startup-playbook-advisor";
-const canonicalSkillDir = path.join(repoRoot, "skills", skillName);
+const bundledSkillNames = [skillName, "startup-playbook-artifacts"];
 const pluginDir = path.join(repoRoot, "plugins", skillName);
 const agentFile = path.join(repoRoot, "agents", `${skillName}.md`);
 
@@ -155,13 +155,17 @@ function expandHome(filePath) {
 
 async function installClaude(args) {
   const skillsDir = expandHome(process.env.CLAUDE_SKILLS_DIR || "~/.claude/skills");
-  await copyDir(canonicalSkillDir, path.join(skillsDir, skillName), args.dryRun);
+  for (const bundledSkillName of bundledSkillNames) {
+    await copyDir(path.join(repoRoot, "skills", bundledSkillName), path.join(skillsDir, bundledSkillName), args.dryRun);
+  }
   await copyFileTo(agentFile, path.join(skillsDir, skillName, "AGENT.md"), args.dryRun);
 }
 
 async function installCodexSkill(args) {
   const codexHome = expandHome(process.env.CODEX_HOME || "~/.codex");
-  await copyDir(canonicalSkillDir, path.join(codexHome, "skills", skillName), args.dryRun);
+  for (const bundledSkillName of bundledSkillNames) {
+    await copyDir(path.join(repoRoot, "skills", bundledSkillName), path.join(codexHome, "skills", bundledSkillName), args.dryRun);
+  }
   await copyFileTo(agentFile, path.join(codexHome, "skills", skillName, "AGENT.md"), args.dryRun);
 }
 
@@ -198,18 +202,21 @@ async function installCodexPlugin(args) {
 async function installOpenClaw(args) {
   const root = args.openclawRoot;
   const appRoot = path.join(root, "packages", "openclaw-app");
-  const appSkillDir = path.join(appRoot, "local-skills", "skills", skillName);
-  const communitySkillDir = path.join(root, "packages", "skills", "skills", skillName);
   const curatedFile = path.join(appRoot, "config", "bundled_local_skills.txt");
 
   await requirePath(appRoot, "OpenClaw app root");
   await requirePath(path.join(root, "packages", "skills", "skills"), "OpenClaw community skills root");
 
-  await copyDir(canonicalSkillDir, appSkillDir, args.dryRun);
-  await copyFileTo(agentFile, path.join(appSkillDir, "AGENT.md"), args.dryRun);
-  await copyDir(canonicalSkillDir, communitySkillDir, args.dryRun);
-  await copyFileTo(agentFile, path.join(communitySkillDir, "AGENT.md"), args.dryRun);
-  await ensureLine(curatedFile, skillName, args.dryRun);
+  for (const bundledSkillName of bundledSkillNames) {
+    const appSkillDir = path.join(appRoot, "local-skills", "skills", bundledSkillName);
+    const communitySkillDir = path.join(root, "packages", "skills", "skills", bundledSkillName);
+    await copyDir(path.join(repoRoot, "skills", bundledSkillName), appSkillDir, args.dryRun);
+    await copyDir(path.join(repoRoot, "skills", bundledSkillName), communitySkillDir, args.dryRun);
+    await ensureLine(curatedFile, bundledSkillName, args.dryRun);
+  }
+
+  await copyFileTo(agentFile, path.join(appRoot, "local-skills", "skills", skillName, "AGENT.md"), args.dryRun);
+  await copyFileTo(agentFile, path.join(root, "packages", "skills", "skills", skillName, "AGENT.md"), args.dryRun);
 
   if (args.runOpenClawSync) {
     if (args.dryRun) {
@@ -234,7 +241,9 @@ async function main() {
     return;
   }
 
-  await requirePath(canonicalSkillDir, "canonical skill");
+  for (const bundledSkillName of bundledSkillNames) {
+    await requirePath(path.join(repoRoot, "skills", bundledSkillName), `${bundledSkillName} skill`);
+  }
   await requirePath(pluginDir, "plugin");
   await requirePath(agentFile, "agent file");
 

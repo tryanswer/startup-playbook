@@ -9,7 +9,7 @@ Startup Playbook 1.0 should not depend on the current `product/app` web product.
 3. A dedicated artifact skill writes those decisions into a local `playbook/` directory.
 4. `playbook/index.html` gives the founder a static, readable project dashboard.
 
-The product UI can remain as a future prototype, but it is not the 1.0 delivery surface.
+The previous product UI prototype is outside the 1.0 delivery surface and should not be kept in the main workflow.
 
 ## Problem
 
@@ -37,7 +37,7 @@ Without a standard artifact contract, each session produces useful prose but wea
 - Do not require Next.js, Supabase, Vercel, WebSocket bridge, or embedded terminal.
 - Do not automate all startup stages from a UI.
 - Do not make the artifact skill responsible for market research, validation judgment, or growth strategy. Existing stage skills do that.
-- Do not delete `product/` as part of the first implementation. Mark it as future/prototype after the artifact workflow is in place.
+- Do not keep the old product app as part of the 1.0 implementation.
 
 ## Proposed Skill
 
@@ -950,16 +950,11 @@ Stage skills should produce their normal analysis first, then use the artifact s
 
 The artifact skill owns the file protocol. Stage skills own the stage analysis. The advisor owns orchestration and must ensure each stage receives the prior stage's `handoff.json`.
 
-## Product Directory Policy
+## Product Prototype Policy
 
-For 1.0, `product/` is not required.
+For 1.0, `product/` is not required and has been removed from the main repo surface. The canonical user-facing output is the project-local `playbook/` directory.
 
-Recommended follow-up after the artifact skill exists:
-
-- Update `product/README.md` to mark it as future product prototype.
-- Update repository README to make `playbook/` artifact generation the recommended 1.0 workflow.
-- Keep `product/app/ARTIFACT-SPEC.md` as historical input or migrate its useful schema into the new skill.
-- Do not delete `product/` until the new artifact workflow is working and committed.
+The old app contract was migrated into `startup-playbook-artifacts`. Future product UI work should start from the new artifact protocol instead of restoring `product/app/.playbook-output`.
 
 ## Error Handling
 
@@ -991,7 +986,7 @@ Minimum implementation checks:
 1. The protocol lives in `startup-playbook-artifacts`; reusable JSON and Markdown templates should live under that skill's `templates/` directory.
 2. The first implementation should generate fully rendered static HTML. A deterministic renderer script is allowed if direct agent-written HTML becomes inconsistent.
 3. Generated `playbook/` directories should be committed in target product repos by default when they contain non-sensitive project decisions. Evidence with private customer details should be summarized or redacted before commit.
-4. `product/app/.playbook-output` is deprecated for 1.0. New work should write to project-local `playbook/`.
+4. The old product app and `.playbook-output` contract are removed from 1.0. New work should write to project-local `playbook/`.
 
 ## Recommendation
 

@@ -59,35 +59,20 @@ If any answer is missing, treat the idea as unvalidated.
 
 ## Standardized Artifact Output
 
-After completing validation, write a structured JSON report to:
+After completing validation, use `startup-playbook-artifacts` when the user asks to save, export, render, document, persist, or resume the result.
 
-```
-product/app/.playbook-output/{projectId}/validate/report.json
-```
+Write or refresh:
 
-The JSON must conform to this schema:
-
-```json
-{
-  "stage": "validate",
-  "score": 65,
-  "decision": "continue",
-  "reasoning": "One sentence summarizing the decision rationale.",
-  "evidence": ["Positive signal 1", "Positive signal 2"],
-  "concerns": ["Risk factor 1", "Risk factor 2"],
-  "analysis": {
-    "pain": "2-3 sentences about pain signal strength, frustration rate, workaround quality.",
-    "demand": "2-3 sentences about search demand, trend direction, long-tail density.",
-    "market": "2-3 sentences about competitive landscape, gaps, market maturity."
-  },
-  "suggestedNextSteps": ["Action 1", "Action 2", "Action 3"],
-  "generatedAt": "2026-05-28T20:50:00Z"
-}
+```text
+playbook/stages/validate/input.json
+playbook/stages/validate/report.json
+playbook/stages/validate/handoff.json
+playbook/stages/validate/report.md
 ```
 
-Scoring: 60-100 = continue, 35-59 = pivot, 0-34 = kill.
+The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.snapshot`, `analysis.gates`, `analysis.painMining`, `analysis.searchAndMarket`, `analysis.willingnessToPay`, and `analysis.landingPageTest`.
 
-The `{projectId}` is provided by the caller. If not provided, use the idea name slugified as the project ID.
+The `handoff.json` must include the narrowed segment, painful situation, strongest raw language, evidence IDs, first reachable channel, paid-intent gaps, and recommended next experiment.
 
 ## Tool Notes
 

@@ -1,0 +1,34 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "project-id",
+  "stage": "validate",
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "idea-validation",
+    "model": "unknown"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/validate/input.json"
+    }
+  ],
+  "status": "draft",
+  "score": null,
+  "decision": null,
+  "nextStageAction": "stay",
+  "reasoning": "No decision recorded yet.",
+  "known": [],
+  "assumed": [],
+  "toValidate": [],
+  "evidenceRefs": [],
+  "concerns": [],
+  "nextSteps": [],
+  "analysis": {},
+  "handoffSummary": {
+    "nextStage": null,
+    "summary": "No handoff recorded yet."
+  }
+}

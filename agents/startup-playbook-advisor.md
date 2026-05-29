@@ -60,5 +60,6 @@ When the repository is available, use these local skills and tools:
 - `indie-hackers-starting-up`;
 - `seo-aso-growth-research`;
 - `product-development-loop`;
+- `startup-playbook-artifacts`;
 - `tools/google-trends-seo`;
 - `tools/case-study-skill-miner`.

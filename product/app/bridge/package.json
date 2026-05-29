@@ -1,9 +1,0 @@
-{
-  "name": "startup-playbook-bridge",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "bin": { "sp-bridge": "./server.mjs" },
-  "dependencies": { "ws": "^8.18.0" },
-  "engines": { "node": ">=20" }
-}

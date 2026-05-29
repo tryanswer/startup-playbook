@@ -1,0 +1,29 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "project-id",
+  "stage": "validate",
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "unknown"
+  },
+  "sourceInputs": [
+    {
+      "type": "conversation",
+      "path": null
+    }
+  ],
+  "fromStage": null,
+  "inputs": {
+    "idea": "unknown",
+    "targetUserCandidate": "unknown",
+    "painfulSituation": "unknown",
+    "currentWorkaround": "unknown",
+    "desiredOutcome": "unknown",
+    "reachableSurfaces": [],
+    "currentEvidenceRefs": [],
+    "constraints": []
+  }
+}

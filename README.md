@@ -46,6 +46,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 | [`indie-hackers-starting-up`](skills/indie-hackers-starting-up/) | Stage-based founder guide from 80 startup resources |
 | [`ai-native-development`](skills/ai-native-development/) | AI-native build workflow: Superpowers spec, DESIGN.md + taste-skill, six stability pillars, agent audit |
 | [`startup-playbook-advisor`](skills/startup-playbook-advisor/) | Full advisor agent: ask the right questions, output kill/pivot/continue |
+| [`startup-playbook-artifacts`](skills/startup-playbook-artifacts/) | Persist stage outputs into project-local `playbook/` JSON, Markdown, and static HTML |
 | [`indie-hackers-reply`](skills/indie-hackers-reply/) | Draft and publish Indie Hackers validation replies with explicit confirmation |
 
 ### Tools (CLI Scripts)
@@ -76,6 +77,8 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 ### Option 1: Use the Advisor Agent
 
 `startup-playbook-advisor` is a startup advisor skill / agent for the pre-build stage. It first guides a conversation around demand reality, user reachability, willingness to pay, validation experiments, MVP scope, and growth path, then outputs a kill / pivot / continue decision and next steps.
+
+When you want a durable output, use `startup-playbook-artifacts` to write project-local `playbook/` artifacts and a static `playbook/index.html` that can be opened directly in a browser.
 
 Install the startup advisor as a skill in your AI environment:
 
