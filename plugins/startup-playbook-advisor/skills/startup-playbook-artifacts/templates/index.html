@@ -7,49 +7,39 @@
   <style>
     :root {
       color-scheme: light;
-      font-family: Satoshi, "Geist", "Avenir Next", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --bg: #f6f7f2;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+      --bg: #f5f5f7;
       --surface: #ffffff;
-      --surface-soft: #eef1e9;
-      --ink: #17201d;
-      --muted: #63706a;
-      --line: #d9ded4;
-      --accent: #0f766e;
-      --accent-soft: #dcebe7;
-      --warning: #9a6a14;
-      --shadow: 0 24px 60px -38px rgba(18, 31, 28, 0.45);
+      --surface-soft: #f2f2f7;
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(0, 0, 0, 0.09);
+      --line-strong: rgba(0, 0, 0, 0.14);
+      --accent: #0071e3;
+      --accent-soft: #e8f2ff;
+      --shadow: 0 18px 45px -30px rgba(0, 0, 0, 0.34);
+      --segment-bg: rgba(232, 232, 237, 0.82);
       background: var(--bg);
       color: var(--ink);
     }
 
     * { box-sizing: border-box; }
 
+    html { background: var(--bg); }
+
     body {
       margin: 0;
       min-width: 320px;
-      background:
-        linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 34rem),
-        radial-gradient(circle at 84% 8%, rgba(154, 106, 20, 0.08), transparent 24rem),
-        var(--bg);
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(23, 32, 29, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(23, 32, 29, 0.035) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), transparent 68%);
+      background: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
 
     main {
-      width: calc(100% - 40px);
-      max-width: 1180px;
+      width: min(1180px, calc(100% - 48px));
       margin: 0 auto;
-      padding: 34px 0 60px;
+      padding: 34px 0 64px;
     }
 
     header {
@@ -57,121 +47,145 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 24px;
       align-items: end;
-      padding: 12px 0 28px;
-      border-bottom: 1px solid var(--line);
+      padding: 22px 0 18px;
     }
 
     .eyebrow {
-      margin: 0 0 12px;
-      color: var(--accent);
+      margin: 0 0 10px;
+      color: var(--muted);
       font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0;
     }
 
     h1 {
       margin: 0;
       max-width: 760px;
-      font-size: clamp(34px, 5vw, 64px);
-      line-height: 0.96;
+      font-size: clamp(36px, 5vw, 62px);
+      font-weight: 700;
+      line-height: 1.02;
       letter-spacing: 0;
     }
 
     .subtitle {
-      margin: 18px 0 0;
-      max-width: 62ch;
+      margin: 14px 0 0;
+      max-width: 64ch;
       color: var(--muted);
       font-size: 17px;
-      line-height: 1.55;
+      line-height: 1.5;
     }
 
     .status-pill {
       display: inline-flex;
       align-items: center;
-      gap: 9px;
-      min-height: 34px;
-      padding: 0 13px;
-      border: 1px solid rgba(15, 118, 110, 0.24);
+      gap: 8px;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.76);
-      color: var(--accent);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 750;
-      box-shadow: var(--shadow);
+      font-weight: 600;
       white-space: nowrap;
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      backdrop-filter: saturate(180%) blur(16px);
     }
 
     .status-pill::before {
       content: "";
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.12);
+      background: #34c759;
     }
 
-    .stage-rail {
+    .stage-rail.segment-control {
+      position: sticky;
+      top: 12px;
+      z-index: 2;
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 0;
-      margin: 22px 0;
+      gap: 4px;
+      margin: 16px 0 20px;
+      padding: 4px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      overflow: hidden;
-      background: rgba(255, 255, 255, 0.72);
-      box-shadow: var(--shadow);
+      border-radius: 999px;
+      background: var(--segment-bg);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.72), var(--shadow);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
     }
 
-    .stage-step {
+    .stage-step.segment-button {
+      position: relative;
       min-width: 0;
-      padding: 13px 15px 14px;
+      min-height: 40px;
+      padding: 0 14px;
       border: 0;
-      border-right: 1px solid var(--line);
+      border-radius: 999px;
       background: transparent;
-      color: var(--ink);
-      text-align: left;
+      color: var(--muted);
+      text-align: center;
       cursor: pointer;
-      transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+      transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
     }
 
-    .stage-step:last-child { border-right: 0; }
+    .segment-button .label { display: none; }
 
-    .stage-step:hover {
-      background: rgba(220, 235, 231, 0.46);
+    .stage-step.segment-button strong {
+      display: block;
+      margin: 0;
+      overflow: hidden;
+      color: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 40px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
-    .stage-step:active {
-      transform: translateY(1px);
+    .stage-step.segment-button:hover {
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--ink);
     }
 
-    .stage-step[aria-selected="true"] {
-      background: var(--accent-soft);
-      box-shadow: inset 0 -3px 0 var(--accent);
+    .stage-step.segment-button:active {
+      transform: scale(0.985);
+    }
+
+    .stage-step.segment-button:focus-visible {
+      outline: 2px solid rgba(0, 113, 227, 0.36);
+      outline-offset: 2px;
+    }
+
+    .stage-step.segment-button[aria-selected="true"] {
+      background: var(--surface);
+      color: var(--ink);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 22px -18px rgba(0, 0, 0, 0.45);
     }
 
     .label {
       display: block;
       color: var(--muted);
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-weight: 600;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .stage-step strong,
     .metric strong,
     .artifact-nav a {
       display: block;
       margin-top: 5px;
       overflow-wrap: anywhere;
-      font-weight: 760;
+      font-weight: 650;
     }
 
     .dashboard {
       display: grid;
       grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
-      gap: 18px;
+      gap: 16px;
       align-items: start;
     }
 
@@ -179,13 +193,13 @@
     .evidence-board,
     .panel {
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.88);
+      border-radius: 18px;
+      background: var(--surface);
       box-shadow: var(--shadow);
     }
 
     .decision-panel {
-      padding: clamp(22px, 4vw, 36px);
+      padding: clamp(24px, 4vw, 38px);
     }
 
     .decision-topline {
@@ -194,32 +208,34 @@
       gap: 12px;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 26px;
+      margin-bottom: 22px;
     }
 
     h2 {
       margin: 0;
-      font-size: clamp(22px, 3vw, 34px);
-      line-height: 1.08;
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      line-height: 1.1;
       letter-spacing: 0;
     }
 
     h3 {
       margin: 0 0 14px;
-      font-size: 15px;
+      font-size: 14px;
+      font-weight: 650;
       letter-spacing: 0;
     }
 
     .decision-badge {
       display: inline-flex;
       align-items: center;
-      min-height: 34px;
+      min-height: 32px;
       padding: 0 12px;
-      border-radius: 8px;
+      border-radius: 999px;
       background: var(--surface-soft);
       color: var(--ink);
       font-size: 13px;
-      font-weight: 800;
+      font-weight: 650;
     }
 
     .reasoning {
@@ -243,8 +259,9 @@
     }
 
     .metric strong {
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
-      font-size: 24px;
+      color: var(--ink);
+      font-family: "SF Mono", "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
+      font-size: 22px;
       letter-spacing: 0;
     }
 
@@ -262,7 +279,7 @@
 
     .evidence-list li,
     .clean-list li {
-      padding: 14px 0;
+      padding: 13px 0;
       border-top: 1px solid var(--line);
       color: var(--muted);
       line-height: 1.5;
@@ -283,8 +300,8 @@
     .risk-next-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 18px;
-      margin-top: 18px;
+      gap: 16px;
+      margin-top: 16px;
     }
 
     .panel {
@@ -292,20 +309,20 @@
     }
 
     .artifact-nav {
-      margin-top: 18px;
-      padding-top: 18px;
+      margin-top: 16px;
+      padding-top: 16px;
       border-top: 1px solid var(--line);
     }
 
     .evidence-data {
-      margin-top: 18px;
+      margin-top: 16px;
       padding: 22px;
       overflow-x: auto;
     }
 
     .evidence-data table {
       width: 100%;
-      min-width: 720px;
+      min-width: 760px;
       border-collapse: collapse;
     }
 
@@ -324,15 +341,15 @@
       border-top: 0;
       color: var(--ink);
       font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      font-weight: 650;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
     .evidence-data td strong {
       display: block;
       color: var(--ink);
-      font-weight: 760;
+      font-weight: 650;
     }
 
     .artifact-list {
@@ -343,19 +360,19 @@
 
     .artifact-list a {
       display: block;
-      min-height: 44px;
-      padding: 11px 12px;
+      min-height: 42px;
+      padding: 10px 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--surface);
+      border-radius: 12px;
+      background: var(--surface-soft);
       color: var(--accent);
       text-decoration: none;
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
 
     .artifact-list a:hover {
-      border-color: rgba(15, 118, 110, 0.34);
-      background: var(--accent-soft);
+      border-color: rgba(0, 113, 227, 0.28);
+      background: #ffffff;
       transform: translateY(-1px);
     }
 
@@ -367,10 +384,10 @@
 
     code {
       padding: 2px 5px;
-      border-radius: 5px;
+      border-radius: 6px;
       background: var(--surface-soft);
       color: var(--ink);
-      font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
+      font-family: "SF Mono", "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
       font-size: 0.92em;
     }
 
@@ -397,16 +414,22 @@
         gap: 16px;
       }
 
-      .stage-rail {
-        grid-template-columns: 1fr;
+      .stage-rail.segment-control {
+        display: flex;
+        overflow-x: auto;
+        border-radius: 24px;
+        scrollbar-width: none;
       }
 
-      .stage-step {
-        border-right: 0;
-        border-top: 1px solid var(--line);
+      .stage-rail.segment-control::-webkit-scrollbar {
+        display: none;
       }
 
-      .stage-step:first-child { border-top: 0; }
+      .stage-step.segment-button {
+        flex: 0 0 auto;
+        min-width: max-content;
+        padding: 0 16px;
+      }
 
       .metrics,
       .artifact-list {
@@ -426,12 +449,12 @@
       <div class="status-pill status-waiting" id="stage-status">Validate stage</div>
     </header>
 
-    <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
-      <button class="stage-step" type="button" role="tab" data-stage-tab="validate" aria-selected="true" aria-controls="stage-panel"><span class="label">Stage 01</span><strong>Validate</strong></button>
-      <button class="stage-step" type="button" role="tab" data-stage-tab="business-model" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 02</span><strong>Business Model</strong></button>
-      <button class="stage-step" type="button" role="tab" data-stage-tab="build" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 03</span><strong>Build</strong></button>
-      <button class="stage-step" type="button" role="tab" data-stage-tab="grow" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 04</span><strong>Grow</strong></button>
-      <button class="stage-step" type="button" role="tab" data-stage-tab="operate" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 05</span><strong>Operate</strong></button>
+    <nav class="stage-rail segment-control" role="tablist" aria-label="Startup stage pipeline">
+      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="validate" aria-selected="true" aria-controls="stage-panel"><span class="label">Stage 01</span><strong>Validate</strong></button>
+      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="business-model" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 02</span><strong>Business Model</strong></button>
+      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="build" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 03</span><strong>Build</strong></button>
+      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="grow" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 04</span><strong>Grow</strong></button>
+      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="operate" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 05</span><strong>Operate</strong></button>
     </nav>
 
     <section class="stage-detail" id="stage-panel" data-stage-panel="validate" role="tabpanel" aria-live="polite"></section>

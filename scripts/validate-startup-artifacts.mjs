@@ -59,7 +59,8 @@ function assert(condition, message, errors) {
 
 function validateIndexTemplate(html, label, errors) {
   const requiredTokens = [
-    "class=\"stage-rail\"",
+    "class=\"stage-rail segment-control\"",
+    "class=\"stage-step segment-button\"",
     "class=\"decision-panel\"",
     "class=\"evidence-board\"",
     "class=\"risk-next-grid\"",
@@ -73,8 +74,12 @@ function validateIndexTemplate(html, label, errors) {
     "function evidenceRows",
     "addEventListener(\"click\"",
     "@media (max-width: 760px)",
-    "max-width: 1180px",
-    "font-family: Satoshi",
+    "width: min(1180px",
+    "-apple-system",
+    "#f5f5f7",
+    "#0071e3",
+    "-webkit-backdrop-filter",
+    "backdrop-filter",
     "type=\"application/json\" id=\"playbook-data\"",
   ];
 
@@ -83,6 +88,8 @@ function validateIndexTemplate(html, label, errors) {
   }
 
   assert(!html.includes("font-family: Inter"), `${label} should not use Inter as the primary font`, errors);
+  assert(!html.includes("body::before"), `${label} should not use the old grid overlay background`, errors);
+  assert(!html.includes("radial-gradient"), `${label} should not use the old decorative gradient background`, errors);
   assert(!html.includes("h-screen"), `${label} should not use h-screen`, errors);
   assert(!html.includes("product/app/.playbook-output"), `${label} still references old product output path`, errors);
 }
