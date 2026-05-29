@@ -224,6 +224,303 @@ Failure patterns summarized from cases:
 | Build platform from Day 1 | Cold start requires both sides to have people | First build a tool for one side |
 | Never raise prices | Low prices limit growth ceiling | Regularly raise prices, lock in old users |
 
+## Step 6: Unit Economics Model
+
+Unit economics determine whether your business model is sustainable. Calculate these metrics before scaling acquisition.
+
+### CAC (Customer Acquisition Cost)
+
+**Formula**: Total Acquisition Cost ÷ Number of New Customers
+
+| Component | What to Include |
+|---|---|
+| Ad spend | All paid advertising costs |
+| Content creation | Time cost for blog posts, videos, social media |
+| Tools & software | CRM, email marketing, analytics tools |
+| Salaries | Pro-rated sales/marketing team costs |
+| Events & sponsorships | Conference fees, meetup sponsorships |
+
+**Example**: If you spent $2,000 on ads + $500 on content tools + $1,000 pro-rated salary in a month and acquired 50 customers:
+- CAC = ($2,000 + $500 + $1,000) ÷ 50 = **$70 per customer**
+
+### LTV (Lifetime Value)
+
+**Formula**: ARPU × Gross Margin × (1 / Churn Rate)
+
+| Variable | Definition |
+|---|---|
+| ARPU | Average Revenue Per User per month |
+| Gross Margin | Revenue minus direct costs (typically 80-95% for SaaS) |
+| Churn Rate | Monthly customer churn rate (e.g., 5% = 0.05) |
+
+**Example**: If ARPU = $50, Gross Margin = 90%, Churn Rate = 5%/month:
+- LTV = $50 × 0.90 × (1 / 0.05) = $50 × 0.90 × 20 = **$900**
+
+### Health Ratios
+
+| Metric | Healthy Threshold | Warning Zone | Critical |
+|---|---|---|---|
+| **LTV:CAC Ratio** | > 3:1 | 2:1 - 3:1 | < 2:1 |
+| **Payback Period** | < 12 months | 12-18 months | > 18 months |
+| **Gross Margin** | > 80% (SaaS) | 60-80% | < 60% |
+| **Monthly Churn** | < 5% (B2B), < 8% (B2C) | 5-10% | > 10% |
+
+### Stage-Based Benchmarks
+
+| Stage | Target CAC | Target LTV:CAC | Payback Period | Notes |
+|---|---|---|---|---|
+| **Validation ($0-$1K MRR)** | <$100 | > 2:1 | < 6 months | Focus on learning, not optimization |
+| **Seed ($1K-$10K MRR)** | <$200 | > 3:1 | < 12 months | Start tracking by channel |
+| **Growth ($10K-$50K MRR)** | Optimize per channel | > 3:1 | < 12 months | Segment by customer cohort |
+| **Scale ($50K+ MRR)** | Channel-specific targets | > 4:1 | < 9 months | Full funnel attribution |
+
+**Key rules**:
+- Don't scale acquisition until LTV:CAC > 3:1 is proven with real data (not projections).
+- Payback period matters more than LTV for cash flow—can you afford to wait 12 months to recoup CAC?
+- Track CAC by channel; some channels may have high CAC but also high LTV (enterprise sales).
+- Recalculate unit economics quarterly as pricing, churn, and acquisition costs change.
+
+## Step 7: Retention & Cohort Analysis
+
+Retention is the leading indicator of product-market fit. Track it before optimizing acquisition.
+
+### Cohort Retention Definition
+
+A cohort is a group of users who signed up in the same time period (usually monthly). Track what percentage remain active or paying over time.
+
+| Metric | Definition | Calculation |
+|---|---|---|
+| **D1 Retention** | Day 1 retention | Users active on Day 1 ÷ Users who signed up |
+| **D7 Retention** | Week 1 retention | Users active in Week 1 ÷ Users who signed up |
+| **D30 Retention** | Month 1 retention | Users active in Month 1 ÷ Users who signed up |
+| **D90 Retention** | Quarter 1 retention | Users active in Month 3 ÷ Users who signed up |
+
+### Healthy Retention Benchmarks by Model
+
+| Business Model | D7 | D30 | D90 | Annual Churn |
+|---|---|---|---|---|
+| **B2B SaaS** | 60-70% | 50-60% | 40-50% | < 20% |
+| **B2C SaaS** | 40-50% | 30-40% | 20-30% | < 40% |
+| **Developer Tool** | 50-60% | 40-50% | 30-40% | < 30% |
+| **Content/Community** | 30-40% | 20-30% | 15-25% | < 50% |
+| **Marketplace** | 50-60% | 40-50% | 35-45% | < 25% |
+
+**Note**: For subscription businesses, focus on **monthly revenue retention** rather than user retention—one enterprise customer leaving hurts more than 10 free users churning.
+
+### Revenue Retention vs User Retention
+
+| Metric | Definition | Why It Matters |
+|---|---|---|
+| **User Retention** | % of users still active | Indicates product stickiness |
+| **Revenue Retention** | % of revenue retained from existing customers | Indicates expansion potential |
+| **Net Revenue Retention (NRR)** | (Starting MRR + Expansion - Contraction - Churn) ÷ Starting MRR | > 100% means existing customers are growing faster than churn |
+
+### NRR (Net Revenue Retention)
+
+**Formula**: (Starting MRR + Upgrades - Downgrades - Churn) ÷ Starting MRR × 100%
+
+| NRR Range | Interpretation | Action |
+|---|---|---|
+| **> 120%** | Excellent—existing customers are expanding rapidly | Double down on upsell/cross-sell |
+| **100-120%** | Healthy—expansion offsets churn | Continue current strategy |
+| **90-100%** | Warning—churn nearly equals expansion | Investigate churn reasons |
+| **< 90%** | Critical—losing revenue from existing base | Fix retention before acquiring new customers |
+
+**B2B Benchmark**: NRR > 100% is the minimum for sustainable growth. Top SaaS companies achieve 110-130%.
+
+**Key rules**:
+- Track cohorts monthly; don't aggregate all users into one retention number.
+- For B2B, prioritize **revenue retention** over user count—one $500/mo customer > ten $5/mo customers.
+- If D30 retention < 30%, fix product value before spending on acquisition.
+- NRR > 100% means you can grow even with zero new customers—this is the holy grail.
+
+## Step 8: Competitive Positioning
+
+Understanding your competitive landscape prevents you from building a "me-too" product that competes only on price.
+
+### Competitor Classification
+
+| Type | Definition | Example | Strategic Response |
+|---|---|---|---|
+| **Direct Competitors** | Same solution, same target user | Notion vs. Obsidian for note-taking | Differentiate on UX, niche features, or pricing |
+| **Indirect Competitors** | Different solution, same problem | Calendly vs. manual email scheduling | Highlight convenience, automation, reliability |
+| **Alternative Solutions** | Status quo or DIY approach | Excel spreadsheet vs. specialized tool | Emphasize time savings, error reduction, insights |
+| **Potential Entrants** | Large companies that could build this | Google, Microsoft, OpenAI | Build moat quickly; focus on underserved niches |
+
+### Moat Types (Defensibility)
+
+| Moat Type | Description | Strength | Time to Build | Examples |
+|---|---|---|---|---|
+| **Network Effects** | Product becomes more valuable as more users join | Very Strong | 2-5 years | LinkedIn, Slack, marketplaces |
+| **Data Moat** | Proprietary data improves product quality over time | Strong | 1-3 years | Grammarly, recommendation engines |
+| **Brand** | Trust and recognition reduce acquisition costs | Moderate-Strong | 3-10 years | Apple, Basecamp |
+| **Switching Costs** | High effort/cost to switch to competitor | Moderate | 6-18 months | Enterprise SaaS with deep integrations |
+| **Technical Complexity** | Hard to replicate technology | Weak-Moderate | 6-24 months | Custom algorithms, infrastructure |
+| **None (Commodity)** | Easy to copy, competes on price | None | N/A | Generic templates, basic tools |
+
+**Indie Hacker Reality**: Most indie products start with **no moat**. Your goal is to build switching costs (integrations, data history, workflows) before competitors notice you.
+
+### Differentiation Dimensions
+
+Choose 1-2 dimensions to dominate; don't try to win on all:
+
+| Dimension | How to Win | Trade-off |
+|---|---|---|
+| **Price** | Be 50%+ cheaper than incumbents | Lower margins, attracts price-sensitive users |
+| **Simplicity** | Remove 80% of features, focus on core job | Loses power users |
+| **Niche Focus** | Serve one industry/role extremely well | Smaller total addressable market |
+| **UX/Design** | Best-in-class interface and onboarding | Higher development cost |
+| **Speed** | Faster setup, faster results, faster support | May sacrifice depth |
+| **Integration** | Works seamlessly with tools users already use | Complex engineering |
+| **Community** | Active user community provides support and network effects | Requires ongoing moderation |
+
+**Key rules**:
+- Map your top 3 direct competitors on a 2x2 matrix (e.g., Price vs. Features, Simplicity vs. Power).
+- Don't compete on the same dimension as well-funded incumbents—choose an axis they ignore.
+- "Better UX" is not a moat unless it creates switching costs (data, workflows, habits).
+- For B2B, switching costs (integrations, training, data migration) are your strongest early moat.
+
+## Step 9: Sales Discovery (MEDDPICC)
+
+For B2B products with ACV (Annual Contract Value) > $1K, use MEDDPICC to qualify deals and avoid wasting time on unlikely prospects.
+
+### MEDDPICC Framework
+
+| Component | Question to Answer | Red Flags |
+|---|---|---|
+| **Metrics** | What measurable outcome does the buyer expect? | Vague goals like "improve efficiency" |
+| **Economic Buyer** | Who controls the budget? Can they sign without approval? | Champion loves it but can't approve spend |
+| **Decision Criteria** | What factors will they use to choose? | Only mentions price; no technical evaluation |
+| **Decision Process** | What steps lead to a signed contract? | Unclear timeline; "we'll get back to you" |
+| **Identify Pain** | What specific problem are they solving? | No urgency; "nice to have" not "must have" |
+| **Champion** | Who internally advocates for your solution? | No champion; you're selling to a committee |
+| **Competition** | What alternatives are they considering? | Evaluating 5+ vendors; incumbent is "good enough" |
+
+### When to Use MEDDPICC
+
+| Condition | Action |
+|---|---|
+| **ACV < $1K** | Skip MEDDPICC; use self-serve signup + automated onboarding |
+| **ACV $1K-$5K** | Light qualification: Metrics + Economic Buyer + Pain |
+| **ACV $5K-$25K** | Full MEDDPICC; schedule discovery calls |
+| **ACV > $25K** | MEDDPICC + executive alignment + proof-of-concept |
+
+### Discovery Call Template
+
+```
+1. Opening (5 min): Confirm agenda, stakeholders present
+2. Current State (10 min): How do they solve this today? What's broken?
+3. Desired Outcome (10 min): What does success look like in 6 months?
+4. Decision Process (5 min): Who else needs to approve? What's the timeline?
+5. Next Steps (5 min): Schedule demo, trial, or follow-up
+```
+
+**Qualification Scorecard** (score each 1-5, total > 25 = qualified):
+
+| Component | Score 1 (Weak) | Score 5 (Strong) |
+|---|---|---|
+| Metrics | No clear KPIs | Specific, measurable targets |
+| Economic Buyer | Not present; multiple approvals needed | Present; can decide independently |
+| Decision Criteria | Price-only comparison | Value-based; evaluating fit |
+| Decision Process | Unclear; no timeline | Clear steps; decision in < 30 days |
+| Identify Pain | Mild inconvenience | Critical business impact |
+| Champion | No internal advocate | Executive sponsor pushing deal |
+| Competition | 5+ vendors; status quo strong | You're the frontrunner |
+
+**Key rules**:
+- Don't start MEDDPICC until the prospect has expressed clear pain and budget awareness.
+- If Economic Buyer isn't involved by the second call, the deal is likely dead—escalate or disqualify.
+- Track MEDDPICC scores in your CRM; deals scoring < 20 rarely close.
+- For ACV < $1K, invest in self-serve onboarding instead of sales calls—your time is better spent on larger deals or product improvements.
+
+## Step 10: Growth Experiment Design
+
+Systematic experimentation beats guessing. Use ICE scoring to prioritize experiments and run them in 1-2 week cycles.
+
+### ICE Scoring Framework
+
+**Formula**: ICE Score = Impact × Confidence × Ease (each scored 1-10)
+
+| Dimension | Score 1 (Low) | Score 10 (High) |
+|---|---|---|
+| **Impact** | Minimal effect on key metric | Could 2x the key metric |
+| **Confidence** | Guess based on intuition | Data-backed; similar experiments succeeded |
+| **Ease** | Requires weeks of engineering | Can be done in < 2 days |
+
+**Prioritization**: Run experiments in descending ICE score order. Re-score after each experiment based on learnings.
+
+### Experiment Template
+
+Every growth experiment should follow this structure:
+
+```markdown
+**Experiment Name**: [Brief descriptive name]
+
+**Hypothesis**: If we [change/action], then [metric] will increase by [X%] because [reasoning].
+
+**Primary Metric**: [Single North Star metric, e.g., signup conversion rate]
+
+**Secondary Metrics**: [Guardrail metrics to monitor, e.g., churn, support tickets]
+
+**Minimum Viable Experiment**:
+- What: [Smallest possible change to test hypothesis]
+- Audience: [Which user segment; e.g., new signups, trial users]
+- Duration: [1-2 weeks maximum]
+- Sample Size: [Minimum users needed for statistical significance]
+
+**Success Criteria**:
+- Win: [Metric] increases by ≥ [X%] with p-value < 0.05
+- Inconclusive: Change is < [X%] or p-value > 0.05
+- Loss: [Metric] decreases or negative side effects
+
+**Timeline**:
+- Day 1-2: Build experiment
+- Day 3-14: Run experiment, monitor daily
+- Day 15: Analyze results, decide: ship, iterate, or kill
+```
+
+### K-Factor (Viral Coefficient)
+
+**Formula**: K = i × c
+
+| Variable | Definition | Example |
+|---|---|---|
+| **i** | Number of invitations sent per user | Average 3 invites per user |
+| **c** | Conversion rate of invitations | 20% of invitees sign up |
+| **K** | Viral coefficient | K = 3 × 0.20 = 0.6 |
+
+**Interpretation**:
+
+| K-Factor | Meaning | Action |
+|---|---|---|
+| **K > 1.0** | Viral growth—each user brings > 1 new user | Scale aggressively; add frictionless sharing |
+| **K = 0.5-1.0** | Strong viral loop—significant organic growth | Optimize invitation flow; add incentives |
+| **K = 0.1-0.5** | Weak virality—some word-of-mouth | Add referral incentives; improve shareability |
+| **K < 0.1** | No meaningful virality | Focus on paid/content acquisition instead |
+
+**Ways to Increase K**:
+- Increase **i**: Make sharing easier (one-click invites, pre-written messages)
+- Increase **c**: Improve landing page for invitees; add social proof
+- Add **incentives**: Referral bonuses for both referrer and referee
+
+### Experiment Backlog Management
+
+Maintain a running backlog of experiment ideas, scored by ICE:
+
+| Experiment | Impact | Confidence | Ease | ICE Score | Status |
+|---|---|---|---|---|---|
+| Add social proof to pricing page | 7 | 8 | 9 | 504 | Completed ✅ |
+| Referral program with $10 credit | 8 | 6 | 7 | 336 | Running 🔄 |
+| Exit-intent popup with discount | 6 | 7 | 8 | 336 | Pending ⏳ |
+| Onboarding video tutorial | 5 | 5 | 4 | 100 | Killed ❌ |
+
+**Key rules**:
+- Run only 1-2 experiments at a time to avoid confounding variables.
+- Maximum experiment duration: 2 weeks. If inconclusive, extend by 1 week or kill.
+- Document every experiment (win, loss, or inconclusive) in a shared log.
+- Re-prioritize the backlog monthly based on new data and changing business goals.
+- K > 1 is rare for B2B; focus on reducing friction in existing referral flows rather than expecting viral growth.
+
 ## Conditional Rules
 
 - If **user pain is daily and tool-shaped** → SaaS subscription, start at $19-49/mo.

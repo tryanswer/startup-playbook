@@ -28,23 +28,29 @@ If any answer is missing, treat the idea as unvalidated.
 3. **Mine pain ore**
    Collect raw complaints from Reddit, app reviews, Discord, forums, social comments, support tickets, or interviews. Store short excerpts, source, link, and pain theme. If this repository is available and Reddit/forum evidence is in scope, use `reddit-demand-validation` and `tools/topic-pain-miner`.
 
-4. **Quantify pain**
+4. **Conduct structured user interviews**
+   Move beyond online quotes by interviewing at least 5 target users using a structured framework. Use SPIN (Situation, Problem, Implication, Need-payoff), Gap Analysis, or Sandler questioning to uncover deep pain. Prepare an interview script covering: current workflow, specific friction points, business/personal impact of the problem, and what they've tried. Record sessions (with permission), transcribe, and tag insights by pain theme, urgency, and willingness to change. Minimum sample: 5 interviews per segment. Focus on behavioral evidence ("What did you do last time?") over opinions ("Would you use this?").
+
+5. **Quantify pain**
    Cluster the quotes with AI and calculate theme frequency. Prioritize pains that appear in more than 40% of the corpus. Preserve vivid language from users instead of rewriting everything into neutral product wording.
 
-5. **Validate demand**
+6. **Score opportunities with RICE**
+   Evaluate each validated pain opportunity using the RICE framework: Reach (users affected per month) × Impact (1-3 scale: minimal to massive) × Confidence (percentage based on evidence quality) ÷ Effort (person-months to validate/solve). Create a scoring table with columns: Pain Theme, Reach, Impact, Confidence, Effort, RICE Score, Priority Rank. Use this to objectively rank which problems to tackle first. Focus on high-reach, high-impact, low-effort opportunities with strong confidence scores.
+
+7. **Validate demand**
    Use Keywords Everywhere for long-tail density, volume, CPC, and competition when available. Use Google Trends for trend direction, geography, related queries, and seasonality. Reject ideas with declining search interest, no concrete long-tail terms, or only broad head-term interest.
 
-6. **Check willingness to pay**
+8. **Check willingness to pay**
    Look for buying behavior: paid alternatives, high CPC, marketplace demand, explicit user budget, service purchases, affiliate products, paid communities, preorder clicks, or payment-page clicks.
 
-7. **Run the first-paying-customer check**
+9. **Run the first-paying-customer check**
    A launch post, warm relationship, Product Hunt listing, upvote, like, or signup does not prove paid demand. Before adding features after a weak launch, identify a specific person with a specific problem and ask one sharp qualifying question. Continue product iteration only when there is payment, preorder, paid pilot, booked sales call with clear pain, or another strong purchase-intent signal. A useful default constraint is: find 5 paying or high-intent customers before building another feature.
 
-8. **Build a fast landing page**
-   Use raw user language for headline, pain points, FAQ, and CTA. Include a waitlist, preorder, buy-now, consultation booking, or payment-intent action.
+10. **Build a fast landing page**
+    Use raw user language for headline, pain points, FAQ, and CTA. Include a waitlist, preorder, buy-now, consultation booking, or payment-intent action.
 
-9. **Decide**
-   Output one of: kill, pivot, continue. Include the evidence threshold and next experiment.
+11. **Decide**
+    Output one of: kill, pivot, continue. Include the evidence threshold and next experiment.
 
 ## Required Output
 
@@ -85,6 +91,14 @@ The `handoff.json` must include the narrowed segment, painful situation, stronge
 - Google Trends is normalized relative interest from 0 to 100, not search volume.
 - Keywords Everywhere is paid; if unavailable, use Google Trends plus SERP autocomplete, community evidence, app-store reviews, and competitor pricing, then label confidence lower.
 - If this repository is available, use `tools/google-trends-seo` for Trends and keyword reports.
+
+## Usability Testing
+
+Once you have a prototype or MVP, conduct usability tests with at least 5 target users to validate solution fit. Define 3-5 core tasks that represent the primary value proposition. Measure: task completion rate (target >80%), time on task, error rate, and subjective satisfaction using the System Usability Scale (SUS) questionnaire (target score >68). Observe where users hesitate, make errors, or express confusion. Record sessions for later analysis. Iterate on design based on observed friction points before scaling. Usability testing reveals whether your solution actually solves the problem in a way users can understand and execute.
+
+## Feedback Loop
+
+Establish a continuous feedback cycle: collect user feedback → synthesize insights → design experiments → validate hypotheses → iterate. Create lightweight mechanisms for ongoing input: in-app feedback widgets, regular user interviews (monthly), usage analytics review, support ticket analysis, and community monitoring. Track key metrics over time: feature adoption, retention cohorts, NPS, and churn reasons. Use this loop to continuously refine product-market fit rather than treating validation as a one-time gate. Document learnings in the decision log and update assumptions as new evidence emerges.
 
 ## Common Mistakes
 
