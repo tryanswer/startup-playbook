@@ -1,0 +1,98 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "business-model",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "business-model-design",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/business-model/input.json"
+    }
+  ],
+  "status": "completed",
+  "score": 61,
+  "decision": "continue",
+  "nextStageAction": "advance",
+  "reasoning": "A productized service is a credible first revenue path because image editing is already a paid category and the workflow can be delivered manually before SaaS.",
+  "known": [
+    "Paid ecommerce photo editing services exist.",
+    "OpenAI image editing can support the production workflow technically.",
+    "Mock paid-intent suggests sellers may pay for a guaranteed image pack, but this is not real validation."
+  ],
+  "assumed": [
+    "The buyer is the seller/operator, not an internal designer.",
+    "A per-SKU pack is easier to sell than a subscription before repeat usage is proven.",
+    "Compliance review and revision speed are stronger differentiators than pure image quality."
+  ],
+  "toValidate": [
+    "What price will real sellers pay per SKU pack?",
+    "How many SKUs does a typical target seller update per month?",
+    "Will sellers share original product photos and platform credentials safely?",
+    "Do sellers care more about Amazon compliance, ad creative, or marketplace search thumbnail CTR?"
+  ],
+  "evidenceRefs": ["ev-pixc-paid-alt-001", "ev-mock-paid-test-001", "ev-openai-gpt-image-2-model-001"],
+  "concerns": [
+    "Competing with low-cost design labor and AI tools can compress pricing.",
+    "If sellers only need one-off cleanup, subscription retention may be weak.",
+    "Compliance guarantee creates liability unless bounded carefully."
+  ],
+  "nextSteps": [
+    "Sell a manual SKU image pack before building self-serve automation.",
+    "Package one SKU as 1 main image, 4 secondary images, 2 lifestyle/ad variants, and a compliance checklist.",
+    "Charge enough to test seriousness, not just interest.",
+    "Track gross margin after GPT Image 2 cost, human review time, and revision count."
+  ],
+  "analysis": {
+    "positioning": {
+      "buyerType": "B2B small merchant",
+      "userType": "seller/operator or ecommerce VA",
+      "frequency": "per new SKU, seasonal refresh, or marketplace rejection event",
+      "currentAlternative": "freelancer, agency, ecommerce image editor, or generic AI image tool",
+      "deliverable": "platform-ready SKU image pack plus compliance notes"
+    },
+    "recommendedModel": {
+      "type": "productized-service-to-saas",
+      "rationale": "Manual service validates paid demand and creates before/after datasets before investing in full workflow automation.",
+      "casePatternRefs": ["business-model-design:productized-service-to-saas"]
+    },
+    "pricing": {
+      "firstPaidTest": "paid SKU image pack",
+      "servicePriceRange": "$19-79 per SKU pack or RMB 99-399 per SKU pack",
+      "saasPriceHypothesis": "$49-199/mo after repeat demand is proven",
+      "anchor": "cost of outsourced image editing, time saved per SKU, and reduced rejection/revision risk",
+      "tiers": [
+        {
+          "name": "Starter SKU Pack",
+          "price": "$19-29",
+          "includes": ["main image cleanup", "background compliance", "2 secondary images"]
+        },
+        {
+          "name": "Launch SKU Pack",
+          "price": "$49-79",
+          "includes": ["main image", "4 secondary images", "2 lifestyle variants", "compliance checklist"]
+        }
+      ]
+    },
+    "revenueProgression": {
+      "zeroToOne": "2 paid SKU packs from real sellers",
+      "oneToOneK": "20 paid SKU packs or 5 repeat sellers",
+      "oneKToTenK": "repeatable seller acquisition channel plus batch workflow",
+      "killOrPivotThreshold": "0 paid SKU packs after 15 qualified seller conversations"
+    },
+    "unitEconomics": {
+      "cacAssumptions": ["manual outreach and community replies first", "paid ads only after conversion is proven"],
+      "ltvAssumptions": ["repeat sellers refresh images monthly or per launch"],
+      "paybackAssumption": "payback must happen on first SKU pack in service phase"
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "build",
+    "summary": "Build only a concierge workflow and checklist first; defer self-serve SaaS until 2 paid SKU packs and repeat demand are validated."
+  }
+}

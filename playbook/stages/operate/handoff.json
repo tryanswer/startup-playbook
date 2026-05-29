@@ -1,0 +1,27 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "operate",
+  "toStage": "validate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/operate/report.json"
+    }
+  ],
+  "summary": {
+    "decision": "pause",
+    "primaryMetric": "paid_sku_pack",
+    "biggestBlocker": "No real seller payment or delivery data yet.",
+    "nextExperiment": "5 seller paid SKU pack sprint",
+    "stageToRevisit": "validate",
+    "evidenceRefs": ["ev-mock-paid-test-001", "ev-mock-seller-pain-001"]
+  }
+}

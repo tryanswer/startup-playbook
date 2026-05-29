@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "grow",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/build/handoff.json"
+    }
+  ],
+  "fromStage": "build",
+  "inputs": {
+    "targetMarkets": ["international", "china-mainland"],
+    "productSurface": "landing page plus concierge service",
+    "landingPages": [],
+    "deployedUrl": null,
+    "analyticsEvents": ["landing_view", "book_call", "paid_sku_pack", "first_delivery_accepted", "revision_requested"],
+    "utmConvention": "utm_source / utm_medium / utm_campaign / utm_content",
+    "pricingOrConversionAction": "book a paid SKU image pack",
+    "channelHypotheses": ["Amazon seller communities", "cross-border ecommerce WeChat groups", "LinkedIn outreach to seller operators", "SEO for product image compliance"],
+    "evidenceRefs": ["ev-pixc-paid-alt-001", "ev-mock-paid-test-001"]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "business-model",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/validate/handoff.json"
+    }
+  ],
+  "fromStage": "validate",
+  "inputs": {
+    "targetUser": "Cross-border Amazon sellers with 10-200 active SKUs.",
+    "pain": "Creating marketplace-compliant, conversion-oriented image sets per SKU is repetitive and compliance-sensitive.",
+    "currentAlternatives": ["manual editing", "freelance designers", "ecommerce photo editing services", "generic AI product photo tools"],
+    "willingnessToPaySignals": ["paid alternatives exist", "mock paid-intent test"],
+    "paidIntentGaps": ["real paid pilot", "repeat order rate", "acceptable price per SKU"],
+    "firstReachableChannel": "Amazon seller and cross-border ecommerce operator groups.",
+    "evidenceRefs": ["ev-pixc-paid-alt-001", "ev-mock-paid-test-001", "ev-mock-seller-pain-001"]
+  }
+}

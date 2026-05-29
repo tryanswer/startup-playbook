@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "build",
+  "toStage": "grow",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/build/report.json"
+    }
+  ],
+  "summary": {
+    "smallestPromise": "One raw product photo to one reviewed Amazon-ready SKU image pack.",
+    "excludedScope": ["multi-platform SaaS", "automatic marketplace posting", "full image editor"],
+    "userFlow": ["submit asset", "choose platform", "generate variants", "human review", "deliver pack"],
+    "acceptanceCriteria": ["compliance checklist passed", "product fidelity preserved", "revision path defined"],
+    "analyticsEvents": ["landing_view", "book_call", "paid_sku_pack", "first_delivery_accepted", "revision_requested"],
+    "launchChannel": "direct seller outreach and seller groups",
+    "deployedUrl": null,
+    "securityPrivacyReviewStatus": "required before handling real seller assets",
+    "evidenceRefs": ["ev-openai-gpt-image-2-001", "ev-amazon-image-rules-001"]
+  }
+}

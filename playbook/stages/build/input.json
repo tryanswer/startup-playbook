@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "build",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/business-model/handoff.json"
+    }
+  ],
+  "fromStage": "business-model",
+  "inputs": {
+    "targetUser": "Cross-border Amazon sellers with 10-200 active SKUs.",
+    "buyer": "seller/operator",
+    "pain": "Need fast marketplace-ready image packs without rule violations or manual prompt work.",
+    "promiseCandidate": "One raw product photo to a reviewed Amazon-ready image pack.",
+    "modelType": "productized-service-to-saas",
+    "pricingHypothesis": "$19-79 per SKU pack.",
+    "firstPaidTest": "2 paid SKU image packs.",
+    "mustNotBuild": ["multi-platform SaaS", "automatic posting to marketplaces", "unsupported compliance guarantee", "full image editor"],
+    "evidenceRefs": ["ev-openai-gpt-image-2-001", "ev-openai-gpt-image-2-model-001", "ev-amazon-image-rules-001", "ev-mock-paid-test-001"]
+  }
+}

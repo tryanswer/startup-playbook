@@ -1,0 +1,108 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "build",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "product-development-loop",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/build/input.json"
+    }
+  ],
+  "status": "completed",
+  "score": 58,
+  "decision": "pause",
+  "nextStageAction": "stay",
+  "reasoning": "A concierge workflow is build-ready, but a self-serve product should wait until paid demand and rule accuracy are proven.",
+  "known": [
+    "GPT Image 2 supports image input and output plus image editing endpoints.",
+    "Amazon image rules provide a bounded first compliance checklist.",
+    "The first version can be delivered manually with a folder, prompt templates, and human review."
+  ],
+  "assumed": [
+    "Sellers will tolerate human-reviewed delivery within 24 hours.",
+    "A compliance checklist is valuable enough to differentiate from generic AI image generation.",
+    "Image outputs can preserve product fidelity when prompted and reviewed carefully."
+  ],
+  "toValidate": [
+    "Measure generation cost and revision time per SKU.",
+    "Check product fidelity across reflective, transparent, apparel, food, and electronics categories.",
+    "Define what claims and lifestyle scenes are unsafe or misleading.",
+    "Confirm whether sellers need API automation or just a reliable service."
+  ],
+  "evidenceRefs": ["ev-openai-gpt-image-2-001", "ev-openai-gpt-image-2-model-001", "ev-amazon-image-rules-001"],
+  "concerns": [
+    "Product hallucination is the main trust risk.",
+    "Marketplace compliance must be checked by humans until rule tests are reliable.",
+    "Using customer product images creates privacy and IP handling requirements."
+  ],
+  "nextSteps": [
+    "Create a concierge intake form for product photo, SKU link, platform, image goals, and constraints.",
+    "Build prompt templates for Amazon main image, secondary detail images, and lifestyle/ad variants.",
+    "Create a human review checklist for product fidelity, rule compliance, and misleading claims.",
+    "Track cost, latency, pass/fail, and revisions per generated image."
+  ],
+  "analysis": {
+    "mvpScope": {
+      "smallestPromise": "Deliver one Amazon-ready SKU image pack from one raw product photo.",
+      "mustHave": ["intake form", "prompt templates", "GPT Image 2 generation/editing", "human review checklist", "delivery folder"],
+      "notNow": ["multi-platform self-serve editor", "automatic listing upload", "team workspace", "full brand kit system"],
+      "manualFallback": "Human designer/operator edits outputs before delivery."
+    },
+    "prd": {
+      "targetUser": "cross-border Amazon seller",
+      "scenario": "seller is launching or refreshing a SKU and needs compliant images quickly",
+      "userFlow": ["submit product photo and listing context", "choose platform and pack type", "operator generates variants", "human reviews compliance and fidelity", "seller receives image pack"],
+      "acceptanceCriteria": [
+        "main image follows Amazon white-background rule checklist",
+        "secondary images do not misrepresent product quantity, size, or features",
+        "seller can request one revision",
+        "delivery includes source prompts and compliance notes"
+      ],
+      "successMetrics": ["paid_sku_pack", "first_delivery_accepted", "revision_count", "seller_repeat_intent"]
+    },
+    "techStack": {
+      "productSurface": "manual service plus lightweight web intake",
+      "recommendedStack": "Static landing page + form + cloud storage + GPT Image 2 API + manual review checklist",
+      "paymentProvider": "Stripe for international sellers; WeChat/Alipay if China seller test starts",
+      "rationale": "Avoid building editor software before paid demand and image-quality constraints are proven."
+    },
+    "aiNativeCheck": {
+      "applies": true,
+      "stage": "MVP",
+      "aiRole": "Generate and edit product image variants from raw product photos and platform-specific prompts.",
+      "aiNecessity": "AI is useful for speed and variant creation; human review remains required for product fidelity and policy compliance.",
+      "humanOwnedDecisions": ["rule approval", "misrepresentation review", "customer delivery", "refund/revision decision"],
+      "evaluationPlan": {
+        "goldenExamples": ["accepted Amazon main image", "rejected main image", "good lifestyle variant", "misleading lifestyle variant"],
+        "edgeCases": ["transparent products", "reflective products", "text-heavy packaging", "multi-pack quantities", "licensed characters"],
+        "humanReviewThresholds": ["all customer-facing outputs reviewed before delivery"],
+        "regressionChecks": ["product shape, color, logo, quantity, packaging, and claim preservation"]
+      },
+      "contextRequirements": ["platform rule checklist", "prompt library", "customer asset handling policy"],
+      "moatHypothesis": "A growing library of marketplace-specific prompts, rejection cases, and reviewed before/after examples.",
+      "securityPrivacyRisks": ["customer product IP", "unreleased SKU photos", "brand assets", "misleading generated claims"]
+    },
+    "instrumentation": {
+      "events": ["landing_view", "book_call", "paid_sku_pack", "first_delivery_accepted", "revision_requested", "repeat_order_intent"],
+      "utmRequired": true,
+      "searchConsoleRequired": true,
+      "chinaAnalyticsRequired": false
+    },
+    "launchChecklist": {
+      "preLaunch": ["write landing page", "create intake form", "prepare 3 demo before/after packs", "draft refund/revision policy"],
+      "launchDay": ["post to seller groups", "DM 10 qualified sellers", "offer 5 discounted paid packs"],
+      "firstSevenDays": ["deliver packs", "measure revisions", "ask for repeat-intent", "collect rule edge cases"]
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "grow",
+    "summary": "Launch a manual paid SKU-pack test with 3 demos and direct seller outreach; do not build multi-platform SaaS yet."
+  }
+}

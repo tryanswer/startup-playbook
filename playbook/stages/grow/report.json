@@ -1,0 +1,125 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "grow",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "seo-aso-growth-research",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/grow/input.json"
+    }
+  ],
+  "status": "completed",
+  "score": 50,
+  "decision": "adjust",
+  "nextStageAction": "stay",
+  "reasoning": "Growth should start with direct seller outreach and proof assets; SEO and paid ads are premature until conversion from paid SKU packs is known.",
+  "known": [
+    "Cross-border sellers are reachable through seller communities and direct operator outreach.",
+    "Paid alternatives provide SEO vocabulary and pricing anchors.",
+    "No landing page or conversion data exists yet."
+  ],
+  "assumed": [
+    "Before/after demos will drive more intent than feature copy.",
+    "Seller groups will tolerate value-first posts with image rule checklists.",
+    "Search demand exists around product image editing and Amazon listing image optimization."
+  ],
+  "toValidate": [
+    "Which channel yields the first 10 qualified sellers fastest?",
+    "Which demo category converts best: home goods, beauty, electronics, apparel, or food?",
+    "Whether China sellers prefer WeChat consultative sales instead of a web landing page.",
+    "Whether Amazon-specific copy outperforms broad ecommerce copy."
+  ],
+  "evidenceRefs": ["ev-pixc-paid-alt-001", "ev-mock-paid-test-001", "ev-mock-seller-pain-001"],
+  "concerns": [
+    "Broad platform positioning will dilute message clarity.",
+    "AI-generated demo images may be distrusted unless product fidelity is shown clearly.",
+    "Communities may view promotional image services as spam without useful checklists."
+  ],
+  "nextSteps": [
+    "Create 3 before/after demo packs from non-sensitive sample products.",
+    "Write one Amazon main-image checklist lead magnet.",
+    "DM 10 sellers with a specific offer: one SKU pack reviewed against Amazon rules.",
+    "Track every outreach with UTM or spreadsheet source tags."
+  ],
+  "analysis": {
+    "marketRouting": {
+      "targetMarkets": ["international", "china-mainland"],
+      "stack": "both",
+      "reason": "First wedge is cross-border Amazon; China seller channels remain a secondary validation track."
+    },
+    "keywordClusters": [
+      {
+        "cluster": "amazon compliance",
+        "keywords": ["Amazon product image requirements", "Amazon main image white background", "Amazon listing image optimization"],
+        "intent": "problem",
+        "priority": 1,
+        "confidence": "limited"
+      },
+      {
+        "cluster": "ai product photos",
+        "keywords": ["AI product photos", "AI product image generator", "ecommerce product image editing"],
+        "intent": "solution",
+        "priority": 2,
+        "confidence": "limited"
+      }
+    ],
+    "seoAso": {
+      "landingPages": ["amazon-product-image-pack", "marketplace-image-compliance-checklist"],
+      "titles": ["Amazon Product Image Pack From One Raw Photo", "Marketplace Image Compliance Checklist"],
+      "metaDescriptions": ["Generate and review Amazon-ready product image sets from one raw product photo."],
+      "appStore": null
+    },
+    "channels": [
+      {
+        "name": "direct seller outreach",
+        "type": "direct-sales",
+        "hypothesis": "Specific SKU image audit offers will outperform generic AI-image pitches.",
+        "measurement": "qualified calls and paid SKU packs"
+      },
+      {
+        "name": "seller communities",
+        "type": "community",
+        "hypothesis": "A useful image compliance checklist can start conversations without looking like spam.",
+        "measurement": "replies, audits requested, paid packs"
+      },
+      {
+        "name": "SEO",
+        "type": "search",
+        "hypothesis": "Long-tail compliance queries can generate later inbound demand.",
+        "measurement": "Search Console impressions and booked calls"
+      }
+    ],
+    "paidValidation": {
+      "googleAds": {
+        "use": false,
+        "budget": null,
+        "successMetric": null
+      },
+      "chinaPaidChannels": []
+    },
+    "utmPlan": {
+      "required": true,
+      "campaigns": ["seller-dm-2026-05", "amazon-image-checklist-2026-05", "wechat-crossborder-2026-05"]
+    },
+    "aiDistribution": {
+      "aiCan": ["draft seller-specific audits", "summarize platform image rules", "generate demo variants"],
+      "humanOwns": ["final outreach", "seller asset review", "claims about compliance", "refund/revision decision"],
+      "neverWrite": ["auto-post in seller groups", "auto-DM sellers", "impersonate marketplace policy expertise"]
+    },
+    "measurementPlan": {
+      "metrics": ["qualified_seller_reply", "book_call", "paid_sku_pack", "first_delivery_accepted", "repeat_order_intent"],
+      "reviewCadence": "weekly"
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "operate",
+    "summary": "Operate the first week as a sales/service experiment; success means paid packs and acceptable revision economics, not traffic volume."
+  }
+}

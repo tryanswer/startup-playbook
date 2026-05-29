@@ -1,0 +1,77 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "playbook-manifest",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "updatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "project": {
+    "id": "ai-ecommerce-image-optimizer",
+    "name": "AI Ecommerce Image Optimizer",
+    "oneLine": "Turn one raw product photo into platform-specific product image sets for marketplace sellers.",
+    "targetUser": "Cross-border Amazon sellers with existing SKUs; secondary Taobao and JD merchants.",
+    "targetMarkets": ["international", "china-mainland"],
+    "productSurface": "concierge service first, then web app",
+    "lifecycle": "validation",
+    "createdAt": "2026-05-29T03:55:52.000Z",
+    "updatedAt": "2026-05-29T03:55:52.000Z"
+  },
+  "currentStage": "validate",
+  "stageOrder": ["validate", "business-model", "build", "grow", "operate"],
+  "stages": {
+    "validate": {
+      "status": "completed",
+      "decision": "pivot",
+      "score": 54,
+      "updatedAt": "2026-05-29T03:55:52.000Z",
+      "inputPath": "stages/validate/input.json",
+      "reportPath": "stages/validate/report.json",
+      "handoffPath": "stages/validate/handoff.json"
+    },
+    "business-model": {
+      "status": "completed",
+      "decision": "continue",
+      "score": 61,
+      "updatedAt": "2026-05-29T03:55:52.000Z",
+      "inputPath": "stages/business-model/input.json",
+      "reportPath": "stages/business-model/report.json",
+      "handoffPath": "stages/business-model/handoff.json"
+    },
+    "build": {
+      "status": "completed",
+      "decision": "pause",
+      "score": 58,
+      "updatedAt": "2026-05-29T03:55:52.000Z",
+      "inputPath": "stages/build/input.json",
+      "reportPath": "stages/build/report.json",
+      "handoffPath": "stages/build/handoff.json"
+    },
+    "grow": {
+      "status": "completed",
+      "decision": "adjust",
+      "score": 50,
+      "updatedAt": "2026-05-29T03:55:52.000Z",
+      "inputPath": "stages/grow/input.json",
+      "reportPath": "stages/grow/report.json",
+      "handoffPath": "stages/grow/handoff.json"
+    },
+    "operate": {
+      "status": "completed",
+      "decision": "pause",
+      "score": null,
+      "updatedAt": "2026-05-29T03:55:52.000Z",
+      "inputPath": "stages/operate/input.json",
+      "reportPath": "stages/operate/report.json",
+      "handoffPath": "stages/operate/handoff.json"
+    }
+  },
+  "latestDecision": {
+    "stage": "validate",
+    "decision": "pivot",
+    "reasoning": "The idea is promising, but the initial audience is too broad; validate a narrower cross-border Amazon seller segment before building platform automation."
+  }
+}

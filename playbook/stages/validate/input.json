@@ -1,0 +1,41 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "validate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "conversation",
+      "path": null
+    },
+    {
+      "type": "url",
+      "url": "https://developers.openai.com/api/docs/guides/image-generation"
+    },
+    {
+      "type": "url",
+      "url": "https://sellercentral.amazon.com/seller-forums/discussions/t/99a0dc92-15dc-492a-b24e-f327f4c28dd5"
+    }
+  ],
+  "fromStage": null,
+  "inputs": {
+    "idea": "Use ChatGPT/GPT Image 2 to help marketplace sellers optimize product display images.",
+    "targetUserCandidate": "Taobao, JD, Amazon/AWS, and cross-border ecommerce sellers.",
+    "painfulSituation": "Sellers need compliant, high-converting product image sets for each marketplace and SKU.",
+    "currentWorkaround": "Manual photo editing, outsourcing to ecommerce image editors, using generic AI image tools, or repeatedly revising images after platform rejection.",
+    "desiredOutcome": "Upload one raw product photo and receive marketplace-ready main, lifestyle, detail, and comparison images.",
+    "reachableSurfaces": ["Amazon seller communities", "cross-border ecommerce WeChat groups", "Shopify seller communities", "Taobao/JD merchant groups"],
+    "currentEvidenceRefs": ["ev-user-idea-001", "ev-openai-gpt-image-2-001", "ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+    "constraints": [
+      "AWS likely means Amazon marketplace; clarify if the user meant Amazon Web Services.",
+      "Taobao and JD official image rules need seller-console/manual verification.",
+      "Generated images must not misrepresent product appearance, quantity, packaging, or claims."
+    ]
+  }
+}

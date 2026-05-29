@@ -1,0 +1,28 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "grow",
+  "toStage": "operate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/grow/report.json"
+    }
+  ],
+  "summary": {
+    "activeChannels": ["direct seller outreach", "seller communities", "SEO later"],
+    "utmConvention": "utm_source / utm_medium / utm_campaign / utm_content",
+    "seoAsoTargets": ["Amazon product image requirements", "AI product photos", "ecommerce product image editing"],
+    "paidTestSetup": null,
+    "contentBacklog": ["Amazon main-image checklist", "3 before/after demos", "SKU image audit teardown"],
+    "measurementThresholds": ["10 seller replies", "5 calls", "2 paid packs", "revision count under 2 per pack"],
+    "evidenceRefs": ["ev-mock-paid-test-001", "ev-pixc-paid-alt-001"]
+  }
+}

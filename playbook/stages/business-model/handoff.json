@@ -1,0 +1,29 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "business-model",
+  "toStage": "build",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/business-model/report.json"
+    }
+  ],
+  "summary": {
+    "buyer": "seller/operator",
+    "user": "seller/operator or ecommerce VA",
+    "modelType": "productized-service-to-saas",
+    "pricingHypothesis": "$19-79 per SKU pack; subscription only after repeat demand.",
+    "firstPaidTest": "Sell two paid SKU image packs with human review and platform compliance notes.",
+    "revenueMilestones": ["2 paid packs", "20 paid packs", "5 repeat sellers"],
+    "monetizationRisks": ["one-off demand", "low-cost designer competition", "revision-heavy delivery"],
+    "evidenceRefs": ["ev-pixc-paid-alt-001", "ev-mock-paid-test-001"]
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "validate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "idea-validation",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/validate/input.json"
+    }
+  ],
+  "status": "completed",
+  "score": 54,
+  "decision": "pivot",
+  "nextStageAction": "stay",
+  "reasoning": "The pain is plausible and paid alternatives exist, but the audience is too broad and real seller demand has not been validated.",
+  "known": [
+    "OpenAI has current image generation and image editing APIs suitable for a technical prototype.",
+    "Amazon product image requirements create a concrete compliance surface for sellers.",
+    "Existing ecommerce image editing services show sellers already pay for product-image cleanup."
+  ],
+  "assumed": [
+    "Small cross-border sellers feel enough pain to pay for platform-specific image packs.",
+    "Sellers prefer a done-for-you workflow over a prompt-heavy generic AI tool.",
+    "The first wedge should be Amazon/cross-border sellers, not all Taobao, JD, and cross-border platforms at once."
+  ],
+  "toValidate": [
+    "Does AWS mean Amazon marketplace or Amazon Web Services?",
+    "Find five real sellers who recently edited or outsourced product images.",
+    "Verify current Taobao and JD official image rules from seller-console or platform docs.",
+    "Test whether sellers pay for compliance assurance, conversion lift, speed, or style quality."
+  ],
+  "evidenceRefs": ["ev-user-idea-001", "ev-openai-gpt-image-2-001", "ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+  "concerns": [
+    "Generic AI product-image tools already exist; the wedge must be marketplace-specific compliance and workflow.",
+    "Generated images can create trust, refund, or policy risk if they misrepresent the product.",
+    "China marketplace rules and cross-border platform rules differ enough that a broad first product will be brittle."
+  ],
+  "nextSteps": [
+    "Narrow the first validation segment to cross-border Amazon sellers with 10-200 active SKUs.",
+    "Run 10 seller interviews and ask for their last rejected or underperforming product image.",
+    "Offer a manual paid SKU image pack before building SaaS automation.",
+    "Collect before/after image sets and platform rejection reasons as the first evidence corpus."
+  ],
+  "analysis": {
+    "snapshot": {
+      "idea": "AI Ecommerce Image Optimizer",
+      "targetUser": "Cross-border Amazon sellers first; Taobao/JD later.",
+      "painfulSituation": "Product image sets must be attractive, compliant, and platform-specific.",
+      "currentWorkaround": "Manual editing, outsourced image services, and generic AI tools.",
+      "desiredOutcome": "Marketplace-ready image pack from one raw product photo.",
+      "firstReachableChannel": "Amazon seller communities and cross-border ecommerce operator groups."
+    },
+    "gates": {
+      "demandRealAndFrequent": {
+        "status": "partially_supported",
+        "evidenceRefs": ["ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+        "notes": "Marketplace image rules and paid alternatives support plausibility; real seller interviews are still missing."
+      },
+      "usersReachable": {
+        "status": "supported",
+        "surfaces": ["Amazon seller communities", "cross-border ecommerce groups", "Shopify seller communities"]
+      },
+      "willingnessToPay": {
+        "status": "partially_supported",
+        "signals": ["paid alternatives exist", "mock paid-intent signal"],
+        "missing": ["real paid pilot", "budget owner", "repeat purchase cadence"]
+      }
+    },
+    "painMining": {
+      "themes": [
+        {
+          "id": "platform-compliance",
+          "label": "Marketplace image compliance",
+          "count": 1,
+          "frequency": null,
+          "evidenceRefs": ["ev-amazon-image-rules-001"]
+        },
+        {
+          "id": "sku-image-production",
+          "label": "Repeated SKU image production",
+          "count": 1,
+          "frequency": null,
+          "evidenceRefs": ["ev-mock-seller-pain-001"]
+        }
+      ],
+      "rawQuoteCount": 1,
+      "sourceCoverage": ["official-rule", "mock-interview", "pricing-page"]
+    },
+    "searchAndMarket": {
+      "keywords": ["Amazon product image editing", "AI product photos", "ecommerce photo editing"],
+      "trendSignals": [],
+      "competitors": ["Pixc", "Cheeppy", "ProductMagic AI", "Prodshot AI"],
+      "confidence": "limited"
+    },
+    "willingnessToPay": {
+      "paidAlternatives": ["Pixc ecommerce photo editing", "AI product photo tools", "listing optimization agencies"],
+      "manualServiceCandidate": "paid marketplace-ready SKU image pack",
+      "firstPayingCustomerPlan": "Sell 5 manual SKU packs to cross-border sellers before building a self-serve app."
+    },
+    "landingPageTest": {
+      "headline": "Turn one raw product photo into a marketplace-ready Amazon image pack.",
+      "conversionAction": "book-call",
+      "successThreshold": "5 qualified seller calls or 2 paid SKU packs within 7 days"
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "business-model",
+    "summary": "Do not build broad automation yet; validate a paid, manual SKU image-pack service for Amazon/cross-border sellers first."
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "operate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/operate/input.json"
+    }
+  ],
+  "status": "completed",
+  "score": null,
+  "decision": "pause",
+  "nextStageAction": "back-to-validate",
+  "reasoning": "Operate metrics are mocked; the real next move is a one-week validation sprint with paid SKU packs and revision economics.",
+  "known": [
+    "No real operating metrics exist yet.",
+    "A first-week scorecard can be defined before running the experiment."
+  ],
+  "assumed": [
+    "Direct outreach will produce enough replies to test paid intent.",
+    "Revision count and image acceptance will determine service viability."
+  ],
+  "toValidate": [
+    "Actual paid conversion from seller outreach.",
+    "Actual GPT Image 2 cost and operator time per SKU pack.",
+    "Actual seller satisfaction and repeat-intent after delivery."
+  ],
+  "evidenceRefs": ["ev-mock-paid-test-001", "ev-mock-seller-pain-001"],
+  "concerns": [
+    "Mocked metrics cannot justify build investment.",
+    "If revision count is high, the service may become a low-margin agency.",
+    "If product fidelity fails, the whole wedge weakens."
+  ],
+  "nextSteps": [
+    "Run the one-week validation sprint.",
+    "Record every seller reply, call, payment, delivery, and revision.",
+    "Re-run validate and business-model stages with real evidence.",
+    "Only build automation for repeated manual steps."
+  ],
+  "analysis": {
+    "weeklySnapshot": {
+      "periodStart": "2026-05-29",
+      "periodEnd": "2026-06-05",
+      "visitors": null,
+      "signups": null,
+      "activated": null,
+      "paying": null,
+      "revenue": null,
+      "searchClicks": null
+    },
+    "aarrr": {
+      "acquisition": {
+        "target": "10 qualified seller replies"
+      },
+      "activation": {
+        "target": "5 calls or image audits"
+      },
+      "revenue": {
+        "target": "2 paid SKU packs"
+      },
+      "retention": {
+        "target": "1 repeat-intent signal"
+      },
+      "referral": {},
+      "feedback": {
+        "target": "5 rule or workflow objections"
+      }
+    },
+    "retention": {
+      "d1": null,
+      "d7": null,
+      "d30": null,
+      "diagnosis": "not-enough-data",
+      "segmentFindings": []
+    },
+    "revenueHealth": {
+      "mrr": null,
+      "churn": null,
+      "ltv": null,
+      "refunds": null
+    },
+    "channelQuality": {
+      "bestSource": null,
+      "lowestCostPerOutcome": null,
+      "channelsToStop": []
+    },
+    "feedbackThemes": ["price sensitivity", "compliance trust", "product fidelity", "revision speed"],
+    "biggestBlocker": "No real seller payment or delivery data yet.",
+    "nextExperiment": {
+      "name": "5 seller paid SKU pack sprint",
+      "goal": "Prove sellers will pay for a reviewed Amazon-ready image pack.",
+      "successMetric": "2 paid packs and average revision count under 2",
+      "stopCondition": "0 payments after 15 qualified seller conversations"
+    },
+    "decisionTreeResult": {
+      "scenario": "no-data",
+      "recommendation": "go back to validation with paid manual service"
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "validate",
+    "summary": "Replace mock signals with real paid SKU-pack evidence before building automation."
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-input",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "operate",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/grow/handoff.json"
+    }
+  ],
+  "fromStage": "grow",
+  "inputs": {
+    "periodStart": "2026-05-29",
+    "periodEnd": "2026-06-05",
+    "targetMarkets": ["international", "china-mainland"],
+    "metricSources": ["mock spreadsheet"],
+    "revenueSources": ["mock paid SKU pack tracker"],
+    "feedbackSources": ["mock seller interviews"],
+    "activeChannels": ["direct seller outreach", "seller communities"],
+    "currentGoals": ["2 paid SKU packs", "5 qualified calls", "revision count under 2 per pack"],
+    "evidenceRefs": ["ev-mock-paid-test-001", "ev-mock-seller-pain-001"]
+  }
+}

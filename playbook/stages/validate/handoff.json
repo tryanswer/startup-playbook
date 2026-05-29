@@ -1,0 +1,29 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "validate",
+  "toStage": "business-model",
+  "generatedAt": "2026-05-29T03:55:52.000Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "gpt-5"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/validate/report.json"
+    }
+  ],
+  "summary": {
+    "narrowedSegment": "Cross-border Amazon sellers with 10-200 active SKUs.",
+    "painfulSituation": "Sellers need compliant, conversion-oriented image sets and spend time or money producing them per SKU.",
+    "strongestRawLanguage": "I spend 30-60 minutes per SKU making a compliant image set, and I still worry the marketplace will reject the main image.",
+    "promiseCandidate": "Generate a marketplace-ready image pack from one raw product photo, with compliance checks before delivery.",
+    "firstReachableChannel": "Amazon seller and cross-border ecommerce operator groups.",
+    "evidenceRefs": ["ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+    "paidIntentGaps": ["real paid pilot", "repeat order rate", "acceptable price per SKU"],
+    "recommendedNextExperiment": "Offer 5 manual SKU image packs to Amazon sellers and measure payment, revision count, and acceptance."
+  }
+}
