@@ -57,6 +57,29 @@ function assert(condition, message, errors) {
   }
 }
 
+function validateIndexTemplate(html, label, errors) {
+  const requiredTokens = [
+    "class=\"stage-rail\"",
+    "class=\"decision-panel\"",
+    "class=\"evidence-board\"",
+    "class=\"risk-next-grid\"",
+    "class=\"artifact-nav\"",
+    "class=\"status-pill",
+    "@media (max-width: 760px)",
+    "max-width: 1180px",
+    "font-family: Satoshi",
+    "type=\"application/json\" id=\"playbook-data\"",
+  ];
+
+  for (const token of requiredTokens) {
+    assert(html.includes(token), `${label} missing frontend template token: ${token}`, errors);
+  }
+
+  assert(!html.includes("font-family: Inter"), `${label} should not use Inter as the primary font`, errors);
+  assert(!html.includes("h-screen"), `${label} should not use h-screen`, errors);
+  assert(!html.includes("product/app/.playbook-output"), `${label} still references old product output path`, errors);
+}
+
 async function listFiles(root, prefix = "") {
   const entries = await readdir(path.join(root, prefix), { withFileTypes: true });
   const files = [];
@@ -132,6 +155,11 @@ async function main() {
         errors.push(`invalid JSON template ${rel}: ${error.message}`);
       }
     }
+  }
+
+  const indexTemplatePath = path.join(artifactSkillDir, "templates", "index.html");
+  if (await exists(indexTemplatePath)) {
+    validateIndexTemplate(await readText(indexTemplatePath), "artifact index template", errors);
   }
 
   if (await exists(advisorSkillPath)) {
