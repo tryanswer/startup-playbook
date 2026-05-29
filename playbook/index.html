@@ -17,12 +17,13 @@
       --accent: #0f766e;
       --accent-soft: #dcebe7;
       --warning: #9a6a14;
-      --danger: #9f3434;
       --shadow: 0 24px 60px -38px rgba(18, 31, 28, 0.45);
       background: var(--bg);
       color: var(--ink);
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       min-width: 320px;
@@ -31,6 +32,7 @@
         radial-gradient(circle at 84% 8%, rgba(154, 106, 20, 0.08), transparent 24rem),
         var(--bg);
     }
+
     body::before {
       content: "";
       position: fixed;
@@ -42,12 +44,14 @@
       background-size: 32px 32px;
       mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), transparent 68%);
     }
+
     main {
       width: calc(100% - 40px);
       max-width: 1180px;
       margin: 0 auto;
       padding: 34px 0 60px;
     }
+
     header {
       display: grid;
       grid-template-columns: minmax(0, 1fr) auto;
@@ -56,6 +60,7 @@
       padding: 12px 0 28px;
       border-bottom: 1px solid var(--line);
     }
+
     .eyebrow {
       margin: 0 0 12px;
       color: var(--accent);
@@ -64,43 +69,48 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
+
     h1 {
       margin: 0;
-      max-width: 780px;
-      font-size: clamp(34px, 5vw, 62px);
-      line-height: 0.98;
+      max-width: 760px;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 0.96;
       letter-spacing: 0;
     }
+
     .subtitle {
       margin: 18px 0 0;
-      max-width: 70ch;
+      max-width: 62ch;
       color: var(--muted);
       font-size: 17px;
       line-height: 1.55;
     }
+
     .status-pill {
       display: inline-flex;
       align-items: center;
       gap: 9px;
       min-height: 34px;
       padding: 0 13px;
-      border: 1px solid rgba(154, 106, 20, 0.3);
+      border: 1px solid rgba(15, 118, 110, 0.24);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.76);
-      color: var(--warning);
+      color: var(--accent);
       font-size: 13px;
       font-weight: 750;
       box-shadow: var(--shadow);
       white-space: nowrap;
     }
+
     .status-pill::before {
       content: "";
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: var(--warning);
-      box-shadow: 0 0 0 5px rgba(154, 106, 20, 0.13);
+      background: var(--accent);
+      box-shadow: 0 0 0 5px rgba(15, 118, 110, 0.12);
     }
+
     .stage-rail {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -112,16 +122,34 @@
       background: rgba(255, 255, 255, 0.72);
       box-shadow: var(--shadow);
     }
+
     .stage-step {
       min-width: 0;
       padding: 13px 15px 14px;
+      border: 0;
       border-right: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
+
     .stage-step:last-child { border-right: 0; }
-    .stage-step.active {
+
+    .stage-step:hover {
+      background: rgba(220, 235, 231, 0.46);
+    }
+
+    .stage-step:active {
+      transform: translateY(1px);
+    }
+
+    .stage-step[aria-selected="true"] {
       background: var(--accent-soft);
       box-shadow: inset 0 -3px 0 var(--accent);
     }
+
     .label {
       display: block;
       color: var(--muted);
@@ -130,6 +158,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
+
     .stage-step strong,
     .metric strong,
     .artifact-nav a {
@@ -138,12 +167,14 @@
       overflow-wrap: anywhere;
       font-weight: 760;
     }
+
     .dashboard {
       display: grid;
       grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
       gap: 18px;
       align-items: start;
     }
+
     .decision-panel,
     .evidence-board,
     .panel {
@@ -152,9 +183,11 @@
       background: rgba(255, 255, 255, 0.88);
       box-shadow: var(--shadow);
     }
+
     .decision-panel {
       padding: clamp(22px, 4vw, 36px);
     }
+
     .decision-topline {
       display: flex;
       flex-wrap: wrap;
@@ -163,17 +196,20 @@
       justify-content: space-between;
       margin-bottom: 26px;
     }
+
     h2 {
       margin: 0;
       font-size: clamp(22px, 3vw, 34px);
       line-height: 1.08;
       letter-spacing: 0;
     }
+
     h3 {
       margin: 0 0 14px;
       font-size: 15px;
       letter-spacing: 0;
     }
+
     .decision-badge {
       display: inline-flex;
       align-items: center;
@@ -185,31 +221,37 @@
       font-size: 13px;
       font-weight: 800;
     }
+
     .reasoning {
       margin: 0;
       color: var(--muted);
       font-size: 16px;
       line-height: 1.65;
     }
+
     .metrics {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-top: 28px;
     }
+
     .metric {
       min-width: 0;
       padding-top: 16px;
       border-top: 1px solid var(--line);
     }
+
     .metric strong {
       font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
       font-size: 24px;
       letter-spacing: 0;
     }
+
     .evidence-board {
       padding: 22px;
     }
+
     .evidence-list,
     .artifact-list,
     .clean-list {
@@ -217,6 +259,7 @@
       padding: 0;
       list-style: none;
     }
+
     .evidence-list li,
     .clean-list li {
       padding: 14px 0;
@@ -224,35 +267,42 @@
       color: var(--muted);
       line-height: 1.5;
     }
+
     .evidence-list li:first-child,
     .clean-list li:first-child {
       border-top: 0;
       padding-top: 0;
     }
+
     .evidence-list strong {
       display: block;
       color: var(--ink);
       margin-bottom: 4px;
     }
+
     .risk-next-grid {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
       gap: 18px;
       margin-top: 18px;
     }
+
     .panel {
       padding: 22px;
     }
+
     .artifact-nav {
       margin-top: 18px;
       padding-top: 18px;
       border-top: 1px solid var(--line);
     }
+
     .artifact-list {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
     }
+
     .artifact-list a {
       display: block;
       min-height: 44px;
@@ -264,14 +314,19 @@
       text-decoration: none;
       transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
     }
+
     .artifact-list a:hover {
       border-color: rgba(15, 118, 110, 0.34);
       background: var(--accent-soft);
       transform: translateY(-1px);
     }
+
     .artifact-list a:active {
       transform: translateY(0) scale(0.99);
     }
+
+    .stage-detail[hidden] { display: none; }
+
     code {
       padding: 2px 5px;
       border-radius: 5px;
@@ -280,33 +335,41 @@
       font-family: "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
       font-size: 0.92em;
     }
+
     @media (max-width: 900px) {
       .dashboard,
       .risk-next-grid {
         grid-template-columns: 1fr;
       }
+
       .artifact-list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
+
     @media (max-width: 760px) {
       main {
         width: calc(100% - 28px);
         padding: 22px 0 42px;
       }
+
       header {
         grid-template-columns: 1fr;
         align-items: start;
         gap: 16px;
       }
+
       .stage-rail {
         grid-template-columns: 1fr;
       }
+
       .stage-step {
         border-right: 0;
         border-top: 1px solid var(--line);
       }
+
       .stage-step:first-child { border-top: 0; }
+
       .metrics,
       .artifact-list {
         grid-template-columns: 1fr;
@@ -322,88 +385,243 @@
         <h1>AI Ecommerce Image Optimizer</h1>
         <p class="subtitle">Turn one raw product photo into platform-specific product image sets for marketplace sellers.</p>
       </div>
-      <div class="status-pill status-waiting">Pivot in validation</div>
+      <div class="status-pill status-waiting" id="stage-status">Validate stage</div>
     </header>
 
-    <nav class="stage-rail" aria-label="Startup stage pipeline">
-      <div class="stage-step active"><span class="label">Stage 01</span><strong>Validate</strong></div>
-      <div class="stage-step"><span class="label">Stage 02</span><strong>Business Model</strong></div>
-      <div class="stage-step"><span class="label">Stage 03</span><strong>Build</strong></div>
-      <div class="stage-step"><span class="label">Stage 04</span><strong>Grow</strong></div>
-      <div class="stage-step"><span class="label">Stage 05</span><strong>Operate</strong></div>
+    <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
+      <button class="stage-step" type="button" role="tab" data-stage-tab="validate" aria-selected="true" aria-controls="stage-panel"><span class="label">Stage 01</span><strong>Validate</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="business-model" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 02</span><strong>Business Model</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="build" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 03</span><strong>Build</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="grow" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 04</span><strong>Grow</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="operate" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 05</span><strong>Operate</strong></button>
     </nav>
 
-    <section class="dashboard" aria-label="Current playbook status">
-      <article class="decision-panel">
-        <div class="decision-topline">
-          <h2>Narrow before building</h2>
-          <span class="decision-badge">Validate score: 54</span>
-        </div>
-        <p class="reasoning">The idea is promising, but Taobao, JD, Amazon, and broad cross-border ecommerce are too wide for the first pass. The recommended wedge is cross-border Amazon sellers with 10-200 active SKUs, tested through paid manual SKU image packs.</p>
-
-        <div class="metrics">
-          <div class="metric">
-            <span class="label">Current stage</span>
-            <strong>validate</strong>
-          </div>
-          <div class="metric">
-            <span class="label">Decision</span>
-            <strong>pivot</strong>
-          </div>
-          <div class="metric">
-            <span class="label">Next action</span>
-            <strong>paid test</strong>
-          </div>
-        </div>
-      </article>
-
-      <aside class="evidence-board" aria-label="Evidence board">
-        <h3>Evidence Strength</h3>
-        <ul class="evidence-list">
-          <li><strong>Medium</strong>OpenAI and Amazon platform sources support technical feasibility and a concrete compliance surface.</li>
-          <li><strong>Medium</strong>Pixc pricing suggests sellers already pay for ecommerce image editing alternatives.</li>
-          <li><strong>Weak / mock</strong>Seller pain and paid intent are mocked for this run and must be replaced with real interviews and payments.</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section class="risk-next-grid" aria-label="Risks and next actions">
-      <article class="panel">
-        <h3>Risks</h3>
-        <ul class="clean-list">
-          <li>Generic AI product-photo tools already exist; the wedge must be compliance and workflow, not image generation alone.</li>
-          <li>Generated images can misrepresent product shape, color, quantity, packaging, or claims.</li>
-          <li>Taobao and JD official image rules still need current seller-console verification.</li>
-        </ul>
-      </article>
-
-      <article class="panel">
-        <h3>Next Actions</h3>
-        <ul class="clean-list">
-          <li>Clarify whether AWS means Amazon marketplace.</li>
-          <li>Create three before/after demo SKU packs.</li>
-          <li>DM 10 qualified sellers and sell two paid SKU image packs.</li>
-          <li>Measure delivery cost, revision count, and repeat-intent before building SaaS.</li>
-        </ul>
-      </article>
-    </section>
-
-    <nav class="artifact-nav" aria-label="Artifact links">
-      <ul class="artifact-list">
-        <li><a href="playbook.json">playbook.json</a></li>
-        <li><a href="evidence.json">evidence.json</a></li>
-        <li><a href="decision-log.md">decision-log.md</a></li>
-        <li><a href="stages/validate/report.md">stage report</a></li>
-      </ul>
-    </nav>
+    <section class="stage-detail" id="stage-panel" data-stage-panel="validate" role="tabpanel" aria-live="polite"></section>
 
     <script type="application/json" id="playbook-data">
       {
         "projectId": "ai-ecommerce-image-optimizer",
         "currentStage": "validate",
-        "decision": "pivot",
-        "score": 54
+        "stages": {
+          "validate": {
+            "label": "Validate",
+            "title": "Narrow before building",
+            "score": 54,
+            "decision": "pivot",
+            "nextAction": "paid test",
+            "summary": "The pain is plausible and paid alternatives exist, but Taobao, JD, Amazon, and broad cross-border ecommerce are too wide for the first pass. Validate a narrower cross-border Amazon seller segment before building platform automation.",
+            "evidence": [
+              "OpenAI has current image generation and image editing APIs suitable for a technical prototype.",
+              "Amazon product image requirements create a concrete compliance surface for sellers.",
+              "Existing ecommerce image editing services show sellers already pay for product-image cleanup."
+            ],
+            "risks": [
+              "Generic AI product-image tools already exist; the wedge must be marketplace-specific compliance and workflow.",
+              "Generated images can create trust, refund, or policy risk if they misrepresent the product.",
+              "China marketplace rules and cross-border platform rules differ enough that a broad first product will be brittle."
+            ],
+            "nextSteps": [
+              "Narrow the first validation segment to cross-border Amazon sellers with 10-200 active SKUs.",
+              "Run 10 seller interviews and ask for their last rejected or underperforming product image.",
+              "Offer a manual paid SKU image pack before building SaaS automation.",
+              "Collect before/after image sets and platform rejection reasons as the first evidence corpus."
+            ],
+            "links": [
+              ["report.md", "stages/validate/report.md"],
+              ["report.json", "stages/validate/report.json"],
+              ["handoff.json", "stages/validate/handoff.json"],
+              ["input.json", "stages/validate/input.json"]
+            ]
+          },
+          "business-model": {
+            "label": "Business Model",
+            "title": "Productized service first",
+            "score": 61,
+            "decision": "continue",
+            "nextAction": "advance",
+            "summary": "A productized service is a credible first revenue path because ecommerce image editing is already a paid category and the workflow can be delivered manually before SaaS.",
+            "evidence": [
+              "Paid ecommerce photo editing services exist.",
+              "OpenAI image editing can support the production workflow technically.",
+              "Mock paid-intent suggests sellers may pay for a guaranteed image pack, but this is not real validation."
+            ],
+            "risks": [
+              "Competing with low-cost design labor and AI tools can compress pricing.",
+              "If sellers only need one-off cleanup, subscription retention may be weak.",
+              "Compliance guarantee creates liability unless bounded carefully."
+            ],
+            "nextSteps": [
+              "Sell a manual SKU image pack before building self-serve automation.",
+              "Package one SKU as 1 main image, 4 secondary images, 2 lifestyle/ad variants, and a compliance checklist.",
+              "Charge enough to test seriousness, not just interest.",
+              "Track gross margin after GPT Image 2 cost, human review time, and revision count."
+            ],
+            "links": [
+              ["report.md", "stages/business-model/report.md"],
+              ["report.json", "stages/business-model/report.json"],
+              ["handoff.json", "stages/business-model/handoff.json"],
+              ["input.json", "stages/business-model/input.json"]
+            ]
+          },
+          "build": {
+            "label": "Build",
+            "title": "Concierge workflow only",
+            "score": 58,
+            "decision": "pause",
+            "nextAction": "stay",
+            "summary": "A concierge workflow is build-ready, but a self-serve product should wait until paid demand and rule accuracy are proven.",
+            "evidence": [
+              "GPT Image 2 supports image input and output plus image editing endpoints.",
+              "Amazon image rules provide a bounded first compliance checklist.",
+              "The first version can be delivered manually with a folder, prompt templates, and human review."
+            ],
+            "risks": [
+              "Product hallucination is the main trust risk.",
+              "Marketplace compliance must be checked by humans until rule tests are reliable.",
+              "Using customer product images creates privacy and IP handling requirements."
+            ],
+            "nextSteps": [
+              "Create a concierge intake form for product photo, SKU link, platform, image goals, and constraints.",
+              "Build prompt templates for Amazon main image, secondary detail images, and lifestyle/ad variants.",
+              "Create a human review checklist for product fidelity, rule compliance, and misleading claims.",
+              "Track cost, latency, pass/fail, and revisions per generated image."
+            ],
+            "links": [
+              ["report.md", "stages/build/report.md"],
+              ["report.json", "stages/build/report.json"],
+              ["handoff.json", "stages/build/handoff.json"],
+              ["input.json", "stages/build/input.json"]
+            ]
+          },
+          "grow": {
+            "label": "Grow",
+            "title": "Direct outreach before traffic",
+            "score": 50,
+            "decision": "adjust",
+            "nextAction": "stay",
+            "summary": "Growth should start with direct seller outreach and proof assets; SEO and paid ads are premature until conversion from paid SKU packs is known.",
+            "evidence": [
+              "Cross-border sellers are reachable through seller communities and direct operator outreach.",
+              "Paid alternatives provide SEO vocabulary and pricing anchors.",
+              "No landing page or conversion data exists yet."
+            ],
+            "risks": [
+              "Broad platform positioning will dilute message clarity.",
+              "AI-generated demo images may be distrusted unless product fidelity is shown clearly.",
+              "Communities may view promotional image services as spam without useful checklists."
+            ],
+            "nextSteps": [
+              "Create 3 before/after demo packs from non-sensitive sample products.",
+              "Write one Amazon main-image checklist lead magnet.",
+              "DM 10 sellers with a specific offer: one SKU pack reviewed against Amazon rules.",
+              "Track every outreach with UTM or spreadsheet source tags."
+            ],
+            "links": [
+              ["report.md", "stages/grow/report.md"],
+              ["report.json", "stages/grow/report.json"],
+              ["handoff.json", "stages/grow/handoff.json"],
+              ["input.json", "stages/grow/input.json"]
+            ]
+          },
+          "operate": {
+            "label": "Operate",
+            "title": "Replace mock metrics",
+            "score": null,
+            "decision": "pause",
+            "nextAction": "back-to-validate",
+            "summary": "Operate metrics are mocked; the real next move is a one-week validation sprint with paid SKU packs and revision economics.",
+            "evidence": [
+              "No real operating metrics exist yet.",
+              "A first-week scorecard can be defined before running the experiment.",
+              "Mock seller pain and mock paid-intent must be replaced with real seller behavior."
+            ],
+            "risks": [
+              "Mocked metrics cannot justify build investment.",
+              "If revision count is high, the service may become a low-margin agency.",
+              "If product fidelity fails, the whole wedge weakens."
+            ],
+            "nextSteps": [
+              "Run the one-week validation sprint.",
+              "Record every seller reply, call, payment, delivery, and revision.",
+              "Re-run validate and business-model stages with real evidence.",
+              "Only build automation for repeated manual steps."
+            ],
+            "links": [
+              ["report.md", "stages/operate/report.md"],
+              ["report.json", "stages/operate/report.json"],
+              ["handoff.json", "stages/operate/handoff.json"],
+              ["input.json", "stages/operate/input.json"]
+            ]
+          }
+        }
       }
+    </script>
+    <script>
+      const playbookData = JSON.parse(document.getElementById("playbook-data").textContent);
+      const panel = document.querySelector("[data-stage-panel]");
+      const statusPill = document.getElementById("stage-status");
+      const tabs = Array.from(document.querySelectorAll("[data-stage-tab]"));
+
+      function listItems(items) {
+        return (items || []).map((item) => `<li>${item}</li>`).join("");
+      }
+
+      function artifactLinks(links) {
+        return (links || []).map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join("");
+      }
+
+      function switchStage(stageKey) {
+        const stage = playbookData.stages[stageKey] || playbookData.stages.validate;
+        panel.dataset.stagePanel = stageKey;
+        statusPill.textContent = `${stage.label} stage`;
+        tabs.forEach((tab) => {
+          const selected = tab.dataset.stageTab === stageKey;
+          tab.setAttribute("aria-selected", String(selected));
+        });
+        panel.innerHTML = `
+          <section class="dashboard" aria-label="${stage.label} stage status">
+            <article class="decision-panel">
+              <div class="decision-topline">
+                <h2>${stage.title}</h2>
+                <span class="decision-badge">Score: ${stage.score ?? "not scored"}</span>
+              </div>
+              <p class="reasoning">${stage.summary}</p>
+              <div class="metrics">
+                <div class="metric"><span class="label">Stage</span><strong>${stageKey}</strong></div>
+                <div class="metric"><span class="label">Decision</span><strong>${stage.decision ?? "none"}</strong></div>
+                <div class="metric"><span class="label">Next action</span><strong>${stage.nextAction ?? "stay"}</strong></div>
+              </div>
+            </article>
+            <aside class="evidence-board" aria-label="${stage.label} evidence">
+              <h3>Evidence / Known Context</h3>
+              <ul class="evidence-list">${listItems(stage.evidence)}</ul>
+            </aside>
+          </section>
+          <section class="risk-next-grid" aria-label="${stage.label} risks and next actions">
+            <article class="panel"><h3>Risks</h3><ul class="clean-list">${listItems(stage.risks)}</ul></article>
+            <article class="panel"><h3>Next Actions</h3><ul class="clean-list">${listItems(stage.nextSteps)}</ul></article>
+          </section>
+          <nav class="artifact-nav" aria-label="${stage.label} artifact links">
+            <ul class="artifact-list">${artifactLinks(stage.links)}</ul>
+          </nav>
+        `;
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => switchStage(tab.dataset.stageTab));
+        tab.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+          event.preventDefault();
+          const index = tabs.indexOf(tab);
+          const nextIndex = event.key === "ArrowRight"
+            ? (index + 1) % tabs.length
+            : (index - 1 + tabs.length) % tabs.length;
+          tabs[nextIndex].focus();
+          switchStage(tabs[nextIndex].dataset.stageTab);
+        });
+      });
+
+      switchStage(playbookData.currentStage || "validate");
     </script>
   </main>
 </body>

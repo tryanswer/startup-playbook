@@ -17,7 +17,6 @@
       --accent: #0f766e;
       --accent-soft: #dcebe7;
       --warning: #9a6a14;
-      --danger: #9f3434;
       --shadow: 0 24px 60px -38px rgba(18, 31, 28, 0.45);
       background: var(--bg);
       color: var(--ink);
@@ -127,12 +126,26 @@
     .stage-step {
       min-width: 0;
       padding: 13px 15px 14px;
+      border: 0;
       border-right: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+      cursor: pointer;
+      transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
     }
 
     .stage-step:last-child { border-right: 0; }
 
-    .stage-step.active {
+    .stage-step:hover {
+      background: rgba(220, 235, 231, 0.46);
+    }
+
+    .stage-step:active {
+      transform: translateY(1px);
+    }
+
+    .stage-step[aria-selected="true"] {
       background: var(--accent-soft);
       box-shadow: inset 0 -3px 0 var(--accent);
     }
@@ -218,7 +231,7 @@
 
     .metrics {
       display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
       margin-top: 28px;
     }
@@ -312,6 +325,8 @@
       transform: translateY(0) scale(0.99);
     }
 
+    .stage-detail[hidden] { display: none; }
+
     code {
       padding: 2px 5px;
       border-radius: 5px;
@@ -370,81 +385,178 @@
         <h1>Project Name</h1>
         <p class="subtitle">One-line promise.</p>
       </div>
-      <div class="status-pill status-waiting">Validate stage</div>
+      <div class="status-pill status-waiting" id="stage-status">Validate stage</div>
     </header>
 
-    <nav class="stage-rail" aria-label="Startup stage pipeline">
-      <div class="stage-step active"><span class="label">Stage 01</span><strong>Validate</strong></div>
-      <div class="stage-step"><span class="label">Stage 02</span><strong>Business Model</strong></div>
-      <div class="stage-step"><span class="label">Stage 03</span><strong>Build</strong></div>
-      <div class="stage-step"><span class="label">Stage 04</span><strong>Grow</strong></div>
-      <div class="stage-step"><span class="label">Stage 05</span><strong>Operate</strong></div>
+    <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
+      <button class="stage-step" type="button" role="tab" data-stage-tab="validate" aria-selected="true" aria-controls="stage-panel"><span class="label">Stage 01</span><strong>Validate</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="business-model" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 02</span><strong>Business Model</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="build" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 03</span><strong>Build</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="grow" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 04</span><strong>Grow</strong></button>
+      <button class="stage-step" type="button" role="tab" data-stage-tab="operate" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 05</span><strong>Operate</strong></button>
     </nav>
 
-    <section class="dashboard" aria-label="Current playbook status">
-      <article class="decision-panel">
-        <div class="decision-topline">
-          <h2>No decision recorded yet</h2>
-          <span class="decision-badge">Score: not scored</span>
-        </div>
-        <p class="reasoning">No decision has been recorded. Add sourced evidence before advancing the pipeline.</p>
-
-        <div class="metrics">
-          <div class="metric">
-            <span class="label">Current stage</span>
-            <strong>validate</strong>
-          </div>
-          <div class="metric">
-            <span class="label">Next action</span>
-            <strong>stay</strong>
-          </div>
-        </div>
-      </article>
-
-      <aside class="evidence-board" aria-label="Evidence board">
-        <h3>Evidence Strength</h3>
-        <ul class="evidence-list">
-          <li><strong>No evidence linked</strong>Add sourced evidence to <code>playbook/evidence.json</code> before making a strong claim.</li>
-          <li><strong>Known facts</strong>No known facts recorded yet.</li>
-          <li><strong>Open assumptions</strong>No assumptions recorded yet.</li>
-        </ul>
-      </aside>
-    </section>
-
-    <section class="risk-next-grid" aria-label="Risks and next actions">
-      <article class="panel">
-        <h3>Risks</h3>
-        <ul class="clean-list">
-          <li>Evidence is missing.</li>
-          <li>Decision confidence should remain low until real signals are captured.</li>
-        </ul>
-      </article>
-
-      <article class="panel">
-        <h3>Next Actions</h3>
-        <ul class="clean-list">
-          <li>Capture raw evidence and add evidence IDs.</li>
-          <li>Refresh the current stage report and handoff.</li>
-        </ul>
-      </article>
-    </section>
-
-    <nav class="artifact-nav" aria-label="Artifact links">
-      <ul class="artifact-list">
-        <li><a href="playbook.json">playbook.json</a></li>
-        <li><a href="evidence.json">evidence.json</a></li>
-        <li><a href="decision-log.md">decision-log.md</a></li>
-        <li><a href="stages/validate/report.md">stage report</a></li>
-      </ul>
-    </nav>
+    <section class="stage-detail" id="stage-panel" data-stage-panel="validate" role="tabpanel" aria-live="polite"></section>
 
     <script type="application/json" id="playbook-data">
       {
         "projectId": "project-id",
         "currentStage": "validate",
-        "decision": null,
-        "score": null
+        "stages": {
+          "validate": {
+            "label": "Validate",
+            "title": "No decision recorded yet",
+            "score": null,
+            "decision": null,
+            "nextAction": "stay",
+            "summary": "No decision has been recorded. Add sourced evidence before advancing the pipeline.",
+            "evidence": ["No evidence linked yet.", "No known facts recorded yet.", "No assumptions recorded yet."],
+            "risks": ["Evidence is missing."],
+            "nextSteps": ["Capture raw evidence and add evidence IDs.", "Refresh the current stage report and handoff."],
+            "links": [
+              ["report.md", "stages/validate/report.md"],
+              ["report.json", "stages/validate/report.json"],
+              ["handoff.json", "stages/validate/handoff.json"],
+              ["input.json", "stages/validate/input.json"]
+            ]
+          },
+          "business-model": {
+            "label": "Business Model",
+            "title": "Business model not run yet",
+            "score": null,
+            "decision": null,
+            "nextAction": "stay",
+            "summary": "Run the business-model stage after validation produces a usable handoff.",
+            "evidence": ["No business-model evidence linked yet."],
+            "risks": ["Pricing and buyer are unknown."],
+            "nextSteps": ["Use validate/handoff.json as input."],
+            "links": [
+              ["report.md", "stages/business-model/report.md"],
+              ["report.json", "stages/business-model/report.json"],
+              ["handoff.json", "stages/business-model/handoff.json"],
+              ["input.json", "stages/business-model/input.json"]
+            ]
+          },
+          "build": {
+            "label": "Build",
+            "title": "Build not run yet",
+            "score": null,
+            "decision": null,
+            "nextAction": "stay",
+            "summary": "Run build only after the promise, buyer, and first paid test are clear.",
+            "evidence": ["No build evidence linked yet."],
+            "risks": ["Building before validation can hide weak demand."],
+            "nextSteps": ["Use business-model/handoff.json as input."],
+            "links": [
+              ["report.md", "stages/build/report.md"],
+              ["report.json", "stages/build/report.json"],
+              ["handoff.json", "stages/build/handoff.json"],
+              ["input.json", "stages/build/input.json"]
+            ]
+          },
+          "grow": {
+            "label": "Grow",
+            "title": "Growth not run yet",
+            "score": null,
+            "decision": null,
+            "nextAction": "stay",
+            "summary": "Run growth planning after a concrete product surface and conversion action exist.",
+            "evidence": ["No growth evidence linked yet."],
+            "risks": ["Traffic before conversion clarity wastes effort."],
+            "nextSteps": ["Use build/handoff.json as input."],
+            "links": [
+              ["report.md", "stages/grow/report.md"],
+              ["report.json", "stages/grow/report.json"],
+              ["handoff.json", "stages/grow/handoff.json"],
+              ["input.json", "stages/grow/input.json"]
+            ]
+          },
+          "operate": {
+            "label": "Operate",
+            "title": "Operate not run yet",
+            "score": null,
+            "decision": null,
+            "nextAction": "stay",
+            "summary": "Run operate after real metrics, revenue, or feedback exists.",
+            "evidence": ["No operate evidence linked yet."],
+            "risks": ["No metrics are available."],
+            "nextSteps": ["Use grow/handoff.json as input."],
+            "links": [
+              ["report.md", "stages/operate/report.md"],
+              ["report.json", "stages/operate/report.json"],
+              ["handoff.json", "stages/operate/handoff.json"],
+              ["input.json", "stages/operate/input.json"]
+            ]
+          }
+        }
       }
+    </script>
+    <script>
+      const playbookData = JSON.parse(document.getElementById("playbook-data").textContent);
+      const panel = document.querySelector("[data-stage-panel]");
+      const statusPill = document.getElementById("stage-status");
+      const tabs = Array.from(document.querySelectorAll("[data-stage-tab]"));
+
+      function listItems(items) {
+        return (items || []).map((item) => `<li>${item}</li>`).join("");
+      }
+
+      function artifactLinks(links) {
+        return (links || []).map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join("");
+      }
+
+      function switchStage(stageKey) {
+        const stage = playbookData.stages[stageKey] || playbookData.stages.validate;
+        panel.dataset.stagePanel = stageKey;
+        statusPill.textContent = `${stage.label} stage`;
+        tabs.forEach((tab) => {
+          const selected = tab.dataset.stageTab === stageKey;
+          tab.setAttribute("aria-selected", String(selected));
+        });
+        panel.innerHTML = `
+          <section class="dashboard" aria-label="${stage.label} stage status">
+            <article class="decision-panel">
+              <div class="decision-topline">
+                <h2>${stage.title}</h2>
+                <span class="decision-badge">Score: ${stage.score ?? "not scored"}</span>
+              </div>
+              <p class="reasoning">${stage.summary}</p>
+              <div class="metrics">
+                <div class="metric"><span class="label">Stage</span><strong>${stageKey}</strong></div>
+                <div class="metric"><span class="label">Decision</span><strong>${stage.decision ?? "none"}</strong></div>
+                <div class="metric"><span class="label">Next action</span><strong>${stage.nextAction ?? "stay"}</strong></div>
+              </div>
+            </article>
+            <aside class="evidence-board" aria-label="${stage.label} evidence">
+              <h3>Evidence / Known Context</h3>
+              <ul class="evidence-list">${listItems(stage.evidence)}</ul>
+            </aside>
+          </section>
+          <section class="risk-next-grid" aria-label="${stage.label} risks and next actions">
+            <article class="panel"><h3>Risks</h3><ul class="clean-list">${listItems(stage.risks)}</ul></article>
+            <article class="panel"><h3>Next Actions</h3><ul class="clean-list">${listItems(stage.nextSteps)}</ul></article>
+          </section>
+          <nav class="artifact-nav" aria-label="${stage.label} artifact links">
+            <ul class="artifact-list">${artifactLinks(stage.links)}</ul>
+          </nav>
+        `;
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => switchStage(tab.dataset.stageTab));
+        tab.addEventListener("keydown", (event) => {
+          if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
+          event.preventDefault();
+          const index = tabs.indexOf(tab);
+          const nextIndex = event.key === "ArrowRight"
+            ? (index + 1) % tabs.length
+            : (index - 1 + tabs.length) % tabs.length;
+          tabs[nextIndex].focus();
+          switchStage(tabs[nextIndex].dataset.stageTab);
+        });
+      });
+
+      switchStage(playbookData.currentStage || "validate");
     </script>
   </main>
 </body>
