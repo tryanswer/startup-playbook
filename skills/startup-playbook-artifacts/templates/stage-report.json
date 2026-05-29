@@ -26,7 +26,40 @@
   "evidenceRefs": [],
   "concerns": [],
   "nextSteps": [],
-  "analysis": {},
+  "analysis": {
+    "validationEvidence": [
+      {
+        "id": "val-001",
+        "category": "trend",
+        "sourceType": "trend-data",
+        "sourceName": "Google Trends",
+        "url": null,
+        "capturedAt": "2026-05-29T00:00:00.000Z",
+        "timeframe": "today 12-m",
+        "region": "unknown",
+        "query": "unknown",
+        "metric": "relative interest",
+        "observedValue": "unknown",
+        "sampleSize": null,
+        "comparison": null,
+        "interpretation": "Replace with sourced trend evidence before completing validation.",
+        "supports": [],
+        "contradicts": [],
+        "evidenceRef": "ev-001",
+        "confidence": "unknown",
+        "freshness": "unknown",
+        "mock": false
+      }
+    ],
+    "minimumEvidenceSet": {
+      "status": "insufficient",
+      "requiredCategories": ["trend", "search", "real-user-pain", "willingness-to-pay", "reachability"],
+      "metCategories": [],
+      "missingCategories": ["trend", "search", "real-user-pain", "willingness-to-pay", "reachability"],
+      "decisionRule": "Continue only when at least one direct buyer-pain row and one paid-intent or payment row are present.",
+      "notes": "Founder notes and AI-generated assumptions are not validation evidence."
+    }
+  },
   "handoffSummary": {
     "nextStage": null,
     "summary": "No handoff recorded yet."

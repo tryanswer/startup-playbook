@@ -82,6 +82,57 @@ Score defaults:
 - `marketRouting.stack`: `google`, `china`, `both`, `manual`, or `none`.
 - `sourceInputs.type`: `file`, `url`, `tool-output`, `conversation`, `manual-note`, or `metric-export`.
 
+## Validate Evidence Standard
+
+The `validate` stage must separate founder belief from sourced evidence. A completed validation report must include `analysis.validationEvidence` and `analysis.minimumEvidenceSet`.
+
+`analysis.validationEvidence` is an array of data-bearing rows. Each row must include:
+
+- `id`: stable row ID.
+- `category`: `trend`, `search`, `community`, `interview`, `paid-alternative`, `payment`, `platform-rule`, `competitor`, `analytics`, or `manual-audit`.
+- `sourceType`: one of the shared `evidence.sourceType` values.
+- `sourceName`: human-readable source, for example `Google Trends` or `Amazon Seller Central`.
+- `url`: source URL when available, otherwise `null`.
+- `capturedAt`: ISO timestamp.
+- `timeframe`: date window or sampling window, for example `today 12-m`.
+- `region`: geography or audience segment, for example `US` or `cross-border Amazon sellers`.
+- `query`: search query, interview question, cohort, or inspected object.
+- `metric`: metric name, for example `relative interest`, `monthly search volume`, `paid price`, `quote count`, or `conversion`.
+- `observedValue`: observed value with units. Do not write generic claims such as "high demand".
+- `sampleSize`: count when known, otherwise `null`.
+- `comparison`: baseline, competitor, or prior period when available.
+- `interpretation`: what the value supports or weakens.
+- `supports`: assumptions supported by the row.
+- `contradicts`: assumptions weakened by the row.
+- `evidenceRef`: ID from `playbook/evidence.json`.
+- `confidence`: `high`, `medium`, `low`, `limited`, `unknown`, or `not-run`.
+- `freshness`: `fresh`, `recent`, `stale`, or `unknown`.
+- `mock`: `true` only for synthetic data used to exercise the pipeline.
+
+`analysis.minimumEvidenceSet` summarizes whether the validation decision has enough data:
+
+```json
+{
+  "status": "partial",
+  "requiredCategories": ["trend", "search", "user-pain", "willingness-to-pay", "reachability"],
+  "metCategories": ["trend", "search", "paid-alternative", "platform-rule"],
+  "missingCategories": ["real-user-pain", "payment"],
+  "decisionRule": "Continue only when at least one direct buyer-pain row and one paid-intent or payment row are present.",
+  "notes": "Trend data supports demand direction but does not prove urgent paid demand."
+}
+```
+
+For Google Trends rows, record the exact query, region, timeframe, average/latest values, and momentum. Google Trends is normalized relative interest from 0 to 100; it is not absolute search volume and cannot prove willingness to pay.
+
+Validation strength guidelines:
+
+- `strongest`: real payment, preorder, paid pilot, or repeated buyer-owned workflow data.
+- `strong`: direct buyer interviews, support tickets, analytics, or search data with clear commercial intent.
+- `medium`: trend data, competitor pricing, platform rules, or community comments.
+- `weak`: founder notes, single anecdotes, mock data, broad head terms, or unsourced claims.
+
+If `validate.status` is `completed`, do not leave `analysis.validationEvidence` empty. If the minimum evidence set is incomplete, the decision should normally be `pivot`, `pause`, `kill`, or `stay`, not an unqualified `continue`.
+
 ## Stage Lifecycle
 
 1. Update `playbook/evidence.json` when new evidence is captured.
@@ -110,7 +161,7 @@ If a required value is unknown, keep the key and set it to `null`, `[]`, or `"un
 
 | Stage | Produces in `report.analysis` | Produces in `handoff.summary` |
 | --- | --- | --- |
-| `validate` | `snapshot`, `gates`, `painMining`, `searchAndMarket`, `willingnessToPay`, `landingPageTest` | `narrowedSegment`, `painfulSituation`, `strongestRawLanguage`, `evidenceRefs`, `firstReachableChannel`, `paidIntentGaps`, `recommendedNextExperiment` |
+| `validate` | `snapshot`, `gates`, `validationEvidence`, `minimumEvidenceSet`, `painMining`, `searchAndMarket`, `willingnessToPay`, `landingPageTest` | `narrowedSegment`, `painfulSituation`, `strongestRawLanguage`, `evidenceRefs`, `firstReachableChannel`, `paidIntentGaps`, `recommendedNextExperiment` |
 | `business-model` | `positioning`, `recommendedModel`, `pricing`, `revenueProgression`, `unitEconomics` | `buyer`, `user`, `modelType`, `pricingHypothesis`, `firstPaidTest`, `revenueMilestones`, `monetizationRisks` |
 | `build` | `mvpScope`, `prd`, `techStack`, `aiNativeCheck`, `instrumentation`, `launchChecklist` | `smallestPromise`, `excludedScope`, `userFlow`, `acceptanceCriteria`, `analyticsEvents`, `launchChannel`, `deployedUrl`, `securityPrivacyReviewStatus` |
 | `grow` | `marketRouting`, `keywordClusters`, `seoAso`, `channels`, `paidValidation`, `utmPlan`, `aiDistribution`, `measurementPlan` | `activeChannels`, `utmConvention`, `seoAsoTargets`, `paidTestSetup`, `contentBacklog`, `measurementThresholds` |
@@ -166,6 +217,7 @@ Show sections only when data exists:
 - project summary
 - stage pipeline
 - current decision
+- validation evidence data
 - evidence strength
 - known / assumed / to validate
 - risks and stop conditions

@@ -297,6 +297,44 @@
       border-top: 1px solid var(--line);
     }
 
+    .evidence-data {
+      margin-top: 18px;
+      padding: 22px;
+      overflow-x: auto;
+    }
+
+    .evidence-data table {
+      width: 100%;
+      min-width: 720px;
+      border-collapse: collapse;
+    }
+
+    .evidence-data th,
+    .evidence-data td {
+      padding: 12px 10px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .evidence-data th {
+      border-top: 0;
+      color: var(--ink);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .evidence-data td strong {
+      display: block;
+      color: var(--ink);
+      font-weight: 760;
+    }
+
     .artifact-list {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -411,9 +449,52 @@
             "nextAction": "paid test",
             "summary": "The pain is plausible and paid alternatives exist, but Taobao, JD, Amazon, and broad cross-border ecommerce are too wide for the first pass. Validate a narrower cross-border Amazon seller segment before building platform automation.",
             "evidence": [
+              "Google Trends US, today 12-m: product photography avg 52.4, AI product photography avg 44.1, product photo editing avg 40.8; recent 4-week momentum is negative for the broad terms.",
               "OpenAI has current image generation and image editing APIs suitable for a technical prototype.",
               "Amazon product image requirements create a concrete compliance surface for sellers.",
               "Existing ecommerce image editing services show sellers already pay for product-image cleanup."
+            ],
+            "validationEvidence": [
+              {
+                "category": "trend",
+                "sourceName": "Google Trends",
+                "metric": "relative interest",
+                "observedValue": "product photography avg 52.4/latest 25/momentum -16.2; ai product photography avg 44.1/latest 15/momentum -23.7; product photo editing avg 40.8/latest 9/momentum -11",
+                "timeframe": "today 12-m, 53 weekly samples",
+                "region": "US",
+                "interpretation": "The demand category has visible search interest, but recent momentum is weak. This supports a narrower validation test, not a broad build decision.",
+                "confidence": "medium"
+              },
+              {
+                "category": "search",
+                "sourceName": "Google Trends keyword set",
+                "metric": "platform/service query coverage",
+                "observedValue": "amazon product images avg 30.9/latest 11; ecommerce photo editing avg 5.9/latest 9/momentum +5.3",
+                "timeframe": "today 12-m, 53 weekly samples",
+                "region": "US",
+                "interpretation": "There are concrete long-tail and service terms, but the service term is much smaller than broad product-photography demand.",
+                "confidence": "medium"
+              },
+              {
+                "category": "platform-rule",
+                "sourceName": "Amazon Seller Central",
+                "metric": "image compliance requirements",
+                "observedValue": "main image white background, product-only, product fills at least 85%; six images recommended",
+                "timeframe": "captured 2026-05-29",
+                "region": "Amazon marketplace",
+                "interpretation": "A compliance checklist exists and can anchor a narrow first service promise.",
+                "confidence": "medium"
+              },
+              {
+                "category": "paid-alternative",
+                "sourceName": "Pixc ecommerce photo editing",
+                "metric": "published package price",
+                "observedValue": "10 basic images $20; 50 basic images $100",
+                "timeframe": "captured 2026-05-29",
+                "region": "ecommerce merchants",
+                "interpretation": "Paid alternatives show image cleanup is a paid category, but do not prove this product's willingness to pay.",
+                "confidence": "medium"
+              }
             ],
             "risks": [
               "Generic AI product-image tools already exist; the wedge must be marketplace-specific compliance and workflow.",
@@ -570,8 +651,21 @@
         return (links || []).map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join("");
       }
 
+      function evidenceRows(items) {
+        return (items || []).map((item) => `
+          <tr>
+            <td><strong>${item.category || "evidence"}</strong>${item.sourceName || "unknown source"}</td>
+            <td>${item.metric || "metric"}<br>${item.observedValue || "not recorded"}</td>
+            <td>${item.timeframe || "unknown"}<br>${item.region || "unknown"}</td>
+            <td>${item.interpretation || "No interpretation recorded."}</td>
+            <td>${item.confidence || "unknown"}</td>
+          </tr>
+        `).join("");
+      }
+
       function switchStage(stageKey) {
         const stage = playbookData.stages[stageKey] || playbookData.stages.validate;
+        const validationEvidence = stage.validationEvidence || [];
         panel.dataset.stagePanel = stageKey;
         statusPill.textContent = `${stage.label} stage`;
         tabs.forEach((tab) => {
@@ -597,6 +691,23 @@
               <ul class="evidence-list">${listItems(stage.evidence)}</ul>
             </aside>
           </section>
+          ${validationEvidence.length ? `
+            <section class="panel evidence-data" aria-label="${stage.label} validation evidence data">
+              <h3>Validation Evidence Data</h3>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Source</th>
+                    <th>Metric / Value</th>
+                    <th>Window</th>
+                    <th>Interpretation</th>
+                    <th>Confidence</th>
+                  </tr>
+                </thead>
+                <tbody>${evidenceRows(validationEvidence)}</tbody>
+              </table>
+            </section>
+          ` : ""}
           <section class="risk-next-grid" aria-label="${stage.label} risks and next actions">
             <article class="panel"><h3>Risks</h3><ul class="clean-list">${listItems(stage.risks)}</ul></article>
             <article class="panel"><h3>Next Actions</h3><ul class="clean-list">${listItems(stage.nextSteps)}</ul></article>

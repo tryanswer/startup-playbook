@@ -65,10 +65,12 @@ function validateIndexTemplate(html, label, errors) {
     "class=\"risk-next-grid\"",
     "class=\"artifact-nav\"",
     "class=\"status-pill",
+    "evidence-data",
     "data-stage-tab",
     "data-stage-panel",
     "aria-selected=\"true\"",
     "function switchStage",
+    "function evidenceRows",
     "addEventListener(\"click\"",
     "@media (max-width: 760px)",
     "max-width: 1180px",
@@ -83,6 +85,37 @@ function validateIndexTemplate(html, label, errors) {
   assert(!html.includes("font-family: Inter"), `${label} should not use Inter as the primary font`, errors);
   assert(!html.includes("h-screen"), `${label} should not use h-screen`, errors);
   assert(!html.includes("product/app/.playbook-output"), `${label} still references old product output path`, errors);
+}
+
+function validateStageReportTemplate(report, label, errors) {
+  assert(report.analysis && typeof report.analysis === "object", `${label} missing analysis object`, errors);
+  assert(Array.isArray(report.analysis.validationEvidence), `${label} missing analysis.validationEvidence array`, errors);
+  assert(report.analysis.minimumEvidenceSet && typeof report.analysis.minimumEvidenceSet === "object", `${label} missing analysis.minimumEvidenceSet`, errors);
+}
+
+function validateCurrentValidateReport(report, evidenceLedger, errors) {
+  const evidence = report.analysis?.validationEvidence;
+  assert(Array.isArray(evidence), "current validate report missing analysis.validationEvidence", errors);
+  assert(evidence?.length >= 3, "current validate report should include at least three validation evidence rows", errors);
+
+  const categories = new Set((evidence ?? []).map((item) => item.category));
+  for (const category of ["trend", "search", "paid-alternative"]) {
+    assert(categories.has(category), `current validate report missing validation evidence category: ${category}`, errors);
+  }
+
+  for (const item of evidence ?? []) {
+    for (const key of ["id", "category", "sourceName", "sourceType", "capturedAt", "metric", "observedValue", "timeframe", "interpretation", "evidenceRef", "confidence"]) {
+      assert(item[key] !== undefined && item[key] !== null && item[key] !== "", `validation evidence ${item.id ?? "(unknown)"} missing ${key}`, errors);
+    }
+  }
+
+  const ledgerIds = new Set((evidenceLedger?.items ?? []).map((item) => item.id));
+  for (const evidenceRef of report.evidenceRefs ?? []) {
+    assert(ledgerIds.has(evidenceRef), `validate report evidenceRef not found in ledger: ${evidenceRef}`, errors);
+  }
+  for (const item of evidence ?? []) {
+    assert(ledgerIds.has(item.evidenceRef), `validation evidence row references missing ledger item: ${item.evidenceRef}`, errors);
+  }
 }
 
 async function listFiles(root, prefix = "") {
@@ -138,6 +171,9 @@ async function main() {
     const protocol = await readText(path.join(artifactSkillDir, "references", "artifact-protocol.md"));
     for (const token of [
       "Stage Interface Matrix",
+      "Validate Evidence Standard",
+      "minimumEvidenceSet",
+      "validationEvidence",
       "`validate`",
       "`business-model`",
       "`build`",
@@ -155,7 +191,10 @@ async function main() {
     const templatePath = path.join(artifactSkillDir, rel);
     if (await exists(templatePath)) {
       try {
-        JSON.parse(await readText(templatePath));
+        const parsed = JSON.parse(await readText(templatePath));
+        if (rel === "templates/stage-report.json") {
+          validateStageReportTemplate(parsed, "stage-report template", errors);
+        }
       } catch (error) {
         errors.push(`invalid JSON template ${rel}: ${error.message}`);
       }
@@ -199,6 +238,20 @@ async function main() {
     assert(installScript.includes(artifactSkillName), "install script does not bundle startup-playbook-artifacts", errors);
   } else {
     errors.push("missing startup advisor install script");
+  }
+
+  const currentValidateReportPath = path.join(repoRoot, "playbook", "stages", "validate", "report.json");
+  const currentEvidencePath = path.join(repoRoot, "playbook", "evidence.json");
+  if (await exists(currentValidateReportPath) && await exists(currentEvidencePath)) {
+    try {
+      validateCurrentValidateReport(
+        JSON.parse(await readText(currentValidateReportPath)),
+        JSON.parse(await readText(currentEvidencePath)),
+        errors,
+      );
+    } catch (error) {
+      errors.push(`invalid current validate artifacts: ${error.message}`);
+    }
   }
 
   if (errors.length > 0) {

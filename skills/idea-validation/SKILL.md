@@ -49,6 +49,8 @@ If any answer is missing, treat the idea as unvalidated.
 ## Required Output
 
 - Idea validation brief.
+- Minimum evidence set status: trend, search, real user pain, willingness to pay, and reachability.
+- Structured validation evidence table with source, timeframe, region, metric, observed value, interpretation, and evidence ID.
 - Raw quote table.
 - Pain frequency summary.
 - Keyword and trend evidence.
@@ -70,7 +72,11 @@ playbook/stages/validate/handoff.json
 playbook/stages/validate/report.md
 ```
 
-The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.snapshot`, `analysis.gates`, `analysis.painMining`, `analysis.searchAndMarket`, `analysis.willingnessToPay`, and `analysis.landingPageTest`.
+The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.snapshot`, `analysis.gates`, `analysis.validationEvidence`, `analysis.minimumEvidenceSet`, `analysis.painMining`, `analysis.searchAndMarket`, `analysis.willingnessToPay`, and `analysis.landingPageTest`.
+
+For `analysis.validationEvidence`, every row must carry data, not just a conclusion: source, source type, captured time, timeframe, region, query or cohort, metric, observed value, interpretation, confidence, and linked `evidenceRef`.
+
+For `analysis.minimumEvidenceSet`, mark the validation as `partial` or `insufficient` until there is at least one real buyer-pain row and one paid-intent or payment row. Google Trends and keyword data can support demand direction, but they do not prove willingness to pay.
 
 The `handoff.json` must include the narrowed segment, painful situation, strongest raw language, evidence IDs, first reachable channel, paid-intent gaps, and recommended next experiment.
 

@@ -21,6 +21,7 @@
   "nextStageAction": "stay",
   "reasoning": "The pain is plausible and paid alternatives exist, but the audience is too broad and real seller demand has not been validated.",
   "known": [
+    "Google Trends US data for product image terms shows visible category interest, but recent momentum is weak for broad terms.",
     "OpenAI has current image generation and image editing APIs suitable for a technical prototype.",
     "Amazon product image requirements create a concrete compliance surface for sellers.",
     "Existing ecommerce image editing services show sellers already pay for product-image cleanup."
@@ -36,7 +37,7 @@
     "Verify current Taobao and JD official image rules from seller-console or platform docs.",
     "Test whether sellers pay for compliance assurance, conversion lift, speed, or style quality."
   ],
-  "evidenceRefs": ["ev-user-idea-001", "ev-openai-gpt-image-2-001", "ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+  "evidenceRefs": ["ev-user-idea-001", "ev-google-trends-product-images-001", "ev-openai-gpt-image-2-001", "ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
   "concerns": [
     "Generic AI product-image tools already exist; the wedge must be marketplace-specific compliance and workflow.",
     "Generated images can create trust, refund, or policy risk if they misrepresent the product.",
@@ -60,8 +61,8 @@
     "gates": {
       "demandRealAndFrequent": {
         "status": "partially_supported",
-        "evidenceRefs": ["ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
-        "notes": "Marketplace image rules and paid alternatives support plausibility; real seller interviews are still missing."
+        "evidenceRefs": ["ev-google-trends-product-images-001", "ev-amazon-image-rules-001", "ev-pixc-paid-alt-001", "ev-mock-seller-pain-001"],
+        "notes": "Trend data, marketplace image rules, and paid alternatives support plausibility; real seller interviews are still missing."
       },
       "usersReachable": {
         "status": "supported",
@@ -72,6 +73,104 @@
         "signals": ["paid alternatives exist", "mock paid-intent signal"],
         "missing": ["real paid pilot", "budget owner", "repeat purchase cadence"]
       }
+    },
+    "validationEvidence": [
+      {
+        "id": "val-google-trends-us-001",
+        "category": "trend",
+        "sourceType": "trend-data",
+        "sourceName": "Google Trends",
+        "url": "https://trends.google.com/trends/explore?date=today%2012-m&geo=US&q=product%20photography,ai%20product%20photography,product%20photo%20editing,amazon%20product%20images,ecommerce%20photo%20editing",
+        "capturedAt": "2026-05-29T04:19:38.120Z",
+        "timeframe": "today 12-m, 53 weekly samples",
+        "region": "US",
+        "query": "product photography; ai product photography; product photo editing",
+        "metric": "relative interest average/latest/4w momentum",
+        "observedValue": "product photography avg 52.4/latest 25/momentum -16.2; ai product photography avg 44.1/latest 15/momentum -23.7; product photo editing avg 40.8/latest 9/momentum -11",
+        "sampleSize": 53,
+        "comparison": "Compared within the same Google Trends 12-month US context.",
+        "interpretation": "The demand category has visible search interest, but recent momentum is weak. This supports a narrow validation test, not a broad build decision.",
+        "supports": ["category-demand", "search-language"],
+        "contradicts": ["urgent-broad-demand"],
+        "evidenceRef": "ev-google-trends-product-images-001",
+        "confidence": "medium",
+        "freshness": "fresh",
+        "mock": false
+      },
+      {
+        "id": "val-google-trends-search-001",
+        "category": "search",
+        "sourceType": "search-data",
+        "sourceName": "Google Trends keyword set",
+        "url": "https://trends.google.com/trends/explore?date=today%2012-m&geo=US&q=amazon%20product%20images,ecommerce%20photo%20editing",
+        "capturedAt": "2026-05-29T04:19:38.120Z",
+        "timeframe": "today 12-m, 53 weekly samples",
+        "region": "US",
+        "query": "amazon product images; ecommerce photo editing",
+        "metric": "relative interest average/latest/4w momentum",
+        "observedValue": "amazon product images avg 30.9/latest 11/momentum -10; ecommerce photo editing avg 5.9/latest 9/momentum +5.3",
+        "sampleSize": 53,
+        "comparison": "Compared with broader product photography terms in the same run.",
+        "interpretation": "Platform and service terms exist, but service-intent search is much smaller than broad product photography demand.",
+        "supports": ["platform-specific-language", "service-language"],
+        "contradicts": ["large-obvious-self-serve-search-market"],
+        "evidenceRef": "ev-google-trends-product-images-001",
+        "confidence": "medium",
+        "freshness": "fresh",
+        "mock": false
+      },
+      {
+        "id": "val-amazon-rules-001",
+        "category": "platform-rule",
+        "sourceType": "other",
+        "sourceName": "Amazon Seller Central",
+        "url": "https://sellercentral.amazon.com/seller-forums/discussions/t/99a0dc92-15dc-492a-b24e-f327f4c28dd5",
+        "capturedAt": "2026-05-29T03:55:52.000Z",
+        "timeframe": "captured 2026-05-29",
+        "region": "Amazon marketplace",
+        "query": "Amazon product image requirements",
+        "metric": "image compliance requirements",
+        "observedValue": "main image white background, product-only, product fills at least 85%; six images recommended",
+        "sampleSize": null,
+        "comparison": null,
+        "interpretation": "A concrete compliance checklist exists and can anchor a narrow first service promise.",
+        "supports": ["platform-compliance-pain", "first-wedge-amazon"],
+        "contradicts": [],
+        "evidenceRef": "ev-amazon-image-rules-001",
+        "confidence": "medium",
+        "freshness": "fresh",
+        "mock": false
+      },
+      {
+        "id": "val-pixc-paid-alt-001",
+        "category": "paid-alternative",
+        "sourceType": "pricing-page",
+        "sourceName": "Pixc ecommerce photo editing",
+        "url": "https://pixc.com/photo-editing/",
+        "capturedAt": "2026-05-29T03:55:52.000Z",
+        "timeframe": "captured 2026-05-29",
+        "region": "ecommerce merchants",
+        "query": "ecommerce photo editing pricing",
+        "metric": "published package price",
+        "observedValue": "10 basic images $20; 50 basic images $100",
+        "sampleSize": null,
+        "comparison": "Existing service alternative, not this product's conversion.",
+        "interpretation": "Paid alternatives show image cleanup is a paid category, but this does not prove sellers will pay for an AI compliance workflow.",
+        "supports": ["paid-category-exists", "pricing-anchor"],
+        "contradicts": ["free-only-problem"],
+        "evidenceRef": "ev-pixc-paid-alt-001",
+        "confidence": "medium",
+        "freshness": "fresh",
+        "mock": false
+      }
+    ],
+    "minimumEvidenceSet": {
+      "status": "partial",
+      "requiredCategories": ["trend", "search", "real-user-pain", "willingness-to-pay", "reachability"],
+      "metCategories": ["trend", "search", "platform-rule", "paid-alternative", "reachability"],
+      "missingCategories": ["real-user-pain", "payment"],
+      "decisionRule": "Continue only when at least one direct buyer-pain row and one paid-intent or payment row are present.",
+      "notes": "Trend data and paid alternatives support plausibility, but the pipeline still lacks real seller interviews and actual paid intent."
     },
     "painMining": {
       "themes": [
@@ -95,9 +194,49 @@
     },
     "searchAndMarket": {
       "keywords": ["Amazon product image editing", "AI product photos", "ecommerce photo editing"],
-      "trendSignals": [],
+      "trendSignals": [
+        {
+          "source": "Google Trends",
+          "country": "US",
+          "timeframe": "today 12-m",
+          "samples": 53,
+          "keywords": [
+            {
+              "keyword": "product photography",
+              "average": 52.4,
+              "latest": 25,
+              "momentum4": -16.2
+            },
+            {
+              "keyword": "ai product photography",
+              "average": 44.1,
+              "latest": 15,
+              "momentum4": -23.7
+            },
+            {
+              "keyword": "product photo editing",
+              "average": 40.8,
+              "latest": 9,
+              "momentum4": -11
+            },
+            {
+              "keyword": "amazon product images",
+              "average": 30.9,
+              "latest": 11,
+              "momentum4": -10
+            },
+            {
+              "keyword": "ecommerce photo editing",
+              "average": 5.9,
+              "latest": 9,
+              "momentum4": 5.3
+            }
+          ],
+          "interpretation": "Search interest exists, but service-intent terms are smaller and most broad terms have negative recent momentum."
+        }
+      ],
       "competitors": ["Pixc", "Cheeppy", "ProductMagic AI", "Prodshot AI"],
-      "confidence": "limited"
+      "confidence": "medium"
     },
     "willingnessToPay": {
       "paidAlternatives": ["Pixc ecommerce photo editing", "AI product photo tools", "listing optimization agencies"],

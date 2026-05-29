@@ -40,6 +40,20 @@ Use these as defaults. Adjust only when the user has a better reason.
 - `pivot`: demand is visible, but segment, channel, promise, or monetization is unclear.
 - `kill`: no repeated pain, no reachable audience, no paid intent, or the trend is falling with no specific niche.
 
+## Validate Evidence Data
+
+The validate stage needs data-bearing rows, not only prose. Each row should answer: source, timeframe, region, query or cohort, metric, observed value, interpretation, confidence, and evidence ID.
+
+Minimum useful coverage:
+
+- `trend`: Google Trends or equivalent directional data with query, geography, timeframe, average/latest/momentum, and the caveat that it is not absolute volume.
+- `search`: keyword, SERP, autocomplete, Search Console, or paid keyword data showing concrete long-tail intent rather than only broad head terms.
+- `real-user-pain`: interview, support ticket, community complaint, review, or customer report from the target segment.
+- `willingness-to-pay`: payment, preorder, booked paid call, paid pilot, pricing-page click, paid alternative, or explicit budget signal.
+- `reachability`: a named channel, community, marketplace, list, search surface, or relationship path where the target user can be reached.
+
+A validation report is only `complete` with a clean `continue` when real user pain and willingness-to-pay are both present. Trend, search, competitor, and platform-rule evidence can support a `pivot` or narrow validation sprint, but they should not justify building by themselves.
+
 ## Founder Case Patterns
 
 The local case-study corpus points to these reusable patterns:

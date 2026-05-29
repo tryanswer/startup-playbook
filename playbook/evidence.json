@@ -27,6 +27,29 @@
       "privacy": "public-summary-only"
     },
     {
+      "id": "ev-google-trends-product-images-001",
+      "sourceType": "trend-data",
+      "sourceName": "Google Trends",
+      "url": "https://trends.google.com/trends/explore?date=today%2012-m&geo=US&q=product%20photography,ai%20product%20photography,product%20photo%20editing,amazon%20product%20images,ecommerce%20photo%20editing",
+      "capturedAt": "2026-05-29T04:19:38.120Z",
+      "quote": null,
+      "summary": "US Google Trends run over 53 weekly samples: product photography avg 52.4/latest 25/momentum -16.2; AI product photography avg 44.1/latest 15/momentum -23.7; product photo editing avg 40.8/latest 9/momentum -11; Amazon product images avg 30.9/latest 11/momentum -10; ecommerce photo editing avg 5.9/latest 9/momentum +5.3.",
+      "actorRole": "search market",
+      "segment": "US ecommerce searchers",
+      "stage": "validate",
+      "supports": ["category-demand", "search-language", "platform-specific-language"],
+      "strength": "medium",
+      "metrics": {
+        "metric": "Google Trends relative interest",
+        "value": "average/latest/4w momentum by keyword",
+        "timeframe": "today 12-m",
+        "region": "US",
+        "samples": 53
+      },
+      "caveats": ["Google Trends is normalized relative interest, not absolute search volume or willingness to pay.", "Recent momentum is negative for the broader product image terms."],
+      "privacy": "public-summary-only"
+    },
+    {
       "id": "ev-openai-gpt-image-2-001",
       "sourceType": "other",
       "sourceName": "OpenAI image generation guide",

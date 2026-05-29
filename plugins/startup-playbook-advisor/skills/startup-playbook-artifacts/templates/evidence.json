@@ -23,6 +23,12 @@
       "stage": "validate",
       "supports": [],
       "strength": "weak",
+      "metrics": {
+        "metric": null,
+        "value": null,
+        "timeframe": null,
+        "region": null
+      },
       "caveats": ["Replace with sourced evidence before making a strong decision."],
       "privacy": "private-summary"
     }
