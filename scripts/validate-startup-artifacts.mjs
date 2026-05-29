@@ -63,16 +63,37 @@ function validateIndexTemplate(html, label, errors) {
     "class=\"seg-btn\"",
     "class=\"decision-panel\"",
     "class=\"evidence-board\"",
+    "align-items: stretch",
+    ".decision-panel .metrics",
+    "--font-display",
+    "--font-text",
+    "--font-mono",
+    "--text-body: 17px",
+    "--text-large-title: 34px",
+    "--text-title-1: 28px",
+    "--text-footnote: 13px",
+    "--radius-card: 18px",
+    "--shadow-control",
+    "function gateStatusClass",
+    "gate-icon-supported",
     "class=\"risk-next-grid\"",
     "class=\"artifact-nav\"",
     "class=\"status-pill",
     "evidence-data",
+    "evidence-card",
+    "evidence-metric-stack",
+    "pricing-tier-card",
+    "keyword-cluster-card",
+    "channel-row",
+    "function pricingTierCards",
+    "function keywordClusterCards",
+    "function channelRows",
     "data-stage-tab",
     "id=\"stage-panel\"",
     "role=\"tabpanel\"",
     "aria-selected=\"true\"",
     "function switchStage",
-    "function evidenceRows",
+    "function evidenceCards",
     "const stageChartInstances",
     "let overviewChart",
     "function destroyOverviewChart",
@@ -92,6 +113,9 @@ function validateIndexTemplate(html, label, errors) {
   }
 
   assert(!html.includes("font-family: Inter"), `${label} should not use Inter as the primary font`, errors);
+  assert(!/[✅🟡🔴]/u.test(html), `${label} should not use emoji status icons`, errors);
+  assert(!html.includes("<table><thead>"), `${label} should not render validation evidence as a wide table`, errors);
+  assert(!html.includes("grid-column:span 2"), `${label} should use reusable wide-card classes instead of inline grid spans`, errors);
   assert(!html.includes("body::before"), `${label} should not use the old grid overlay background`, errors);
   assert(!html.includes("radial-gradient"), `${label} should not use the old decorative gradient background`, errors);
   assert(!html.includes("h-screen"), `${label} should not use h-screen`, errors);
