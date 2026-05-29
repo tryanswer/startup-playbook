@@ -339,11 +339,13 @@
   /* ── helpers ── */
   const COLORS = { green:'#34c759', yellow:'#ff9f0a', red:'#ff3b30', blue:'#007aff', purple:'#af52de', teal:'#5ac8fa', orange:'#ff6723', pink:'#ff2d55' };
   const PALETTE = ['#007aff','#34c759','#ff9f0a','#af52de','#ff3b30','#5ac8fa','#ff6723','#ff2d55'];
-  const chartInstances = [];
+  const stageChartInstances = [];
+  let overviewChart = null;
 
-  function destroyCharts() { chartInstances.forEach(c => c.destroy()); chartInstances.length = 0; }
+  function destroyCharts() { stageChartInstances.forEach(c => c.destroy()); stageChartInstances.length = 0; }
+  function destroyOverviewChart() { if (overviewChart) { overviewChart.destroy(); overviewChart = null; } }
 
-  function makeChart(canvasId, config) {
+  function makeChart(canvasId, config, trackStageChart = true) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) return null;
     const keepAspect = config.options?.maintainAspectRatio ?? false;
@@ -356,7 +358,7 @@
         plugins: { ...config.options?.plugins, legend: { display: config.options?.plugins?.legend?.display ?? true, position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 11 } } } }
       }
     });
-    chartInstances.push(chart);
+    if (trackStageChart) stageChartInstances.push(chart);
     return chart;
   }
 
@@ -417,6 +419,7 @@
   /* ── overview section ── */
   function renderOverview(data) {
     const ov = document.getElementById('overview');
+    destroyOverviewChart();
     const radarId = uid();
     const stageOrder = ['validate','business-model','build','grow','operate'];
     const labels = t('stageLabels');
@@ -440,14 +443,14 @@
       <div class="overview-radar"><canvas id="${radarId}" width="300" height="300"></canvas></div>
       <div class="overview-pipeline"><h3>${t('stagePipeline')}</h3>${pipelineHtml}</div>`;
 
-    makeChart(radarId, {
+    overviewChart = makeChart(radarId, {
       type: 'radar',
       data: {
         labels,
         datasets: [{ label: t('score'), data: scores, fill: true, backgroundColor: 'rgba(0,122,255,.12)', borderColor: COLORS.blue, pointBackgroundColor: COLORS.blue, pointRadius: 5, borderWidth: 2 }]
       },
       options: { responsive: true, maintainAspectRatio: true, scales: { r: { min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 } }, pointLabels: { font: { size: 12, weight: '600' } } } }, plugins: { legend: { display: false } } }
-    });
+    }, false);
   }
 
   /* ── stage-specific chart builders ── */
