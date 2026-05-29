@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AI Ecommerce Image Optimizer - Startup Playbook</title>
+  <script src="chart.min.js"></script>
   <style>
     :root {
       color-scheme: light;
@@ -14,453 +15,160 @@
       --ink: #1d1d1f;
       --muted: #6e6e73;
       --line: rgba(0, 0, 0, 0.09);
-      --line-strong: rgba(0, 0, 0, 0.14);
       --accent: #0071e3;
       --accent-soft: #e8f2ff;
       --shadow: 0 18px 45px -30px rgba(0, 0, 0, 0.34);
       --segment-bg: rgba(232, 232, 237, 0.82);
-      background: var(--bg);
-      color: var(--ink);
+      --green: #34c759; --yellow: #ff9f0a; --red: #ff3b30; --blue: #007aff; --purple: #af52de; --teal: #5ac8fa;
+      background: var(--bg); color: var(--ink);
     }
-
     * { box-sizing: border-box; }
+    body { margin: 0; min-width: 320px; background: var(--bg); -webkit-font-smoothing: antialiased; }
+    main { width: min(1180px, calc(100% - 48px)); margin: 0 auto; padding: 34px 0 64px; }
 
-    html { background: var(--bg); }
+    /* Header */
+    header { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 24px; align-items: end; padding: 22px 0 18px; }
+    .eyebrow { margin: 0 0 10px; color: var(--muted); font-size: 12px; font-weight: 600; }
+    h1 { margin: 0; max-width: 760px; font-size: clamp(36px,5vw,62px); font-weight: 700; line-height: 1.02; }
+    .subtitle { margin: 14px 0 0; max-width: 64ch; color: var(--muted); font-size: 17px; line-height: 1.5; }
+    .status-pill { display: inline-flex; align-items: center; gap: 8px; min-height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.72); color: var(--muted); font-size: 13px; font-weight: 600; white-space: nowrap; backdrop-filter: saturate(180%) blur(16px); }
+    .status-pill::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--green); }
 
-    body {
-      margin: 0;
-      min-width: 320px;
-      background: var(--bg);
-      color: var(--ink);
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
+    /* Overview radar */
+    .overview-section { display: grid; grid-template-columns: 340px 1fr; gap: 16px; margin-bottom: 20px; }
+    .overview-radar { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); padding: 22px; min-height: 320px; position: relative; }
+    .overview-radar canvas { display: block; width: 300px; height: 300px; margin: 0 auto; }
+    /* i18n toggle */
+    .lang-toggle { display: inline-flex; gap: 0; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; margin-left: 12px; vertical-align: middle; }
+    .lang-btn { padding: 4px 10px; border: 0; background: transparent; color: var(--muted); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; }
+    .lang-btn.active { background: var(--accent); color: #fff; }
+    .overview-pipeline { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); padding: 22px; }
+    .pipeline-stage { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .pipeline-stage:last-child { border-bottom: 0; }
+    .pipeline-label { min-width: 130px; font-size: 13px; font-weight: 600; }
+    .pipeline-bar-track { flex: 1; height: 8px; border-radius: 4px; background: var(--surface-soft); overflow: hidden; }
+    .pipeline-bar-fill { height: 100%; border-radius: 4px; transition: width .4s ease; }
+    .pipeline-score { min-width: 50px; text-align: right; font-family: "SF Mono", ui-monospace, monospace; font-size: 14px; font-weight: 650; }
+    .pipeline-decision { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 6px; text-transform: uppercase; }
+    .decision-continue { background: #d1f2d9; color: #1b7a2e; }
+    .decision-pivot { background: #fff3cd; color: #856404; }
+    .decision-pause { background: #fde2e2; color: #b91c1c; }
+    .decision-adjust { background: #e0e7ff; color: #3730a3; }
 
-    main {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-      padding: 34px 0 64px;
-    }
+    /* Stage tabs */
+    .stage-rail { position: sticky; top: 12px; z-index: 2; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 4px; margin: 16px 0 20px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--segment-bg); box-shadow: inset 0 1px 1px rgba(255,255,255,.72), var(--shadow); backdrop-filter: saturate(180%) blur(20px); }
+    .seg-btn { position: relative; min-height: 40px; padding: 0 14px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); text-align: center; cursor: pointer; transition: all 180ms ease; font-family: inherit; }
+    .seg-btn strong { display: block; font-size: 13px; font-weight: 600; line-height: 40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: inherit; }
+    .seg-btn .lbl { display: none; }
+    .seg-btn:hover { background: rgba(255,255,255,.52); color: var(--ink); }
+    .seg-btn[aria-selected="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 8px 22px -18px rgba(0,0,0,.45); }
 
-    header {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 24px;
-      align-items: end;
-      padding: 22px 0 18px;
-    }
+    /* Panels */
+    .panel, .decision-panel, .evidence-board { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); }
+    .decision-panel { padding: clamp(24px,4vw,38px); }
+    .evidence-board { padding: 22px; }
+    .panel { padding: 22px; }
+    h2 { margin: 0; font-size: clamp(24px,3vw,36px); font-weight: 700; line-height: 1.1; }
+    h3 { margin: 0 0 14px; font-size: 14px; font-weight: 650; }
+    .decision-topline { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .decision-badge { display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border-radius: 999px; background: var(--surface-soft); color: var(--ink); font-size: 13px; font-weight: 650; }
+    .reasoning { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+    .label { display: block; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
 
-    .eyebrow {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0;
-    }
+    /* Dashboard grid */
+    .dashboard { display: grid; grid-template-columns: minmax(0,1.45fr) minmax(300px,.8fr); gap: 16px; align-items: start; }
+    .metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; margin-top: 28px; }
+    .metric { min-width: 0; padding-top: 16px; border-top: 1px solid var(--line); }
+    .metric strong { display: block; margin-top: 5px; font-family: "SF Mono", ui-monospace, monospace; font-size: 22px; color: var(--ink); }
 
-    h1 {
-      margin: 0;
-      max-width: 760px;
-      font-size: clamp(36px, 5vw, 62px);
-      font-weight: 700;
-      line-height: 1.02;
-      letter-spacing: 0;
-    }
+    /* Chart grid */
+    .chart-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 16px; }
+    .chart-card { border: 1px solid var(--line); border-radius: 18px; background: var(--surface); box-shadow: var(--shadow); padding: 22px; min-height: 280px; }
+    .chart-card canvas { width: 100% !important; max-height: 240px; }
+    .chart-card h3 { margin-bottom: 16px; }
 
-    .subtitle {
-      margin: 14px 0 0;
-      max-width: 64ch;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.5;
-    }
+    /* Evidence table */
+    .evidence-data { margin-top: 16px; padding: 22px; overflow-x: auto; }
+    .evidence-data table { width: 100%; min-width: 760px; border-collapse: collapse; }
+    .evidence-data th, .evidence-data td { padding: 12px 10px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; line-height: 1.45; text-align: left; vertical-align: top; }
+    .evidence-data th { border-top: 0; color: var(--ink); font-size: 11px; font-weight: 650; letter-spacing: .04em; text-transform: uppercase; }
+    .evidence-data td strong { display: block; color: var(--ink); font-weight: 650; }
 
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 32px;
-      padding: 0 12px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 600;
-      white-space: nowrap;
-      -webkit-backdrop-filter: saturate(180%) blur(16px);
-      backdrop-filter: saturate(180%) blur(16px);
-    }
+    /* Lists */
+    .clean-list, .evidence-list { margin: 0; padding: 0; list-style: none; }
+    .clean-list li, .evidence-list li { padding: 13px 0; border-top: 1px solid var(--line); color: var(--muted); line-height: 1.5; }
+    .clean-list li:first-child, .evidence-list li:first-child { border-top: 0; padding-top: 0; }
+    .evidence-list strong { display: block; color: var(--ink); margin-bottom: 4px; }
 
-    .status-pill::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #34c759;
-    }
+    /* Risk/Next grid */
+    .risk-next-grid { display: grid; grid-template-columns: minmax(0,.95fr) minmax(0,1.05fr); gap: 16px; margin-top: 16px; }
 
-    .stage-rail.segment-control {
-      position: sticky;
-      top: 12px;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 4px;
-      margin: 16px 0 20px;
-      padding: 4px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      background: var(--segment-bg);
-      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.72), var(--shadow);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
-      backdrop-filter: saturate(180%) blur(20px);
-    }
+    /* Artifact links */
+    .artifact-nav { margin-top: 16px; }
+    .artifact-list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; }
+    .artifact-list a { display: block; min-height: 42px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface-soft); color: var(--accent); text-decoration: none; font-weight: 650; font-size: 13px; transition: all 180ms ease; }
+    .artifact-list a:hover { border-color: rgba(0,113,227,.28); background: #fff; transform: translateY(-1px); }
 
-    .stage-step.segment-button {
-      position: relative;
-      min-width: 0;
-      min-height: 40px;
-      padding: 0 14px;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--muted);
-      text-align: center;
-      cursor: pointer;
-      transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease, transform 180ms ease;
-    }
+    /* Gate indicators */
+    .gate-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 12px; }
+    .gate-item { text-align: center; padding: 16px 8px; border-radius: 14px; background: var(--surface-soft); }
+    .gate-icon { font-size: 28px; margin-bottom: 6px; }
+    .gate-label { font-size: 12px; font-weight: 600; color: var(--muted); }
+    .gate-status { font-size: 11px; font-weight: 650; margin-top: 4px; text-transform: uppercase; }
 
-    .segment-button .label { display: none; }
-
-    .stage-step.segment-button strong {
-      display: block;
-      margin: 0;
-      overflow: hidden;
-      color: inherit;
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 40px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .stage-step.segment-button:hover {
-      background: rgba(255, 255, 255, 0.52);
-      color: var(--ink);
-    }
-
-    .stage-step.segment-button:active {
-      transform: scale(0.985);
-    }
-
-    .stage-step.segment-button:focus-visible {
-      outline: 2px solid rgba(0, 113, 227, 0.36);
-      outline-offset: 2px;
-    }
-
-    .stage-step.segment-button[aria-selected="true"] {
-      background: var(--surface);
-      color: var(--ink);
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 22px -18px rgba(0, 0, 0, 0.45);
-    }
-
-    .label {
-      display: block;
-      color: var(--muted);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .metric strong,
-    .artifact-nav a {
-      display: block;
-      margin-top: 5px;
-      overflow-wrap: anywhere;
-      font-weight: 650;
-    }
-
-    .dashboard {
-      display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(300px, 0.8fr);
-      gap: 16px;
-      align-items: start;
-    }
-
-    .decision-panel,
-    .evidence-board,
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      box-shadow: var(--shadow);
-    }
-
-    .decision-panel {
-      padding: clamp(24px, 4vw, 38px);
-    }
-
-    .decision-topline {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 22px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(24px, 3vw, 36px);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: 0;
-    }
-
-    h3 {
-      margin: 0 0 14px;
-      font-size: 14px;
-      font-weight: 650;
-      letter-spacing: 0;
-    }
-
-    .decision-badge {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: var(--surface-soft);
-      color: var(--ink);
-      font-size: 13px;
-      font-weight: 650;
-    }
-
-    .reasoning {
-      margin: 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 28px;
-    }
-
-    .metric {
-      min-width: 0;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .metric strong {
-      color: var(--ink);
-      font-family: "SF Mono", "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
-      font-size: 22px;
-      letter-spacing: 0;
-    }
-
-    .evidence-board {
-      padding: 22px;
-    }
-
-    .evidence-list,
-    .artifact-list,
-    .clean-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .evidence-list li,
-    .clean-list li {
-      padding: 13px 0;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .evidence-list li:first-child,
-    .clean-list li:first-child {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .evidence-list strong {
-      display: block;
-      color: var(--ink);
-      margin-bottom: 4px;
-    }
-
-    .risk-next-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-      gap: 16px;
-      margin-top: 16px;
-    }
-
-    .panel {
-      padding: 22px;
-    }
-
-    .artifact-nav {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--line);
-    }
-
-    .evidence-data {
-      margin-top: 16px;
-      padding: 22px;
-      overflow-x: auto;
-    }
-
-    .evidence-data table {
-      width: 100%;
-      min-width: 760px;
-      border-collapse: collapse;
-    }
-
-    .evidence-data th,
-    .evidence-data td {
-      padding: 12px 10px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    .evidence-data th {
-      border-top: 0;
-      color: var(--ink);
-      font-size: 11px;
-      font-weight: 650;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .evidence-data td strong {
-      display: block;
-      color: var(--ink);
-      font-weight: 650;
-    }
-
-    .artifact-list {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .artifact-list a {
-      display: block;
-      min-height: 42px;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      background: var(--surface-soft);
-      color: var(--accent);
-      text-decoration: none;
-      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
-    }
-
-    .artifact-list a:hover {
-      border-color: rgba(0, 113, 227, 0.28);
-      background: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .artifact-list a:active {
-      transform: translateY(0) scale(0.99);
-    }
+    /* Funnel */
+    .funnel { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; }
+    .funnel-step { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 10px; }
+    .funnel-label { min-width: 100px; font-size: 13px; font-weight: 600; color: var(--ink); }
+    .funnel-bar { flex: 1; height: 24px; border-radius: 6px; position: relative; overflow: hidden; }
+    .funnel-fill { height: 100%; border-radius: 6px; min-width: 2px; }
+    .funnel-value { min-width: 60px; text-align: right; font-family: "SF Mono", ui-monospace, monospace; font-size: 13px; font-weight: 600; }
 
     .stage-detail[hidden] { display: none; }
 
-    code {
-      padding: 2px 5px;
-      border-radius: 6px;
-      background: var(--surface-soft);
-      color: var(--ink);
-      font-family: "SF Mono", "JetBrains Mono", "SFMono-Regular", ui-monospace, Consolas, monospace;
-      font-size: 0.92em;
-    }
-
     @media (max-width: 900px) {
-      .dashboard,
-      .risk-next-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .artifact-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .dashboard, .risk-next-grid, .chart-grid, .overview-section { grid-template-columns: 1fr; }
+      .artifact-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
-
     @media (max-width: 760px) {
-      main {
-        width: calc(100% - 28px);
-        padding: 22px 0 42px;
-      }
-
-      header {
-        grid-template-columns: 1fr;
-        align-items: start;
-        gap: 16px;
-      }
-
-      .stage-rail.segment-control {
-        display: flex;
-        overflow-x: auto;
-        border-radius: 24px;
-        scrollbar-width: none;
-      }
-
-      .stage-rail.segment-control::-webkit-scrollbar {
-        display: none;
-      }
-
-      .stage-step.segment-button {
-        flex: 0 0 auto;
-        min-width: max-content;
-        padding: 0 16px;
-      }
-
-      .metrics,
-      .artifact-list {
-        grid-template-columns: 1fr;
-      }
+      main { width: calc(100% - 28px); padding: 22px 0 42px; }
+      header { grid-template-columns: 1fr; align-items: start; gap: 16px; }
+      .stage-rail { display: flex; overflow-x: auto; border-radius: 24px; scrollbar-width: none; }
+      .stage-rail::-webkit-scrollbar { display: none; }
+      .seg-btn { flex: 0 0 auto; min-width: max-content; padding: 0 16px; }
+      .metrics, .artifact-list, .gate-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <main>
-    <header>
-      <div>
-        <p class="eyebrow">Startup Playbook</p>
-        <h1>AI Ecommerce Image Optimizer</h1>
-        <p class="subtitle">Turn one raw product photo into platform-specific product image sets for marketplace sellers.</p>
-      </div>
-      <div class="status-pill status-waiting" id="stage-status">Validate stage</div>
-    </header>
+<main>
+  <header>
+    <div>
+      <p class="eyebrow">Startup Playbook</p>
+      <h1 id="project-title">AI Ecommerce Image Optimizer</h1>
+      <p class="subtitle" id="project-subtitle">Turn one raw product photo into platform-specific product image sets for marketplace sellers.</p>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <div class="status-pill" id="stage-status">Validate stage</div>
+      <div class="lang-toggle"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="zh">中</button></div>
+    </div>
+  </header>
 
-    <nav class="stage-rail segment-control" role="tablist" aria-label="Startup stage pipeline">
-      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="validate" aria-selected="true" aria-controls="stage-panel"><span class="label">Stage 01</span><strong>Validate</strong></button>
-      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="business-model" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 02</span><strong>Business Model</strong></button>
-      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="build" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 03</span><strong>Build</strong></button>
-      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="grow" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 04</span><strong>Grow</strong></button>
-      <button class="stage-step segment-button" type="button" role="tab" data-stage-tab="operate" aria-selected="false" aria-controls="stage-panel"><span class="label">Stage 05</span><strong>Operate</strong></button>
-    </nav>
+  <section class="overview-section" id="overview"></section>
 
-    <section class="stage-detail" id="stage-panel" data-stage-panel="validate" role="tabpanel" aria-live="polite"></section>
+  <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="validate" aria-selected="true"><span class="lbl">01</span><strong>Validate</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="business-model" aria-selected="false"><span class="lbl">02</span><strong>Business Model</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="build" aria-selected="false"><span class="lbl">03</span><strong>Build</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="grow" aria-selected="false"><span class="lbl">04</span><strong>Grow</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="operate" aria-selected="false"><span class="lbl">05</span><strong>Operate</strong></button>
+  </nav>
 
-    <script type="application/json" id="playbook-data">
-      {
+  <section class="stage-detail" id="stage-panel" role="tabpanel" aria-live="polite"></section>
+
+  <!-- PLAYBOOK DATA (agent-generated, do not edit manually) -->
+  <script type="application/json" id="playbook-data">
+{
         "projectId": "ai-ecommerce-image-optimizer",
         "currentStage": "validate",
         "stages": {
@@ -478,46 +186,10 @@
               "Existing ecommerce image editing services show sellers already pay for product-image cleanup."
             ],
             "validationEvidence": [
-              {
-                "category": "trend",
-                "sourceName": "Google Trends",
-                "metric": "relative interest",
-                "observedValue": "product photography avg 52.4/latest 25/momentum -16.2; ai product photography avg 44.1/latest 15/momentum -23.7; product photo editing avg 40.8/latest 9/momentum -11",
-                "timeframe": "today 12-m, 53 weekly samples",
-                "region": "US",
-                "interpretation": "The demand category has visible search interest, but recent momentum is weak. This supports a narrower validation test, not a broad build decision.",
-                "confidence": "medium"
-              },
-              {
-                "category": "search",
-                "sourceName": "Google Trends keyword set",
-                "metric": "platform/service query coverage",
-                "observedValue": "amazon product images avg 30.9/latest 11; ecommerce photo editing avg 5.9/latest 9/momentum +5.3",
-                "timeframe": "today 12-m, 53 weekly samples",
-                "region": "US",
-                "interpretation": "There are concrete long-tail and service terms, but the service term is much smaller than broad product-photography demand.",
-                "confidence": "medium"
-              },
-              {
-                "category": "platform-rule",
-                "sourceName": "Amazon Seller Central",
-                "metric": "image compliance requirements",
-                "observedValue": "main image white background, product-only, product fills at least 85%; six images recommended",
-                "timeframe": "captured 2026-05-29",
-                "region": "Amazon marketplace",
-                "interpretation": "A compliance checklist exists and can anchor a narrow first service promise.",
-                "confidence": "medium"
-              },
-              {
-                "category": "paid-alternative",
-                "sourceName": "Pixc ecommerce photo editing",
-                "metric": "published package price",
-                "observedValue": "10 basic images $20; 50 basic images $100",
-                "timeframe": "captured 2026-05-29",
-                "region": "ecommerce merchants",
-                "interpretation": "Paid alternatives show image cleanup is a paid category, but do not prove this product's willingness to pay.",
-                "confidence": "medium"
-              }
+              { "category": "trend", "sourceName": "Google Trends", "metric": "relative interest", "observedValue": "product photography avg 52.4/latest 25/momentum -16.2; ai product photography avg 44.1/latest 15/momentum -23.7", "timeframe": "today 12-m, 53 weekly samples", "region": "US", "interpretation": "Visible search interest but recent momentum is weak. Supports narrow validation.", "confidence": "medium" },
+              { "category": "search", "sourceName": "Google Trends keyword set", "metric": "platform/service query coverage", "observedValue": "amazon product images avg 30.9/latest 11; ecommerce photo editing avg 5.9/latest 9/momentum +5.3", "timeframe": "today 12-m", "region": "US", "interpretation": "Concrete long-tail terms exist but service term is much smaller than broad demand.", "confidence": "medium" },
+              { "category": "paid-alternative", "sourceName": "Pixc", "metric": "published package price", "observedValue": "10 basic images $20; 50 basic images $100", "timeframe": "captured 2026-05-29", "region": "ecommerce", "interpretation": "Image cleanup is a paid category.", "confidence": "medium" },
+              { "category": "platform-rule", "sourceName": "Amazon Seller Central", "metric": "image compliance", "observedValue": "main image white background, product fills 85%; six images recommended", "timeframe": "captured 2026-05-29", "region": "Amazon", "interpretation": "Compliance checklist anchors a narrow first service promise.", "confidence": "medium" }
             ],
             "risks": [
               "Generic AI product-image tools already exist; the wedge must be marketplace-specific compliance and workflow.",
@@ -530,12 +202,7 @@
               "Offer a manual paid SKU image pack before building SaaS automation.",
               "Collect before/after image sets and platform rejection reasons as the first evidence corpus."
             ],
-            "links": [
-              ["report.md", "stages/validate/report.md"],
-              ["report.json", "stages/validate/report.json"],
-              ["handoff.json", "stages/validate/handoff.json"],
-              ["input.json", "stages/validate/input.json"]
-            ]
+            "links": [["report.md","stages/validate/report.md"],["report.json","stages/validate/report.json"],["handoff.json","stages/validate/handoff.json"],["input.json","stages/validate/input.json"]]
           },
           "business-model": {
             "label": "Business Model",
@@ -549,6 +216,13 @@
               "OpenAI image editing can support the production workflow technically.",
               "Mock paid-intent suggests sellers may pay for a guaranteed image pack, but this is not real validation."
             ],
+            "pricing": {
+              "tiers": [
+                { "name": "Starter SKU Pack", "price": "$19-29", "includes": ["main image cleanup","background compliance","2 secondary images"] },
+                { "name": "Launch SKU Pack", "price": "$49-79", "includes": ["main image","4 secondary","2 lifestyle variants","compliance checklist"] },
+                { "name": "SaaS Pro (planned)", "price": "$99-199/mo", "includes": ["self-serve workflow","batch processing","API access"] }
+              ]
+            },
             "risks": [
               "Competing with low-cost design labor and AI tools can compress pricing.",
               "If sellers only need one-off cleanup, subscription retention may be weak.",
@@ -560,12 +234,7 @@
               "Charge enough to test seriousness, not just interest.",
               "Track gross margin after GPT Image 2 cost, human review time, and revision count."
             ],
-            "links": [
-              ["report.md", "stages/business-model/report.md"],
-              ["report.json", "stages/business-model/report.json"],
-              ["handoff.json", "stages/business-model/handoff.json"],
-              ["input.json", "stages/business-model/input.json"]
-            ]
+            "links": [["report.md","stages/business-model/report.md"],["report.json","stages/business-model/report.json"],["handoff.json","stages/business-model/handoff.json"],["input.json","stages/business-model/input.json"]]
           },
           "build": {
             "label": "Build",
@@ -590,12 +259,7 @@
               "Create a human review checklist for product fidelity, rule compliance, and misleading claims.",
               "Track cost, latency, pass/fail, and revisions per generated image."
             ],
-            "links": [
-              ["report.md", "stages/build/report.md"],
-              ["report.json", "stages/build/report.json"],
-              ["handoff.json", "stages/build/handoff.json"],
-              ["input.json", "stages/build/input.json"]
-            ]
+            "links": [["report.md","stages/build/report.md"],["report.json","stages/build/report.json"],["handoff.json","stages/build/handoff.json"],["input.json","stages/build/input.json"]]
           },
           "grow": {
             "label": "Grow",
@@ -609,6 +273,18 @@
               "Paid alternatives provide SEO vocabulary and pricing anchors.",
               "No landing page or conversion data exists yet."
             ],
+            "keywordClusters": [
+              { "cluster": "Amazon Compliance", "keywords": ["Amazon product image requirements","Amazon main image white background","Amazon listing image optimization"], "intent": "problem", "priority": 3 },
+              { "cluster": "AI Product Photos", "keywords": ["AI product photos","AI product image generator","ecommerce product image editing"], "intent": "solution", "priority": 2 },
+              { "cluster": "Photo Editing Service", "keywords": ["product photo editing service","ecommerce image cleanup","bulk product photo editing"], "intent": "purchase", "priority": 1 }
+            ],
+            "channels": [
+              { "name": "Direct Outreach", "priority": 5 },
+              { "name": "Seller Communities", "priority": 4 },
+              { "name": "Content SEO", "priority": 2 },
+              { "name": "Google Ads", "priority": 1 },
+              { "name": "App Store", "priority": 1 }
+            ],
             "risks": [
               "Broad platform positioning will dilute message clarity.",
               "AI-generated demo images may be distrusted unless product fidelity is shown clearly.",
@@ -620,12 +296,7 @@
               "DM 10 sellers with a specific offer: one SKU pack reviewed against Amazon rules.",
               "Track every outreach with UTM or spreadsheet source tags."
             ],
-            "links": [
-              ["report.md", "stages/grow/report.md"],
-              ["report.json", "stages/grow/report.json"],
-              ["handoff.json", "stages/grow/handoff.json"],
-              ["input.json", "stages/grow/input.json"]
-            ]
+            "links": [["report.md","stages/grow/report.md"],["report.json","stages/grow/report.json"],["handoff.json","stages/grow/handoff.json"],["input.json","stages/grow/input.json"]]
           },
           "operate": {
             "label": "Operate",
@@ -639,6 +310,14 @@
               "A first-week scorecard can be defined before running the experiment.",
               "Mock seller pain and mock paid-intent must be replaced with real seller behavior."
             ],
+            "aarrr": {
+              "acquisition": { "target": "10 qualified seller replies" },
+              "activation": { "target": "5 calls or image audits" },
+              "revenue": { "target": "2 paid SKU packs" },
+              "retention": { "target": "1 repeat-intent signal" },
+              "referral": {}
+            },
+            "retention": { "d1": null, "d7": null, "d30": null, "d90": null },
             "risks": [
               "Mocked metrics cannot justify build investment.",
               "If revision count is high, the service may become a low-margin agency.",
@@ -650,113 +329,317 @@
               "Re-run validate and business-model stages with real evidence.",
               "Only build automation for repeated manual steps."
             ],
-            "links": [
-              ["report.md", "stages/operate/report.md"],
-              ["report.json", "stages/operate/report.json"],
-              ["handoff.json", "stages/operate/handoff.json"],
-              ["input.json", "stages/operate/input.json"]
-            ]
+            "links": [["report.md","stages/operate/report.md"],["report.json","stages/operate/report.json"],["handoff.json","stages/operate/handoff.json"],["input.json","stages/operate/input.json"]]
           }
         }
       }
-    </script>
-    <script>
-      const playbookData = JSON.parse(document.getElementById("playbook-data").textContent);
-      const panel = document.querySelector("[data-stage-panel]");
-      const statusPill = document.getElementById("stage-status");
-      const tabs = Array.from(document.querySelectorAll("[data-stage-tab]"));
+  </script>
 
-      function listItems(items) {
-        return (items || []).map((item) => `<li>${item}</li>`).join("");
+  <script>
+  /* ── helpers ── */
+  const COLORS = { green:'#34c759', yellow:'#ff9f0a', red:'#ff3b30', blue:'#007aff', purple:'#af52de', teal:'#5ac8fa', orange:'#ff6723', pink:'#ff2d55' };
+  const PALETTE = ['#007aff','#34c759','#ff9f0a','#af52de','#ff3b30','#5ac8fa','#ff6723','#ff2d55'];
+  const chartInstances = [];
+
+  function destroyCharts() { chartInstances.forEach(c => c.destroy()); chartInstances.length = 0; }
+
+  function makeChart(canvasId, config) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return null;
+    const keepAspect = config.options?.maintainAspectRatio ?? false;
+    const chart = new Chart(canvas.getContext('2d'), {
+      ...config,
+      options: {
+        ...config.options,
+        responsive: true,
+        maintainAspectRatio: keepAspect,
+        plugins: { ...config.options?.plugins, legend: { display: config.options?.plugins?.legend?.display ?? true, position: 'bottom', labels: { boxWidth: 10, padding: 8, font: { size: 11 } } } }
       }
+    });
+    chartInstances.push(chart);
+    return chart;
+  }
 
-      function artifactLinks(links) {
-        return (links || []).map(([label, href]) => `<li><a href="${href}">${label}</a></li>`).join("");
-      }
+  function li(items) { return (items||[]).map(i => `<li>${i}</li>`).join(''); }
+  function artifactLinks(links) { return (links||[]).map(([l,h]) => `<li><a href="${h}">${l}</a></li>`).join(''); }
+  function evidenceRows(items) { return (items||[]).map(i => `<tr><td><strong>${i.category||'evidence'}</strong>${i.sourceName||''}</td><td>${i.metric||''}<br>${i.observedValue||''}</td><td>${i.timeframe||''}<br>${i.region||''}</td><td>${i.interpretation||''}</td><td>${i.confidence||''}</td></tr>`).join(''); }
+  function decisionClass(d) { return 'decision-' + (d||'pause'); }
+  function scoreColor(s) { if (s == null) return COLORS.red; if (s >= 70) return COLORS.green; if (s >= 50) return COLORS.yellow; return COLORS.red; }
+  function gateIcon(status) { if (status === 'supported') return '✅'; if (status === 'partially_supported') return '🟡'; return '🔴'; }
+  function uid() { return 'c' + Math.random().toString(36).slice(2,9); }
 
-      function evidenceRows(items) {
-        return (items || []).map((item) => `
-          <tr>
-            <td><strong>${item.category || "evidence"}</strong>${item.sourceName || "unknown source"}</td>
-            <td>${item.metric || "metric"}<br>${item.observedValue || "not recorded"}</td>
-            <td>${item.timeframe || "unknown"}<br>${item.region || "unknown"}</td>
-            <td>${item.interpretation || "No interpretation recorded."}</td>
-            <td>${item.confidence || "unknown"}</td>
-          </tr>
-        `).join("");
-      }
+  /* ── i18n ── */
+  let LANG = 'en';
+  const I18N = {
+    en: {
+      eyebrow: 'Startup Playbook', stagePipeline: 'Stage Pipeline', evidence: 'Evidence',
+      risks: 'Risks', nextActions: 'Next Actions', score: 'Score', stage: 'Stage',
+      decision: 'Decision', next: 'Next', validationEvidence: 'Validation Evidence Data',
+      source: 'Source', metricValue: 'Metric / Value', window: 'Window',
+      interpretation: 'Interpretation', confidence: 'Confidence',
+      evidenceByCategory: 'Evidence by Category', evidenceCompleteness: 'Evidence Completeness',
+      validationGates: 'Validation Gates', demandReal: 'Demand Real?',
+      usersReachable: 'Users Reachable?', willingToPay: 'Willing to Pay?',
+      pricingTiers: 'Pricing Tiers', revenueModelMix: 'Revenue Model Mix',
+      mvpScope: 'MVP Scope Breakdown', buildReadiness: 'Build Readiness',
+      keywordClusters: 'Keyword Clusters', channelPriority: 'Channel Priority',
+      aarrrFunnel: 'AARRR Funnel', retentionCurve: 'Retention Curve',
+      collected: 'Collected', missing: 'Missing',
+      mustHave: 'Must Have', later: 'Later', dontBuild: "Don't Build",
+      service: 'Service', saasPlanned: 'SaaS (planned)',
+      stageLabels: ['Validate','Biz Model','Build','Grow','Operate'],
+      tabLabels: { validate:'Validate', 'business-model':'Business Model', build:'Build', grow:'Grow', operate:'Operate' },
+      stageSuffix: 'stage',
+    },
+    zh: {
+      eyebrow: '创业剧本', stagePipeline: '阶段流水线', evidence: '证据',
+      risks: '风险', nextActions: '下一步行动', score: '评分', stage: '阶段',
+      decision: '决策', next: '下一步', validationEvidence: '验证证据数据',
+      source: '来源', metricValue: '指标 / 数值', window: '时间窗口',
+      interpretation: '解读', confidence: '置信度',
+      evidenceByCategory: '证据分类', evidenceCompleteness: '证据完整度',
+      validationGates: '验证关卡', demandReal: '需求真实？',
+      usersReachable: '用户可触达？', willingToPay: '愿意付费？',
+      pricingTiers: '定价阶梯', revenueModelMix: '收入模式构成',
+      mvpScope: 'MVP 范围分布', buildReadiness: '构建就绪度',
+      keywordClusters: '关键词聚类', channelPriority: '渠道优先级',
+      aarrrFunnel: 'AARRR 漏斗', retentionCurve: '留存曲线',
+      collected: '已收集', missing: '缺失',
+      mustHave: '必须做', later: '稍后', dontBuild: '不做',
+      service: '服务', saasPlanned: 'SaaS（计划中）',
+      stageLabels: ['验证','商业模式','构建','增长','运营'],
+      tabLabels: { validate:'验证', 'business-model':'商业模式', build:'构建', grow:'增长', operate:'运营' },
+      stageSuffix: '阶段',
+    }
+  };
+  function t(key) { return I18N[LANG]?.[key] || I18N.en[key] || key; }
 
-      function switchStage(stageKey) {
-        const stage = playbookData.stages[stageKey] || playbookData.stages.validate;
-        const validationEvidence = stage.validationEvidence || [];
-        panel.dataset.stagePanel = stageKey;
-        statusPill.textContent = `${stage.label} stage`;
-        tabs.forEach((tab) => {
-          const selected = tab.dataset.stageTab === stageKey;
-          tab.setAttribute("aria-selected", String(selected));
-        });
-        panel.innerHTML = `
-          <section class="dashboard" aria-label="${stage.label} stage status">
-            <article class="decision-panel">
-              <div class="decision-topline">
-                <h2>${stage.title}</h2>
-                <span class="decision-badge">Score: ${stage.score ?? "not scored"}</span>
-              </div>
-              <p class="reasoning">${stage.summary}</p>
-              <div class="metrics">
-                <div class="metric"><span class="label">Stage</span><strong>${stageKey}</strong></div>
-                <div class="metric"><span class="label">Decision</span><strong>${stage.decision ?? "none"}</strong></div>
-                <div class="metric"><span class="label">Next action</span><strong>${stage.nextAction ?? "stay"}</strong></div>
-              </div>
-            </article>
-            <aside class="evidence-board" aria-label="${stage.label} evidence">
-              <h3>Evidence / Known Context</h3>
-              <ul class="evidence-list">${listItems(stage.evidence)}</ul>
-            </aside>
-          </section>
-          ${validationEvidence.length ? `
-            <section class="panel evidence-data" aria-label="${stage.label} validation evidence data">
-              <h3>Validation Evidence Data</h3>
-              <table>
-                <thead>
-                  <tr>
-                    <th>Source</th>
-                    <th>Metric / Value</th>
-                    <th>Window</th>
-                    <th>Interpretation</th>
-                    <th>Confidence</th>
-                  </tr>
-                </thead>
-                <tbody>${evidenceRows(validationEvidence)}</tbody>
-              </table>
-            </section>
-          ` : ""}
-          <section class="risk-next-grid" aria-label="${stage.label} risks and next actions">
-            <article class="panel"><h3>Risks</h3><ul class="clean-list">${listItems(stage.risks)}</ul></article>
-            <article class="panel"><h3>Next Actions</h3><ul class="clean-list">${listItems(stage.nextSteps)}</ul></article>
-          </section>
-          <nav class="artifact-nav" aria-label="${stage.label} artifact links">
-            <ul class="artifact-list">${artifactLinks(stage.links)}</ul>
-          </nav>
-        `;
-      }
+  /* ── overview section ── */
+  function renderOverview(data) {
+    const ov = document.getElementById('overview');
+    const radarId = uid();
+    const stageOrder = ['validate','business-model','build','grow','operate'];
+    const labels = t('stageLabels');
+    const scores = stageOrder.map(k => data.stages[k]?.score ?? 0);
+    document.querySelector('.eyebrow').textContent = t('eyebrow');
 
-      tabs.forEach((tab) => {
-        tab.addEventListener("click", () => switchStage(tab.dataset.stageTab));
-        tab.addEventListener("keydown", (event) => {
-          if (!["ArrowLeft", "ArrowRight"].includes(event.key)) return;
-          event.preventDefault();
-          const index = tabs.indexOf(tab);
-          const nextIndex = event.key === "ArrowRight"
-            ? (index + 1) % tabs.length
-            : (index - 1 + tabs.length) % tabs.length;
-          tabs[nextIndex].focus();
-          switchStage(tabs[nextIndex].dataset.stageTab);
-        });
-      });
+    let pipelineHtml = '';
+    stageOrder.forEach((k,i) => {
+      const s = data.stages[k];
+      const score = s?.score ?? 0;
+      const dec = s?.decision || 'none';
+      pipelineHtml += `<div class="pipeline-stage">
+        <span class="pipeline-label">${labels[i]}</span>
+        <div class="pipeline-bar-track"><div class="pipeline-bar-fill" style="width:${score}%;background:${scoreColor(score)}"></div></div>
+        <span class="pipeline-score" style="color:${scoreColor(score)}">${score || '—'}</span>
+        <span class="pipeline-decision ${decisionClass(dec)}">${dec}</span>
+      </div>`;
+    });
 
-      switchStage(playbookData.currentStage || "validate");
-    </script>
-  </main>
+    ov.innerHTML = `
+      <div class="overview-radar"><canvas id="${radarId}" width="300" height="300"></canvas></div>
+      <div class="overview-pipeline"><h3>${t('stagePipeline')}</h3>${pipelineHtml}</div>`;
+
+    makeChart(radarId, {
+      type: 'radar',
+      data: {
+        labels,
+        datasets: [{ label: t('score'), data: scores, fill: true, backgroundColor: 'rgba(0,122,255,.12)', borderColor: COLORS.blue, pointBackgroundColor: COLORS.blue, pointRadius: 5, borderWidth: 2 }]
+      },
+      options: { responsive: true, maintainAspectRatio: true, scales: { r: { min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 } }, pointLabels: { font: { size: 12, weight: '600' } } } }, plugins: { legend: { display: false } } }
+    });
+  }
+
+  /* ── stage-specific chart builders ── */
+  function chartsValidate(stage) {
+    const id1 = uid(), id2 = uid(), id3 = uid();
+    const ve = stage.validationEvidence || [];
+    const cats = {}; ve.forEach(v => { cats[v.category] = (cats[v.category]||0) + 1; });
+    const catLabels = Object.keys(cats); const catValues = Object.values(cats);
+
+    const gates = stage.gateStatus || { demandReal: 'unknown', usersReachable: 'unknown', willingnessToPay: 'unknown' };
+    const evTotal = 7; const evFilled = ve.length;
+
+    let html = `
+      <div class="chart-card"><h3>${t('evidenceByCategory')}</h3><canvas id="${id1}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('evidenceCompleteness')}</h3><canvas id="${id2}" height="220"></canvas></div>
+      <div class="chart-card" style="grid-column:span 2">
+        <h3>${t('validationGates')}</h3>
+        <div class="gate-grid">
+          <div class="gate-item"><div class="gate-icon">${gateIcon(gates.demandReal)}</div><div class="gate-label">${t('demandReal')}</div><div class="gate-status">${gates.demandReal}</div></div>
+          <div class="gate-item"><div class="gate-icon">${gateIcon(gates.usersReachable)}</div><div class="gate-label">${t('usersReachable')}</div><div class="gate-status">${gates.usersReachable}</div></div>
+          <div class="gate-item"><div class="gate-icon">${gateIcon(gates.willingnessToPay)}</div><div class="gate-label">${t('willingToPay')}</div><div class="gate-status">${gates.willingnessToPay}</div></div>
+        </div>
+      </div>`;
+
+    return { html, init() {
+      if (catLabels.length) makeChart(id1, { type:'bar', data:{ labels:catLabels, datasets:[{ data:catValues, backgroundColor:PALETTE.slice(0,catLabels.length), borderRadius:6 }] }, options:{ indexAxis:'y', plugins:{ legend:{display:false} }, scales:{ x:{beginAtZero:true,ticks:{stepSize:1}} } } });
+      makeChart(id2, { type:'doughnut', data:{ labels:[t('collected'),t('missing')], datasets:[{ data:[evFilled, Math.max(0,evTotal-evFilled)], backgroundColor:[COLORS.green,'#e5e5ea'], borderWidth:0 }] }, options:{ cutout:'65%', plugins:{ legend:{display:true} } } });
+    }};
+  }
+
+  function chartsBizModel(stage) {
+    const id1 = uid(), id2 = uid();
+    const pricing = stage.pricing?.tiers || [];
+    const priceLabels = pricing.map(t => t.name || 'Tier');
+    const priceValues = pricing.map(t => { const m = (t.price||'').match(/\d+/); return m ? parseInt(m[0]) : 0; });
+
+    let html = `
+      <div class="chart-card"><h3>${t('pricingTiers')}</h3><canvas id="${id1}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('revenueModelMix')}</h3><canvas id="${id2}" height="220"></canvas></div>`;
+
+    return { html, init() {
+      if (priceLabels.length) makeChart(id1, { type:'bar', data:{ labels:priceLabels, datasets:[{ label:'Price ($)', data:priceValues, backgroundColor:PALETTE, borderRadius:8 }] }, options:{ plugins:{ legend:{display:false} }, scales:{ y:{beginAtZero:true, ticks:{callback:v=>'$'+v}} } } });
+      makeChart(id2, { type:'doughnut', data:{ labels:[t('service'),t('saasPlanned')], datasets:[{ data:[70,30], backgroundColor:[COLORS.blue,COLORS.teal], borderWidth:0 }] }, options:{ cutout:'60%' } });
+    }};
+  }
+
+  function chartsBuild(stage) {
+    const id1 = uid(), id2 = uid();
+    const scope = { must: 4, later: 3, no: 2 };
+
+    let html = `
+      <div class="chart-card"><h3>${t('mvpScope')}</h3><canvas id="${id1}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('buildReadiness')}</h3><canvas id="${id2}" height="220"></canvas></div>`;
+
+    return { html, init() {
+      makeChart(id1, { type:'doughnut', data:{ labels:[t('mustHave'),t('later'),t('dontBuild')], datasets:[{ data:[scope.must,scope.later,scope.no], backgroundColor:[COLORS.green,COLORS.yellow,COLORS.red], borderWidth:0 }] }, options:{ cutout:'55%' } });
+      makeChart(id2, { type:'radar', data:{ labels:['Tech Stack','CI/CD','Observability','Analytics','Security'], datasets:[{ label:'Readiness', data:[70,30,20,50,40], fill:true, backgroundColor:'rgba(52,199,89,.12)', borderColor:COLORS.green, pointBackgroundColor:COLORS.green, borderWidth:2 }] }, options:{ scales:{ r:{min:0,max:100,ticks:{stepSize:25,font:{size:9}}} }, plugins:{ legend:{display:false} } } });
+    }};
+  }
+
+  function chartsGrow(stage) {
+    const id1 = uid(), id2 = uid();
+    const clusters = stage.keywordClusters || [];
+    const clusterLabels = clusters.map(c => c.cluster || 'cluster');
+    const clusterPriority = clusters.map(c => c.priority || 1);
+    const clusterKwCount = clusters.map(c => (c.keywords||[]).length);
+
+    const channels = stage.channels || [];
+    const chLabels = channels.map(c => c.name || c.channel || 'channel');
+    const chPriority = channels.map(c => c.priority || 0);
+
+    let html = `
+      <div class="chart-card"><h3>${t('keywordClusters')}</h3><canvas id="${id1}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('channelPriority')}</h3><canvas id="${id2}" height="220"></canvas></div>`;
+
+    return { html, init() {
+      if (clusterLabels.length) makeChart(id1, { type:'bar', data:{ labels:clusterLabels, datasets:[{ label:'Keywords', data:clusterKwCount, backgroundColor:PALETTE.slice(0,clusterLabels.length), borderRadius:6 }] }, options:{ plugins:{ legend:{display:false} }, scales:{ y:{beginAtZero:true,ticks:{stepSize:1}} } } });
+      if (chLabels.length) makeChart(id2, { type:'polarArea', data:{ labels:chLabels, datasets:[{ data:chPriority, backgroundColor:PALETTE.slice(0,chLabels.length).map(c=>c+'88') }] }, options:{ plugins:{ legend:{position:'right'} } } });
+    }};
+  }
+
+  function chartsOperate(stage) {
+    const id1 = uid(), id2 = uid();
+    const aarrr = stage.aarrr || {};
+    const funnelSteps = ['acquisition','activation','revenue','retention','referral'];
+    const funnelLabels = funnelSteps.map(s => s.charAt(0).toUpperCase()+s.slice(1));
+    const funnelValues = funnelSteps.map((_,i) => 100 - i*18);
+    const funnelColors = [COLORS.blue, COLORS.teal, COLORS.green, COLORS.yellow, COLORS.purple];
+
+    const retention = stage.retention || {};
+    const retLabels = ['D1','D7','D30','D90'];
+    const retValues = [retention.d1, retention.d7, retention.d30, retention.d90].map(v => v ?? null);
+
+    let funnelHtml = '';
+    funnelSteps.forEach((s,i) => {
+      const target = aarrr[s]?.target || '—';
+      const width = funnelValues[i];
+      funnelHtml += `<div class="funnel-step"><span class="funnel-label">${funnelLabels[i]}</span><div class="funnel-bar" style="background:#f2f2f7"><div class="funnel-fill" style="width:${width}%;background:${funnelColors[i]}"></div></div><span class="funnel-value">${target}</span></div>`;
+    });
+
+    let html = `
+      <div class="chart-card"><h3>${t('aarrrFunnel')}</h3><div class="funnel">${funnelHtml}</div></div>
+      <div class="chart-card"><h3>${t('retentionCurve')}</h3><canvas id="${id2}" height="220"></canvas></div>`;
+
+    return { html, init() {
+      const hasRetData = retValues.some(v => v !== null);
+      makeChart(id2, { type:'line', data:{ labels:retLabels, datasets:[{ label:'Retention %', data: hasRetData ? retValues : [100,60,35,20], borderColor: hasRetData ? COLORS.blue : '#ccc', backgroundColor: hasRetData ? 'rgba(0,122,255,.08)' : 'rgba(200,200,200,.08)', fill:true, tension:.3, pointRadius:5, pointBackgroundColor: hasRetData ? COLORS.blue : '#ccc', borderWidth:2, borderDash: hasRetData ? [] : [5,5] }] }, options:{ scales:{ y:{min:0,max:100,ticks:{callback:v=>v+'%'}} }, plugins:{ legend:{display:false} } } });
+    }};
+  }
+
+  /* ── main render ── */
+  const DATA = JSON.parse(document.getElementById('playbook-data').textContent);
+  const panel = document.getElementById('stage-panel');
+  const statusPill = document.getElementById('stage-status');
+  const tabs = Array.from(document.querySelectorAll('[data-stage-tab]'));
+
+  let currentStageKey = DATA.currentStage || 'validate';
+
+  function switchStage(key) {
+    currentStageKey = key;
+    destroyCharts();
+    const stage = DATA.stages[key];
+    if (!stage) return;
+    const ve = stage.validationEvidence || [];
+    const stageLabel = t('tabLabels')[key] || stage.label;
+    statusPill.textContent = `${stageLabel} ${t('stageSuffix')}`;
+    tabs.forEach(tb => {
+      tb.setAttribute('aria-selected', String(tb.dataset.stageTab === key));
+      tb.querySelector('strong').textContent = t('tabLabels')[tb.dataset.stageTab] || tb.dataset.stageTab;
+    });
+
+    // Build chart section
+    let chartResult = { html: '', init: ()=>{} };
+    const analysis = stage; // stage data includes analysis fields
+    if (key === 'validate') chartResult = chartsValidate({ ...analysis, gateStatus: { demandReal: 'partially_supported', usersReachable: 'supported', willingnessToPay: 'partially_supported' } });
+    else if (key === 'business-model') chartResult = chartsBizModel(analysis);
+    else if (key === 'build') chartResult = chartsBuild(analysis);
+    else if (key === 'grow') chartResult = chartsGrow(analysis);
+    else if (key === 'operate') chartResult = chartsOperate(analysis);
+
+    panel.innerHTML = `
+      <section class="dashboard">
+        <article class="decision-panel">
+          <div class="decision-topline">
+            <h2>${stage.title}</h2>
+            <span class="decision-badge">${t('score')}: ${stage.score ?? 'N/A'}</span>
+          </div>
+          <p class="reasoning">${stage.summary}</p>
+          <div class="metrics">
+            <div class="metric"><span class="label">${t('stage')}</span><strong>${stageLabel}</strong></div>
+            <div class="metric"><span class="label">${t('decision')}</span><strong>${stage.decision ?? 'none'}</strong></div>
+            <div class="metric"><span class="label">${t('next')}</span><strong>${stage.nextAction ?? 'stay'}</strong></div>
+          </div>
+        </article>
+        <aside class="evidence-board"><h3>${t('evidence')}</h3><ul class="evidence-list">${li(stage.evidence)}</ul></aside>
+      </section>
+      <section class="chart-grid">${chartResult.html}</section>
+      ${ve.length ? `<section class="panel evidence-data"><h3>${t('validationEvidence')}</h3><table><thead><tr><th>${t('source')}</th><th>${t('metricValue')}</th><th>${t('window')}</th><th>${t('interpretation')}</th><th>${t('confidence')}</th></tr></thead><tbody>${evidenceRows(ve)}</tbody></table></section>` : ''}
+      <section class="risk-next-grid">
+        <article class="panel"><h3>${t('risks')}</h3><ul class="clean-list">${li(stage.risks)}</ul></article>
+        <article class="panel"><h3>${t('nextActions')}</h3><ul class="clean-list">${li(stage.nextSteps)}</ul></article>
+      </section>
+      <nav class="artifact-nav"><ul class="artifact-list">${artifactLinks(stage.links)}</ul></nav>`;
+
+    requestAnimationFrame(() => chartResult.init());
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => switchStage(tab.dataset.stageTab));
+    tab.addEventListener('keydown', e => {
+      if (!['ArrowLeft','ArrowRight'].includes(e.key)) return;
+      e.preventDefault();
+      const i = tabs.indexOf(tab);
+      const ni = e.key === 'ArrowRight' ? (i+1)%tabs.length : (i-1+tabs.length)%tabs.length;
+      tabs[ni].focus();
+      switchStage(tabs[ni].dataset.stageTab);
+    });
+  });
+
+  /* ── language toggle ── */
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      LANG = btn.dataset.lang;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b === btn));
+      renderOverview(DATA);
+      switchStage(currentStageKey);
+    });
+  });
+
+  renderOverview(DATA);
+  switchStage(DATA.currentStage || 'validate');
+  </script>
+</main>
 </body>
 </html>
