@@ -212,6 +212,23 @@ Use `marketRouting` in build, grow, and operate when analytics or acquisition st
 
 `playbook/index.html` must be self-contained and open directly from disk. Render data into the HTML; do not rely on `fetch()` against local JSON files.
 
+### HTML Template Contract
+
+To regenerate `playbook/index.html`, copy `templates/index.html` and replace only the embedded JSON payload inside the `<script type="application/json" id="playbook-data">...</script>` block. Do not hand-write, summarize, redesign, simplify, or replace the page with a custom static report.
+
+The generated page must preserve the template shell:
+
+- Chart.js bundle and chart helper functions.
+- `stage-rail` tab navigation and `data-stage-tab` controls.
+- `stage-panel` tab panel.
+- `playbook-data` script block.
+- `switchStage`, `stageChartInstances`, and overview chart lifecycle code.
+- language toggle, chart containers, evidence cards, risk/next-action panels, and artifact navigation.
+
+If new stage data does not have a perfect display field, map it into the existing data object first. Only change template structure when the user explicitly asks for a template redesign.
+
+After generation, check for required template markers: `class="stage-rail"`, `data-stage-tab`, `id="stage-panel"`, `function switchStage`, `const stageChartInstances`, and `id="playbook-data"`. Missing markers mean the HTML was not generated from the template.
+
 Show sections only when data exists:
 
 - project summary

@@ -200,6 +200,15 @@ async function main() {
     for (const token of ["playbook/", "artifact-protocol.md", "evidence.json", "handoff.json", "index.html"]) {
       assert(skillMd.includes(token), `artifact SKILL.md missing ${token}`, errors);
     }
+    for (const token of [
+      "## HTML Template Contract",
+      "Do not hand-write",
+      "templates/index.html",
+      "id=\"playbook-data\"",
+      "required template markers",
+    ]) {
+      assert(skillMd.includes(token), `artifact SKILL.md missing HTML template contract text: ${token}`, errors);
+    }
   }
 
   if (await exists(path.join(artifactSkillDir, "references", "artifact-protocol.md"))) {
@@ -217,6 +226,11 @@ async function main() {
       "analysis.aiNativeCheck",
       "marketRouting",
       "evidence.sourceType",
+      "HTML Template Contract",
+      "copy `templates/index.html`",
+      "`playbook-data`",
+      "Do not hand-write",
+      "required template markers",
     ]) {
       assert(protocol.includes(token), `artifact protocol missing ${token}`, errors);
     }

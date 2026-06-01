@@ -30,7 +30,23 @@ Every conclusion must be traceable to `playbook/evidence.json` or explicitly mar
 
 ## Template Use
 
-Use files in `templates/` as starting points. Replace placeholder values with stage-specific data. If a required value is unknown, keep the key present and set it to `null`, `[]`, or `"unknown"`, then add the gap to `toValidate`.
+Use files in `templates/` as source templates. Replace placeholder values with stage-specific data. If a required value is unknown, keep the key present and set it to `null`, `[]`, or `"unknown"`, then add the gap to `toValidate`.
+
+## HTML Template Contract
+
+`playbook/index.html` must be built from `templates/index.html`. Do not hand-write, summarize, redesign, simplify, or replace the HTML page with a custom report layout.
+
+For HTML generation:
+
+1. Start by copying `templates/index.html` into `playbook/index.html`.
+2. Build the embedded dashboard data from `playbook/playbook.json`, `playbook/evidence.json`, and every available `playbook/stages/{stage}/report.json`.
+3. Replace only the JSON inside `<script type="application/json" id="playbook-data">...</script>`.
+4. Preserve the template shell, CSS, Chart.js bundle, stage tabs, render functions, language toggle, chart containers, and artifact navigation.
+5. Do not replace the template with static cards, tables, or a one-stage prose report.
+
+If the current stage has data not represented by the template, add it to the embedded data object using existing template fields first. Only edit template structure when the user explicitly asks for a template redesign.
+
+After writing `playbook/index.html`, verify the required template markers remain present: `class="stage-rail"`, `data-stage-tab`, `id="stage-panel"`, `function switchStage`, `const stageChartInstances`, and `id="playbook-data"`.
 
 Do not copy private customer details into committed artifacts. Summarize or redact sensitive evidence, and store only the minimum quote needed for traceability.
 
@@ -46,5 +62,6 @@ Before saying artifacts are ready:
 
 - Parse every generated JSON file.
 - Confirm `playbook/index.html` contains rendered data, not unresolved template placeholders.
+- Confirm `playbook/index.html` still contains the required template markers from the HTML Template Contract.
 - Confirm `decision-log.md` was appended when a stage decision changed.
 - Confirm the next agent can resume from only `playbook/playbook.json`, `playbook/evidence.json`, and the current stage `handoff.json`.
