@@ -11,6 +11,7 @@ export async function snapshotPostComments(options) {
 
     const comments = await page.evaluate(() => {
       const seen = new Set();
+      const comments = [];
       const timestampLinks = Array.from(document.querySelectorAll('a[href*="commentId="]'));
 
       function compact(value) {

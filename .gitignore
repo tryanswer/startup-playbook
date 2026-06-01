@@ -4,4 +4,6 @@
 node_modules/
 dist/
 coverage/
-
+output/
+tools/indie-hackers-reply/output/*
+!tools/indie-hackers-reply/output/.gitkeep
