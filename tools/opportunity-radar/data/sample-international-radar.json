@@ -1,0 +1,72 @@
+{
+  "projectId": "ai-ecommerce-image-optimizer",
+  "project": "Weekly International Opportunity Radar",
+  "generatedAt": "2026-06-01T08:00:00.000Z",
+  "communities": [
+    {
+      "id": "reddit:ops-1",
+      "source": "reddit",
+      "community": "r/SaaS",
+      "title": "Zapier is getting too expensive for our client onboarding automations",
+      "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?",
+      "score": 91,
+      "comments": 38,
+      "createdAt": "2026-05-31T10:00:00.000Z",
+      "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/"
+    },
+    {
+      "id": "hn:ops-2",
+      "source": "hacker-news",
+      "community": "Ask HN",
+      "title": "Ask HN: What do you use instead of Zapier for onboarding workflows?",
+      "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday.",
+      "score": 144,
+      "comments": 72,
+      "createdAt": "2026-05-31T11:00:00.000Z",
+      "url": "https://news.ycombinator.com/item?id=1"
+    },
+    {
+      "id": "ih:ops-3",
+      "source": "indie-hackers",
+      "community": "Indie Hackers",
+      "title": "How are you handling failed automation runs for small B2B clients?",
+      "excerpt": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS.",
+      "score": 24,
+      "comments": 11,
+      "createdAt": "2026-05-31T12:00:00.000Z",
+      "url": "https://www.indiehackers.com/post/sample"
+    }
+  ],
+  "cases": [
+    {
+      "id": "case:github-invoice",
+      "source": "github",
+      "title": "Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+      "url": "https://github.com/example/invoice-generator",
+      "targetUser": "freelancers",
+      "pain": "creating compliant invoices quickly",
+      "productShape": "template-backed SaaS",
+      "firstAcquisitionChannel": "GitHub README and long-tail SEO",
+      "pricing": "$9/mo",
+      "revenue": "$5k MRR",
+      "validationMove": "free GitHub tool to paid hosted workflow",
+      "copyable": ["open-source lead magnet", "SEO pages for invoice formats", "simple subscription"],
+      "notCopyable": ["repository age"]
+    },
+    {
+      "id": "case:celebrity-audience",
+      "source": "founder-blog",
+      "title": "Creator with a huge audience sold a generic habit tracker",
+      "url": "https://example.com/habit-tracker",
+      "targetUser": "creator audience",
+      "pain": "tracking habits",
+      "productShape": "consumer app",
+      "firstAcquisitionChannel": "existing audience",
+      "pricing": "$4.99/mo",
+      "revenue": "$40k MRR",
+      "validationMove": "newsletter launch",
+      "copyable": ["simple app packaging"],
+      "notCopyable": ["large existing audience", "personal brand"]
+    }
+  ]
+}

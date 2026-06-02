@@ -1,0 +1,2716 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-report",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "stage": "discover",
+  "generatedAt": "2026-06-02T02:04:04.061Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "opportunity-discovery",
+    "model": "unknown"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/discover/input.json"
+    },
+    {
+      "type": "file",
+      "path": "data/sample-live-sources.json"
+    }
+  ],
+  "status": "completed",
+  "score": 92,
+  "decision": "continue",
+  "nextStageAction": "advance",
+  "reasoning": "Top pain-led candidate scored 92: Automation failure audit trail for small B2B onboarding workflows.",
+  "known": [
+    "40 community items and 40 public cases analyzed.",
+    "24 pain signals and 43 case signals detected.",
+    "Top candidate: Automation failure audit trail for small B2B onboarding workflows."
+  ],
+  "assumed": [
+    "Community and case signals are discovery evidence, not validation proof.",
+    "Case-led patterns require a narrower wedge before product work."
+  ],
+  "toValidate": [
+    "Whether small B2B operators using automation workflows has urgent enough pain to book a call or pay for a manual test.",
+    "Whether the first reachable channel produces replies from real buyers."
+  ],
+  "evidenceRefs": [
+    "ev-discover-hacker-news-27748738",
+    "ev-discover-hacker-news-42052432",
+    "ev-discover-hacker-news-44745820",
+    "ev-discover-hacker-news-41259754",
+    "ev-discover-hacker-news-44453377",
+    "ev-discover-github-al1abb-invoify"
+  ],
+  "concerns": [
+    "Public community posts can overrepresent vocal users.",
+    "Successful public cases may depend on founder audience, timing, or existing distribution.",
+    "Discovery candidates must still pass validation before build work."
+  ],
+  "nextSteps": [
+    "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+    "Create a validation brief from the selected candidate.",
+    "Collect direct buyer pain and paid-intent evidence before building."
+  ],
+  "analysis": {
+    "radarRun": {
+      "runId": "2026-06-02T02-04-04-live-international-opportunity-radar",
+      "runPath": "stages/discover/runs/2026-06-02T02-04-04-live-international-opportunity-radar.json",
+      "generatedAt": "2026-06-02T02:04:04.061Z",
+      "candidateCount": 2,
+      "sourceCoverage": {
+        "communities": [
+          {
+            "source": "hacker-news:Hacker News",
+            "count": 20
+          },
+          {
+            "source": "hacker-news:Show HN",
+            "count": 20
+          }
+        ],
+        "cases": [
+          {
+            "source": "github",
+            "count": 20
+          },
+          {
+            "source": "product-hunt",
+            "count": 20
+          }
+        ]
+      },
+      "sourceErrors": [
+        {
+          "type": "reddit",
+          "message": "fetch failed"
+        }
+      ]
+    },
+    "signalSummary": {
+      "communityItems": 40,
+      "caseItems": 40,
+      "painSignals": 24,
+      "caseSignals": 43,
+      "candidateCount": 2,
+      "painLedCandidates": 1,
+      "caseLedCandidates": 1
+    },
+    "opportunityBacklog": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "hacker-news:Hacker News",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "alternative-seeking",
+          "manual-workflow",
+          "integration-friction",
+          "purchase-intent"
+        ],
+        "evidence": [
+          {
+            "id": "hacker-news:27748738",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://news.ycombinator.com/item?id=27748738",
+            "title": "Launch HN: Enso (YC S21) – Visual programming and workflow automation tool",
+            "excerpt": "Hi HN, We are Wojciech and Sylwia, the co-founders of Enso (<a href=\"https:&#x2F;&#x2F;enso.org\" rel=\"nofollow\">https:&#x2F;&#x2F;enso.org</a>). On the tech side, Enso is a visual and textual programming language (you can switch from graph to code and back). On the business side, it&#x27;s a workflow builder that makes it easy for analysts without a programm",
+            "metric": "54 comments / 205 score"
+          },
+          {
+            "id": "hacker-news:42052432",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://github.com/gregpr07/browser-use",
+            "title": "Show HN: I wrote an open-source browser alternative for Computer Use for any LLM",
+            "excerpt": "Hey HN,<p>I made Browser-Use, an open-source tool that lets (all Langchain supported) LLMs execute tasks directly in the browser just with function calling.<p>It allows you to build agents that interact with web elements using natural language prompts. We created a layer that simplifies website interaction for LLMs by extracting xPaths and interactive elemen",
+            "metric": "72 comments / 180 score"
+          },
+          {
+            "id": "hacker-news:44745820",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://chat.agentmail.to/",
+            "title": "Show HN: AgentMail – Email infra for AI agents",
+            "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’re not talking about AI for your email, this is email for your AI.<p>We started building email agents because they can converse with users in",
+            "metric": "70 comments / 121 score"
+          },
+          {
+            "id": "hacker-news:41259754",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://news.ycombinator.com/item?id=41259754",
+            "title": "Launch HN: Manaflow (YC S24) – Automate repetitive office work in tables",
+            "excerpt": "Hey HN! We’re Austin, Lawrence, and Wesley from Manaflow (<a href=\"https:&#x2F;&#x2F;manaflow.com\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com</a>). Manaflow is a spreadsheet where each column represents a step instruction of a task and each row represents an AI agent executing a case of the task. With one click, you can execute thousands of tasks involvin",
+            "metric": "22 comments / 57 score"
+          },
+          {
+            "id": "hacker-news:44453377",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://recivo.email/",
+            "title": "Show HN: Recivo – Receive Emails Programmatically",
+            "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is harder.<p>As a Recivo user, you create a new email address which will then immediately be available for receiving emails. A REST `&#x2F;inb",
+            "metric": "2 comments / 29 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hacker-news:27748738",
+          "hacker-news:42052432",
+          "hacker-news:44745820",
+          "hacker-news:41259754",
+          "hacker-news:44453377",
+          "hacker-news:45681232",
+          "hacker-news:47249002",
+          "hacker-news:25126131",
+          "hacker-news:45426414",
+          "hacker-news:47397903",
+          "hacker-news:41612095",
+          "hacker-news:46723702",
+          "hacker-news:46764526",
+          "hacker-news:38923074",
+          "hacker-news:46012153",
+          "hacker-news:46908519",
+          "hacker-news:47814004",
+          "hacker-news:45704171",
+          "hacker-news:44158587"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 12,
+          "reachableChannel": 14,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 92
+        },
+        "score": 92,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-al1abb-invoify",
+        "type": "case-led",
+        "title": "Copyable wedge from al1abb/invoify",
+        "targetUser": "GitHub users searching for this workflow",
+        "painfulSituation": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+        "promiseCandidate": "GitHub repository in TypeScript",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "recommendedNextExperiment": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "github:al1abb/invoify",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/al1abb/invoify",
+            "title": "al1abb/invoify",
+            "revenue": null,
+            "pricing": "stars: 6300"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "github:al1abb/invoify"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "scores": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        },
+        "score": 67,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ],
+    "topCandidates": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "hacker-news:Hacker News",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "alternative-seeking",
+          "manual-workflow",
+          "integration-friction",
+          "purchase-intent"
+        ],
+        "evidence": [
+          {
+            "id": "hacker-news:27748738",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://news.ycombinator.com/item?id=27748738",
+            "title": "Launch HN: Enso (YC S21) – Visual programming and workflow automation tool",
+            "excerpt": "Hi HN, We are Wojciech and Sylwia, the co-founders of Enso (<a href=\"https:&#x2F;&#x2F;enso.org\" rel=\"nofollow\">https:&#x2F;&#x2F;enso.org</a>). On the tech side, Enso is a visual and textual programming language (you can switch from graph to code and back). On the business side, it&#x27;s a workflow builder that makes it easy for analysts without a programm",
+            "metric": "54 comments / 205 score"
+          },
+          {
+            "id": "hacker-news:42052432",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://github.com/gregpr07/browser-use",
+            "title": "Show HN: I wrote an open-source browser alternative for Computer Use for any LLM",
+            "excerpt": "Hey HN,<p>I made Browser-Use, an open-source tool that lets (all Langchain supported) LLMs execute tasks directly in the browser just with function calling.<p>It allows you to build agents that interact with web elements using natural language prompts. We created a layer that simplifies website interaction for LLMs by extracting xPaths and interactive elemen",
+            "metric": "72 comments / 180 score"
+          },
+          {
+            "id": "hacker-news:44745820",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://chat.agentmail.to/",
+            "title": "Show HN: AgentMail – Email infra for AI agents",
+            "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’re not talking about AI for your email, this is email for your AI.<p>We started building email agents because they can converse with users in",
+            "metric": "70 comments / 121 score"
+          },
+          {
+            "id": "hacker-news:41259754",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Hacker News",
+            "url": "https://news.ycombinator.com/item?id=41259754",
+            "title": "Launch HN: Manaflow (YC S24) – Automate repetitive office work in tables",
+            "excerpt": "Hey HN! We’re Austin, Lawrence, and Wesley from Manaflow (<a href=\"https:&#x2F;&#x2F;manaflow.com\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com</a>). Manaflow is a spreadsheet where each column represents a step instruction of a task and each row represents an AI agent executing a case of the task. With one click, you can execute thousands of tasks involvin",
+            "metric": "22 comments / 57 score"
+          },
+          {
+            "id": "hacker-news:44453377",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://recivo.email/",
+            "title": "Show HN: Recivo – Receive Emails Programmatically",
+            "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is harder.<p>As a Recivo user, you create a new email address which will then immediately be available for receiving emails. A REST `&#x2F;inb",
+            "metric": "2 comments / 29 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hacker-news:27748738",
+          "hacker-news:42052432",
+          "hacker-news:44745820",
+          "hacker-news:41259754",
+          "hacker-news:44453377",
+          "hacker-news:45681232",
+          "hacker-news:47249002",
+          "hacker-news:25126131",
+          "hacker-news:45426414",
+          "hacker-news:47397903",
+          "hacker-news:41612095",
+          "hacker-news:46723702",
+          "hacker-news:46764526",
+          "hacker-news:38923074",
+          "hacker-news:46012153",
+          "hacker-news:46908519",
+          "hacker-news:47814004",
+          "hacker-news:45704171",
+          "hacker-news:44158587"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 12,
+          "reachableChannel": 14,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 92
+        },
+        "score": 92,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-al1abb-invoify",
+        "type": "case-led",
+        "title": "Copyable wedge from al1abb/invoify",
+        "targetUser": "GitHub users searching for this workflow",
+        "painfulSituation": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+        "promiseCandidate": "GitHub repository in TypeScript",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "recommendedNextExperiment": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "github:al1abb/invoify",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/al1abb/invoify",
+            "title": "al1abb/invoify",
+            "revenue": null,
+            "pricing": "stars: 6300"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "github:al1abb/invoify"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "scores": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        },
+        "score": 67,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ],
+    "communitySignals": [
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:27748738",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=27748738",
+        "excerpt": "Hi HN, We are Wojciech and Sylwia, the co-founders of Enso (<a href=\"https:&#x2F;&#x2F;enso.org\" rel=\"nofollow\">https:&#x2F;&#x2F;enso.org</a>). On the tech side, Enso is a visual and textual programming language (you ca"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:25126131",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=25126131",
+        "excerpt": "Hi HN-<p>We’re Steve and Carmine from Phiona (https:&#x2F;&#x2F;phiona.com).<p>Phiona is a no-code data automation tool, with the goal to enable busy, non-technical professionals to create powerful data transformation wo"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:42052432",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://github.com/gregpr07/browser-use",
+        "excerpt": "Hey HN,<p>I made Browser-Use, an open-source tool that lets (all Langchain supported) LLMs execute tasks directly in the browser just with function calling.<p>It allows you to build agents that interact with web elements"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:41259754",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=41259754",
+        "excerpt": "Hey HN! We’re Austin, Lawrence, and Wesley from Manaflow (<a href=\"https:&#x2F;&#x2F;manaflow.com\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com</a>). Manaflow is a spreadsheet where each column represents a step instruc"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:45681232",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=45681232",
+        "excerpt": "Our team at Clym built an open-source Accessibility Testing tool to help developers and auditors identify and fix web accessibility issues, combining automated and manual testing in one place.<p>Our tool integrates the o"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:47249002",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=47249002",
+        "excerpt": "Hi HN,<p>I’m Ashu, founder of VideoDB. I’ve spent a big chunk of my life building video infrastructure. Not video creation. Video plumbing.<p>The stuff you only learn after production breaks: timebases, VFR, keyframes, a"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:47397903",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://www.openjobs-ai.com/",
+        "excerpt": "Hey HN,<p>We’re building OpenJobs AI, an AI recruiting agent focused on the outbound sourcing workflow.<p>In recruiting, teams often already know what kind of person they want — but still spend a lot of time manually sea"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:41612095",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://grap.email/",
+        "excerpt": "It&#x27;s a simple, self-hostable system for managing temporary email addresses, designed specifically for developers and automation workflows.<p>I built this primarily for my own use to be able to run full integration t"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:46012153",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://news.ycombinator.com/item?id=46012153",
+        "excerpt": "In today’s fast-moving business world, getting paid on time is essential. Whether you’re a freelancer, agency, entrepreneur, or small business owner, you need a simple and reliable invoicing tool that doesn’t cost a fort"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:46908519",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://github.com/openweavr/Openweavr",
+        "excerpt": "Hi HN!<p>I’m building OpenWeavr, an open-source platform that lets you run AI agents on your own machines (Mac minis, laptops, or spare computers) to automate real-world tasks.<p>The idea is simple: many workflows still "
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:46908519",
+        "sourceName": "hacker-news:Hacker News",
+        "url": "https://github.com/openweavr/Openweavr",
+        "excerpt": "Hi HN!<p>I’m building OpenWeavr, an open-source platform that lets you run AI agents on your own machines (Mac minis, laptops, or spare computers) to automate real-world tasks.<p>The idea is simple: many workflows still "
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:46723702",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://flexprice.io/",
+        "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or p"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:46723702",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://flexprice.io/",
+        "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or p"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:46764526",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoxzero.com",
+        "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The go"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:46764526",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoxzero.com",
+        "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The go"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:45426414",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://github.com/thornumak/Invoice-Management-System",
+        "excerpt": "Hey HN,<p>As a freelancer, I found myself spending time every month manually opening PDF and Word invoices, copying the details into a spreadsheet, and tracking payments. It was tedious and error-prone.<p>I decided to bu"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:38923074",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://pdf-weaver.io/",
+        "excerpt": "Introducing Pdf Weaver, a powerful API designed to streamline your PDF generation process using XML and XSL inputs. Built for technical experts, solution architects, and developers, Pdf Weaver automates the creation of i"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:47814004",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://news.ycombinator.com/item?id=47814004",
+        "excerpt": "Hi HN,<p>I&#x27;ve been doing freelance work and realized the most stressful part of the entire lifecycle isn&#x27;t doing the work, it&#x27;s the final handoff. You send over the final ZIP file or Figma link, attach you"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:47814004",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://news.ycombinator.com/item?id=47814004",
+        "excerpt": "Hi HN,<p>I&#x27;ve been doing freelance work and realized the most stressful part of the entire lifecycle isn&#x27;t doing the work, it&#x27;s the final handoff. You send over the final ZIP file or Figma link, attach you"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:45704171",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://www.mailai.live/",
+        "excerpt": "Hey HN,<p>We built MailAI - AI agents that automate workflows in plain English by connecting Gmail and Stripe.<p>The Problem: Founders waste 10+ hours weekly on repetitive tasks: - Responding to invoice inquiries - Track"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:44158587",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoicemcp.com/",
+        "excerpt": "InvoiceMCP is an MCP server that gives AI tools (Claude, Windsurf, Cursor, etc.) direct access to invoicing systems.<p>Instead of stopping to open an app, I can stay inside Claude and say:<p>“Invoice Acme for API integra"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44158587",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoicemcp.com/",
+        "excerpt": "InvoiceMCP is an MCP server that gives AI tools (Claude, Windsurf, Cursor, etc.) direct access to invoicing systems.<p>Instead of stopping to open an app, I can stay inside Claude and say:<p>“Invoice Acme for API integra"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44745820",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://chat.agentmail.to/",
+        "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’r"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44453377",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://recivo.email/",
+        "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is"
+      }
+    ],
+    "caseSignals": [
+      {
+        "case": {
+          "id": "github:al1abb/invoify",
+          "source": "github",
+          "title": "al1abb/invoify",
+          "url": "https://github.com/al1abb/invoify",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 6300",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "invoice-app niche",
+            "invoice-generator niche",
+            "nextjs niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:maaslalani/invoice",
+          "source": "github",
+          "title": "maaslalani/invoice",
+          "url": "https://github.com/maaslalani/invoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Command line invoice generator",
+          "productShape": "GitHub repository in Go",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 2186",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:VladSez/easy-invoice-pdf",
+          "source": "github",
+          "title": "VladSez/easy-invoice-pdf",
+          "url": "https://github.com/VladSez/easy-invoice-pdf",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Free & Open-Source Invoice Generator – No Sign-Up, No Ads, Instant PDF export, 100% In-Browser, Customizable Invoice Templates. Star if you like it 🌟",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 883",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "fintech niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "fintech niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:legions-developer/invoicely",
+          "source": "github",
+          "title": "legions-developer/invoicely",
+          "url": "https://github.com/legions-developer/invoicely",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Invoicely is a simple and easy to use invoice generator where you can create beautiful and professional invoices in minutes. ~ Proudly OSS",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 858",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:htmldocs-js/htmldocs",
+          "source": "github",
+          "title": "htmldocs-js/htmldocs",
+          "url": "https://github.com/htmldocs-js/htmldocs",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "The modern alternative to LaTeX. Create PDF documents templates using React, JSX, and Tailwind",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 729",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "generator niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "generator niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:tuanpham-dev/react-invoice-generator",
+          "source": "github",
+          "title": "tuanpham-dev/react-invoice-generator",
+          "url": "https://github.com/tuanpham-dev/react-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "React Invoice Generator allows you quickly make invoices and export them as PDF",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 671",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "invoice niche",
+            "invoice-generator niche",
+            "invoice-pdf niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice niche",
+          "invoice-generator niche",
+          "invoice-pdf niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:Invoice-Generator/invoice-generator-api",
+          "source": "github",
+          "title": "Invoice-Generator/invoice-generator-api",
+          "url": "https://github.com/Invoice-Generator/invoice-generator-api",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "the fastest invoicing layer on the internet",
+          "productShape": "GitHub repository",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 466",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "einvoicing niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "einvoicing niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:pranavp10/invoice-generator",
+          "source": "github",
+          "title": "pranavp10/invoice-generator",
+          "url": "https://github.com/pranavp10/invoice-generator",
+          "targetUser": "freelancers",
+          "pain": "This project provides a user-friendly invoice generation tool for freelancers, small businesses, and contractors. Create professional, customized invoices quickly and easily to ensure you get paid on time, every time.",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 331",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "nextjs niche",
+            "tailwindcss niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "nextjs niche",
+          "tailwindcss niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 16,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 65
+        }
+      },
+      {
+        "case": {
+          "id": "github:johnuberbacher/invoice-generator",
+          "source": "github",
+          "title": "johnuberbacher/invoice-generator",
+          "url": "https://github.com/johnuberbacher/invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "An Invoice creator project built with React. Uses jspdf-react to capture the data from the modal and convert it from canvas -> pdf.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 290",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "bootstrap niche",
+            "css niche",
+            "css3 niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "bootstrap niche",
+          "css niche",
+          "css3 niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:by-cx/InvoiceGenerator",
+          "source": "github",
+          "title": "by-cx/InvoiceGenerator",
+          "url": "https://github.com/by-cx/InvoiceGenerator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Library to generate PDF invoices.",
+          "productShape": "GitHub repository in Python",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 180",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:Invoicebus/html-invoice-generator",
+          "source": "github",
+          "title": "Invoicebus/html-invoice-generator",
+          "url": "https://github.com/Invoicebus/html-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "JavaScript tool that will transform your HTML invoice template to fully functional invoice editor",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 173",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:ad-si/invoice-maker",
+          "source": "github",
+          "title": "ad-si/invoice-maker",
+          "url": "https://github.com/ad-si/invoice-maker",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Generate beautiful invoices from simple Typst or YAML data records",
+          "productShape": "GitHub repository in Typst",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 169",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "cli niche",
+            "generator niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "cli niche",
+          "generator niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:omaralalwi/Gpdf",
+          "source": "github",
+          "title": "omaralalwi/Gpdf",
+          "url": "https://github.com/omaralalwi/Gpdf",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Gpdf: PHP PDF Generator - HTML to PDF Converter for Laravel & PHP with native Arabic/RTL support, with built-in 17 fonts, and S3 storage. Extends DomPDF to fix Arabic limitations and add advanced features for documents,",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 154",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "arabic-pdf niche",
+            "arabic-text niche",
+            "dompdf-alternative niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "arabic-pdf niche",
+          "arabic-text niche",
+          "dompdf-alternative niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:angelodlfrtr/go-invoice-generator",
+          "source": "github",
+          "title": "angelodlfrtr/go-invoice-generator",
+          "url": "https://github.com/angelodlfrtr/go-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Super fast golang invoice / quotation / delivery-note PDF generator",
+          "productShape": "GitHub repository in Go",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 147",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "delivery-note niche",
+            "golang niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "delivery-note niche",
+          "golang niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:baptistejamin/node-microinvoice",
+          "source": "github",
+          "title": "baptistejamin/node-microinvoice",
+          "url": "https://github.com/baptistejamin/node-microinvoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Fast & elegant PDF invoice generator for Node using PDFKit. No Puppeteer",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 147",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:ETDA/e-TaxInvoice-PDFgen",
+          "source": "github",
+          "title": "ETDA/e-TaxInvoice-PDFgen",
+          "url": "https://github.com/ETDA/e-TaxInvoice-PDFgen",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "e-Tax Invoice by Email - PDF Generator on PC",
+          "productShape": "GitHub repository in C#",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 144",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:code-boxx/invoicr",
+          "source": "github",
+          "title": "code-boxx/invoicr",
+          "url": "https://github.com/code-boxx/invoicr",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Invoicr is a free and open-source PHP invoice generator that is capable of churning out HTML, PDF, DOCX, and PNG invoices.",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 112",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "docx niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "docx niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:contributte/invoice",
+          "source": "github",
+          "title": "contributte/invoice",
+          "url": "https://github.com/contributte/invoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": ":memo: PDF invoice generator",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 97",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "contributte niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "contributte niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:rimiti/invoice-it",
+          "source": "github",
+          "title": "rimiti/invoice-it",
+          "url": "https://github.com/rimiti/invoice-it",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": ":page_with_curl: Generate your orders or your invoices and export them in html, pdf or buffer easily.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 94",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "generator niche",
+            "html niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "generator niche",
+          "html niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:hourmeng12/invoice-generator",
+          "source": "github",
+          "title": "hourmeng12/invoice-generator",
+          "url": "https://github.com/hourmeng12/invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "A Web Application generates Invoices as PDFs to your device using html-to-image and jsPDF.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 93",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "headless-ui niche",
+            "html-to-image niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "headless-ui niche",
+          "html-to-image niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1156590",
+          "source": "product-hunt",
+          "title": "Mina Meeting Assistant",
+          "url": "https://www.producthunt.com/products/mina-meeting-assistant?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Your AI Teammate now responds and executes during your calls",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 387",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1157332",
+          "source": "product-hunt",
+          "title": "SocialEcho 2.0",
+          "url": "https://www.producthunt.com/products/socialecho?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "AI social media copilot for teams and agents",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 313",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1150693",
+          "source": "product-hunt",
+          "title": "Databox MCP",
+          "url": "https://www.producthunt.com/products/databox?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Chat with your business data inside Claude, ChatGPT and more",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 282",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1152602",
+          "source": "product-hunt",
+          "title": "Dune Keypad",
+          "url": "https://www.producthunt.com/products/dune-4?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Context-aware Mac keypad, w/ Claude + community extensions",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 268",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [
+          "community-channel"
+        ],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 2,
+          "caseProof": 28,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 53
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1155758",
+          "source": "product-hunt",
+          "title": "folk",
+          "url": "https://www.producthunt.com/products/folk-3?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "the AI in your texts that gets stuff done",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 250",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1159599",
+          "source": "product-hunt",
+          "title": "Typeahead",
+          "url": "https://www.producthunt.com/products/typeahead?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "AI autocomplete for every app on your Mac",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 227",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1149659",
+          "source": "product-hunt",
+          "title": "Presentify",
+          "url": "https://www.producthunt.com/products/presentify?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Take your presentation skills to the next level",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 179",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1156624",
+          "source": "product-hunt",
+          "title": "Trippple Club",
+          "url": "https://www.producthunt.com/products/trippple-club?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Advertise together on Meta Ads and pay 3x less",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 135",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1159017",
+          "source": "product-hunt",
+          "title": "Tabstack Web Research",
+          "url": "https://www.producthunt.com/products/tabstack?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Run a research agent with cited answers in a single API call",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 131",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [
+          "seo-channel"
+        ],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 2,
+          "caseProof": 28,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 53
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160317",
+          "source": "product-hunt",
+          "title": "Open Caffeine",
+          "url": "https://www.producthunt.com/products/open-caffeine?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Keep your Mac awake",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 127",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160309",
+          "source": "product-hunt",
+          "title": "Mistral Vibe",
+          "url": "https://www.producthunt.com/products/mistral-7b?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "I agent for long-running, multi-step work and coding",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 120",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1159957",
+          "source": "product-hunt",
+          "title": "Tokenwise",
+          "url": "https://www.producthunt.com/products/tokenwise?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "A smart LLM proxy that shows where you're overpaying",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 111",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160230",
+          "source": "product-hunt",
+          "title": "Skylive",
+          "url": "https://www.producthunt.com/products/skylive?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Never miss a celestial event, anywhere on Earth",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 100",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160180",
+          "source": "product-hunt",
+          "title": "Stella",
+          "url": "https://www.producthunt.com/products/stella-4?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Local natural language search across all your files",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 97",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [
+          "seo-channel"
+        ],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 2,
+          "caseProof": 28,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 53
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1158775",
+          "source": "product-hunt",
+          "title": "Sentinel",
+          "url": "https://www.producthunt.com/products/sentinel-10?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Control your robots from anywhere in the world",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 96",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160106",
+          "source": "product-hunt",
+          "title": "R0Y OMNI 1.0",
+          "url": "https://www.producthunt.com/products/r0y-ai-financial-studio?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Generate more accurate investment dashboards and reports",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 89",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1160179",
+          "source": "product-hunt",
+          "title": "Paint By JSON | Figma API Client",
+          "url": "https://www.producthunt.com/products/paint-by-json-an-api-client-for-figma?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Real API data in your mockups made as easy as lorem ipsum.",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 84",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1152440",
+          "source": "product-hunt",
+          "title": "Joanium",
+          "url": "https://www.producthunt.com/products/joanium-2?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Local AI workspace to build and work with your computer",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 80",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1158615",
+          "source": "product-hunt",
+          "title": "Emily by Co-Desk",
+          "url": "https://www.producthunt.com/products/co-desk?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "Voice AI copilot for coworking & coliving operators",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 80",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      },
+      {
+        "case": {
+          "id": "product-hunt:1159065",
+          "source": "product-hunt",
+          "title": "NetworkSpy",
+          "url": "https://www.producthunt.com/products/networkspy?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+Opportunity+Radar+%28ID%3A+286500%29",
+          "targetUser": "Product Hunt launch audience",
+          "pain": "HTTP(s) proxy debugger with custom viewer",
+          "productShape": "Product Hunt launch",
+          "firstAcquisitionChannel": "Product Hunt",
+          "pricing": "upvotes: 79",
+          "revenue": "",
+          "validationMove": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+          "copyable": [
+            "launch positioning",
+            "tagline framing",
+            "early adopter channel"
+          ],
+          "notCopyable": [
+            "launch timing",
+            "maker audience",
+            "Product Hunt ranking"
+          ]
+        },
+        "signalTypes": [],
+        "copyable": [
+          "launch positioning",
+          "tagline framing",
+          "early adopter channel"
+        ],
+        "whatNotToCopy": [
+          "launch timing",
+          "maker audience",
+          "Product Hunt ranking"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "Product Hunt",
+        "validationShortcut": "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
+        "score": {
+          "painHeat": 0,
+          "caseProof": 24,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 6,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 39
+        }
+      }
+    ],
+    "preservation": {
+      "latestFilesMayRefresh": [
+        "playbook/stages/discover/input.json",
+        "playbook/stages/discover/report.json",
+        "playbook/stages/discover/handoff.json",
+        "playbook/stages/discover/report.md"
+      ],
+      "appendOnlyRunsDir": "playbook/stages/discover/runs",
+      "currentRunPath": "stages/discover/runs/2026-06-02T02-04-04-live-international-opportunity-radar.json",
+      "overwritePolicy": "Never overwrite run snapshots; use timestamped names and numeric suffixes on collision."
+    }
+  },
+  "handoffSummary": {
+    "nextStage": "validate",
+    "candidateId": "opp-automation-failure-audit-trail",
+    "candidateType": "pain-led",
+    "targetUserCandidate": "small B2B operators using automation workflows",
+    "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+    "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+    "firstReachableChannel": "hacker-news:Hacker News",
+    "evidenceRefs": [
+      "ev-discover-hacker-news-27748738",
+      "ev-discover-hacker-news-42052432",
+      "ev-discover-hacker-news-44745820",
+      "ev-discover-hacker-news-41259754",
+      "ev-discover-hacker-news-44453377",
+      "ev-discover-github-al1abb-invoify"
+    ],
+    "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow."
+  }
+}

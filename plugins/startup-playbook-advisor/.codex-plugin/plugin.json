@@ -1,7 +1,7 @@
 {
   "name": "startup-playbook-advisor",
   "version": "0.1.0",
-  "description": "Early-stage startup advisory skills for validating ideas and persisting playbook artifacts.",
+  "description": "Early-stage startup advisory skills for discovering opportunities, validating ideas, and persisting playbook artifacts.",
   "author": {
     "name": "Startup Playbook"
   },
@@ -19,8 +19,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Startup Playbook Advisor",
-    "shortDescription": "Validate startup ideas before building.",
-    "longDescription": "Guides founders through early-stage idea validation, AI-native product checks, target user discovery, paid demand checks, MVP scope, pricing tests, go-to-market planning, and project-local playbook artifacts.",
+    "shortDescription": "Discover and validate startup ideas before building.",
+    "longDescription": "Guides founders through opportunity discovery, early-stage idea validation, AI-native product checks, target user discovery, paid demand checks, MVP scope, pricing tests, go-to-market planning, and project-local playbook artifacts.",
     "developerName": "Startup Playbook",
     "category": "Productivity",
     "capabilities": [
@@ -32,6 +32,7 @@
       "Help me validate a startup idea.",
       "Ask me the key questions before I build.",
       "Turn this idea into a 7-day validation plan.",
+      "Mine international communities for startup opportunities.",
       "Evaluate whether this AI-native product idea is worth building."
     ],
     "brandColor": "#0F766E"

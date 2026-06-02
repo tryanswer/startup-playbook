@@ -20,9 +20,18 @@
     "createdAt": "2026-05-29T00:00:00.000Z",
     "updatedAt": "2026-05-29T00:00:00.000Z"
   },
-  "currentStage": "validate",
-  "stageOrder": ["validate", "business-model", "build", "grow", "operate"],
+  "currentStage": "discover",
+  "stageOrder": ["discover", "validate", "business-model", "build", "grow", "operate"],
   "stages": {
+    "discover": {
+      "status": "draft",
+      "decision": null,
+      "score": null,
+      "updatedAt": "2026-05-29T00:00:00.000Z",
+      "inputPath": "stages/discover/input.json",
+      "reportPath": "stages/discover/report.json",
+      "handoffPath": "stages/discover/handoff.json"
+    },
     "validate": {
       "status": "draft",
       "decision": null,
@@ -34,7 +43,7 @@
     }
   },
   "latestDecision": {
-    "stage": "validate",
+    "stage": "discover",
     "decision": null,
     "reasoning": "No decision recorded yet."
   }

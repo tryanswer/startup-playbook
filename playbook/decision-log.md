@@ -42,3 +42,12 @@
 - Assumptions: Direct outreach can produce measurable paid intent within one week.
 - What would change this decision: 2 paid SKU packs and average revision count under 2.
 - Next stage or backtrack target: back-to-validate.
+
+## 2026-06-01T08:00:00.000Z - discover - continue
+
+- Decision: `continue`
+- Rationale: The opportunity radar found a top pain-led candidate, "Automation failure audit trail for small B2B onboarding workflows", scoring 91 from repeated community pain signals.
+- Evidence IDs: `ev-discover-hn-ops-2`, `ev-discover-reddit-ops-1`, `ev-discover-ih-ops-3`, `ev-discover-case-github-invoice`
+- Assumptions: Public community and case signals are discovery evidence only; direct buyer pain and paid intent still need validation.
+- What would change this decision: Source-channel replies fail to produce real buyer conversations or paid/manual audit intent.
+- Next stage or backtrack target: advance to validation with the top discover candidate.

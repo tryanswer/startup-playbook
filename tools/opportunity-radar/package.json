@@ -1,0 +1,14 @@
+{
+  "name": "startup-playbook-opportunity-radar",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Mine public community and case signals into Startup Playbook opportunity discovery artifacts.",
+  "scripts": {
+    "test": "node --test",
+    "radar": "node scripts/run-radar.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

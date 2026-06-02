@@ -1,0 +1,481 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "discovery-run",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "generatedAt": "2026-06-01T08:00:00.000Z",
+  "stage": "discover",
+  "runPath": "stages/discover/runs/2026-06-01T08-00-00-weekly-international-opportunity-radar.json",
+  "analysis": {
+    "project": "Weekly International Opportunity Radar",
+    "generatedAt": "2026-06-01T08:00:00.000Z",
+    "sourceCoverage": {
+      "communities": [
+        {
+          "source": "hacker-news:Ask HN",
+          "count": 1
+        },
+        {
+          "source": "indie-hackers:Indie Hackers",
+          "count": 1
+        },
+        {
+          "source": "reddit:r/SaaS",
+          "count": 1
+        }
+      ],
+      "cases": [
+        {
+          "source": "founder-blog",
+          "count": 1
+        },
+        {
+          "source": "github",
+          "count": 1
+        }
+      ]
+    },
+    "signalSummary": {
+      "communityItems": 3,
+      "caseItems": 2,
+      "painSignals": 9,
+      "caseSignals": 6,
+      "candidateCount": 2,
+      "painLedCandidates": 1,
+      "caseLedCandidates": 1
+    },
+    "communitySignals": [
+      {
+        "type": "pricing-pain",
+        "label": "Pricing pain",
+        "sourceId": "reddit:ops-1",
+        "sourceName": "reddit:r/SaaS",
+        "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+        "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "reddit:ops-1",
+        "sourceName": "reddit:r/SaaS",
+        "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+        "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "reddit:ops-1",
+        "sourceName": "reddit:r/SaaS",
+        "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+        "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hn:ops-2",
+        "sourceName": "hacker-news:Ask HN",
+        "url": "https://news.ycombinator.com/item?id=1",
+        "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday."
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hn:ops-2",
+        "sourceName": "hacker-news:Ask HN",
+        "url": "https://news.ycombinator.com/item?id=1",
+        "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday."
+      },
+      {
+        "type": "repeated-question",
+        "label": "Repeated question",
+        "sourceId": "hn:ops-2",
+        "sourceName": "hacker-news:Ask HN",
+        "url": "https://news.ycombinator.com/item?id=1",
+        "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday."
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hn:ops-2",
+        "sourceName": "hacker-news:Ask HN",
+        "url": "https://news.ycombinator.com/item?id=1",
+        "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday."
+      },
+      {
+        "type": "repeated-question",
+        "label": "Repeated question",
+        "sourceId": "ih:ops-3",
+        "sourceName": "indie-hackers:Indie Hackers",
+        "url": "https://www.indiehackers.com/post/sample",
+        "excerpt": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS."
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "ih:ops-3",
+        "sourceName": "indie-hackers:Indie Hackers",
+        "url": "https://www.indiehackers.com/post/sample",
+        "excerpt": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS."
+      }
+    ],
+    "caseSignals": [
+      {
+        "case": {
+          "id": "case:github-invoice",
+          "source": "github",
+          "title": "Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+          "url": "https://github.com/example/invoice-generator",
+          "targetUser": "freelancers",
+          "pain": "creating compliant invoices quickly",
+          "productShape": "template-backed SaaS",
+          "firstAcquisitionChannel": "GitHub README and long-tail SEO",
+          "pricing": "$9/mo",
+          "revenue": "$5k MRR",
+          "validationMove": "free GitHub tool to paid hosted workflow",
+          "copyable": [
+            "open-source lead magnet",
+            "SEO pages for invoice formats",
+            "simple subscription"
+          ],
+          "notCopyable": [
+            "repository age"
+          ]
+        },
+        "signalTypes": [
+          "revenue-signal",
+          "pricing-signal",
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "SEO pages for invoice formats",
+          "simple subscription"
+        ],
+        "whatNotToCopy": [
+          "repository age"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub README and long-tail SEO",
+        "validationShortcut": "free GitHub tool to paid hosted workflow",
+        "score": {
+          "painHeat": 8,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 16,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 69
+        }
+      },
+      {
+        "case": {
+          "id": "case:celebrity-audience",
+          "source": "founder-blog",
+          "title": "Creator with a huge audience sold a generic habit tracker",
+          "url": "https://example.com/habit-tracker",
+          "targetUser": "creator audience",
+          "pain": "tracking habits",
+          "productShape": "consumer app",
+          "firstAcquisitionChannel": "existing audience",
+          "pricing": "$4.99/mo",
+          "revenue": "$40k MRR",
+          "validationMove": "newsletter launch",
+          "copyable": [
+            "simple app packaging"
+          ],
+          "notCopyable": [
+            "large existing audience",
+            "personal brand"
+          ]
+        },
+        "signalTypes": [
+          "revenue-signal",
+          "pricing-signal"
+        ],
+        "copyable": [
+          "simple app packaging"
+        ],
+        "whatNotToCopy": [
+          "large existing audience",
+          "personal brand"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "high",
+        "firstReachableChannel": "existing audience",
+        "validationShortcut": "newsletter launch",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 18,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 10,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 14,
+          "total": 27
+        }
+      }
+    ],
+    "candidates": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "reddit:r/SaaS",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "pricing-pain",
+          "alternative-seeking",
+          "manual-workflow",
+          "repeated-question",
+          "integration-friction",
+          "purchase-intent"
+        ],
+        "evidence": [
+          {
+            "id": "hn:ops-2",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Ask HN",
+            "url": "https://news.ycombinator.com/item?id=1",
+            "title": "Ask HN: What do you use instead of Zapier for onboarding workflows?",
+            "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday.",
+            "metric": "72 comments / 144 score"
+          },
+          {
+            "id": "reddit:ops-1",
+            "sourceType": "community-comment",
+            "sourceName": "reddit:r/SaaS",
+            "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+            "title": "Zapier is getting too expensive for our client onboarding automations",
+            "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?",
+            "metric": "38 comments / 91 score"
+          },
+          {
+            "id": "ih:ops-3",
+            "sourceType": "community-comment",
+            "sourceName": "indie-hackers:Indie Hackers",
+            "url": "https://www.indiehackers.com/post/sample",
+            "title": "How are you handling failed automation runs for small B2B clients?",
+            "excerpt": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS.",
+            "metric": "11 comments / 24 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hn:ops-2",
+          "reddit:ops-1",
+          "ih:ops-3"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 9,
+          "reachableChannel": 16,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 91
+        },
+        "score": 91,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-open-source-invoice-generator-grew-to-5k-mrr-through-github-and-seo",
+        "type": "case-led",
+        "title": "Copyable wedge from Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+        "targetUser": "freelancers",
+        "painfulSituation": "creating compliant invoices quickly",
+        "promiseCandidate": "template-backed SaaS",
+        "firstReachableChannel": "GitHub README and long-tail SEO",
+        "recommendedNextExperiment": "free GitHub tool to paid hosted workflow",
+        "signalTypes": [
+          "revenue-signal",
+          "pricing-signal",
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "case:github-invoice",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/example/invoice-generator",
+            "title": "Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+            "revenue": "$5k MRR",
+            "pricing": "$9/mo"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "case:github-invoice"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "SEO pages for invoice formats",
+          "simple subscription"
+        ],
+        "whatNotToCopy": [
+          "repository age"
+        ],
+        "validationShortcut": "free GitHub tool to paid hosted workflow",
+        "scores": {
+          "painHeat": 8,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 16,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 69
+        },
+        "score": 69,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ],
+    "topCandidates": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "reddit:r/SaaS",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "pricing-pain",
+          "alternative-seeking",
+          "manual-workflow",
+          "repeated-question",
+          "integration-friction",
+          "purchase-intent"
+        ],
+        "evidence": [
+          {
+            "id": "hn:ops-2",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Ask HN",
+            "url": "https://news.ycombinator.com/item?id=1",
+            "title": "Ask HN: What do you use instead of Zapier for onboarding workflows?",
+            "excerpt": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday.",
+            "metric": "72 comments / 144 score"
+          },
+          {
+            "id": "reddit:ops-1",
+            "sourceType": "community-comment",
+            "sourceName": "reddit:r/SaaS",
+            "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+            "title": "Zapier is getting too expensive for our client onboarding automations",
+            "excerpt": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?",
+            "metric": "38 comments / 91 score"
+          },
+          {
+            "id": "ih:ops-3",
+            "sourceType": "community-comment",
+            "sourceName": "indie-hackers:Indie Hackers",
+            "url": "https://www.indiehackers.com/post/sample",
+            "title": "How are you handling failed automation runs for small B2B clients?",
+            "excerpt": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS.",
+            "metric": "11 comments / 24 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hn:ops-2",
+          "reddit:ops-1",
+          "ih:ops-3"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 9,
+          "reachableChannel": 16,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 91
+        },
+        "score": 91,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-open-source-invoice-generator-grew-to-5k-mrr-through-github-and-seo",
+        "type": "case-led",
+        "title": "Copyable wedge from Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+        "targetUser": "freelancers",
+        "painfulSituation": "creating compliant invoices quickly",
+        "promiseCandidate": "template-backed SaaS",
+        "firstReachableChannel": "GitHub README and long-tail SEO",
+        "recommendedNextExperiment": "free GitHub tool to paid hosted workflow",
+        "signalTypes": [
+          "revenue-signal",
+          "pricing-signal",
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "case:github-invoice",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/example/invoice-generator",
+            "title": "Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+            "revenue": "$5k MRR",
+            "pricing": "$9/mo"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "case:github-invoice"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "SEO pages for invoice formats",
+          "simple subscription"
+        ],
+        "whatNotToCopy": [
+          "repository age"
+        ],
+        "validationShortcut": "free GitHub tool to paid hosted workflow",
+        "scores": {
+          "painHeat": 8,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 16,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 69
+        },
+        "score": 69,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ]
+  },
+  "reportSummary": {
+    "decision": "continue",
+    "score": 91,
+    "topCandidateId": "opp-automation-failure-audit-trail",
+    "candidateCount": 2
+  }
+}

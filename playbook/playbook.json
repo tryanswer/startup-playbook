@@ -3,7 +3,7 @@
   "artifactType": "playbook-manifest",
   "projectId": "ai-ecommerce-image-optimizer",
   "generatedAt": "2026-05-29T03:55:52.000Z",
-  "updatedAt": "2026-05-29T03:55:52.000Z",
+  "updatedAt": "2026-06-02T02:04:04.061Z",
   "generatedBy": {
     "agent": "codex",
     "skill": "startup-playbook-artifacts",
@@ -14,14 +14,24 @@
     "name": "AI Ecommerce Image Optimizer",
     "oneLine": "Turn one raw product photo into platform-specific product image sets for marketplace sellers.",
     "targetUser": "Cross-border Amazon sellers with existing SKUs; secondary Taobao and JD merchants.",
-    "targetMarkets": ["international", "china-mainland"],
+    "targetMarkets": [
+      "international",
+      "china-mainland"
+    ],
     "productSurface": "concierge service first, then web app",
     "lifecycle": "validation",
     "createdAt": "2026-05-29T03:55:52.000Z",
     "updatedAt": "2026-05-29T03:55:52.000Z"
   },
-  "currentStage": "validate",
-  "stageOrder": ["validate", "business-model", "build", "grow", "operate"],
+  "currentStage": "discover",
+  "stageOrder": [
+    "discover",
+    "validate",
+    "business-model",
+    "build",
+    "grow",
+    "operate"
+  ],
   "stages": {
     "validate": {
       "status": "completed",
@@ -67,11 +77,20 @@
       "inputPath": "stages/operate/input.json",
       "reportPath": "stages/operate/report.json",
       "handoffPath": "stages/operate/handoff.json"
+    },
+    "discover": {
+      "status": "completed",
+      "decision": "continue",
+      "score": 92,
+      "updatedAt": "2026-06-02T02:04:04.061Z",
+      "inputPath": "stages/discover/input.json",
+      "reportPath": "stages/discover/report.json",
+      "handoffPath": "stages/discover/handoff.json"
     }
   },
   "latestDecision": {
-    "stage": "validate",
-    "decision": "pivot",
-    "reasoning": "The idea is promising, but the initial audience is too broad; validate a narrower cross-border Amazon seller segment before building platform automation."
+    "stage": "discover",
+    "decision": "continue",
+    "reasoning": "Top pain-led candidate scored 92: Automation failure audit trail for small B2B onboarding workflows."
   }
 }

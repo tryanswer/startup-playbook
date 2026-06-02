@@ -1,10 +1,11 @@
 # Tools
 
-Reusable scripts that support startup validation, SEO/ASO research, market analysis, and operations.
+Reusable scripts that support opportunity discovery, startup validation, SEO/ASO research, market analysis, and operations.
 
 ## Current Tools
 
 - `idea-validator`: Automated idea validation — Reddit pain mining, Google Trends demand check, competitor scan → HTML decision report with kill/pivot/continue scoring.
+- `opportunity-radar`: International public community and case mining into preserved `discover` stage opportunity candidates.
 - `google-trends-seo`: Google Trends / Keywords Everywhere keyword research tool.
 - `case-study-skill-miner`: source-linked founder case extraction and skill synthesis.
 - `topic-pain-miner`: public Reddit topic mining for pain heatmaps, demand validation, HTML reports, and optional LLM summaries.

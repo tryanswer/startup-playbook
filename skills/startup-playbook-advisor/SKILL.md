@@ -168,6 +168,7 @@ playbook/
 
 Stage-to-skill mapping:
 
+- `discover` → `opportunity-discovery`
 - `validate` → `idea-validation`
 - `business-model` → `business-model-design`
 - `build` → `product-development-loop`

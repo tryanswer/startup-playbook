@@ -14,6 +14,11 @@ playbook/
   assumptions.md
   README.md
   stages/
+    discover/input.json
+    discover/report.json
+    discover/report.md
+    discover/handoff.json
+    discover/runs/YYYY-MM-DDTHH-mm-ss-run-slug.json
     validate/input.json
     validate/report.json
     validate/report.md
@@ -53,7 +58,7 @@ Every `report.json` includes:
 
 - `status`: `draft`, `running`, `waiting_decision`, `completed`, `killed`, or `paused`.
 - `decision`: `continue`, `pivot`, `kill`, `pause`, `adjust`, `stop`, `back`, or JSON `null`.
-- `nextStageAction`: `advance`, `stay`, `archive`, `back-to-validate`, `back-to-business-model`, `back-to-build`, `back-to-grow`, or `back-to-operate`.
+- `nextStageAction`: `advance`, `stay`, `archive`, `back-to-discover`, `back-to-validate`, `back-to-business-model`, `back-to-build`, `back-to-grow`, or `back-to-operate`.
 - `score`: `0-100`, or `null` when scoring is not meaningful.
 - `reasoning`: concise rationale.
 - `known`: evidenced facts.
@@ -145,10 +150,13 @@ If `validate.status` is `completed`, do not leave `analysis.validationEvidence` 
 
 The latest canonical stage run lives in `input.json`, `report.json`, and `handoff.json`. Historical reasoning belongs in `decision-log.md`; full snapshots can be added later under `playbook/snapshots/`.
 
+The `discover` stage is the exception for raw opportunity mining runs: each run must also write an immutable JSON snapshot under `playbook/stages/discover/runs/`. The canonical discover files may refresh to show the latest run, but the `runs/` directory is append-only and must never overwrite a previous idea mining result.
+
 ## Stage Input Requirements
 
 | Stage | Required `inputs` keys |
 | --- | --- |
+| `discover` | `project`, `targetMarkets`, `sources`, `thresholds` |
 | `validate` | `idea`, `targetUserCandidate`, `painfulSituation`, `currentWorkaround`, `desiredOutcome`, `reachableSurfaces`, `currentEvidenceRefs`, `constraints` |
 | `business-model` | `targetUser`, `pain`, `currentAlternatives`, `willingnessToPaySignals`, `paidIntentGaps`, `firstReachableChannel`, `evidenceRefs` |
 | `build` | `targetUser`, `buyer`, `pain`, `promiseCandidate`, `modelType`, `pricingHypothesis`, `firstPaidTest`, `mustNotBuild`, `evidenceRefs` |
@@ -161,6 +169,7 @@ If a required value is unknown, keep the key and set it to `null`, `[]`, or `"un
 
 | Stage | Produces in `report.analysis` | Produces in `handoff.summary` |
 | --- | --- | --- |
+| `discover` | `radarRun`, `signalSummary`, `opportunityBacklog`, `topCandidates`, `communitySignals`, `caseSignals`, `preservation` | `candidateId`, `candidateType`, `targetUserCandidate`, `painfulSituation`, `promiseCandidate`, `firstReachableChannel`, `evidenceRefs`, `recommendedNextExperiment` |
 | `validate` | `snapshot`, `gates`, `validationEvidence`, `minimumEvidenceSet`, `painMining`, `searchAndMarket`, `willingnessToPay`, `landingPageTest` | `narrowedSegment`, `painfulSituation`, `strongestRawLanguage`, `evidenceRefs`, `firstReachableChannel`, `paidIntentGaps`, `recommendedNextExperiment` |
 | `business-model` | `positioning`, `recommendedModel`, `pricing`, `revenueProgression`, `unitEconomics` | `buyer`, `user`, `modelType`, `pricingHypothesis`, `firstPaidTest`, `revenueMilestones`, `monetizationRisks` |
 | `build` | `mvpScope`, `prd`, `techStack`, `aiNativeCheck`, `instrumentation`, `launchChecklist` | `smallestPromise`, `excludedScope`, `userFlow`, `acceptanceCriteria`, `analyticsEvents`, `launchChannel`, `deployedUrl`, `securityPrivacyReviewStatus` |

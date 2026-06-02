@@ -2,7 +2,7 @@
 
 > Evidence first. Build second. Grow with data.
 
-An open-source, end-to-end startup methodology for indie hackers and solo founders — from idea validation to product launch, growth, and operational analytics. Powered by real-world patterns from **499 founder case studies**.
+An open-source, end-to-end startup methodology for indie hackers and solo founders — from opportunity discovery and idea validation to product launch, growth, and operational analytics. Powered by real-world patterns from **499 founder case studies**.
 
 Reusable workflows are organized from idea to product, growth, and operations. The core principle is to validate real demand before building, then grow through measurable channels instead of letting AI invent stories without evidence.
 
@@ -26,6 +26,7 @@ Every guide, template, and tool in this repo is designed to prevent the most com
 
 | Stage | Playbook | What it covers |
 |---|---|---|
+| **⓪ Discover** | [`00-opportunity-discovery`](playbooks/00-opportunity-discovery/) | Mine international communities and public cases into preserved opportunity candidates |
 | **① Validate** | [`01-idea-validation`](playbooks/01-idea-validation/) | Three-gate validation: real demand? reachable users? willing to pay? |
 | **② Build** | [`02-product-development`](playbooks/02-product-development/) | AI-native development, stability & security, tech stack, MVP scoping, launch checklist, post-launch iteration |
 | **③ Grow** | [`03-growth-and-marketing`](playbooks/03-growth-and-marketing/) | SEO, Google Ads cold start, Search Console, UTM attribution, AI distribution, China market growth |
@@ -37,6 +38,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 
 | Skill | Purpose |
 |---|---|
+| [`opportunity-discovery`](skills/opportunity-discovery/) | Mine public community pain and public success cases into ranked startup opportunity candidates |
 | [`idea-validation`](skills/idea-validation/) | Validate demand with community pain, search trends, and paid-intent signals |
 | [`business-model-design`](skills/business-model-design/) | Choose business model and pricing based on 499 case patterns |
 | [`product-development-loop`](skills/product-development-loop/) | Turn validated ideas into MVP → launch → data-driven iteration |
@@ -53,6 +55,7 @@ Reusable skill files for Claude, Codex, or any AI agent environment:
 
 | Tool | What it does |
 |---|---|
+| [`opportunity-radar`](tools/opportunity-radar/) | International community + public case signal mining → discover-stage artifacts and preserved idea runs |
 | [`google-trends-seo`](tools/google-trends-seo/) | Google Trends & Keywords Everywhere keyword research |
 | [`topic-pain-miner`](tools/topic-pain-miner/) | Reddit public topic scraping → pain heatmaps + HTML reports |
 | [`case-study-skill-miner`](tools/case-study-skill-miner/) | Extract founder case studies into reusable skills |
@@ -104,27 +107,33 @@ Then start with one of these prompts:
 
 ### Option 2: Follow the Playbook Manually
 
+**Week 0 — Discover**
+
+1. Read [`playbooks/00-opportunity-discovery`](playbooks/00-opportunity-discovery/).
+2. Run `tools/opportunity-radar` to mine public community pain and public case patterns.
+3. Pick one top `pain-led` or `case-led` candidate for validation.
+
 **Week 1 — Validate**
 
-1. Read [`playbooks/01-idea-validation`](playbooks/01-idea-validation/) and answer the three gate questions.
-2. Run `tools/topic-pain-miner` to collect real user pain from Reddit.
-3. Run `tools/google-trends-seo` to check keyword trends.
-4. Build a landing page using [`templates/landing-page-checklist.md`](templates/landing-page-checklist.md).
-5. Decide: **kill / pivot / continue**.
+4. Read [`playbooks/01-idea-validation`](playbooks/01-idea-validation/) and answer the three gate questions.
+5. Run `tools/topic-pain-miner` to collect real user pain from Reddit.
+6. Run `tools/google-trends-seo` to check keyword trends.
+7. Build a landing page using [`templates/landing-page-checklist.md`](templates/landing-page-checklist.md).
+8. Decide: **kill / pivot / continue**.
 
 **Week 2-3 — Build**
 
-6. Choose your business model with [`skills/business-model-design`](skills/business-model-design/).
-7. Pick a tech stack from [`tech-stack-selection.md`](playbooks/02-product-development/tech-stack-selection.md).
-8. Scope the MVP using [`templates/product-requirements.md`](templates/product-requirements.md).
-9. Set up analytics before launch: [`ga4-event-tracking.md`](playbooks/04-operations-and-analytics/ga4-event-tracking.md).
-10. Follow the [`mvp-launch-checklist.md`](playbooks/02-product-development/mvp-launch-checklist.md).
+9. Choose your business model with [`skills/business-model-design`](skills/business-model-design/).
+10. Pick a tech stack from [`tech-stack-selection.md`](playbooks/02-product-development/tech-stack-selection.md).
+11. Scope the MVP using [`templates/product-requirements.md`](templates/product-requirements.md).
+12. Set up analytics before launch: [`ga4-event-tracking.md`](playbooks/04-operations-and-analytics/ga4-event-tracking.md).
+13. Follow the [`mvp-launch-checklist.md`](playbooks/02-product-development/mvp-launch-checklist.md).
 
 **Week 4+ — Grow & Iterate**
 
-11. Connect [Google Search Console](playbooks/03-growth-and-marketing/google-search-console.md) and run a [$50 Google Ads test](playbooks/03-growth-and-marketing/google-ads-cold-start.md).
-12. Set up your [weekly review dashboard](templates/weekly-review-dashboard.md).
-13. Use the [post-launch iteration guide](playbooks/02-product-development/post-launch-iteration.md) to diagnose and decide.
+14. Connect [Google Search Console](playbooks/03-growth-and-marketing/google-search-console.md) and run a [$50 Google Ads test](playbooks/03-growth-and-marketing/google-ads-cold-start.md).
+15. Set up your [weekly review dashboard](templates/weekly-review-dashboard.md).
+16. Use the [post-launch iteration guide](playbooks/02-product-development/post-launch-iteration.md) to diagnose and decide.
 
 ### Option 3: China Market
 

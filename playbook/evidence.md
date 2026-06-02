@@ -11,3 +11,7 @@
 | ev-jd-rule-center-001 | JD Rule Center | weak | validate | JD has official rule-center pages, but content was not extracted in this run. | Needs manual verification. |
 | ev-mock-seller-pain-001 | Mock seller interview | weak | validate | Mocked pain: sellers spend time making compliant image sets. | Mock data; replace with real interviews. |
 | ev-mock-paid-test-001 | Mock paid-intent test | weak | business-model | Mocked paid intent for a low-entry SKU image pack. | Mock data; replace with real paid evidence. |
+| ev-discover-hn-ops-2 | hacker-news:Ask HN | weak | discover | Automation workflow operators discuss Zapier alternatives and manual spreadsheet reconciliation. | Discovery evidence only; validate direct buyer pain and paid intent. |
+| ev-discover-reddit-ops-1 | reddit:r/SaaS | weak | discover | Reddit SaaS thread shows pricing pain and alternative seeking around onboarding automations. | Discovery evidence only; validate direct buyer pain and paid intent. |
+| ev-discover-ih-ops-3 | indie-hackers:Indie Hackers | weak | discover | Indie Hackers post indicates possible paid intent for a lightweight automation audit trail. | Discovery evidence only; validate direct buyer pain and paid intent. |
+| ev-discover-case-github-invoice | GitHub public case | medium | discover | Public case-led pattern: open-source lead magnet plus SEO and subscription pricing. | Case proof is not demand proof for a new product. |

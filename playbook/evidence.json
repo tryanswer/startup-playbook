@@ -3,7 +3,7 @@
   "artifactType": "evidence-ledger",
   "projectId": "ai-ecommerce-image-optimizer",
   "generatedAt": "2026-05-29T03:55:52.000Z",
-  "updatedAt": "2026-05-29T03:55:52.000Z",
+  "updatedAt": "2026-06-02T02:04:04.061Z",
   "generatedBy": {
     "agent": "codex",
     "skill": "startup-playbook-artifacts",
@@ -21,9 +21,14 @@
       "actorRole": "founder",
       "segment": "marketplace sellers",
       "stage": "validate",
-      "supports": ["idea", "target-user-candidate"],
+      "supports": [
+        "idea",
+        "target-user-candidate"
+      ],
       "strength": "weak",
-      "caveats": ["Founder hypothesis, not buyer evidence."],
+      "caveats": [
+        "Founder hypothesis, not buyer evidence."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -37,7 +42,11 @@
       "actorRole": "search market",
       "segment": "US ecommerce searchers",
       "stage": "validate",
-      "supports": ["category-demand", "search-language", "platform-specific-language"],
+      "supports": [
+        "category-demand",
+        "search-language",
+        "platform-specific-language"
+      ],
       "strength": "medium",
       "metrics": {
         "metric": "Google Trends relative interest",
@@ -46,7 +55,10 @@
         "region": "US",
         "samples": 53
       },
-      "caveats": ["Google Trends is normalized relative interest, not absolute search volume or willingness to pay.", "Recent momentum is negative for the broader product image terms."],
+      "caveats": [
+        "Google Trends is normalized relative interest, not absolute search volume or willingness to pay.",
+        "Recent momentum is negative for the broader product image terms."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -60,9 +72,14 @@
       "actorRole": "platform",
       "segment": "AI image generation",
       "stage": "build",
-      "supports": ["technical-feasibility", "ai-native-check"],
+      "supports": [
+        "technical-feasibility",
+        "ai-native-check"
+      ],
       "strength": "medium",
-      "caveats": ["Capability evidence, not demand evidence; pricing and limits must be rechecked before launch."],
+      "caveats": [
+        "Capability evidence, not demand evidence; pricing and limits must be rechecked before launch."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -76,9 +93,14 @@
       "actorRole": "platform",
       "segment": "AI image generation",
       "stage": "build",
-      "supports": ["technical-feasibility", "cost-risk"],
+      "supports": [
+        "technical-feasibility",
+        "cost-risk"
+      ],
       "strength": "medium",
-      "caveats": ["Requires API access, rate-limit, cost, and policy review."],
+      "caveats": [
+        "Requires API access, rate-limit, cost, and policy review."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -92,9 +114,14 @@
       "actorRole": "platform",
       "segment": "Amazon sellers",
       "stage": "validate",
-      "supports": ["platform-rules", "compliance-pain"],
+      "supports": [
+        "platform-rules",
+        "compliance-pain"
+      ],
       "strength": "medium",
-      "caveats": ["Forum guidance is official Amazon staff content but should be checked against Seller Central help before launch."],
+      "caveats": [
+        "Forum guidance is official Amazon staff content but should be checked against Seller Central help before launch."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -108,9 +135,14 @@
       "actorRole": "paid alternative",
       "segment": "ecommerce merchants",
       "stage": "business-model",
-      "supports": ["paid-alternative", "pricing-anchor"],
+      "supports": [
+        "paid-alternative",
+        "pricing-anchor"
+      ],
       "strength": "medium",
-      "caveats": ["Competitor pricing is not proof this product can charge; compare quality and workflow depth."],
+      "caveats": [
+        "Competitor pricing is not proof this product can charge; compare quality and workflow depth."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -124,9 +156,13 @@
       "actorRole": "platform",
       "segment": "JD merchants",
       "stage": "validate",
-      "supports": ["platform-rules-gap"],
+      "supports": [
+        "platform-rules-gap"
+      ],
       "strength": "weak",
-      "caveats": ["Needs manual extraction or seller-console verification before using as a product rule set."],
+      "caveats": [
+        "Needs manual extraction or seller-console verification before using as a product rule set."
+      ],
       "privacy": "public-summary-only"
     },
     {
@@ -140,9 +176,15 @@
       "actorRole": "cross-border seller",
       "segment": "small Amazon seller",
       "stage": "validate",
-      "supports": ["demand-frequency", "manual-workaround", "compliance-pain"],
+      "supports": [
+        "demand-frequency",
+        "manual-workaround",
+        "compliance-pain"
+      ],
       "strength": "weak",
-      "caveats": ["Mock data for workflow run; replace with real interviews."],
+      "caveats": [
+        "Mock data for workflow run; replace with real interviews."
+      ],
       "privacy": "mock-only",
       "mock": true
     },
@@ -157,11 +199,345 @@
       "actorRole": "cross-border seller",
       "segment": "small Amazon seller",
       "stage": "business-model",
-      "supports": ["willingness-to-pay", "first-paid-test"],
+      "supports": [
+        "willingness-to-pay",
+        "first-paid-test"
+      ],
       "strength": "weak",
-      "caveats": ["Mock data; must be replaced by real paid audit or preorder evidence."],
+      "caveats": [
+        "Mock data; must be replaced by real paid audit or preorder evidence."
+      ],
       "privacy": "mock-only",
       "mock": true
+    },
+    {
+      "id": "ev-discover-hn-ops-2",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Ask HN",
+      "url": "https://news.ycombinator.com/item?id=1",
+      "capturedAt": "2026-06-01T08:00:00.000Z",
+      "quote": "The current setup breaks when one API changes and we manually reconcile the spreadsheet every Friday.",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Ask HN: What do you use instead of Zapier for onboarding workflows?",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "pricing-pain",
+        "alternative-seeking",
+        "manual-workflow",
+        "repeated-question",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-reddit-ops-1",
+      "sourceType": "community-comment",
+      "sourceName": "reddit:r/SaaS",
+      "url": "https://www.reddit.com/r/SaaS/comments/ops1/zapier_expensive/",
+      "capturedAt": "2026-06-01T08:00:00.000Z",
+      "quote": "We keep a spreadsheet of failed multi-step automations because the tools are pricey and brittle. Is there a cheaper alternative?",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Zapier is getting too expensive for our client onboarding automations",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "pricing-pain",
+        "alternative-seeking",
+        "manual-workflow",
+        "repeated-question",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-ih-ops-3",
+      "sourceType": "community-comment",
+      "sourceName": "indie-hackers:Indie Hackers",
+      "url": "https://www.indiehackers.com/post/sample",
+      "capturedAt": "2026-06-01T08:00:00.000Z",
+      "quote": "I would pay for a lightweight audit trail before buying a full enterprise iPaaS.",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: How are you handling failed automation runs for small B2B clients?",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "pricing-pain",
+        "alternative-seeking",
+        "manual-workflow",
+        "repeated-question",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-case-github-invoice",
+      "sourceType": "case-pattern",
+      "sourceName": "github",
+      "url": "https://github.com/example/invoice-generator",
+      "capturedAt": "2026-06-01T08:00:00.000Z",
+      "quote": null,
+      "summary": "Copyable wedge from Open-source invoice generator grew to $5k MRR through GitHub and SEO: Open-source invoice generator grew to $5k MRR through GitHub and SEO",
+      "actorRole": "freelancers",
+      "segment": "freelancers",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "case-led",
+        "revenue-signal",
+        "pricing-signal",
+        "github-distribution",
+        "seo-channel"
+      ],
+      "strength": "medium",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-27748738",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Hacker News",
+      "url": "https://news.ycombinator.com/item?id=27748738",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": "Hi HN, We are Wojciech and Sylwia, the co-founders of Enso (<a href=\"https:&#x2F;&#x2F;enso.org\" rel=\"nofollow\">https:&#x2F;&#x2F;enso.org</a>). On the tech side, Enso is a visual and textual programming language (you can switch from graph to code and back). On the business side, it&#x27;s a workflow builder that makes it easy for analysts without a programm",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Launch HN: Enso (YC S21) – Visual programming and workflow automation tool",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "alternative-seeking",
+        "manual-workflow",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-42052432",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Hacker News",
+      "url": "https://github.com/gregpr07/browser-use",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": "Hey HN,<p>I made Browser-Use, an open-source tool that lets (all Langchain supported) LLMs execute tasks directly in the browser just with function calling.<p>It allows you to build agents that interact with web elements using natural language prompts. We created a layer that simplifies website interaction for LLMs by extracting xPaths and interactive elemen",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: I wrote an open-source browser alternative for Computer Use for any LLM",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "alternative-seeking",
+        "manual-workflow",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-44745820",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Show HN",
+      "url": "https://chat.agentmail.to/",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’re not talking about AI for your email, this is email for your AI.<p>We started building email agents because they can converse with users in",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: AgentMail – Email infra for AI agents",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "alternative-seeking",
+        "manual-workflow",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-41259754",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Hacker News",
+      "url": "https://news.ycombinator.com/item?id=41259754",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": "Hey HN! We’re Austin, Lawrence, and Wesley from Manaflow (<a href=\"https:&#x2F;&#x2F;manaflow.com\" rel=\"nofollow\">https:&#x2F;&#x2F;manaflow.com</a>). Manaflow is a spreadsheet where each column represents a step instruction of a task and each row represents an AI agent executing a case of the task. With one click, you can execute thousands of tasks involvin",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Launch HN: Manaflow (YC S24) – Automate repetitive office work in tables",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "alternative-seeking",
+        "manual-workflow",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-44453377",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Show HN",
+      "url": "https://recivo.email/",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is harder.<p>As a Recivo user, you create a new email address which will then immediately be available for receiving emails. A REST `&#x2F;inb",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: Recivo – Receive Emails Programmatically",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "alternative-seeking",
+        "manual-workflow",
+        "integration-friction",
+        "purchase-intent"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-github-al1abb-invoify",
+      "sourceType": "case-pattern",
+      "sourceName": "github",
+      "url": "https://github.com/al1abb/invoify",
+      "capturedAt": "2026-06-01T11:32:30.840Z",
+      "quote": null,
+      "summary": "Copyable wedge from al1abb/invoify: al1abb/invoify",
+      "actorRole": "GitHub users searching for this workflow",
+      "segment": "GitHub users searching for this workflow",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "case-led",
+        "github-distribution",
+        "seo-channel"
+      ],
+      "strength": "medium",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-45426414",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Show HN",
+      "url": "https://github.com/thornumak/Invoice-Management-System",
+      "capturedAt": "2026-06-01T15:21:45.729Z",
+      "quote": "Hey HN,<p>As a freelancer, I found myself spending time every month manually opening PDF and Word invoices, copying the details into a spreadsheet, and tracking payments. It was tedious and error-prone.<p>I decided to build a simple desktop app to automate this. It&#x27;s a GUI built with Python and Tkinter that points to a folder of invoices, parses the key",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: I got tired of spreadsheets, so I built a Python GUI to track invoices",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "manual-workflow",
+        "purchase-intent",
+        "alternative-seeking",
+        "integration-friction"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-46723702",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Show HN",
+      "url": "https://flexprice.io/",
+      "capturedAt": "2026-06-01T15:21:45.729Z",
+      "quote": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or promotional. Things get complicated when customers need to: - buy credits through a proper checkout, - receive an invoice, - complete payment",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: Checkout Flow for credit-based billing",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "manual-workflow",
+        "purchase-intent",
+        "alternative-seeking",
+        "integration-friction"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
+    },
+    {
+      "id": "ev-discover-hacker-news-46764526",
+      "sourceType": "community-comment",
+      "sourceName": "hacker-news:Show HN",
+      "url": "https://invoxzero.com",
+      "capturedAt": "2026-06-01T15:21:45.729Z",
+      "quote": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The goal was to increase operational visibility: track what’s been created, sent, viewed, and paid, without the need for an accounting system like",
+      "summary": "Automation failure audit trail for small B2B onboarding workflows: Show HN: A simple invoice tool I built instead of full accounting software",
+      "actorRole": "small B2B operators using automation workflows",
+      "segment": "small B2B operators using automation workflows",
+      "stage": "discover",
+      "supports": [
+        "opportunity-discovery",
+        "pain-led",
+        "manual-workflow",
+        "purchase-intent",
+        "alternative-seeking",
+        "integration-friction"
+      ],
+      "strength": "weak",
+      "caveats": [
+        "Discovery evidence only; validate direct buyer pain and paid intent before building."
+      ],
+      "privacy": "public-summary-only"
     }
   ]
 }

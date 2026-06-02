@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, "..");
 const skillName = "startup-playbook-advisor";
-const bundledSkillNames = [skillName, "startup-playbook-artifacts"];
+const bundledSkillNames = [skillName, "opportunity-discovery", "startup-playbook-artifacts"];
 const pluginDir = path.join(repoRoot, "plugins", skillName);
 const agentFile = path.join(repoRoot, "agents", `${skillName}.md`);
 

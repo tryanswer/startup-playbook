@@ -1,0 +1,41 @@
+{
+  "projectId": "ai-ecommerce-image-optimizer",
+  "project": "Live International Opportunity Radar",
+  "sources": [
+    {
+      "type": "reddit",
+      "community": "SaaS",
+      "search": "zapier alternative",
+      "limit": 25
+    },
+    {
+      "type": "hacker-news",
+      "query": "manual workflow automation",
+      "limit": 20
+    },
+    {
+      "type": "show-hn",
+      "query": "invoice workflow",
+      "limit": 20
+    },
+    {
+      "type": "github",
+      "query": "invoice generator",
+      "minStars": 50,
+      "limit": 20
+    },
+    {
+      "type": "indie-hackers",
+      "query": "invoice",
+      "limit": 20
+    },
+    {
+      "type": "product-hunt",
+      "query": "invoice",
+      "featured": true,
+      "limit": 20
+    }
+  ],
+  "communities": [],
+  "cases": []
+}

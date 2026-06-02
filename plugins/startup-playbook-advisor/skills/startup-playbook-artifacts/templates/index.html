@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AI Ecommerce Image Optimizer - Startup Playbook</title>
+  <title>AI 电商图片优化器 - 创业剧本</title>
   <script>/*!
  * Chart.js v4.5.1
  * https://www.chartjs.org
@@ -108,7 +108,7 @@
     .decision-adjust { background: #e0e7ff; color: #3730a3; }
 
     /* Stage tabs */
-    .stage-rail { position: sticky; top: 12px; z-index: 2; display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: 4px; margin: 16px 0 20px; padding: 4px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--segment-bg); box-shadow: inset 0 1px 1px rgba(255,255,255,.72), var(--shadow); backdrop-filter: saturate(180%) blur(20px); }
+    .stage-rail { position: sticky; top: 12px; z-index: 2; display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 4px; margin: 16px 0 20px; padding: 4px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--segment-bg); box-shadow: inset 0 1px 1px rgba(255,255,255,.72), var(--shadow); backdrop-filter: saturate(180%) blur(20px); }
     .seg-btn { position: relative; min-height: 40px; padding: 0 14px; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--muted); text-align: center; cursor: pointer; transition: all 180ms ease; font-family: inherit; }
     .seg-btn strong { display: block; font-size: var(--text-footnote); font-weight: 600; line-height: 40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: inherit; }
     .seg-btn .lbl { display: none; }
@@ -140,6 +140,87 @@
     .chart-card-wide { grid-column: 1 / -1; }
     .chart-card canvas { width: 100% !important; max-height: 240px; }
     .chart-card h3 { margin-bottom: 16px; }
+
+    /* Discovery workbench */
+    .discover-workbench { grid-column: 1 / -1; display: grid; gap: 16px; min-width: 0; }
+    .workbench-panel { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow); padding: 22px; }
+    .workbench-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin-bottom: 16px; }
+    .workbench-head h3 { margin: 0; }
+    .workbench-note { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-footnote); }
+    .run-summary-grid { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; }
+    .run-summary-item { min-width: 0; padding-top: 12px; border-top: 1px solid var(--line); }
+    .run-summary-item strong { display: block; margin-top: 4px; color: var(--ink); font-family: var(--font-mono); font-size: var(--text-title-3); line-height: var(--leading-title); }
+    .source-health-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 12px; }
+    .source-list { display: grid; gap: 8px; }
+    .source-row { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); }
+    .source-row:first-child { border-top: 0; padding-top: 0; }
+    .source-name { min-width: 0; overflow-wrap: anywhere; color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; }
+    .source-count { font-family: var(--font-mono); color: var(--accent); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; }
+    .source-error-list { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .source-error-pill { display: inline-flex; align-items: center; max-width: 100%; min-height: 26px; padding: 0 9px; border: 1px solid rgba(255,59,48,.18); border-radius: var(--radius-pill); background: #fff1f0; color: #b42318; font-size: var(--text-caption-1); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .source-ok-pill { border-color: rgba(52,199,89,.18); background: #effaf2; color: #1b7a2e; }
+    .brief-grid, .replication-grid, .script-grid, .decision-gate-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .brief-card, .script-card, .gate-card { min-width: 0; padding: 14px; border-top: 1px solid var(--line); }
+    .brief-card h4, .script-card h4, .gate-card h4 { margin: 0 0 8px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .brief-card p, .script-card p, .gate-card p { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); overflow-wrap: anywhere; }
+    .script-card { border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-soft); }
+    .script-body { white-space: pre-wrap; }
+    .replication-column { min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+    .replication-column h4 { margin: 0 0 10px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .replication-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+    .replication-list li { color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); overflow-wrap: anywhere; }
+    .report-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-tile); }
+    .report-table { width: 100%; min-width: 760px; border-collapse: collapse; background: var(--surface); }
+    .report-table th, .report-table td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; font-size: var(--text-footnote); line-height: var(--leading-callout); }
+    .report-table th { color: var(--muted); font-size: var(--text-caption-1); line-height: var(--leading-footnote); font-weight: 650; }
+    .report-table tr:last-child td { border-bottom: 0; }
+    .report-table strong { display: block; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); }
+    .report-table a, .case-link, .evidence-link { color: var(--accent); text-decoration: none; font-weight: 650; }
+    .report-table a:hover, .case-link:hover, .evidence-link:hover { text-decoration: underline; }
+    .evidence-matrix-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+    .evidence-mini-card { min-width: 0; border-top: 1px solid var(--line); padding-top: 14px; }
+    .evidence-mini-card h4 { margin: 8px 0 8px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .evidence-mini-card p { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); }
+    .case-library-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px; }
+    .case-column { min-width: 0; }
+    .case-column h4 { margin: 0 0 10px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .case-list { display: grid; gap: 10px; }
+    .case-row { min-width: 0; padding: 12px 0; border-top: 1px solid var(--line); }
+    .case-row:first-child { border-top: 0; padding-top: 0; }
+    .case-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .case-pain { margin: 8px 0 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); }
+    .validation-plan { display: grid; gap: 0; }
+    .validation-step { display: grid; grid-template-columns: 84px minmax(0,1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+    .validation-step:first-child { border-top: 0; padding-top: 0; }
+    .validation-day { color: var(--accent); font-family: var(--font-mono); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 700; }
+    .validation-step h4 { margin: 0; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .validation-step p { margin: 8px 0 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); }
+    .validation-output { display: block; margin-top: 8px; color: var(--ink); font-size: var(--text-caption-1); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .tracker-grid { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 14px; }
+    .checklist-list, .scorecard-grid, .memo-grid { display: grid; gap: 10px; }
+    .check-item, .score-card, .memo-card { min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-soft); }
+    .check-item h4, .score-card h4, .memo-card h4 { margin: 0 0 6px; color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .check-item p, .score-card p, .memo-card p { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); overflow-wrap: anywhere; }
+    .check-head, .tracker-card-head { display: flex; align-items: start; justify-content: space-between; gap: 10px; }
+    .check-badge, .status-chip { display: inline-flex; align-items: center; min-height: 24px; padding: 0 8px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--surface); color: var(--muted); font-size: var(--text-caption-1); line-height: var(--leading-footnote); font-weight: 650; white-space: nowrap; }
+    .check-badge-required { border-color: rgba(0,113,227,.16); background: var(--accent-soft); color: var(--accent); }
+    .status-chip { border-color: rgba(255,159,10,.22); background: #fff8e6; color: #856404; }
+    .tracker-table { min-width: 920px; }
+    .tracker-section { min-width: 0; }
+    .tracker-section-title { margin: 0 0 10px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .scorecard-grid, .memo-grid { grid-template-columns: repeat(2,minmax(0,1fr)); margin-top: 10px; }
+    .tracker-section-full { grid-column: 1 / -1; }
+    .stage-workbench { grid-column: 1 / -1; }
+    .stage-workbench-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; }
+    .stage-workbench-section { min-width: 0; padding-top: 14px; border-top: 1px solid var(--line); }
+    .stage-workbench-section-full { grid-column: 1 / -1; }
+    .stage-workbench-section h4 { margin: 0 0 10px; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; }
+    .workbench-card-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .workbench-data-card { min-width: 0; padding: 12px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-soft); }
+    .workbench-data-card strong { display: block; margin-bottom: 6px; color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .workbench-data-card p { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); overflow-wrap: anywhere; }
+    .workbench-data-card .workbench-detail { margin-top: 6px; color: var(--ink); font-size: var(--text-caption-1); line-height: var(--leading-footnote); }
+    .workbench-table { min-width: 880px; }
 
     /* Data detail cards */
     .detail-panel { min-height: 0; }
@@ -218,7 +299,7 @@
 
     @media (max-width: 900px) {
       .dashboard, .risk-next-grid, .chart-grid, .overview-section { grid-template-columns: 1fr; }
-      .pricing-tier-grid, .growth-detail-grid { grid-template-columns: 1fr; }
+      .pricing-tier-grid, .growth-detail-grid, .source-health-grid, .evidence-matrix-grid, .case-library-grid, .brief-grid, .replication-grid, .script-grid, .decision-gate-grid, .tracker-grid, .scorecard-grid, .memo-grid, .stage-workbench-grid, .workbench-card-list { grid-template-columns: 1fr; }
       .evidence-card { grid-template-columns: 1fr; }
       .artifact-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
@@ -228,7 +309,9 @@
       .stage-rail { display: flex; overflow-x: auto; border-radius: 24px; scrollbar-width: none; }
       .stage-rail::-webkit-scrollbar { display: none; }
       .seg-btn { flex: 0 0 auto; min-width: max-content; padding: 0 16px; }
-      .metrics, .artifact-list, .gate-grid { grid-template-columns: 1fr; }
+      .metrics, .artifact-list, .gate-grid, .run-summary-grid { grid-template-columns: 1fr; }
+      .validation-step { grid-template-columns: 1fr; gap: 8px; }
+      .report-table { min-width: 680px; }
     }
   </style>
 </head>
@@ -237,19 +320,20 @@
   <header>
     <div>
       <p class="eyebrow">Startup Playbook</p>
-      <h1 id="project-title">AI Ecommerce Image Optimizer</h1>
-      <p class="subtitle" id="project-subtitle">Turn one raw product photo into platform-specific product image sets for marketplace sellers.</p>
+      <h1 id="project-title">AI 电商图片优化器</h1>
+      <p class="subtitle" id="project-subtitle">将一张原始商品图转换成适配各平台的电商图片套件。</p>
     </div>
     <div style="display:flex;align-items:center;gap:8px">
-      <div class="status-pill" id="stage-status">Validate stage</div>
-      <div class="lang-toggle"><button class="lang-btn active" data-lang="en">EN</button><button class="lang-btn" data-lang="zh">中</button></div>
+      <div class="status-pill" id="stage-status">发现阶段</div>
+      <div class="lang-toggle"><button class="lang-btn active" data-lang="zh">中</button><button class="lang-btn" data-lang="en">EN</button></div>
     </div>
   </header>
 
   <section class="overview-section" id="overview"></section>
 
   <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
-    <button class="seg-btn" type="button" role="tab" data-stage-tab="validate" aria-selected="true"><span class="lbl">01</span><strong>Validate</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="discover" aria-selected="true"><span class="lbl">00</span><strong>Discover</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="validate" aria-selected="false"><span class="lbl">01</span><strong>Validate</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="business-model" aria-selected="false"><span class="lbl">02</span><strong>Business Model</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="build" aria-selected="false"><span class="lbl">03</span><strong>Build</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="grow" aria-selected="false"><span class="lbl">04</span><strong>Grow</strong></button>
@@ -457,7 +541,7 @@
   function escapeHtml(value) {
     return String(value ?? '').replace(/[&<>"']/g, ch => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[ch]));
   }
-  function li(items) { return (items||[]).map(i => `<li>${i}</li>`).join(''); }
+  function li(items) { return (items||[]).map(i => `<li>${escapeHtml(i)}</li>`).join(''); }
   function artifactLinks(links) { return (links||[]).map(([l,h]) => `<li><a href="${h}">${l}</a></li>`).join(''); }
   function evidenceValueLines(value) {
     const lines = String(value || '').split(';').map(v => v.trim()).filter(Boolean);
@@ -519,13 +603,369 @@
       </div>`;
     }).join('');
   }
+  function candidateCards(candidates) {
+    return (candidates||[]).map(candidate => `
+      <article class="keyword-cluster-card">
+        <div class="keyword-card-head">
+          <h4>${escapeHtml(localField(candidate, 'title') || 'Opportunity')}</h4>
+          <span class="priority-badge">${escapeHtml(localField(candidate, 'type') || 'candidate')} · ${escapeHtml(candidate.score ?? '—')}</span>
+        </div>
+        <p class="keyword-intent">${escapeHtml(localField(candidate, 'targetUser') || 'Unknown user')}</p>
+        <div class="keyword-list">${localArray(candidate, 'signalTypes').map(signal => `<span class="keyword-pill">${escapeHtml(signal)}</span>`).join('')}</div>
+        <p class="keyword-intent">${escapeHtml(localField(candidate, 'firstReachableChannel') || 'No channel yet')}</p>
+      </article>`).join('');
+  }
+  function formatDate(value) {
+    if (!value) return '—';
+    const date = new Date(value);
+    if (Number.isNaN(date.getTime())) return value;
+    return new Intl.DateTimeFormat(LANG === 'zh' ? 'zh-CN' : 'en-US', { dateStyle: 'medium', timeStyle: 'short' }).format(date);
+  }
+  function externalLink(label, url, className = '') {
+    const text = escapeHtml(label || url || 'Link');
+    if (!url) return text;
+    return `<a class="${className}" href="${escapeHtml(url)}" target="_blank" rel="noreferrer">${text}</a>`;
+  }
+  function runSummaryCards(stage) {
+    const summary = stage.runSummary || {};
+    const items = [
+      [t('candidatesFound'), summary.candidateCount ?? (stage.candidates || []).length ?? 0],
+      [t('communityItems'), summary.communityItems ?? 0],
+      [t('publicCases'), summary.caseItems ?? 0],
+      [t('painSignals'), summary.painSignals ?? 0],
+      [t('caseSignalsFound'), summary.caseSignals ?? 0],
+      [t('sourceFailures'), summary.sourceErrorCount ?? (stage.sourceErrors || []).length],
+      [t('topScore'), summary.topScore ?? stage.score ?? '—'],
+      [t('runGenerated'), formatDate(summary.generatedAt)],
+    ];
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('runSummary')}</h3><p class="workbench-note">${escapeHtml(localField(summary, 'topTitle') || '')}</p></div>
+      <div class="run-summary-grid">${items.map(([label, value]) => `
+        <div class="run-summary-item"><span class="label">${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join('')}</div>
+    </section>`;
+  }
+  function sourceCoverageRows(items) {
+    return (items || []).map(item => `
+      <div class="source-row">
+        <span class="source-name">${escapeHtml(item.source || 'source')}</span>
+        <span class="source-count">${escapeHtml(item.count ?? 0)}</span>
+      </div>`).join('') || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function sourceHealthCards(stage) {
+    const coverage = stage.sourceCoverage || {};
+    const errors = stage.sourceErrors || [];
+    const errorHtml = errors.length
+      ? errors.map(error => `<span class="source-error-pill">${escapeHtml(error.type || 'source')}: ${escapeHtml(error.message || 'failed')}</span>`).join('')
+      : `<span class="source-error-pill source-ok-pill">${t('noSourceErrors')}</span>`;
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('sourceHealth')}</h3><p class="workbench-note">${t('sourceCoverage')}</p></div>
+      <div class="source-health-grid">
+        <div><h3>${t('communitySources')}</h3><div class="source-list">${sourceCoverageRows(coverage.communities)}</div></div>
+        <div><h3>${t('caseSources')}</h3><div class="source-list">${sourceCoverageRows(coverage.cases)}</div></div>
+      </div>
+      <div class="source-error-list">${errorHtml}</div>
+    </section>`;
+  }
+  function opportunityRankTable(candidates) {
+    const rows = (candidates || []).map((candidate, index) => `
+      <tr>
+        <td><strong>#${index + 1} ${escapeHtml(localField(candidate, 'title') || candidate.id || 'Opportunity')}</strong><span class="workbench-note">${escapeHtml(localField(candidate, 'type') || candidate.type || 'candidate')}</span></td>
+        <td>${escapeHtml(candidate.score ?? '—')}</td>
+        <td>${escapeHtml(localField(candidate, 'targetUser') || '—')}</td>
+        <td>${escapeHtml(localField(candidate, 'firstReachableChannel') || '—')}</td>
+        <td>${escapeHtml(candidate.cloneRisk || '—')} / ${escapeHtml(candidate.moatDependency || '—')}</td>
+        <td>${escapeHtml(localField(candidate, 'recommendedNextExperiment') || '—')}</td>
+      </tr>`).join('');
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('opportunityRank')}</h3><p class="workbench-note">${t('score')}</p></div>
+      <div class="report-table-wrap">
+        <table class="report-table">
+          <thead><tr><th>${t('topCandidates')}</th><th>${t('score')}</th><th>${t('targetUser')}</th><th>${t('channel')}</th><th>${t('cloneMoat')}</th><th>${t('recommendedExperiment')}</th></tr></thead>
+          <tbody>${rows || `<tr><td colspan="6">${t('noData')}</td></tr>`}</tbody>
+        </table>
+      </div>
+    </section>`;
+  }
+  function chipList(items, emptyLabel = '—') {
+    const values = (items || []).filter(Boolean);
+    return values.length ? values.map(value => `<span class="keyword-pill">${escapeHtml(value)}</span>`).join('') : `<span class="keyword-pill">${escapeHtml(emptyLabel)}</span>`;
+  }
+  function bulletList(items) {
+    const values = (items || []).filter(Boolean);
+    return values.length ? `<ul class="replication-list">${values.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>` : `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function candidateBriefPanel(stage) {
+    const brief = stage.candidateBrief || {};
+    return `<section class="workbench-panel candidate-brief">
+      <div class="workbench-head"><h3>${t('candidateBrief')}</h3><p class="workbench-note">${escapeHtml(localField(brief, 'title') || '')}</p></div>
+      <div class="brief-grid">
+        <article class="brief-card"><h4>${t('painfulSituation')}</h4><p>${escapeHtml(localField(brief, 'painfulSituation') || '')}</p></article>
+        <article class="brief-card"><h4>${t('promiseCandidate')}</h4><p>${escapeHtml(localField(brief, 'promise') || '')}</p></article>
+        <article class="brief-card"><h4>${t('targetUser')}</h4><p>${escapeHtml(localField(brief, 'targetUser') || '')}</p></article>
+        <article class="brief-card"><h4>${t('recommendedExperiment')}</h4><p>${escapeHtml(localField(brief, 'recommendedNextExperiment') || '')}</p></article>
+      </div>
+      <div class="keyword-list">${chipList(localArray(brief, 'signalTypes'))}${chipList([`${t('evidenceCount')}: ${brief.evidenceCount ?? 0}`, `${t('cloneRisk')}: ${brief.cloneRisk || '—'}`, `${t('moatDependency')}: ${brief.moatDependency || '—'}`])}</div>
+    </section>`;
+  }
+  function replicationBriefPanel(stage) {
+    const brief = stage.replicationBrief || {};
+    const columns = [
+      [t('githubCases'), brief.github || {}],
+      [t('productHuntCases'), brief.productHunt || {}],
+    ];
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('replicationBrief')}</h3><p class="workbench-note">${t('replicationNote')}</p></div>
+      <div class="replication-grid">${columns.map(([label, item]) => `
+        <div class="replication-column">
+          <h4>${label} (${escapeHtml(item.caseCount ?? 0)})</h4>
+          <div class="keyword-list">${chipList(localArray(item, 'copyable'), t('noData'))}</div>
+          <h4>${t('notCopyable')}</h4>
+          ${bulletList(localArray(item, 'notCopyable'))}
+        </div>`).join('')}</div>
+    </section>`;
+  }
+  function outreachScriptsPanel(stage) {
+    const scripts = stage.outreachScripts || {};
+    const interviewQuestions = localArray(scripts, 'interviewQuestions');
+    return `<section class="workbench-panel outreach-script-pack">
+      <div class="workbench-head"><h3>${t('outreachScripts')}</h3><p class="workbench-note">${escapeHtml(localField(scripts, 'sourceChannel') || '')}</p></div>
+      <div class="script-grid">
+        <article class="script-card"><h4>${t('publicReply')}</h4><p class="script-body">${escapeHtml(localField(scripts, 'publicReply') || '')}</p></article>
+        <article class="script-card"><h4>${t('privateFollowUp')}</h4><p class="script-body">${escapeHtml(localField(scripts, 'privateFollowUp') || '')}</p></article>
+        <article class="script-card"><h4>${t('paidAuditOffer')}</h4><p class="script-body">${escapeHtml(localField(scripts, 'paidAuditOffer') || '')}</p></article>
+        <article class="script-card"><h4>${t('interviewQuestions')}</h4>${bulletList(interviewQuestions)}</article>
+      </div>
+    </section>`;
+  }
+  function decisionGatePanel(stage) {
+    const gate = stage.decisionGate || {};
+    const continueRules = LANG === 'zh'
+      ? (gate.continueZh || [])
+      : [
+        `Continue: at least ${gate.continue?.minQualifiedReplies ?? 3} qualified replies.`,
+        `Continue: at least ${gate.continue?.minBookedCalls ?? 2} booked buyer calls.`,
+        `Continue: at least ${gate.continue?.minPaidOrNearPaidSignals ?? 1} paid or near-paid signal.`,
+      ];
+    const pivotRules = LANG === 'zh' ? (gate.pivotZh || []) : [gate.pivot?.condition, gate.pivot?.nextMove].filter(Boolean);
+    const pauseRules = LANG === 'zh' ? (gate.pauseZh || []) : [gate.pause?.condition, gate.pause?.nextMove].filter(Boolean);
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('decisionGate')}</h3><p class="workbench-note">${t('beforeBuild')}</p></div>
+      <div class="decision-gate-grid">
+        <article class="gate-card"><h4>${t('continue')}</h4>${bulletList(continueRules)}</article>
+        <article class="gate-card"><h4>${t('pivot')}</h4>${bulletList(pivotRules)}</article>
+        <article class="gate-card"><h4>${t('pause')}</h4>${bulletList(pauseRules)}</article>
+        <article class="gate-card"><h4>${t('numericGate')}</h4><p>${t('qualifiedReplies')}: ${escapeHtml(gate.continue?.minQualifiedReplies ?? '—')} · ${t('bookedCalls')}: ${escapeHtml(gate.continue?.minBookedCalls ?? '—')} · ${t('paidSignals')}: ${escapeHtml(gate.continue?.minPaidOrNearPaidSignals ?? '—')}</p></article>
+      </div>
+    </section>`;
+  }
+  function evidenceChecklistCards(items) {
+    const cards = (items || []).map(item => {
+      const requiredClass = item.required ? ' check-badge-required' : '';
+      return `<article class="check-item">
+        <div class="check-head">
+          <h4>${escapeHtml(localField(item, 'label') || item.key || 'Evidence')}</h4>
+          <span class="check-badge${requiredClass}">${item.required ? t('required') : t('optional')}</span>
+        </div>
+        <p>${escapeHtml(localField(item, 'why') || '')}</p>
+      </article>`;
+    }).join('');
+    return cards || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function outreachTrackerTable(rows) {
+    const tableRows = (rows || []).map(row => {
+      const sourceLabel = localField(row, 'sourceTitle') || localField(row, 'sourceName') || t('source');
+      return `<tr>
+        <td>${escapeHtml(row.slot ?? '—')}</td>
+        <td><strong>${externalLink(sourceLabel, row.sourceUrl)}</strong><span class="workbench-note">${escapeHtml(localField(row, 'sourceName') || '')}</span></td>
+        <td>${escapeHtml(localField(row, 'targetRole') || '—')}</td>
+        <td><span class="status-chip">${escapeHtml(localField(row, 'status') || row.status || '—')}</span></td>
+        <td>${escapeHtml(localField(row, 'evidenceNeeded') || '—')}</td>
+        <td>${escapeHtml(localField(row, 'nextAction') || '—')}</td>
+      </tr>`;
+    }).join('');
+    return `<div class="report-table-wrap">
+      <table class="report-table tracker-table">
+        <thead><tr><th>${t('slot')}</th><th>${t('source')}</th><th>${t('targetRole')}</th><th>${t('status')}</th><th>${t('evidenceNeeded')}</th><th>${t('nextAction')}</th></tr></thead>
+        <tbody>${tableRows || `<tr><td colspan="6">${t('noData')}</td></tr>`}</tbody>
+      </table>
+    </div>`;
+  }
+  function scorecardCards(scorecard) {
+    const criteria = scorecard?.criteria || [];
+    const cards = criteria.map(item => `<article class="score-card">
+      <h4>${escapeHtml(localField(item, 'label') || item.key || 'Criterion')}</h4>
+      <p>${t('scoreTarget')}: ${escapeHtml(localField(item, 'target') || '')}</p>
+    </article>`).join('');
+    return `<p class="workbench-note">${escapeHtml(localField(scorecard, 'scoringGuide') || '')}</p>
+      <div class="scorecard-grid">${cards || `<p class="workbench-note">${t('noData')}</p>`}</div>`;
+  }
+  function decisionMemoCards(memo) {
+    const sections = memo?.sections || [];
+    const cards = sections.map(section => `<article class="memo-card">
+      <h4>${escapeHtml(localField(section, 'label') || section.key || 'Memo')}</h4>
+      <p>${escapeHtml(localField(section, 'prompt') || '')}</p>
+    </article>`).join('');
+    return `<div class="memo-grid">${cards || `<p class="workbench-note">${t('noData')}</p>`}</div>`;
+  }
+  function validationTrackerPanel(stage) {
+    const tracker = stage.validationTracker || {};
+    return `<section class="workbench-panel validation-tracker">
+      <div class="workbench-head"><h3>${t('validationTracker')}</h3><p class="workbench-note">${t('validationTrackerNote')}</p></div>
+      <div class="tracker-grid">
+        <div class="tracker-section">
+          <h4 class="tracker-section-title">${t('buyerEvidenceChecklist')}</h4>
+          <div class="checklist-list">${evidenceChecklistCards(tracker.buyerEvidenceChecklist || [])}</div>
+        </div>
+        <div class="tracker-section">
+          <h4 class="tracker-section-title">${t('interviewScorecard')}</h4>
+          ${scorecardCards(tracker.interviewScorecard || {})}
+        </div>
+        <div class="tracker-section tracker-section-full">
+          <h4 class="tracker-section-title">${t('outreachTracker')}</h4>
+          ${outreachTrackerTable(tracker.outreachRows || [])}
+        </div>
+        <div class="tracker-section tracker-section-full">
+          <h4 class="tracker-section-title">${t('decisionMemo')}</h4>
+          ${decisionMemoCards(tracker.decisionMemo || {})}
+        </div>
+      </div>
+    </section>`;
+  }
+  function evidenceMatrixCards(items) {
+    const cards = (items || []).map(item => {
+      const signals = localArray(item, 'signalTypes').slice(0, 4).map(signal => `<span class="evidence-chip">${escapeHtml(signal)}</span>`).join('');
+      return `<article class="evidence-mini-card">
+        <span class="evidence-category">${escapeHtml(localField(item, 'sourceName') || item.sourceType || 'source')}</span>
+        <h4>${externalLink(localField(item, 'title') || item.id || 'Evidence', item.url, 'evidence-link')}</h4>
+        <div class="evidence-meta">${signals}<span class="evidence-chip evidence-chip-confidence">${escapeHtml(item.metric || `${t('score')}: ${item.candidateScore ?? '—'}`)}</span></div>
+        <p>${escapeHtml(localField(item, 'excerpt') || '')}</p>
+      </article>`;
+    }).join('');
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('evidenceMatrix')}</h3><p class="workbench-note">${t('evidenceSnippet')}</p></div>
+      <div class="evidence-matrix-grid">${cards || `<p class="workbench-note">${t('noData')}</p>`}</div>
+    </section>`;
+  }
+  function caseRows(items) {
+    return (items || []).map(item => {
+      const copyable = localArray(item, 'copyable').slice(0, 3).map(value => `<span class="keyword-pill">${escapeHtml(value)}</span>`).join('');
+      return `<article class="case-row">
+        <h4>${externalLink(item.title || item.id || 'Case', item.url, 'case-link')}</h4>
+        <p class="case-pain">${escapeHtml(localField(item, 'pain') || localField(item, 'productShape') || '')}</p>
+        <div class="case-meta">
+          <span class="evidence-chip">${escapeHtml(item.pricing || item.revenue || t('noPricing'))}</span>
+          <span class="evidence-chip">${t('caseScore')}: ${escapeHtml(item.score ?? '—')}</span>
+          <span class="evidence-chip">${t('channel')}: ${escapeHtml(localField(item, 'firstAcquisitionChannel') || '—')}</span>
+          <span class="evidence-chip">${t('cloneRisk')}: ${escapeHtml(item.cloneRisk || '—')}</span>
+        </div>
+        <div class="keyword-list">${copyable}</div>
+        <p class="case-pain">${escapeHtml(localField(item, 'validationMove') || '')}</p>
+      </article>`;
+    }).join('') || `<p class="workbench-note">${t('noCases')}</p>`;
+  }
+  function caseLibraryCards(stage) {
+    const library = stage.caseLibrary || { github: [], productHunt: [] };
+    return `<section class="workbench-panel public-case-library">
+      <div class="workbench-head"><h3>${t('publicCaseLibrary')}</h3><p class="workbench-note">${t('caseLibraryNote')}</p></div>
+      <div class="case-library-grid">
+        <div class="case-column"><h4>${t('githubCases')} (${(library.github || []).length})</h4><div class="case-list">${caseRows(library.github)}</div></div>
+        <div class="case-column"><h4>${t('productHuntCases')} (${(library.productHunt || []).length})</h4><div class="case-list">${caseRows(library.productHunt)}</div></div>
+      </div>
+    </section>`;
+  }
+  function validationPlanRows(plan) {
+    const rows = (plan || []).map(step => {
+      const dayLabel = LANG === 'zh' ? `${t('day')}${step.day}天` : `${t('day')} ${step.day}`;
+      return `
+      <article class="validation-step">
+        <span class="validation-day">${escapeHtml(dayLabel)}</span>
+        <div>
+          <h4>${escapeHtml(localField(step, 'label') || '')}</h4>
+          <p>${escapeHtml(localField(step, 'action') || '')}</p>
+          <span class="validation-output">${t('output')}: ${escapeHtml(localField(step, 'output') || '')}</span>
+          <span class="validation-output">${t('successMetric')}: ${escapeHtml(localField(step, 'successMetric') || '')}</span>
+        </div>
+      </article>`;
+    }).join('');
+    return `<section class="workbench-panel">
+      <div class="workbench-head"><h3>${t('validationPlan')}</h3><p class="workbench-note">${t('validationPlanNote')}</p></div>
+      <div class="validation-plan">${rows || `<p class="workbench-note">${t('noData')}</p>`}</div>
+    </section>`;
+  }
+  function workbenchText(item, field) {
+    const value = localField(item, field);
+    if (Array.isArray(value)) return value.filter(Boolean).join('; ');
+    return value == null || value === '' ? '—' : String(value);
+  }
+  function workflowWorkbenchCards(cards) {
+    const html = (cards || []).map(card => {
+      const detail = workbenchText(card, 'detail');
+      return `<article class="workbench-data-card">
+        <strong>${escapeHtml(workbenchText(card, 'label'))}</strong>
+        <p>${escapeHtml(workbenchText(card, 'value'))}</p>
+        ${detail !== '—' ? `<p class="workbench-detail">${escapeHtml(detail)}</p>` : ''}
+      </article>`;
+    }).join('');
+    return html ? `<div class="workbench-card-list">${html}</div>` : `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function workflowWorkbenchRows(rows) {
+    const tableRows = (rows || []).map(row => `<tr>
+      <td>${escapeHtml(row.slot ?? '—')}</td>
+      <td><strong>${escapeHtml(workbenchText(row, 'label'))}</strong></td>
+      <td>${escapeHtml(workbenchText(row, 'target'))}</td>
+      <td><span class="status-chip">${escapeHtml(workbenchText(row, 'status'))}</span></td>
+      <td>${escapeHtml(workbenchText(row, 'metric'))}</td>
+      <td>${escapeHtml(workbenchText(row, 'nextAction'))}</td>
+    </tr>`).join('');
+    return `<div class="report-table-wrap">
+      <table class="report-table workbench-table">
+        <thead><tr><th>${t('slot')}</th><th>${t('workbenchItem')}</th><th>${t('target')}</th><th>${t('status')}</th><th>${t('successMetric')}</th><th>${t('nextAction')}</th></tr></thead>
+        <tbody>${tableRows || `<tr><td colspan="6">${t('noData')}</td></tr>`}</tbody>
+      </table>
+    </div>`;
+  }
+  function workflowWorkbenchSection(section) {
+    const full = (section.rows || []).length ? ' stage-workbench-section-full' : '';
+    return `<article class="stage-workbench-section${full}">
+      <h4>${escapeHtml(workbenchText(section, 'title'))}</h4>
+      ${workflowWorkbenchCards(section.cards || [])}
+      ${(section.rows || []).length ? workflowWorkbenchRows(section.rows) : ''}
+    </article>`;
+  }
+  function workflowWorkbenchPanel(stage) {
+    const workbench = stage.workflowWorkbench;
+    if (!workbench) return '';
+    return `<section class="workbench-panel stage-workbench">
+      <div class="workbench-head"><h3>${escapeHtml(workbenchText(workbench, 'title'))}</h3><p class="workbench-note">${escapeHtml(workbenchText(workbench, 'note'))}</p></div>
+      <div class="stage-workbench-grid">${(workbench.sections || []).map(workflowWorkbenchSection).join('')}</div>
+    </section>`;
+  }
+  function discoverWorkbench(stage, candidates) {
+    return `<div class="discover-workbench">
+      ${runSummaryCards(stage)}
+      ${sourceHealthCards(stage)}
+      ${candidateBriefPanel(stage)}
+      ${opportunityRankTable(candidates)}
+      ${replicationBriefPanel(stage)}
+      ${evidenceMatrixCards(stage.evidenceMatrix || [])}
+      ${caseLibraryCards(stage)}
+      ${outreachScriptsPanel(stage)}
+      ${decisionGatePanel(stage)}
+      ${validationTrackerPanel(stage)}
+      ${validationPlanRows(stage.validationPlan || [])}
+    </div>`;
+  }
   function decisionClass(d) { return 'decision-' + (d||'pause'); }
   function scoreColor(s) { if (s == null) return COLORS.red; if (s >= 70) return COLORS.green; if (s >= 50) return COLORS.yellow; return COLORS.red; }
   function gateStatusClass(status) { if (status === 'supported') return 'gate-icon-supported'; if (status === 'partially_supported') return 'gate-icon-partial'; return 'gate-icon-unsupported'; }
+  function compactChartLabel(value, max = 34) {
+    const text = String(value || '').replace(/\s+/g, ' ').trim();
+    return text.length > max ? `${text.slice(0, max - 3)}...` : text;
+  }
   function uid() { return 'c' + Math.random().toString(36).slice(2,9); }
 
   /* ── i18n ── */
-  let LANG = 'en';
+  let LANG = 'zh';
   const I18N = {
     en: {
       eyebrow: 'Startup Playbook', stagePipeline: 'Stage Pipeline', evidence: 'Evidence',
@@ -540,12 +980,49 @@
       mvpScope: 'MVP Scope Breakdown', buildReadiness: 'Build Readiness',
       keywordClusters: 'Keyword Clusters', growthDetails: 'Growth Details', channelPriority: 'Channel Priority',
       aarrrFunnel: 'AARRR Funnel', retentionCurve: 'Retention Curve',
+      candidateTypeMix: 'Candidate Type Mix', opportunityScores: 'Opportunity Scores',
+      sourceCoverage: 'Source Coverage', topCandidates: 'Top Candidates',
       collected: 'Collected', missing: 'Missing',
       priority: 'Priority', intent: 'Intent',
+      runSummary: 'Discovery Summary', runGenerated: 'Generated', candidatesFound: 'Candidates',
+      communityItems: 'Community items', publicCases: 'Public cases', painSignals: 'Pain signals',
+      caseSignalsFound: 'Case signals', sourceFailures: 'Source failures', topScore: 'Top score',
+      sourceHealth: 'Source Health', communitySources: 'Community Sources', caseSources: 'Case Sources',
+      noSourceErrors: 'All active sources returned data', noData: 'No data captured', failedSources: 'Failed sources',
+      opportunityRank: 'Opportunity Rank', targetUser: 'Target User', channel: 'Channel',
+      cloneMoat: 'Clone / moat risk', recommendedExperiment: 'Recommended Experiment',
+      evidenceMatrix: 'Evidence Matrix', evidenceSnippet: 'Evidence excerpts linked to candidates',
+      publicCaseLibrary: 'Public Case Library', caseLibraryNote: 'Copyable public cases from GitHub and Product Hunt',
+      githubCases: 'GitHub Cases', productHuntCases: 'Product Hunt Cases',
+      noCases: 'No cases captured', noPricing: 'No pricing metric', caseScore: 'Case score',
+      cloneRisk: 'Clone risk', moatDependency: 'Moat dependency',
+      validationPlan: '7-Day Validation Plan', validationPlanNote: 'Run this before entering Build',
+      day: 'Day', output: 'Output', successMetric: 'Success metric',
+      candidateBrief: 'Candidate Brief', painfulSituation: 'Painful Situation',
+      promiseCandidate: 'Promise Candidate', evidenceCount: 'Evidence count',
+      replicationBrief: 'Replication Brief', replicationNote: 'What can and cannot be copied from public cases',
+      notCopyable: 'Do not copy', outreachScripts: 'Outreach Script Pack',
+      publicReply: 'Public Reply', privateFollowUp: 'Private Follow-up',
+      paidAuditOffer: 'Paid Audit Offer', interviewQuestions: 'Interview Questions',
+      decisionGate: 'Continue / Pivot / Pause Gate', beforeBuild: 'Before entering Build',
+      continue: 'Continue', pivot: 'Pivot', pause: 'Pause',
+      numericGate: 'Numeric gate', qualifiedReplies: 'Qualified replies',
+      bookedCalls: 'Booked calls', paidSignals: 'Paid signals',
+      validationTracker: 'Validation Tracker', validationTrackerNote: 'Use this section while running the 7-day sprint',
+      buyerEvidenceChecklist: 'Buyer Evidence Checklist', outreachTracker: 'Outreach Tracker',
+      interviewScorecard: 'Interview Scorecard', decisionMemo: 'Decision Memo',
+      required: 'Required', optional: 'Optional', status: 'Status',
+      evidenceNeeded: 'Evidence Needed', nextAction: 'Next Action', targetRole: 'Target Role', slot: 'Slot',
+      workbenchItem: 'Item', target: 'Target',
+      scoreTarget: 'Target',
       mustHave: 'Must Have', later: 'Later', dontBuild: "Don't Build",
       service: 'Service', saasPlanned: 'SaaS (planned)',
-      stageLabels: ['Validate','Biz Model','Build','Grow','Operate'],
-      tabLabels: { validate:'Validate', 'business-model':'Business Model', build:'Build', grow:'Grow', operate:'Operate' },
+      stageLabels: ['Discover','Validate','Biz Model','Build','Grow','Operate'],
+      tabLabels: { discover:'Discover', validate:'Validate', 'business-model':'Business Model', build:'Build', grow:'Grow', operate:'Operate' },
+      decisionLabels: { continue:'continue', pivot:'pivot', pause:'pause', adjust:'adjust', none:'none' },
+      nextActionLabels: { advance:'advance', stay:'stay', 'back-to-validate':'back to validate', none:'none' },
+      aarrrStepLabels: { acquisition:'Acquisition', activation:'Activation', revenue:'Revenue', retention:'Retention', referral:'Referral' },
+      discoverSourceLabels: ['Community items', 'Case items', 'Pain signals', 'Case signals'],
       stageSuffix: 'stage',
     },
     zh: {
@@ -561,26 +1038,83 @@
       mvpScope: 'MVP 范围分布', buildReadiness: '构建就绪度',
       keywordClusters: '关键词聚类', growthDetails: '增长明细', channelPriority: '渠道优先级',
       aarrrFunnel: 'AARRR 漏斗', retentionCurve: '留存曲线',
+      candidateTypeMix: '候选类型分布', opportunityScores: '机会评分',
+      sourceCoverage: '来源覆盖', topCandidates: '优先候选机会',
       collected: '已收集', missing: '缺失',
       priority: '优先级', intent: '意图',
+      runSummary: '本次挖掘摘要', runGenerated: '生成时间', candidatesFound: '候选机会',
+      communityItems: '社区条目', publicCases: '公开案例', painSignals: '痛点信号',
+      caseSignalsFound: '案例信号', sourceFailures: '失败来源', topScore: '最高分',
+      sourceHealth: '来源健康', communitySources: '社区来源', caseSources: '案例来源',
+      noSourceErrors: '活跃来源均已返回数据', noData: '暂无数据', failedSources: '失败来源',
+      opportunityRank: '机会排行榜', targetUser: '目标用户', channel: '渠道',
+      cloneMoat: '复制 / 护城河风险', recommendedExperiment: '推荐验证实验',
+      evidenceMatrix: '证据矩阵', evidenceSnippet: '候选机会对应的证据摘录',
+      publicCaseLibrary: '公开案例库', caseLibraryNote: '来自 GitHub 和 Product Hunt 的可复制公开案例',
+      githubCases: 'GitHub 案例', productHuntCases: 'Product Hunt 案例',
+      noCases: '暂无案例', noPricing: '暂无价格指标', caseScore: '案例分',
+      cloneRisk: '复制风险', moatDependency: '护城河依赖',
+      validationPlan: '7 天验证计划', validationPlanNote: '进入构建前先跑完这一轮',
+      day: '第', output: '产出', successMetric: '成功标准',
+      candidateBrief: '候选机会详情', painfulSituation: '痛点场景',
+      promiseCandidate: '承诺假设', evidenceCount: '证据数量',
+      replicationBrief: '复制策略拆解', replicationNote: '从公开案例中区分可复制与不可复制',
+      notCopyable: '不要复制', outreachScripts: '社区回复话术',
+      publicReply: '公开回复', privateFollowUp: '私信跟进',
+      paidAuditOffer: '付费人工审计报价', interviewQuestions: '访谈问题',
+      decisionGate: '继续 / 转向 / 暂停门槛', beforeBuild: '进入构建前使用',
+      continue: '继续', pivot: '转向', pause: '暂停',
+      numericGate: '数字门槛', qualifiedReplies: '有效回复',
+      bookedCalls: '预约通话', paidSignals: '付费信号',
+      validationTracker: '验证追踪工作台', validationTrackerNote: '跑 7 天验证时直接按这里记录',
+      buyerEvidenceChecklist: '买家证据清单', outreachTracker: '验证追踪表',
+      interviewScorecard: '访谈评分卡', decisionMemo: '决策备忘录',
+      required: '必需', optional: '可选', status: '状态',
+      evidenceNeeded: '需要证据', nextAction: '下一步', targetRole: '目标角色', slot: '序号',
+      workbenchItem: '事项', target: '目标',
+      scoreTarget: '评分目标',
       mustHave: '必须做', later: '稍后', dontBuild: '不做',
       service: '服务', saasPlanned: 'SaaS（计划中）',
-      stageLabels: ['验证','商业模式','构建','增长','运营'],
-      tabLabels: { validate:'验证', 'business-model':'商业模式', build:'构建', grow:'增长', operate:'运营' },
+      stageLabels: ['发现','验证','商业模式','构建','增长','运营'],
+      tabLabels: { discover:'发现', validate:'验证', 'business-model':'商业模式', build:'构建', grow:'增长', operate:'运营' },
+      decisionLabels: { continue:'继续', pivot:'转向', pause:'暂停', adjust:'调整', none:'无' },
+      nextActionLabels: { advance:'推进', stay:'停留', 'back-to-validate':'回到验证', none:'无' },
+      aarrrStepLabels: { acquisition:'获客', activation:'激活', revenue:'收入', retention:'留存', referral:'推荐' },
+      discoverSourceLabels: ['社区条目', '案例条目', '痛点信号', '案例信号'],
       stageSuffix: '阶段',
     }
   };
   function t(key) { return I18N[LANG]?.[key] || I18N.en[key] || key; }
+  function stageLabelFor(key) { return t('tabLabels')[key] || key; }
+  function localField(item, field) {
+    if (!item) return '';
+    const zhKey = `${field}Zh`;
+    return LANG === 'zh' && item[zhKey] != null ? item[zhKey] : item[field];
+  }
+  function localArray(item, field) {
+    if (!item) return [];
+    const zhKey = `${field}Zh`;
+    return LANG === 'zh' && Array.isArray(item[zhKey]) ? item[zhKey] : (item[field] || []);
+  }
+  function decisionLabel(value) { return t('decisionLabels')[value || 'none'] || value || 'none'; }
+  function nextActionLabel(value) { return t('nextActionLabels')[value || 'none'] || value || 'none'; }
+  function stageStatusText(stageLabel) {
+    return LANG === 'zh' ? `${stageLabel}${t('stageSuffix')}` : `${stageLabel} ${t('stageSuffix')}`;
+  }
 
   /* ── overview section ── */
   function renderOverview(data) {
     const ov = document.getElementById('overview');
     destroyOverviewChart();
     const radarId = uid();
-    const stageOrder = ['validate','business-model','build','grow','operate'];
-    const labels = t('stageLabels');
+    const stageOrder = data.stageOrder || ['discover','validate','business-model','build','grow','operate'];
+    const labels = stageOrder.map(stageLabelFor);
     const scores = stageOrder.map(k => data.stages[k]?.score ?? 0);
     document.querySelector('.eyebrow').textContent = t('eyebrow');
+    document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
+    document.getElementById('project-title').textContent = localField(data.project, 'name') || data.project?.name || 'Startup Playbook';
+    document.getElementById('project-subtitle').textContent = localField(data.project, 'oneLine') || data.project?.oneLine || '';
+    document.title = `${localField(data.project, 'name') || data.project?.name || 'Startup Playbook'} - ${t('eyebrow')}`;
 
     let pipelineHtml = '';
     stageOrder.forEach((k,i) => {
@@ -591,7 +1125,7 @@
         <span class="pipeline-label">${labels[i]}</span>
         <div class="pipeline-bar-track"><div class="pipeline-bar-fill" style="width:${score}%;background:${scoreColor(score)}"></div></div>
         <span class="pipeline-score" style="color:${scoreColor(score)}">${score || '—'}</span>
-        <span class="pipeline-decision ${decisionClass(dec)}">${dec}</span>
+        <span class="pipeline-decision ${decisionClass(dec)}">${decisionLabel(dec)}</span>
       </div>`;
     });
 
@@ -610,6 +1144,45 @@
   }
 
   /* ── stage-specific chart builders ── */
+  function chartsDiscover(stage) {
+    const id1 = uid(), id2 = uid(), id3 = uid();
+    const candidates = stage.candidates || stage.topCandidates || [];
+    const typeCounts = {};
+    candidates.forEach(candidate => {
+      const type = localField(candidate, 'type') || candidate.type || 'candidate';
+      typeCounts[type] = (typeCounts[type] || 0) + 1;
+    });
+    const typeLabels = Object.keys(typeCounts);
+    const typeValues = Object.values(typeCounts);
+    const top = candidates.slice(0, 6);
+    const sourceSummary = stage.signalSummary || {};
+    const sourceLabels = t('discoverSourceLabels');
+    const sourceValues = [sourceSummary.communityItems || 0, sourceSummary.caseItems || 0, sourceSummary.painSignals || 0, sourceSummary.caseSignals || 0];
+    const scoreLabels = top.map(c => localField(c, 'title') || c.title || c.id || 'Opportunity');
+    const compactScoreLabels = scoreLabels.map(label => compactChartLabel(label));
+
+    let html = `
+      <div class="chart-card"><h3>${t('candidateTypeMix')}</h3><canvas id="${id1}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('opportunityScores')}</h3><canvas id="${id2}" height="220"></canvas></div>
+      <div class="chart-card"><h3>${t('sourceCoverage')}</h3><canvas id="${id3}" height="220"></canvas></div>
+      <div class="chart-card chart-card-wide detail-panel"><h3>${t('topCandidates')}</h3><div class="keyword-cluster-grid">${candidateCards(top)}</div></div>
+      ${discoverWorkbench(stage, candidates)}`;
+
+    return { html, init() {
+      if (typeLabels.length) makeChart(id1, { type:'doughnut', data:{ labels:typeLabels, datasets:[{ data:typeValues, backgroundColor:PALETTE.slice(0,typeLabels.length), borderWidth:0 }] }, options:{ cutout:'60%' } });
+      if (top.length) makeChart(id2, {
+        type:'bar',
+        data:{ labels:compactScoreLabels, datasets:[{ data:top.map(c => c.score || 0), backgroundColor:PALETTE.slice(0,top.length), borderRadius:8 }] },
+        options:{
+          indexAxis:'y',
+          plugins:{ legend:{display:false}, tooltip:{ callbacks:{ title:items => scoreLabels[items[0]?.dataIndex] || '' } } },
+          scales:{ x:{beginAtZero:true,max:100}, y:{ticks:{font:{size:11}}} },
+        },
+      });
+      makeChart(id3, { type:'bar', data:{ labels:sourceLabels, datasets:[{ data:sourceValues, backgroundColor:[COLORS.blue,COLORS.purple,COLORS.green,COLORS.teal], borderRadius:8 }] }, options:{ plugins:{ legend:{display:false} }, scales:{ y:{beginAtZero:true,ticks:{stepSize:1}} } } });
+    }};
+  }
+
   function chartsValidate(stage) {
     const id1 = uid(), id2 = uid(), id3 = uid();
     const ve = stage.validationEvidence || [];
@@ -700,7 +1273,7 @@
     const id1 = uid(), id2 = uid();
     const aarrr = stage.aarrr || {};
     const funnelSteps = ['acquisition','activation','revenue','retention','referral'];
-    const funnelLabels = funnelSteps.map(s => s.charAt(0).toUpperCase()+s.slice(1));
+    const funnelLabels = funnelSteps.map(s => t('aarrrStepLabels')[s] || s.charAt(0).toUpperCase()+s.slice(1));
     const funnelValues = funnelSteps.map((_,i) => 100 - i*18);
     const funnelColors = [COLORS.blue, COLORS.teal, COLORS.green, COLORS.yellow, COLORS.purple];
 
@@ -710,7 +1283,7 @@
 
     let funnelHtml = '';
     funnelSteps.forEach((s,i) => {
-      const target = aarrr[s]?.target || '—';
+      const target = localField(aarrr[s], 'target') || '—';
       const width = funnelValues[i];
       funnelHtml += `<div class="funnel-step"><span class="funnel-label">${funnelLabels[i]}</span><div class="funnel-bar" style="background:#f2f2f7"><div class="funnel-fill" style="width:${width}%;background:${funnelColors[i]}"></div></div><span class="funnel-value">${target}</span></div>`;
     });
@@ -739,8 +1312,8 @@
     const stage = DATA.stages[key];
     if (!stage) return;
     const ve = stage.validationEvidence || [];
-    const stageLabel = t('tabLabels')[key] || stage.label;
-    statusPill.textContent = `${stageLabel} ${t('stageSuffix')}`;
+    const stageLabel = t('tabLabels')[key] || localField(stage, 'label') || stage.label;
+    statusPill.textContent = stageStatusText(stageLabel);
     tabs.forEach(tb => {
       tb.setAttribute('aria-selected', String(tb.dataset.stageTab === key));
       tb.querySelector('strong').textContent = t('tabLabels')[tb.dataset.stageTab] || tb.dataset.stageTab;
@@ -749,7 +1322,8 @@
     // Build chart section
     let chartResult = { html: '', init: ()=>{} };
     const analysis = stage; // stage data includes analysis fields
-    if (key === 'validate') chartResult = chartsValidate({ ...analysis, gateStatus: { demandReal: 'partially_supported', usersReachable: 'supported', willingnessToPay: 'partially_supported' } });
+    if (key === 'discover') chartResult = chartsDiscover(analysis);
+    else if (key === 'validate') chartResult = chartsValidate({ ...analysis, gateStatus: { demandReal: 'partially_supported', usersReachable: 'supported', willingnessToPay: 'partially_supported' } });
     else if (key === 'business-model') chartResult = chartsBizModel(analysis);
     else if (key === 'build') chartResult = chartsBuild(analysis);
     else if (key === 'grow') chartResult = chartsGrow(analysis);
@@ -759,23 +1333,24 @@
       <section class="dashboard">
         <article class="decision-panel">
           <div class="decision-topline">
-            <h2>${stage.title}</h2>
+            <h2>${escapeHtml(localField(stage, 'title') || stage.title)}</h2>
             <span class="decision-badge">${t('score')}: ${stage.score ?? 'N/A'}</span>
           </div>
-          <p class="reasoning">${stage.summary}</p>
+          <p class="reasoning">${escapeHtml(localField(stage, 'summary') || stage.summary)}</p>
           <div class="metrics">
             <div class="metric"><span class="label">${t('stage')}</span><strong>${stageLabel}</strong></div>
-            <div class="metric"><span class="label">${t('decision')}</span><strong>${stage.decision ?? 'none'}</strong></div>
-            <div class="metric"><span class="label">${t('next')}</span><strong>${stage.nextAction ?? 'stay'}</strong></div>
+            <div class="metric"><span class="label">${t('decision')}</span><strong>${decisionLabel(stage.decision)}</strong></div>
+            <div class="metric"><span class="label">${t('next')}</span><strong>${nextActionLabel(stage.nextAction)}</strong></div>
           </div>
         </article>
-        <aside class="evidence-board"><h3>${t('evidence')}</h3><ul class="evidence-list">${li(stage.evidence)}</ul></aside>
+        <aside class="evidence-board"><h3>${t('evidence')}</h3><ul class="evidence-list">${li(localArray(stage, 'evidence'))}</ul></aside>
       </section>
       <section class="chart-grid">${chartResult.html}</section>
+      ${workflowWorkbenchPanel(stage)}
       ${ve.length ? `<section class="panel evidence-data"><h3>${t('validationEvidence')}</h3><div class="evidence-grid">${evidenceCards(ve)}</div></section>` : ''}
       <section class="risk-next-grid">
-        <article class="panel"><h3>${t('risks')}</h3><ul class="clean-list">${li(stage.risks)}</ul></article>
-        <article class="panel"><h3>${t('nextActions')}</h3><ul class="clean-list">${li(stage.nextSteps)}</ul></article>
+        <article class="panel"><h3>${t('risks')}</h3><ul class="clean-list">${li(localArray(stage, 'risks'))}</ul></article>
+        <article class="panel"><h3>${t('nextActions')}</h3><ul class="clean-list">${li(localArray(stage, 'nextSteps'))}</ul></article>
       </section>
       <nav class="artifact-nav"><ul class="artifact-list">${artifactLinks(stage.links)}</ul></nav>`;
 

@@ -21,6 +21,7 @@ Every conclusion must be traceable to `playbook/evidence.json` or explicitly mar
    - `playbook/stages/{stage}/input.json`
    - `playbook/stages/{stage}/report.json`
    - `playbook/stages/{stage}/handoff.json`
+   - `playbook/stages/discover/runs/*.json` when the stage is `discover`
 4. Write Markdown mirrors:
    - `playbook/decision-log.md`
    - `playbook/evidence.md`
@@ -45,6 +46,8 @@ For HTML generation:
 5. Do not replace the template with static cards, tables, or a one-stage prose report.
 
 If the current stage has data not represented by the template, add it to the embedded data object using existing template fields first. Only edit template structure when the user explicitly asks for a template redesign.
+
+For the `discover` stage, the latest `input/report/handoff` files may be refreshed, but every mining run must also be preserved under `playbook/stages/discover/runs/` with a timestamped filename. Do not overwrite historical idea records.
 
 After writing `playbook/index.html`, verify the required template markers remain present: `class="stage-rail"`, `data-stage-tab`, `id="stage-panel"`, `function switchStage`, `const stageChartInstances`, and `id="playbook-data"`.
 

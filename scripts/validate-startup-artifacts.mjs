@@ -24,6 +24,7 @@ const requiredArtifactFiles = [
 ];
 
 const stageSkills = [
+  ["skills/opportunity-discovery/SKILL.md", "discover"],
   ["skills/idea-validation/SKILL.md", "validate"],
   ["skills/business-model-design/SKILL.md", "business-model"],
   ["skills/product-development-loop/SKILL.md", "build"],
@@ -88,6 +89,9 @@ function validateIndexTemplate(html, label, errors) {
     "function pricingTierCards",
     "function keywordClusterCards",
     "function channelRows",
+    "function candidateCards",
+    "function chartsDiscover",
+    "data-stage-tab=\"discover\"",
     "data-stage-tab",
     "id=\"stage-panel\"",
     "role=\"tabpanel\"",
@@ -219,6 +223,7 @@ async function main() {
       "minimumEvidenceSet",
       "validationEvidence",
       "`validate`",
+      "`discover`",
       "`business-model`",
       "`build`",
       "`grow`",

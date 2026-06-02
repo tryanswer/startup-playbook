@@ -1,0 +1,1511 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "discovery-run",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "generatedAt": "2026-06-01T15:21:45.729Z",
+  "stage": "discover",
+  "runPath": "stages/discover/runs/2026-06-01T15-21-45-live-international-opportunity-radar.json",
+  "analysis": {
+    "project": "Live International Opportunity Radar",
+    "generatedAt": "2026-06-01T15:21:45.729Z",
+    "sourceCoverage": {
+      "communities": [
+        {
+          "source": "hacker-news:Show HN",
+          "count": 20
+        }
+      ],
+      "cases": [
+        {
+          "source": "github",
+          "count": 20
+        }
+      ]
+    },
+    "signalSummary": {
+      "communityItems": 20,
+      "caseItems": 20,
+      "painSignals": 13,
+      "caseSignals": 40,
+      "candidateCount": 2,
+      "painLedCandidates": 1,
+      "caseLedCandidates": 1
+    },
+    "communitySignals": [
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:46723702",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://flexprice.io/",
+        "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or p"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:46723702",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://flexprice.io/",
+        "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or p"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:46764526",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoxzero.com",
+        "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The go"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:46764526",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoxzero.com",
+        "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The go"
+      },
+      {
+        "type": "manual-workflow",
+        "label": "Manual workflow",
+        "sourceId": "hacker-news:45426414",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://github.com/thornumak/Invoice-Management-System",
+        "excerpt": "Hey HN,<p>As a freelancer, I found myself spending time every month manually opening PDF and Word invoices, copying the details into a spreadsheet, and tracking payments. It was tedious and error-prone.<p>I decided to bu"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:38923074",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://pdf-weaver.io/",
+        "excerpt": "Introducing Pdf Weaver, a powerful API designed to streamline your PDF generation process using XML and XSL inputs. Built for technical experts, solution architects, and developers, Pdf Weaver automates the creation of i"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:47814004",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://news.ycombinator.com/item?id=47814004",
+        "excerpt": "Hi HN,<p>I&#x27;ve been doing freelance work and realized the most stressful part of the entire lifecycle isn&#x27;t doing the work, it&#x27;s the final handoff. You send over the final ZIP file or Figma link, attach you"
+      },
+      {
+        "type": "purchase-intent",
+        "label": "Purchase intent",
+        "sourceId": "hacker-news:47814004",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://news.ycombinator.com/item?id=47814004",
+        "excerpt": "Hi HN,<p>I&#x27;ve been doing freelance work and realized the most stressful part of the entire lifecycle isn&#x27;t doing the work, it&#x27;s the final handoff. You send over the final ZIP file or Figma link, attach you"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:45704171",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://www.mailai.live/",
+        "excerpt": "Hey HN,<p>We built MailAI - AI agents that automate workflows in plain English by connecting Gmail and Stripe.<p>The Problem: Founders waste 10+ hours weekly on repetitive tasks: - Responding to invoice inquiries - Track"
+      },
+      {
+        "type": "alternative-seeking",
+        "label": "Alternative seeking",
+        "sourceId": "hacker-news:44158587",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoicemcp.com/",
+        "excerpt": "InvoiceMCP is an MCP server that gives AI tools (Claude, Windsurf, Cursor, etc.) direct access to invoicing systems.<p>Instead of stopping to open an app, I can stay inside Claude and say:<p>“Invoice Acme for API integra"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44158587",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://invoicemcp.com/",
+        "excerpt": "InvoiceMCP is an MCP server that gives AI tools (Claude, Windsurf, Cursor, etc.) direct access to invoicing systems.<p>Instead of stopping to open an app, I can stay inside Claude and say:<p>“Invoice Acme for API integra"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44745820",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://chat.agentmail.to/",
+        "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’r"
+      },
+      {
+        "type": "integration-friction",
+        "label": "Integration friction",
+        "sourceId": "hacker-news:44453377",
+        "sourceName": "hacker-news:Show HN",
+        "url": "https://recivo.email/",
+        "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is"
+      }
+    ],
+    "caseSignals": [
+      {
+        "case": {
+          "id": "github:al1abb/invoify",
+          "source": "github",
+          "title": "al1abb/invoify",
+          "url": "https://github.com/al1abb/invoify",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 6300",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "invoice-app niche",
+            "invoice-generator niche",
+            "nextjs niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:maaslalani/invoice",
+          "source": "github",
+          "title": "maaslalani/invoice",
+          "url": "https://github.com/maaslalani/invoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Command line invoice generator",
+          "productShape": "GitHub repository in Go",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 2186",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:VladSez/easy-invoice-pdf",
+          "source": "github",
+          "title": "VladSez/easy-invoice-pdf",
+          "url": "https://github.com/VladSez/easy-invoice-pdf",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Free & Open-Source Invoice Generator – No Sign-Up, No Ads, Instant PDF export, 100% In-Browser, Customizable Invoice Templates. Star if you like it 🌟",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 883",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "fintech niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "fintech niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:legions-developer/invoicely",
+          "source": "github",
+          "title": "legions-developer/invoicely",
+          "url": "https://github.com/legions-developer/invoicely",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Invoicely is a simple and easy to use invoice generator where you can create beautiful and professional invoices in minutes. ~ Proudly OSS",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 858",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:htmldocs-js/htmldocs",
+          "source": "github",
+          "title": "htmldocs-js/htmldocs",
+          "url": "https://github.com/htmldocs-js/htmldocs",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "The modern alternative to LaTeX. Create PDF documents templates using React, JSX, and Tailwind",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 729",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "generator niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "generator niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:tuanpham-dev/react-invoice-generator",
+          "source": "github",
+          "title": "tuanpham-dev/react-invoice-generator",
+          "url": "https://github.com/tuanpham-dev/react-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "React Invoice Generator allows you quickly make invoices and export them as PDF",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 671",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "invoice niche",
+            "invoice-generator niche",
+            "invoice-pdf niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice niche",
+          "invoice-generator niche",
+          "invoice-pdf niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:Invoice-Generator/invoice-generator-api",
+          "source": "github",
+          "title": "Invoice-Generator/invoice-generator-api",
+          "url": "https://github.com/Invoice-Generator/invoice-generator-api",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "the fastest invoicing layer on the internet",
+          "productShape": "GitHub repository",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 466",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "einvoicing niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "einvoicing niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:pranavp10/invoice-generator",
+          "source": "github",
+          "title": "pranavp10/invoice-generator",
+          "url": "https://github.com/pranavp10/invoice-generator",
+          "targetUser": "freelancers",
+          "pain": "This project provides a user-friendly invoice generation tool for freelancers, small businesses, and contractors. Create professional, customized invoices quickly and easily to ensure you get paid on time, every time.",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 331",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "nextjs niche",
+            "tailwindcss niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "nextjs niche",
+          "tailwindcss niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 16,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 65
+        }
+      },
+      {
+        "case": {
+          "id": "github:johnuberbacher/invoice-generator",
+          "source": "github",
+          "title": "johnuberbacher/invoice-generator",
+          "url": "https://github.com/johnuberbacher/invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "An Invoice creator project built with React. Uses jspdf-react to capture the data from the modal and convert it from canvas -> pdf.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 290",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "bootstrap niche",
+            "css niche",
+            "css3 niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "bootstrap niche",
+          "css niche",
+          "css3 niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:by-cx/InvoiceGenerator",
+          "source": "github",
+          "title": "by-cx/InvoiceGenerator",
+          "url": "https://github.com/by-cx/InvoiceGenerator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Library to generate PDF invoices.",
+          "productShape": "GitHub repository in Python",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 180",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:Invoicebus/html-invoice-generator",
+          "source": "github",
+          "title": "Invoicebus/html-invoice-generator",
+          "url": "https://github.com/Invoicebus/html-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "JavaScript tool that will transform your HTML invoice template to fully functional invoice editor",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 173",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:ad-si/invoice-maker",
+          "source": "github",
+          "title": "ad-si/invoice-maker",
+          "url": "https://github.com/ad-si/invoice-maker",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Generate beautiful invoices from simple Typst or YAML data records",
+          "productShape": "GitHub repository in Typst",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 169",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "cli niche",
+            "generator niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "cli niche",
+          "generator niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:omaralalwi/Gpdf",
+          "source": "github",
+          "title": "omaralalwi/Gpdf",
+          "url": "https://github.com/omaralalwi/Gpdf",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Gpdf: PHP PDF Generator - HTML to PDF Converter for Laravel & PHP with native Arabic/RTL support, with built-in 17 fonts, and S3 storage. Extends DomPDF to fix Arabic limitations and add advanced features for documents,",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 154",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "arabic-pdf niche",
+            "arabic-text niche",
+            "dompdf-alternative niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "arabic-pdf niche",
+          "arabic-text niche",
+          "dompdf-alternative niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:angelodlfrtr/go-invoice-generator",
+          "source": "github",
+          "title": "angelodlfrtr/go-invoice-generator",
+          "url": "https://github.com/angelodlfrtr/go-invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Super fast golang invoice / quotation / delivery-note PDF generator",
+          "productShape": "GitHub repository in Go",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 147",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "delivery-note niche",
+            "golang niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "delivery-note niche",
+          "golang niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:baptistejamin/node-microinvoice",
+          "source": "github",
+          "title": "baptistejamin/node-microinvoice",
+          "url": "https://github.com/baptistejamin/node-microinvoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Fast & elegant PDF invoice generator for Node using PDFKit. No Puppeteer",
+          "productShape": "GitHub repository in TypeScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 147",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:ETDA/e-TaxInvoice-PDFgen",
+          "source": "github",
+          "title": "ETDA/e-TaxInvoice-PDFgen",
+          "url": "https://github.com/ETDA/e-TaxInvoice-PDFgen",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "e-Tax Invoice by Email - PDF Generator on PC",
+          "productShape": "GitHub repository in C#",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 144",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "high",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 25,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 12,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 16,
+          "moatDependencyPenalty": 6,
+          "total": 44
+        }
+      },
+      {
+        "case": {
+          "id": "github:code-boxx/invoicr",
+          "source": "github",
+          "title": "code-boxx/invoicr",
+          "url": "https://github.com/code-boxx/invoicr",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "Invoicr is a free and open-source PHP invoice generator that is capable of churning out HTML, PDF, DOCX, and PNG invoices.",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 112",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "docx niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "docx niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:contributte/invoice",
+          "source": "github",
+          "title": "contributte/invoice",
+          "url": "https://github.com/contributte/invoice",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": ":memo: PDF invoice generator",
+          "productShape": "GitHub repository in PHP",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 97",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "contributte niche",
+            "invoice niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "contributte niche",
+          "invoice niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:rimiti/invoice-it",
+          "source": "github",
+          "title": "rimiti/invoice-it",
+          "url": "https://github.com/rimiti/invoice-it",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": ":page_with_curl: Generate your orders or your invoices and export them in html, pdf or buffer easily.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 94",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "generator niche",
+            "html niche",
+            "invoice niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "generator niche",
+          "html niche",
+          "invoice niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      },
+      {
+        "case": {
+          "id": "github:hourmeng12/invoice-generator",
+          "source": "github",
+          "title": "hourmeng12/invoice-generator",
+          "url": "https://github.com/hourmeng12/invoice-generator",
+          "targetUser": "GitHub users searching for this workflow",
+          "pain": "A Web Application generates Invoices as PDFs to your device using html-to-image and jsPDF.",
+          "productShape": "GitHub repository in JavaScript",
+          "firstAcquisitionChannel": "GitHub search / open-source distribution",
+          "pricing": "stars: 93",
+          "revenue": "",
+          "validationMove": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+          "copyable": [
+            "open-source lead magnet",
+            "README-driven positioning",
+            "headless-ui niche",
+            "html-to-image niche",
+            "invoice-generator niche"
+          ],
+          "notCopyable": [
+            "repository age",
+            "existing maintainer trust"
+          ]
+        },
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "headless-ui niche",
+          "html-to-image niche",
+          "invoice-generator niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "cloneRisk": "medium",
+        "moatDependency": "medium",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "score": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        }
+      }
+    ],
+    "candidates": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "hacker-news:Show HN",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "manual-workflow",
+          "purchase-intent",
+          "alternative-seeking",
+          "integration-friction"
+        ],
+        "evidence": [
+          {
+            "id": "hacker-news:44745820",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://chat.agentmail.to/",
+            "title": "Show HN: AgentMail – Email infra for AI agents",
+            "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’re not talking about AI for your email, this is email for your AI.<p>We started building email agents because they can converse with users in",
+            "metric": "70 comments / 121 score"
+          },
+          {
+            "id": "hacker-news:44453377",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://recivo.email/",
+            "title": "Show HN: Recivo – Receive Emails Programmatically",
+            "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is harder.<p>As a Recivo user, you create a new email address which will then immediately be available for receiving emails. A REST `&#x2F;inb",
+            "metric": "2 comments / 29 score"
+          },
+          {
+            "id": "hacker-news:45426414",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://github.com/thornumak/Invoice-Management-System",
+            "title": "Show HN: I got tired of spreadsheets, so I built a Python GUI to track invoices",
+            "excerpt": "Hey HN,<p>As a freelancer, I found myself spending time every month manually opening PDF and Word invoices, copying the details into a spreadsheet, and tracking payments. It was tedious and error-prone.<p>I decided to build a simple desktop app to automate this. It&#x27;s a GUI built with Python and Tkinter that points to a folder of invoices, parses the key",
+            "metric": "0 comments / 5 score"
+          },
+          {
+            "id": "hacker-news:46723702",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://flexprice.io/",
+            "title": "Show HN: Checkout Flow for credit-based billing",
+            "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or promotional. Things get complicated when customers need to: - buy credits through a proper checkout, - receive an invoice, - complete payment",
+            "metric": "0 comments / 4 score"
+          },
+          {
+            "id": "hacker-news:46764526",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://invoxzero.com",
+            "title": "Show HN: A simple invoice tool I built instead of full accounting software",
+            "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The goal was to increase operational visibility: track what’s been created, sent, viewed, and paid, without the need for an accounting system like",
+            "metric": "0 comments / 3 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hacker-news:44745820",
+          "hacker-news:44453377",
+          "hacker-news:45426414",
+          "hacker-news:46723702",
+          "hacker-news:46764526",
+          "hacker-news:38923074",
+          "hacker-news:47814004",
+          "hacker-news:45704171",
+          "hacker-news:44158587"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 12,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 89
+        },
+        "score": 89,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-al1abb-invoify",
+        "type": "case-led",
+        "title": "Copyable wedge from al1abb/invoify",
+        "targetUser": "GitHub users searching for this workflow",
+        "painfulSituation": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+        "promiseCandidate": "GitHub repository in TypeScript",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "recommendedNextExperiment": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "github:al1abb/invoify",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/al1abb/invoify",
+            "title": "al1abb/invoify",
+            "revenue": null,
+            "pricing": "stars: 6300"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "github:al1abb/invoify"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "scores": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        },
+        "score": 67,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ],
+    "topCandidates": [
+      {
+        "id": "opp-automation-failure-audit-trail",
+        "type": "pain-led",
+        "title": "Automation failure audit trail for small B2B onboarding workflows",
+        "targetUser": "small B2B operators using automation workflows",
+        "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+        "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+        "firstReachableChannel": "hacker-news:Show HN",
+        "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow.",
+        "signalTypes": [
+          "manual-workflow",
+          "purchase-intent",
+          "alternative-seeking",
+          "integration-friction"
+        ],
+        "evidence": [
+          {
+            "id": "hacker-news:44745820",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://chat.agentmail.to/",
+            "title": "Show HN: AgentMail – Email infra for AI agents",
+            "excerpt": "Hey HN, we&#x27;re Haakam, Michael, and Adi. We&#x27;re building AgentMail (<a href=\"https:&#x2F;&#x2F;agentmail.to&#x2F;\">https:&#x2F;&#x2F;agentmail.to&#x2F;</a>), an API to give AI agents their own email inboxes. We’re not talking about AI for your email, this is email for your AI.<p>We started building email agents because they can converse with users in",
+            "metric": "70 comments / 121 score"
+          },
+          {
+            "id": "hacker-news:44453377",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://recivo.email/",
+            "title": "Show HN: Recivo – Receive Emails Programmatically",
+            "excerpt": "Hi HN, these last couple of weeks I&#x27;ve been building &#x27;Recivo&#x27;, a simple way to receive emails programmatically. There are plenty of API-based services that can be used to send emails, but receiving them is harder.<p>As a Recivo user, you create a new email address which will then immediately be available for receiving emails. A REST `&#x2F;inb",
+            "metric": "2 comments / 29 score"
+          },
+          {
+            "id": "hacker-news:45426414",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://github.com/thornumak/Invoice-Management-System",
+            "title": "Show HN: I got tired of spreadsheets, so I built a Python GUI to track invoices",
+            "excerpt": "Hey HN,<p>As a freelancer, I found myself spending time every month manually opening PDF and Word invoices, copying the details into a spreadsheet, and tracking payments. It was tedious and error-prone.<p>I decided to build a simple desktop app to automate this. It&#x27;s a GUI built with Python and Tkinter that points to a folder of invoices, parses the key",
+            "metric": "0 comments / 5 score"
+          },
+          {
+            "id": "hacker-news:46723702",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://flexprice.io/",
+            "title": "Show HN: Checkout Flow for credit-based billing",
+            "excerpt": "Hi HN,<p>We’ve been working on credit-based billing systems, and one recurring issue we kept running into was how messy credit purchases become once real payments are involved.<p>Credits are easy when they’re manual or promotional. Things get complicated when customers need to: - buy credits through a proper checkout, - receive an invoice, - complete payment",
+            "metric": "0 comments / 4 score"
+          },
+          {
+            "id": "hacker-news:46764526",
+            "sourceType": "community-comment",
+            "sourceName": "hacker-news:Show HN",
+            "url": "https://invoxzero.com",
+            "title": "Show HN: A simple invoice tool I built instead of full accounting software",
+            "excerpt": "Hi HN,<p>I built a small invoice tool for an internal requirement at my company.<p>We work with several suppliers and providers and wanted to give them a simple way to create invoices directly inside our workflow. The goal was to increase operational visibility: track what’s been created, sent, viewed, and paid, without the need for an accounting system like",
+            "metric": "0 comments / 3 score"
+          }
+        ],
+        "sourcePostIds": [
+          "hacker-news:44745820",
+          "hacker-news:44453377",
+          "hacker-news:45426414",
+          "hacker-news:46723702",
+          "hacker-news:46764526",
+          "hacker-news:38923074",
+          "hacker-news:47814004",
+          "hacker-news:45704171",
+          "hacker-news:44158587"
+        ],
+        "sourceCaseIds": [],
+        "copyable": [
+          "Use raw community language and offer a manual diagnostic before building software."
+        ],
+        "whatNotToCopy": [
+          "Do not treat community discussion volume as paid demand."
+        ],
+        "scores": {
+          "painHeat": 40,
+          "caseProof": 12,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 14,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 2,
+          "moatDependencyPenalty": 0,
+          "total": 89
+        },
+        "score": 89,
+        "cloneRisk": "low",
+        "moatDependency": "low"
+      },
+      {
+        "id": "opp-case-al1abb-invoify",
+        "type": "case-led",
+        "title": "Copyable wedge from al1abb/invoify",
+        "targetUser": "GitHub users searching for this workflow",
+        "painfulSituation": "An invoice generator app built using Next.js, Typescript, and Shadcn",
+        "promiseCandidate": "GitHub repository in TypeScript",
+        "firstReachableChannel": "GitHub search / open-source distribution",
+        "recommendedNextExperiment": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "signalTypes": [
+          "github-distribution",
+          "seo-channel"
+        ],
+        "evidence": [
+          {
+            "id": "github:al1abb/invoify",
+            "sourceType": "case-pattern",
+            "sourceName": "github",
+            "url": "https://github.com/al1abb/invoify",
+            "title": "al1abb/invoify",
+            "revenue": null,
+            "pricing": "stars: 6300"
+          }
+        ],
+        "sourcePostIds": [],
+        "sourceCaseIds": [
+          "github:al1abb/invoify"
+        ],
+        "copyable": [
+          "open-source lead magnet",
+          "README-driven positioning",
+          "invoice-app niche",
+          "invoice-generator niche",
+          "nextjs niche"
+        ],
+        "whatNotToCopy": [
+          "repository age",
+          "existing maintainer trust"
+        ],
+        "validationShortcut": "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
+        "scores": {
+          "painHeat": 4,
+          "caseProof": 34,
+          "reachableChannel": 11,
+          "soloFounderFeasibility": 18,
+          "speedToValidation": 14,
+          "cloneRiskPenalty": 8,
+          "moatDependencyPenalty": 6,
+          "total": 67
+        },
+        "score": 67,
+        "cloneRisk": "medium",
+        "moatDependency": "medium"
+      }
+    ]
+  },
+  "reportSummary": {
+    "decision": "continue",
+    "score": 89,
+    "topCandidateId": "opp-automation-failure-audit-trail",
+    "candidateCount": 2
+  }
+}

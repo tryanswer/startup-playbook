@@ -1,0 +1,37 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "stage-handoff",
+  "projectId": "ai-ecommerce-image-optimizer",
+  "fromStage": "discover",
+  "toStage": "validate",
+  "generatedAt": "2026-06-02T02:04:04.061Z",
+  "generatedBy": {
+    "agent": "codex",
+    "skill": "startup-playbook-artifacts",
+    "model": "unknown"
+  },
+  "sourceInputs": [
+    {
+      "type": "file",
+      "path": "playbook/stages/discover/report.json"
+    }
+  ],
+  "summary": {
+    "nextStage": "validate",
+    "candidateId": "opp-automation-failure-audit-trail",
+    "candidateType": "pain-led",
+    "targetUserCandidate": "small B2B operators using automation workflows",
+    "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
+    "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
+    "firstReachableChannel": "hacker-news:Hacker News",
+    "evidenceRefs": [
+      "ev-discover-hacker-news-27748738",
+      "ev-discover-hacker-news-42052432",
+      "ev-discover-hacker-news-44745820",
+      "ev-discover-hacker-news-41259754",
+      "ev-discover-hacker-news-44453377",
+      "ev-discover-github-al1abb-invoify"
+    ],
+    "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow."
+  }
+}
