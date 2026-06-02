@@ -87,7 +87,7 @@
     .status-pill::before { content: ""; width: var(--size-status-dot); height: var(--size-status-dot); border-radius: var(--radius-pill); background: var(--green); }
 
     /* Overview radar */
-    .overview-section { display: grid; grid-template-columns: 340px 1fr; gap: 16px; margin-bottom: 20px; }
+    .overview-section { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 20px; }
     .overview-radar { border: 1px solid var(--line); border-radius: var(--radius-card); background: var(--surface); box-shadow: var(--shadow); padding: 22px; display: flex; align-items: center; justify-content: center; min-height: 320px; }
     .overview-radar canvas { width: 100% !important; height: 280px !important; }
     /* i18n toggle */
@@ -106,6 +106,19 @@
     .decision-pivot { background: #fff3cd; color: #856404; }
     .decision-pause { background: #fde2e2; color: #b91c1c; }
     .decision-adjust { background: #e0e7ff; color: #3730a3; }
+    .discovery-hub { display: grid; grid-template-columns: minmax(0,.95fr) minmax(360px,1.05fr); gap: 16px; align-items: stretch; }
+    .discovery-list-panel, .selected-opportunity-detail, .idea-pipeline { min-width: 0; }
+    .discovery-idea-list { display: grid; gap: 10px; margin-top: 12px; }
+    .opportunity-option { width: 100%; min-width: 0; padding: 13px; border: 1px solid var(--line); border-radius: var(--radius-tile); background: var(--surface-soft); color: var(--ink); text-align: left; cursor: pointer; font-family: inherit; transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease; }
+    .opportunity-option:hover, .opportunity-option[aria-selected="true"] { border-color: rgba(0,113,227,.28); background: #fff; box-shadow: inset 0 0 0 1px rgba(0,113,227,.08); }
+    .opportunity-option-title { display: block; color: var(--ink); font-size: var(--text-subhead); line-height: var(--leading-footnote); font-weight: 650; overflow-wrap: anywhere; }
+    .opportunity-option-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; color: var(--muted); font-size: var(--text-caption-1); line-height: var(--leading-footnote); }
+    .opportunity-detail-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 14px; }
+    .opportunity-detail-card { min-width: 0; padding: 12px; border-top: 1px solid var(--line); }
+    .opportunity-detail-card h4 { margin: 0 0 6px; color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; }
+    .opportunity-detail-card p { margin: 0; color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); overflow-wrap: anywhere; }
+    .opportunity-evidence-list { display: grid; gap: 8px; margin-top: 12px; }
+    .opportunity-evidence-item { padding: 10px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--text-footnote); line-height: var(--leading-callout); }
 
     /* Stage tabs */
     .stage-rail { position: sticky; top: 12px; z-index: 2; display: grid; grid-template-columns: repeat(6,minmax(0,1fr)); gap: 4px; margin: 16px 0 20px; padding: 4px; border: 1px solid var(--line); border-radius: var(--radius-pill); background: var(--segment-bg); box-shadow: inset 0 1px 1px rgba(255,255,255,.72), var(--shadow); backdrop-filter: saturate(180%) blur(20px); }
@@ -243,6 +256,12 @@
     .channel-name { color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; }
     .channel-meter { grid-column: 1 / -1; height: 6px; border-radius: var(--radius-pill); background: var(--surface-soft); overflow: hidden; }
     .channel-meter-fill { height: 100%; border-radius: var(--radius-pill); background: var(--accent); }
+    .seo-competitive-analysis { grid-column: 1 / -1; display: grid; gap: 16px; }
+    .seo-competitive-section { min-width: 0; display: grid; gap: 10px; }
+    .seo-matrix-grid, .seo-gap-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
+    .seo-competitive-table { min-width: 1040px; }
+    .seo-long-tail-table { min-width: 1120px; }
+    .seo-content-table { min-width: 900px; }
 
     /* Evidence cards */
     .evidence-data { margin-top: 16px; padding: 22px; overflow: hidden; }
@@ -298,8 +317,8 @@
     .stage-detail[hidden] { display: none; }
 
     @media (max-width: 900px) {
-      .dashboard, .risk-next-grid, .chart-grid, .overview-section { grid-template-columns: 1fr; }
-      .pricing-tier-grid, .growth-detail-grid, .source-health-grid, .evidence-matrix-grid, .case-library-grid, .brief-grid, .replication-grid, .script-grid, .decision-gate-grid, .tracker-grid, .scorecard-grid, .memo-grid, .stage-workbench-grid, .workbench-card-list { grid-template-columns: 1fr; }
+      .dashboard, .risk-next-grid, .chart-grid, .overview-section, .discovery-hub { grid-template-columns: 1fr; }
+      .pricing-tier-grid, .growth-detail-grid, .source-health-grid, .evidence-matrix-grid, .case-library-grid, .brief-grid, .replication-grid, .script-grid, .decision-gate-grid, .tracker-grid, .scorecard-grid, .memo-grid, .stage-workbench-grid, .workbench-card-list, .seo-matrix-grid, .seo-gap-grid, .opportunity-detail-grid { grid-template-columns: 1fr; }
       .evidence-card { grid-template-columns: 1fr; }
       .artifact-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
     }
@@ -332,8 +351,7 @@
   <section class="overview-section" id="overview"></section>
 
   <nav class="stage-rail" role="tablist" aria-label="Startup stage pipeline">
-    <button class="seg-btn" type="button" role="tab" data-stage-tab="discover" aria-selected="true"><span class="lbl">00</span><strong>Discover</strong></button>
-    <button class="seg-btn" type="button" role="tab" data-stage-tab="validate" aria-selected="false"><span class="lbl">01</span><strong>Validate</strong></button>
+    <button class="seg-btn" type="button" role="tab" data-stage-tab="validate" aria-selected="true"><span class="lbl">01</span><strong>Validate</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="business-model" aria-selected="false"><span class="lbl">02</span><strong>Business Model</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="build" aria-selected="false"><span class="lbl">03</span><strong>Build</strong></button>
     <button class="seg-btn" type="button" role="tab" data-stage-tab="grow" aria-selected="false"><span class="lbl">04</span><strong>Grow</strong></button>
@@ -602,6 +620,99 @@
         <div class="channel-meter"><div class="channel-meter-fill" style="width:${width}%"></div></div>
       </div>`;
     }).join('');
+  }
+  function seoCompetitorTable(competitors) {
+    const rows = (competitors || []).map(competitor => `
+      <tr>
+        <td><strong>${externalLink(localField(competitor, 'name') || competitor.name, competitor.url, 'case-link')}</strong><span class="workbench-note">${escapeHtml(localField(competitor, 'category') || '—')}</span></td>
+        <td>${escapeHtml(localField(competitor, 'positioning') || '—')}<span class="workbench-note">${escapeHtml(localField(competitor, 'pricing') || '—')}</span></td>
+        <td>${escapeHtml(localField(competitor, 'weakness') || '—')}</td>
+        <td><div class="keyword-list">${chipList(localArray(competitor, 'copyable'), t('noData'))}</div></td>
+        <td>${bulletList(localArray(competitor, 'notCopyable'))}</td>
+      </tr>`).join('');
+    return `<div class="report-table-wrap">
+      <table class="report-table seo-competitive-table">
+        <thead><tr><th>${t('competitor')}</th><th>${t('positioning')}</th><th>${t('weakness')}</th><th>${t('copyable')}</th><th>${t('notCopyable')}</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="5">${t('noData')}</td></tr>`}</tbody>
+      </table>
+    </div>`;
+  }
+  function seoDifferentiationCards(rows) {
+    const cards = (rows || []).map(row => `<article class="workbench-data-card">
+      <strong>${escapeHtml(localField(row, 'dimension') || '—')}</strong>
+      <p>${t('currentWedge')}: ${escapeHtml(localField(row, 'current') || '—')}</p>
+      <p class="workbench-detail">${t('competitorPattern')}: ${escapeHtml(localField(row, 'competitorPattern') || '—')}</p>
+      <p class="workbench-detail">${t('differentiateBy')}: ${escapeHtml(localField(row, 'differ') || '—')}</p>
+    </article>`).join('');
+    return cards || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function seoLongTailTable(keywords) {
+    const rows = (keywords || []).map(keyword => `
+      <tr>
+        <td><strong>${escapeHtml(localField(keyword, 'query') || '—')}</strong><span class="workbench-note">${escapeHtml(localField(keyword, 'group') || '—')}</span></td>
+        <td><span class="priority-badge">${t('priority')} ${escapeHtml(keyword.priority ?? '—')}</span></td>
+        <td>${escapeHtml(localField(keyword, 'intent') || '—')}</td>
+        <td>${escapeHtml(localField(keyword, 'landingPage') || '—')}</td>
+        <td>${escapeHtml(localField(keyword, 'validationUse') || '—')}</td>
+      </tr>`).join('');
+    return `<div class="report-table-wrap">
+      <table class="report-table seo-long-tail-table">
+        <thead><tr><th>${t('query')}</th><th>${t('priority')}</th><th>${t('intent')}</th><th>${t('landingPage')}</th><th>${t('validationUse')}</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="5">${t('noData')}</td></tr>`}</tbody>
+      </table>
+    </div>`;
+  }
+  function seoContentBacklogTable(items) {
+    const rows = (items || []).map(item => `
+      <tr>
+        <td><strong>${escapeHtml(localField(item, 'asset') || '—')}</strong><span class="workbench-note">${escapeHtml(localField(item, 'format') || '—')}</span></td>
+        <td><div class="keyword-list">${chipList(localArray(item, 'keywords'), t('noData'))}</div></td>
+        <td>${escapeHtml(localField(item, 'successMetric') || '—')}</td>
+        <td>${escapeHtml(localField(item, 'owner') || '—')}</td>
+      </tr>`).join('');
+    return `<div class="report-table-wrap">
+      <table class="report-table seo-content-table">
+        <thead><tr><th>${t('contentAsset')}</th><th>${t('query')}</th><th>${t('successMetric')}</th><th>${t('owner')}</th></tr></thead>
+        <tbody>${rows || `<tr><td colspan="4">${t('noData')}</td></tr>`}</tbody>
+      </table>
+    </div>`;
+  }
+  function seoGapNotesCards(notes) {
+    const cards = (notes || []).map(note => `<article class="workbench-data-card">
+      <strong>${escapeHtml(localField(note, 'confidence') || '—')}</strong>
+      <p>${escapeHtml(localField(note, 'note') || '—')}</p>
+      <p class="workbench-detail">${escapeHtml(localField(note, 'nextCheck') || '')}</p>
+    </article>`).join('');
+    return cards || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function seoCompetitiveAnalysisPanel(stage) {
+    const analysis = stage.seoCompetitiveAnalysis || {};
+    const competitors = analysis.competitors || [];
+    const matrix = analysis.differentiationMatrix || [];
+    const keywords = analysis.longTailKeywords || [];
+    const backlog = analysis.contentBacklog || [];
+    const notes = analysis.serpGapNotes || [];
+    if (!competitors.length && !matrix.length && !keywords.length && !backlog.length && !notes.length) return '';
+    return `<section class="workbench-panel seo-competitive-analysis">
+      <div class="workbench-head"><h3>${t('seoCompetitiveAnalysis')}</h3><p class="workbench-note">${t('seoCompetitiveAnalysisNote')}</p></div>
+      <div class="seo-competitive-section">
+        <h4 class="tracker-section-title">${t('competitorDiff')}</h4>
+        <div class="seo-matrix-grid">${seoDifferentiationCards(matrix)}</div>
+        ${seoCompetitorTable(competitors)}
+      </div>
+      <div class="seo-competitive-section">
+        <h4 class="tracker-section-title">${t('longTailOpportunities')}</h4>
+        ${seoLongTailTable(keywords)}
+      </div>
+      <div class="seo-competitive-section">
+        <h4 class="tracker-section-title">${t('contentBacklog')}</h4>
+        ${seoContentBacklogTable(backlog)}
+      </div>
+      <div class="seo-competitive-section">
+        <h4 class="tracker-section-title">${t('searchGapNotes')}</h4>
+        <div class="seo-gap-grid">${seoGapNotesCards(notes)}</div>
+      </div>
+    </section>`;
   }
   function candidateCards(candidates) {
     return (candidates||[]).map(candidate => `
@@ -979,6 +1090,16 @@
       pricingTiers: 'Pricing Tiers', tierDetails: 'Tier Details', revenueModelMix: 'Revenue Model Mix',
       mvpScope: 'MVP Scope Breakdown', buildReadiness: 'Build Readiness',
       keywordClusters: 'Keyword Clusters', growthDetails: 'Growth Details', channelPriority: 'Channel Priority',
+      discoveryTitle: 'Realtime Opportunity Discovery', discoverySubtitle: 'Mine public communities and public case studies into testable user pains.',
+      realtimeDiscovery: 'Realtime Discovery', realtimeDiscoveryNote: 'Potential user pains from community signals and public cases',
+      potentialUserPains: 'Potential User Pains', selectedOpportunity: 'Selected Opportunity',
+      selectedIdeaPipeline: 'Selected Idea Pipeline',
+      seoCompetitiveAnalysis: 'SEO Competitive Analysis', seoCompetitiveAnalysisNote: 'Use competitor gaps and long-tail pages as growth experiments',
+      competitorDiff: 'Competitor Differences', competitors: 'Competitors', competitor: 'Competitor', copyable: 'Copyable',
+      longTailOpportunities: 'Long-Tail Opportunities', contentBacklog: 'Content Backlog', searchGapNotes: 'Search Gap Notes',
+      positioning: 'Positioning', weakness: 'Weakness', competitorPattern: 'Competitor pattern',
+      currentWedge: 'Current wedge', differentiateBy: 'Differentiate by', query: 'Query',
+      landingPage: 'Landing Page', validationUse: 'Validation Use', contentAsset: 'Content Asset', owner: 'Owner',
       aarrrFunnel: 'AARRR Funnel', retentionCurve: 'Retention Curve',
       candidateTypeMix: 'Candidate Type Mix', opportunityScores: 'Opportunity Scores',
       sourceCoverage: 'Source Coverage', topCandidates: 'Top Candidates',
@@ -1037,6 +1158,16 @@
       pricingTiers: '定价阶梯', tierDetails: '套餐明细', revenueModelMix: '收入模式构成',
       mvpScope: 'MVP 范围分布', buildReadiness: '构建就绪度',
       keywordClusters: '关键词聚类', growthDetails: '增长明细', channelPriority: '渠道优先级',
+      discoveryTitle: '实时机会挖掘', discoverySubtitle: '从国际社区和公开案例中挖掘可验证的用户痛点。',
+      realtimeDiscovery: '实时 Discovery', realtimeDiscoveryNote: '来自社区信号和公开案例的潜在用户痛点',
+      potentialUserPains: '潜在用户痛点', selectedOpportunity: '选中机会',
+      selectedIdeaPipeline: '后续 Pipeline',
+      seoCompetitiveAnalysis: 'SEO 竞品分析', seoCompetitiveAnalysisNote: '把竞品缺口和长尾词页面作为增长实验执行',
+      competitorDiff: '竞品差异', competitors: '竞品', competitor: '竞品', copyable: '可复制',
+      longTailOpportunities: '长尾词机会', contentBacklog: '内容积压', searchGapNotes: '搜索缺口备注',
+      positioning: '定位', weakness: '弱点', competitorPattern: '竞品模式',
+      currentWedge: '当前切入点', differentiateBy: '差异化方式', query: '搜索词',
+      landingPage: '落地页', validationUse: '验证用途', contentAsset: '内容资产', owner: '负责人',
       aarrrFunnel: 'AARRR 漏斗', retentionCurve: '留存曲线',
       candidateTypeMix: '候选类型分布', opportunityScores: '机会评分',
       sourceCoverage: '来源覆盖', topCandidates: '优先候选机会',
@@ -1101,28 +1232,92 @@
   function stageStatusText(stageLabel) {
     return LANG === 'zh' ? `${stageLabel}${t('stageSuffix')}` : `${stageLabel} ${t('stageSuffix')}`;
   }
+  function discoveryOpportunities(data) {
+    const discover = data.stages?.discover || {};
+    const seen = new Set();
+    return [...(discover.topCandidates || []), ...(discover.candidates || [])]
+      .filter(Boolean)
+      .map((candidate, index) => ({ ...candidate, optionKey: candidate.id || `opportunity-${index}` }))
+      .filter(candidate => {
+        const key = candidate.optionKey || candidate.title;
+        if (seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+  }
+  function selectedOpportunity(data) {
+    const opportunities = discoveryOpportunities(data);
+    if (!opportunities.length) return null;
+    if (!selectedOpportunityId || !opportunities.some(item => item.optionKey === selectedOpportunityId)) {
+      selectedOpportunityId = opportunities[0].optionKey;
+    }
+    return opportunities.find(item => item.optionKey === selectedOpportunityId) || opportunities[0];
+  }
+  function renderOpportunityOptions(data) {
+    const opportunities = discoveryOpportunities(data);
+    return opportunities.map(candidate => {
+      const selected = candidate.optionKey === selectedOpportunityId;
+      return `<button class="opportunity-option" type="button" role="option" aria-selected="${selected}" data-opportunity-option="${escapeHtml(candidate.optionKey)}">
+        <span class="opportunity-option-title">${escapeHtml(localField(candidate, 'title') || candidate.id || 'Opportunity')}</span>
+        <span class="opportunity-option-meta">
+          <span>${t('score')}: ${escapeHtml(candidate.score ?? '—')}</span>
+          <span>${escapeHtml(localField(candidate, 'type') || candidate.type || 'candidate')}</span>
+          <span>${escapeHtml(localField(candidate, 'targetUser') || '—')}</span>
+        </span>
+        <span class="workbench-note">${escapeHtml(localField(candidate, 'painfulSituation') || localField(candidate, 'recommendedNextExperiment') || '')}</span>
+      </button>`;
+    }).join('') || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function opportunityEvidenceRows(opportunity) {
+    const rows = (opportunity?.evidence || []).slice(0, 3).map(item => `
+      <div class="opportunity-evidence-item">
+        <strong>${externalLink(localField(item, 'title') || item.id || t('evidence'), item.url, 'evidence-link')}</strong>
+        <p>${escapeHtml(localField(item, 'excerpt') || item.metric || '')}</p>
+      </div>`).join('');
+    return rows || `<p class="workbench-note">${t('noData')}</p>`;
+  }
+  function renderSelectedOpportunityDetail(opportunity) {
+    if (!opportunity) {
+      return `<section class="workbench-panel selected-opportunity-detail"><div class="workbench-head"><h3>${t('selectedOpportunity')}</h3></div><p class="workbench-note">${t('noData')}</p></section>`;
+    }
+    return `<section class="workbench-panel selected-opportunity-detail">
+      <div class="workbench-head"><h3>${t('selectedOpportunity')}</h3><p class="workbench-note">${escapeHtml(localField(opportunity, 'type') || opportunity.type || '')}</p></div>
+      <h2 id="selected-opportunity-title">${escapeHtml(localField(opportunity, 'title') || opportunity.id || 'Opportunity')}</h2>
+      <div class="keyword-list">${chipList(localArray(opportunity, 'signalTypes'), t('noData'))}</div>
+      <div class="opportunity-detail-grid">
+        <article class="opportunity-detail-card"><h4>${t('painfulSituation')}</h4><p>${escapeHtml(localField(opportunity, 'painfulSituation') || '—')}</p></article>
+        <article class="opportunity-detail-card"><h4>${t('targetUser')}</h4><p>${escapeHtml(localField(opportunity, 'targetUser') || '—')}</p></article>
+        <article class="opportunity-detail-card"><h4>${t('promiseCandidate')}</h4><p>${escapeHtml(localField(opportunity, 'promiseCandidate') || '—')}</p></article>
+        <article class="opportunity-detail-card"><h4>${t('recommendedExperiment')}</h4><p>${escapeHtml(localField(opportunity, 'recommendedNextExperiment') || '—')}</p></article>
+      </div>
+      <h4 class="tracker-section-title">${t('evidenceSnippet')}</h4>
+      <div class="opportunity-evidence-list">${opportunityEvidenceRows(opportunity)}</div>
+    </section>`;
+  }
 
   /* ── overview section ── */
   function renderOverview(data) {
     const ov = document.getElementById('overview');
     destroyOverviewChart();
-    const radarId = uid();
     const stageOrder = data.stageOrder || ['discover','validate','business-model','build','grow','operate'];
-    const labels = stageOrder.map(stageLabelFor);
-    const scores = stageOrder.map(k => data.stages[k]?.score ?? 0);
+    const pipelineOrder = stageOrder.filter(key => key !== 'discover');
+    const opportunities = discoveryOpportunities(data);
+    const selected = selectedOpportunity(data);
+    const discover = data.stages?.discover || {};
+    const runSummary = discover.runSummary || {};
     document.querySelector('.eyebrow').textContent = t('eyebrow');
     document.documentElement.lang = LANG === 'zh' ? 'zh-CN' : 'en';
-    document.getElementById('project-title').textContent = localField(data.project, 'name') || data.project?.name || 'Startup Playbook';
-    document.getElementById('project-subtitle').textContent = localField(data.project, 'oneLine') || data.project?.oneLine || '';
-    document.title = `${localField(data.project, 'name') || data.project?.name || 'Startup Playbook'} - ${t('eyebrow')}`;
+    document.getElementById('project-title').textContent = t('discoveryTitle');
+    document.getElementById('project-subtitle').textContent = t('discoverySubtitle');
+    document.title = `${t('discoveryTitle')} - ${t('eyebrow')}`;
 
     let pipelineHtml = '';
-    stageOrder.forEach((k,i) => {
+    pipelineOrder.forEach((k) => {
       const s = data.stages[k];
       const score = s?.score ?? 0;
       const dec = s?.decision || 'none';
       pipelineHtml += `<div class="pipeline-stage">
-        <span class="pipeline-label">${labels[i]}</span>
+        <span class="pipeline-label">${stageLabelFor(k)}</span>
         <div class="pipeline-bar-track"><div class="pipeline-bar-fill" style="width:${score}%;background:${scoreColor(score)}"></div></div>
         <span class="pipeline-score" style="color:${scoreColor(score)}">${score || '—'}</span>
         <span class="pipeline-decision ${decisionClass(dec)}">${decisionLabel(dec)}</span>
@@ -1130,17 +1325,28 @@
     });
 
     ov.innerHTML = `
-      <div class="overview-radar"><canvas id="${radarId}"></canvas></div>
-      <div class="overview-pipeline"><h3>${t('stagePipeline')}</h3>${pipelineHtml}</div>`;
+      <section class="discovery-hub">
+        <section class="workbench-panel discovery-list-panel">
+          <div class="workbench-head"><h3>${t('realtimeDiscovery')}</h3><p class="workbench-note">${t('realtimeDiscoveryNote')}</p></div>
+          <div class="run-summary-grid">
+            <div class="run-summary-item"><span class="label">${t('candidatesFound')}</span><strong>${escapeHtml(opportunities.length)}</strong></div>
+            <div class="run-summary-item"><span class="label">${t('communityItems')}</span><strong>${escapeHtml(runSummary.communityItems ?? 0)}</strong></div>
+            <div class="run-summary-item"><span class="label">${t('publicCases')}</span><strong>${escapeHtml(runSummary.caseItems ?? 0)}</strong></div>
+            <div class="run-summary-item"><span class="label">${t('sourceFailures')}</span><strong>${escapeHtml(runSummary.sourceErrorCount ?? 0)}</strong></div>
+          </div>
+          <h4 class="tracker-section-title">${t('potentialUserPains')}</h4>
+          <div class="discovery-idea-list" role="listbox" aria-label="${t('potentialUserPains')}">${renderOpportunityOptions(data)}</div>
+        </section>
+        ${renderSelectedOpportunityDetail(selected)}
+      </section>
+      <section class="workbench-panel overview-pipeline idea-pipeline" id="selected-idea-pipeline">
+        <div class="workbench-head"><h3>${t('selectedIdeaPipeline')}</h3><p class="workbench-note">${escapeHtml(localField(selected, 'title') || '')}</p></div>
+        ${pipelineHtml}
+      </section>`;
 
-    overviewChart = makeChart(radarId, {
-      type: 'radar',
-      data: {
-        labels,
-        datasets: [{ label: t('score'), data: scores, fill: true, backgroundColor: 'rgba(0,122,255,.12)', borderColor: COLORS.blue, pointBackgroundColor: COLORS.blue, pointRadius: 5, borderWidth: 2 }]
-      },
-      options: { responsive: true, maintainAspectRatio: true, scales: { r: { min: 0, max: 100, ticks: { stepSize: 20, font: { size: 10 } }, pointLabels: { font: { size: 12, weight: '600' } } } }, plugins: { legend: { display: false } } }
-    }, false);
+    ov.querySelectorAll('[data-opportunity-option]').forEach(button => {
+      button.addEventListener('click', () => selectOpportunity(button.dataset.opportunityOption));
+    });
   }
 
   /* ── stage-specific chart builders ── */
@@ -1261,7 +1467,8 @@
           <div class="keyword-cluster-grid">${keywordClusterCards(clusters)}</div>
           <div class="channel-list">${channelRows(channels)}</div>
         </div>
-      </div>`;
+      </div>
+      ${seoCompetitiveAnalysisPanel(stage)}`;
 
     return { html, init() {
       if (clusterLabels.length) makeChart(id1, { type:'bar', data:{ labels:clusterLabels, datasets:[{ label:'Keywords', data:clusterKwCount, backgroundColor:PALETTE.slice(0,clusterLabels.length), borderRadius:6 }] }, options:{ plugins:{ legend:{display:false} }, scales:{ y:{beginAtZero:true,ticks:{stepSize:1}} } } });
@@ -1304,7 +1511,13 @@
   const statusPill = document.getElementById('stage-status');
   const tabs = Array.from(document.querySelectorAll('[data-stage-tab]'));
 
-  let currentStageKey = DATA.currentStage || 'validate';
+  let selectedOpportunityId = null;
+  let currentStageKey = DATA.currentStage && DATA.currentStage !== 'discover' ? DATA.currentStage : 'validate';
+
+  function selectOpportunity(opportunityId) {
+    selectedOpportunityId = opportunityId;
+    renderOverview(DATA);
+  }
 
   function switchStage(key) {
     currentStageKey = key;
@@ -1380,7 +1593,7 @@
   });
 
   renderOverview(DATA);
-  switchStage(DATA.currentStage || 'validate');
+  switchStage(currentStageKey);
   </script>
 </main>
 </body>

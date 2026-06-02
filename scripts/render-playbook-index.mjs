@@ -190,6 +190,7 @@ function normalizeStage(stageKey, report, manifestStage, evidenceById) {
   if (stageKey === "grow") {
     stage.keywordClusters = analysis.keywordClusters ?? analysis.seoAso?.keywordClusters ?? [];
     stage.channels = analysis.channels ?? [];
+    stage.seoCompetitiveAnalysis = buildGrowSeoCompetitiveAnalysis(analysis, stage);
   }
   if (stageKey === "operate") {
     stage.aarrr = localizeAarrr(analysis.aarrr ?? analysis.weeklySnapshot?.aarrr ?? {});
@@ -830,12 +831,577 @@ function buildBuildWorkbench(analysis, stage) {
   };
 }
 
+function buildGrowSeoCompetitiveAnalysis(analysis = {}) {
+  const source = analysis.seoCompetitiveAnalysis ?? {};
+  const competitors = normalizeSeoCompetitors(arrayOrDefault(source.competitors, defaultGrowSeoCompetitors()));
+  const differentiationMatrix = normalizeSeoDifferentiationRows(arrayOrDefault(source.differentiationMatrix, defaultGrowSeoDifferentiationRows()));
+  const longTailKeywords = normalizeSeoLongTailKeywords(arrayOrDefault(source.longTailKeywords, defaultGrowSeoLongTailKeywords()));
+  const contentBacklog = normalizeSeoContentBacklog(arrayOrDefault(source.contentBacklog, defaultGrowSeoContentBacklog()));
+  const serpGapNotes = normalizeSeoGapNotes(arrayOrDefault(source.serpGapNotes, defaultGrowSeoGapNotes()));
+
+  return {
+    competitors,
+    differentiationMatrix,
+    longTailKeywords,
+    contentBacklog,
+    serpGapNotes,
+  };
+}
+
+function arrayOrDefault(value, fallback) {
+  return Array.isArray(value) && value.length ? value : fallback;
+}
+
+function normalizeSeoCompetitors(competitors = []) {
+  return competitors.map((competitor) => {
+    const copyable = competitor.copyable ?? [];
+    const notCopyable = competitor.notCopyable ?? [];
+    return {
+      name: competitor.name ?? "Competitor",
+      nameZh: competitor.nameZh ?? competitor.name ?? "竞品",
+      url: competitor.url ?? "",
+      category: competitor.category ?? "competitor",
+      categoryZh: competitor.categoryZh ?? translateKnownText(competitor.category ?? "竞品"),
+      positioning: competitor.positioning ?? "Positioning not captured.",
+      positioningZh: competitor.positioningZh ?? translateKnownText(competitor.positioning ?? "定位未记录。"),
+      pricing: competitor.pricing ?? "Verify current pricing before using.",
+      pricingZh: competitor.pricingZh ?? translateKnownText(competitor.pricing ?? "使用前需要核对最新价格。"),
+      similarity: competitor.similarity ?? "Same buyer pain.",
+      similarityZh: competitor.similarityZh ?? translateKnownText(competitor.similarity ?? "面向相似买家痛点。"),
+      weakness: competitor.weakness ?? "Differentiation gap not captured.",
+      weaknessZh: competitor.weaknessZh ?? translateKnownText(competitor.weakness ?? "差异缺口未记录。"),
+      copyable,
+      copyableZh: competitor.copyableZh ?? copyable.map((item) => translateKnownText(item)),
+      notCopyable,
+      notCopyableZh: competitor.notCopyableZh ?? notCopyable.map((item) => translateKnownText(item)),
+    };
+  });
+}
+
+function normalizeSeoDifferentiationRows(rows = []) {
+  return rows.map((row) => ({
+    dimension: row.dimension ?? "Differentiation",
+    dimensionZh: row.dimensionZh ?? translateKnownText(row.dimension ?? "差异点"),
+    current: row.current ?? "Current wedge not captured.",
+    currentZh: row.currentZh ?? translateKnownText(row.current ?? "当前切入点未记录。"),
+    competitorPattern: row.competitorPattern ?? "Competitor pattern not captured.",
+    competitorPatternZh: row.competitorPatternZh ?? translateKnownText(row.competitorPattern ?? "竞品模式未记录。"),
+    differ: row.differ ?? "Define a sharper proof-led wedge.",
+    differZh: row.differZh ?? translateKnownText(row.differ ?? "需要定义更清晰的证明型切入点。"),
+    evidenceUse: row.evidenceUse ?? "Use in landing-page proof and outreach copy.",
+    evidenceUseZh: row.evidenceUseZh ?? translateKnownText(row.evidenceUse ?? "用于落地页证明和触达文案。"),
+  }));
+}
+
+function normalizeSeoLongTailKeywords(keywords = []) {
+  return keywords.map((keyword) => ({
+    group: keyword.group ?? "long-tail",
+    groupZh: keyword.groupZh ?? translateKnownText(keyword.group ?? "长尾词"),
+    query: keyword.query ?? "search query",
+    queryZh: keyword.queryZh ?? translateKnownText(keyword.query ?? "搜索词"),
+    intent: keyword.intent ?? "problem",
+    intentZh: keyword.intentZh ?? translateKnownText(keyword.intent ?? "问题"),
+    priority: keyword.priority ?? 3,
+    source: keyword.source ?? "competitor gap and validation pain",
+    sourceZh: keyword.sourceZh ?? translateKnownText(keyword.source ?? "竞品缺口和验证痛点"),
+    landingPage: keyword.landingPage ?? "landing page TBD",
+    landingPageZh: keyword.landingPageZh ?? translateKnownText(keyword.landingPage ?? "落地页待定"),
+    validationUse: keyword.validationUse ?? "Track impressions, replies, and booked calls.",
+    validationUseZh: keyword.validationUseZh ?? translateKnownText(keyword.validationUse ?? "追踪展现、回复和预约通话。"),
+  }));
+}
+
+function normalizeSeoContentBacklog(items = []) {
+  return items.map((item) => ({
+    asset: item.asset ?? "Content asset",
+    assetZh: item.assetZh ?? translateKnownText(item.asset ?? "内容资产"),
+    format: item.format ?? "landing page",
+    formatZh: item.formatZh ?? translateKnownText(item.format ?? "落地页"),
+    keywords: item.keywords ?? [],
+    keywordsZh: item.keywordsZh ?? (item.keywords ?? []).map((keyword) => translateKnownText(keyword)),
+    successMetric: item.successMetric ?? "qualified organic or outreach-assisted demand",
+    successMetricZh: item.successMetricZh ?? translateKnownText(item.successMetric ?? "有效自然需求或触达辅助需求"),
+    owner: item.owner ?? "founder",
+    ownerZh: item.ownerZh ?? translateKnownText(item.owner ?? "创始人"),
+  }));
+}
+
+function normalizeSeoGapNotes(notes = []) {
+  return notes.map((note) => ({
+    note: note.note ?? String(note),
+    noteZh: note.noteZh ?? translateKnownText(note.note ?? note),
+    confidence: note.confidence ?? "limited",
+    confidenceZh: note.confidenceZh ?? translateKnownText(note.confidence ?? "limited"),
+    nextCheck: note.nextCheck ?? "Verify with live SERP, Search Console, or paid keyword data.",
+    nextCheckZh: note.nextCheckZh ?? translateKnownText(note.nextCheck ?? "用实时 SERP、Search Console 或付费关键词数据复核。"),
+  }));
+}
+
+function defaultGrowSeoCompetitors() {
+  return [
+    {
+      name: "Pixc",
+      nameZh: "Pixc",
+      category: "ecommerce photo editing service",
+      categoryZh: "电商商品图代修服务",
+      positioning: "Done-for-you ecommerce photo editing for online sellers.",
+      positioningZh: "面向线上卖家的电商商品图代修服务。",
+      pricing: "Use as pricing anchor only; verify current public pricing before quoting.",
+      pricingZh: "只作为定价锚点；正式报价前需要核对最新公开价格。",
+      similarity: "Same buyer pain: sellers need product images that look professional and are marketplace-ready.",
+      similarityZh: "相似痛点：卖家需要专业、可上架的平台商品图。",
+      weakness: "Broad editing service; weaker Amazon-specific compliance workflow and rejection-repair positioning.",
+      weaknessZh: "定位偏泛修图；Amazon 合规流程和图片被拒修复切入不够尖。",
+      copyable: ["before/after proof", "package pricing anchor", "service delivery promise"],
+      copyableZh: ["前后对照证明", "套餐定价锚点", "服务交付承诺"],
+      notCopyable: ["large editing operation", "generic editing positioning"],
+      notCopyableZh: ["大规模修图运营能力", "泛修图定位"],
+    },
+    {
+      name: "Cheeppy",
+      nameZh: "Cheeppy",
+      category: "product image editing alternative",
+      categoryZh: "商品图处理替代方案",
+      positioning: "Low-friction product image cleanup and editing alternative.",
+      positioningZh: "低门槛商品图清理和处理替代方案。",
+      pricing: "Treat as a low-cost alternative anchor; verify current plan details before using.",
+      pricingZh: "可作为低成本替代方案锚点；使用前核对最新套餐。",
+      similarity: "Competes for sellers who want images fixed without hiring an in-house designer.",
+      similarityZh: "争夺不想雇设计师、但需要修好商品图的卖家。",
+      weakness: "Weak compliance proof and limited differentiated Amazon seller workflow in current report evidence.",
+      weaknessZh: "当前证据里合规证明弱，也缺少明显 Amazon 卖家工作流差异。",
+      copyable: ["simple intake", "low-friction offer", "fast turnaround framing"],
+      copyableZh: ["简单收集流程", "低摩擦报价", "快速交付表述"],
+      notCopyable: ["race-to-bottom pricing", "undifferentiated editing promise"],
+      notCopyableZh: ["低价内卷", "没有差异的修图承诺"],
+    },
+    {
+      name: "ProductMagic AI",
+      nameZh: "ProductMagic AI",
+      category: "AI product photo tool",
+      categoryZh: "AI 商品图工具",
+      positioning: "AI-generated product photos and marketing visuals.",
+      positioningZh: "AI 生成商品图和营销视觉。",
+      pricing: "Use as AI-subscription benchmark; verify latest plan before quoting.",
+      pricingZh: "可作为 AI 订阅工具基准；报价前核对最新套餐。",
+      similarity: "Same solution vocabulary: AI product photos for ecommerce sellers.",
+      similarityZh: "使用相同解决方案词汇：面向电商卖家的 AI 商品图。",
+      weakness: "Generic AI-photo positioning can miss platform-rule review, fidelity checks, and seller trust.",
+      weaknessZh: "通用 AI 商品图容易缺少平台规则审核、产品保真和卖家信任证明。",
+      copyable: ["AI demo gallery", "instant generation promise", "use-case page structure"],
+      copyableZh: ["AI 演示图库", "快速生成承诺", "用例页结构"],
+      notCopyable: ["generic AI-first claim", "unsupported compliance promises"],
+      notCopyableZh: ["泛 AI 优先叙事", "没有证据的合规承诺"],
+    },
+    {
+      name: "Prodshot AI",
+      nameZh: "Prodshot AI",
+      category: "AI product photography",
+      categoryZh: "AI 商品摄影",
+      positioning: "AI product photography for ecommerce catalog and ad images.",
+      positioningZh: "面向电商目录和广告图的 AI 商品摄影。",
+      pricing: "Use as AI-photo packaging benchmark; verify current offer before quoting.",
+      pricingZh: "可作为 AI 商品图包装基准；报价前核对当前方案。",
+      similarity: "Competes on faster product-photo creation and visual variety.",
+      similarityZh: "在更快生成商品图和更多视觉变体上竞争。",
+      weakness: "Less focused on Amazon main-image rules, seller rejection recovery, and human-reviewed delivery.",
+      weaknessZh: "不够聚焦 Amazon 主图规则、卖家图片被拒修复和人工审核交付。",
+      copyable: ["visual examples", "category-specific demos", "speed message"],
+      copyableZh: ["视觉案例", "按品类演示", "速度表达"],
+      notCopyable: ["visual novelty without compliance proof", "broad ad-creative framing"],
+      notCopyableZh: ["只有视觉新鲜感但缺少合规证明", "泛广告创意定位"],
+    },
+  ];
+}
+
+function defaultGrowSeoDifferentiationRows() {
+  return [
+    {
+      dimension: "Positioning wedge",
+      dimensionZh: "定位切入",
+      current: "Amazon-ready SKU image pack from one raw product photo, with human rule review.",
+      currentZh: "用一张原图交付 Amazon 可用的 SKU 图片包，并保留人工规则审核。",
+      competitorPattern: "Competitors cluster around broad ecommerce editing or generic AI product photos.",
+      competitorPatternZh: "竞品多集中在泛电商修图或通用 AI 商品图。",
+      differ: "Lead with compliance, rejection repair, and marketplace-readiness instead of generic image quality.",
+      differZh: "主打合规、图片被拒修复和平台可上架，而不是泛泛的画质优化。",
+      evidenceUse: "Turn seller rule objections into landing-page proof blocks.",
+      evidenceUseZh: "把卖家的规则异议转成落地页证明模块。",
+    },
+    {
+      dimension: "Trust proof",
+      dimensionZh: "信任证明",
+      current: "Before/after pack plus compliance notes and one revision boundary.",
+      currentZh: "前后对照图片包，加合规说明和一次修改边界。",
+      competitorPattern: "Competitors often show galleries, but do not always explain platform-rule decisions.",
+      competitorPatternZh: "竞品常展示图库，但不一定解释平台规则判断。",
+      differ: "Show rule checklist, rejected-image repair examples, and human review ownership.",
+      differZh: "展示规则清单、图片被拒修复案例和人工审核责任边界。",
+      evidenceUse: "Collect proof from the first five paid SKU packs.",
+      evidenceUseZh: "从前 5 个付费 SKU 图片包中收集证明材料。",
+    },
+    {
+      dimension: "Pricing and package",
+      dimensionZh: "定价与套餐",
+      current: "Fixed-scope paid SKU pack before subscription SaaS.",
+      currentZh: "先卖固定范围付费 SKU 图片包，再考虑订阅 SaaS。",
+      competitorPattern: "Competitors use broad per-image, credit, or subscription packaging.",
+      competitorPatternZh: "竞品常用按图、点数或订阅包装。",
+      differ: "Price by seller outcome: one listing-ready SKU pack with compliance notes.",
+      differZh: "按卖家结果定价：一套可上架 SKU 图片包加合规说明。",
+      evidenceUse: "Use purchase conversations to test price anchors before paid ads.",
+      evidenceUseZh: "用购买对话测试价格锚点，再考虑付费广告。",
+    },
+    {
+      dimension: "SEO gap",
+      dimensionZh: "SEO 缺口",
+      current: "Capture compliance and rejection-repair queries before broad AI-photo terms.",
+      currentZh: "先抢合规和图片被拒修复词，再做泛 AI 商品图词。",
+      competitorPattern: "Competitors are easier to find on broad product photo and editing terms.",
+      competitorPatternZh: "竞品更容易覆盖泛商品图和修图词。",
+      differ: "Build pages around Amazon main-image requirements, white-background service, and rejected listing fixes.",
+      differZh: "围绕 Amazon 主图要求、白底服务和 listing 图片被拒修复建页。",
+      evidenceUse: "Use Search Console impressions and qualified replies as the first signal.",
+      evidenceUseZh: "以 Search Console 展现和有效回复作为第一信号。",
+    },
+    {
+      dimension: "Channel wedge",
+      dimensionZh: "渠道切入",
+      current: "Direct seller outreach and checklist-led community posts before traffic scaling.",
+      currentZh: "先做直接卖家触达和清单型社区帖，再放大流量。",
+      competitorPattern: "Competitors may rely on generic SEO pages, visual galleries, or paid acquisition.",
+      competitorPatternZh: "竞品可能依赖泛 SEO 页面、视觉图库或付费获客。",
+      differ: "Use each long-tail page as an outreach artifact, not only as passive SEO.",
+      differZh: "把每个长尾词页面当作触达材料，而不仅是被动 SEO。",
+      evidenceUse: "Attach pages in DM and track which page creates calls or paid packs.",
+      evidenceUseZh: "私信中附带页面，并追踪哪类页面带来通话或付费图片包。",
+    },
+  ];
+}
+
+function defaultGrowSeoLongTailKeywords() {
+  return [
+    {
+      group: "platform compliance",
+      groupZh: "平台合规",
+      query: "Amazon product image requirements checklist",
+      queryZh: "Amazon 商品图合规清单",
+      intent: "problem",
+      intentZh: "问题排查",
+      priority: 1,
+      source: "Amazon compliance wedge",
+      sourceZh: "Amazon 合规切入点",
+      landingPage: "marketplace-image-compliance-checklist",
+      landingPageZh: "平台图片合规清单",
+      validationUse: "Use as a lead magnet in seller communities and DMs.",
+      validationUseZh: "作为卖家社区和私信触达里的引导资料。",
+    },
+    {
+      group: "platform compliance",
+      groupZh: "平台合规",
+      query: "Amazon main image white background service",
+      queryZh: "Amazon 主图白底服务",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 1,
+      source: "white-background rule pain",
+      sourceZh: "白底规则痛点",
+      landingPage: "amazon-main-image-white-background-service",
+      landingPageZh: "Amazon 主图白底服务页",
+      validationUse: "Offer one SKU pack and measure paid or near-paid replies.",
+      validationUseZh: "提出一个 SKU 图片包报价，并衡量付费或接近付费回复。",
+    },
+    {
+      group: "rejection repair",
+      groupZh: "图片被拒修复",
+      query: "Amazon listing image rejected fix",
+      queryZh: "Amazon listing 图片被拒修复",
+      intent: "urgent problem",
+      intentZh: "紧急问题",
+      priority: 1,
+      source: "seller rejection event",
+      sourceZh: "卖家图片被拒事件",
+      landingPage: "amazon-listing-image-rejection-fix",
+      landingPageZh: "Amazon listing 图片被拒修复页",
+      validationUse: "Ask sellers to share the rejection reason and raw image.",
+      validationUseZh: "请求卖家提供被拒原因和原始图片。",
+    },
+    {
+      group: "platform compliance",
+      groupZh: "平台合规",
+      query: "Amazon product image compliance audit",
+      queryZh: "Amazon 商品图合规审计",
+      intent: "service purchase",
+      intentZh: "服务购买",
+      priority: 1,
+      source: "manual audit offer",
+      sourceZh: "人工审计报价",
+      landingPage: "amazon-product-image-compliance-audit",
+      landingPageZh: "Amazon 商品图合规审计页",
+      validationUse: "Quote a fixed manual audit before building automation.",
+      validationUseZh: "先给固定范围人工审计报价，再考虑自动化。",
+    },
+    {
+      group: "marketplace compliance",
+      groupZh: "平台合规",
+      query: "marketplace image compliance checklist",
+      queryZh: "电商平台图片合规清单",
+      intent: "research",
+      intentZh: "资料查询",
+      priority: 2,
+      source: "multi-platform expansion option",
+      sourceZh: "多平台扩展选项",
+      landingPage: "marketplace-image-compliance-checklist",
+      landingPageZh: "平台图片合规清单",
+      validationUse: "Test whether non-Amazon sellers ask for the same service.",
+      validationUseZh: "测试非 Amazon 卖家是否也会索要相同服务。",
+    },
+    {
+      group: "paid service",
+      groupZh: "付费服务",
+      query: "ecommerce product photo editing service for Amazon",
+      queryZh: "Amazon 电商商品图修图服务",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 2,
+      source: "paid alternative vocabulary",
+      sourceZh: "付费替代方案词汇",
+      landingPage: "amazon-product-image-pack",
+      landingPageZh: "Amazon 商品图片包",
+      validationUse: "Compare paid service wording against AI-first wording.",
+      validationUseZh: "对比服务型文案和 AI 优先文案的转化差异。",
+    },
+    {
+      group: "AI solution",
+      groupZh: "AI 解决方案",
+      query: "AI product photos for Amazon sellers",
+      queryZh: "Amazon 卖家的 AI 商品图",
+      intent: "solution",
+      intentZh: "解决方案",
+      priority: 2,
+      source: "AI product photo vocabulary",
+      sourceZh: "AI 商品图词汇",
+      landingPage: "ai-product-photos-for-amazon-sellers",
+      landingPageZh: "Amazon 卖家 AI 商品图页",
+      validationUse: "Use only after showing human review and fidelity proof.",
+      validationUseZh: "必须搭配人工审核和产品保真证明使用。",
+    },
+    {
+      group: "paid service",
+      groupZh: "付费服务",
+      query: "Amazon product image optimization service",
+      queryZh: "Amazon 商品图优化服务",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 2,
+      source: "SEO channel hypothesis",
+      sourceZh: "SEO 渠道假设",
+      landingPage: "amazon-product-image-optimization-service",
+      landingPageZh: "Amazon 商品图优化服务页",
+      validationUse: "Measure booked calls from direct outreach plus organic impressions.",
+      validationUseZh: "衡量直接触达和自然展现带来的预约通话。",
+    },
+    {
+      group: "productized package",
+      groupZh: "产品化套餐",
+      query: "product image pack for Amazon listing",
+      queryZh: "Amazon listing 商品图片包",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 1,
+      source: "productized-service wedge",
+      sourceZh: "产品化服务切入",
+      landingPage: "amazon-product-image-pack",
+      landingPageZh: "Amazon 商品图片包",
+      validationUse: "Use as the core offer page in all seller DMs.",
+      validationUseZh: "作为所有卖家私信里的核心报价页。",
+    },
+    {
+      group: "comparison",
+      groupZh: "竞品对比",
+      query: "Pixc alternative for Amazon product images",
+      queryZh: "Pixc 替代：Amazon 商品图",
+      intent: "comparison",
+      intentZh: "竞品对比",
+      priority: 3,
+      source: "paid alternative competitor",
+      sourceZh: "付费替代竞品",
+      landingPage: "pixc-alternative-amazon-product-images",
+      landingPageZh: "Pixc 替代方案：Amazon 商品图",
+      validationUse: "Use only with factual, fair differentiation and no unsupported claims.",
+      validationUseZh: "只做事实型公平差异说明，不写无证据攻击。",
+    },
+    {
+      group: "AI plus review",
+      groupZh: "AI 加人工审核",
+      query: "AI product photo generator with compliance review",
+      queryZh: "带合规审核的 AI 商品图生成器",
+      intent: "solution",
+      intentZh: "解决方案",
+      priority: 2,
+      source: "generic AI competitor gap",
+      sourceZh: "通用 AI 竞品缺口",
+      landingPage: "ai-product-photo-compliance-review",
+      landingPageZh: "AI 商品图合规审核页",
+      validationUse: "Position human review as the reason to trust AI output.",
+      validationUseZh: "把人工审核作为信任 AI 输出的理由。",
+    },
+    {
+      group: "cross-border seller",
+      groupZh: "跨境卖家",
+      query: "cross-border seller product image service",
+      queryZh: "跨境卖家商品图服务",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 2,
+      source: "China seller routing",
+      sourceZh: "中国卖家渠道路径",
+      landingPage: "cross-border-seller-product-image-service",
+      landingPageZh: "跨境卖家商品图服务页",
+      validationUse: "Test WeChat consultative sales against web landing-page interest.",
+      validationUseZh: "测试微信咨询式销售和网页落地页的需求差异。",
+    },
+    {
+      group: "category demo",
+      groupZh: "品类演示",
+      query: "Amazon beauty product image editing service",
+      queryZh: "Amazon 美妆商品图修图服务",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 3,
+      source: "demo category test",
+      sourceZh: "演示品类测试",
+      landingPage: "amazon-beauty-product-image-editing",
+      landingPageZh: "Amazon 美妆商品图修图页",
+      validationUse: "Use to decide which demo category converts best.",
+      validationUseZh: "用于判断哪个演示品类转化最好。",
+    },
+    {
+      group: "category demo",
+      groupZh: "品类演示",
+      query: "Amazon electronics product photo optimization",
+      queryZh: "Amazon 电子产品商品图优化",
+      intent: "purchase",
+      intentZh: "购买意图",
+      priority: 3,
+      source: "demo category test",
+      sourceZh: "演示品类测试",
+      landingPage: "amazon-electronics-product-photo-optimization",
+      landingPageZh: "Amazon 电子产品商品图优化页",
+      validationUse: "Use reflective and text-heavy products as edge-case proof.",
+      validationUseZh: "用反光和文字密集包装作为边界案例证明。",
+    },
+  ];
+}
+
+function defaultGrowSeoContentBacklog() {
+  return [
+    {
+      asset: "Amazon main-image rejection checklist",
+      assetZh: "Amazon 主图被拒检查清单",
+      format: "lead magnet landing page",
+      formatZh: "引导型落地页",
+      keywords: ["Amazon product image requirements checklist", "Amazon listing image rejected fix"],
+      keywordsZh: ["Amazon 商品图合规清单", "Amazon listing 图片被拒修复"],
+      successMetric: "3 qualified seller replies or one paid audit request.",
+      successMetricZh: "3 个有效卖家回复，或 1 个付费审计请求。",
+      owner: "founder",
+      ownerZh: "创始人",
+    },
+    {
+      asset: "Amazon product image pack offer page",
+      assetZh: "Amazon 商品图片包报价页",
+      format: "service offer page",
+      formatZh: "服务报价页",
+      keywords: ["product image pack for Amazon listing", "Amazon product image optimization service"],
+      keywordsZh: ["Amazon listing 商品图片包", "Amazon 商品图优化服务"],
+      successMetric: "One buyer accepts or negotiates a SKU-pack price.",
+      successMetricZh: "1 位买家接受或议价 SKU 图片包价格。",
+      owner: "founder",
+      ownerZh: "创始人",
+    },
+    {
+      asset: "Pixc alternative comparison page",
+      assetZh: "Pixc 替代方案对比页",
+      format: "comparison page",
+      formatZh: "竞品对比页",
+      keywords: ["Pixc alternative for Amazon product images"],
+      keywordsZh: ["Pixc 替代：Amazon 商品图"],
+      successMetric: "Comparison page produces fair objections or booked calls.",
+      successMetricZh: "对比页带来真实异议或预约通话。",
+      owner: "founder",
+      ownerZh: "创始人",
+    },
+    {
+      asset: "AI plus human compliance review page",
+      assetZh: "AI 加人工合规审核页",
+      format: "differentiation page",
+      formatZh: "差异化说明页",
+      keywords: ["AI product photo generator with compliance review", "AI product photos for Amazon sellers"],
+      keywordsZh: ["带合规审核的 AI 商品图生成器", "Amazon 卖家的 AI 商品图"],
+      successMetric: "Sellers mention trust, fidelity, or compliance in replies.",
+      successMetricZh: "卖家回复中提到信任、保真或合规。",
+      owner: "founder",
+      ownerZh: "创始人",
+    },
+    {
+      asset: "Cross-border seller image service page",
+      assetZh: "跨境卖家商品图服务页",
+      format: "localized landing page",
+      formatZh: "本地化落地页",
+      keywords: ["cross-border seller product image service", "Amazon main image white background service"],
+      keywordsZh: ["跨境卖家商品图服务", "Amazon 主图白底服务"],
+      successMetric: "Compare WeChat inquiries with web form submissions.",
+      successMetricZh: "对比微信咨询和网页表单提交。",
+      owner: "founder",
+      ownerZh: "创始人",
+    },
+  ];
+}
+
+function defaultGrowSeoGapNotes() {
+  return [
+    {
+      note: "Current keyword and competitor data is directional; no live SERP, volume, CPC, or ranking data has been captured yet.",
+      noteZh: "当前关键词和竞品数据是方向性判断；还没有实时 SERP、搜索量、CPC 或排名数据。",
+      confidence: "limited",
+      confidenceZh: "有限",
+      nextCheck: "After publishing, connect Search Console and compare query-page impressions weekly.",
+      nextCheckZh: "发布后接入 Search Console，每周对比查询词和页面展现。",
+    },
+    {
+      note: "Comparison pages must stay factual and proof-led; avoid unsupported claims about competitor quality or pricing.",
+      noteZh: "竞品对比页必须保持事实和证据导向；避免对竞品质量或价格做无证据判断。",
+      confidence: "medium",
+      confidenceZh: "中等",
+      nextCheck: "Review every competitor claim before publishing.",
+      nextCheckZh: "发布前复核每一条竞品相关表述。",
+    },
+    {
+      note: "Long-tail pages should double as outreach artifacts, because organic traffic will be slow before the domain has authority.",
+      noteZh: "长尾词页面要同时作为触达材料使用，因为域名权重起来前自然流量会很慢。",
+      confidence: "medium",
+      confidenceZh: "中等",
+      nextCheck: "Track which page links create replies, calls, and paid SKU packs.",
+      nextCheckZh: "追踪哪类页面链接带来回复、通话和付费 SKU 图片包。",
+    },
+  ];
+}
+
 function buildGrowWorkbench(analysis, stage) {
   const routing = analysis.marketRouting ?? {};
   const seo = analysis.seoAso ?? {};
   const paid = analysis.paidValidation ?? {};
   const utm = analysis.utmPlan ?? {};
   const measurement = analysis.measurementPlan ?? {};
+  const competitive = stage.seoCompetitiveAnalysis ?? buildGrowSeoCompetitiveAnalysis(analysis);
+  const competitorNames = competitive.competitors.map((competitor) => competitor.name).join("; ");
+  const competitorNamesZh = competitive.competitors.map((competitor) => competitor.nameZh ?? competitor.name).join("；");
+  const topKeywords = competitive.longTailKeywords.slice(0, 4).map((keyword) => keyword.query).join("; ");
+  const topKeywordsZh = competitive.longTailKeywords.slice(0, 4).map((keyword) => keyword.queryZh ?? keyword.query).join("；");
+  const topLandingPages = [...new Set(competitive.longTailKeywords.slice(0, 5).map((keyword) => keyword.landingPage))].join("; ");
+  const topLandingPagesZh = [...new Set(competitive.longTailKeywords.slice(0, 5).map((keyword) => keyword.landingPageZh ?? keyword.landingPage))].join("；");
+  const firstDifferentiator = competitive.differentiationMatrix[0] ?? {};
   return {
     title: "Growth workbench",
     titleZh: "增长工作台",
@@ -868,6 +1434,17 @@ function buildGrowWorkbench(analysis, stage) {
           workbenchCard("Meta description", "Meta 描述", joinList(seo.metaDescriptions), translateKnownText(joinList(seo.metaDescriptions))),
           workbenchCard("AI can help", "AI 可辅助", joinList(analysis.aiDistribution?.aiCan), translateKnownText(joinList(analysis.aiDistribution?.aiCan))),
           workbenchCard("Human owns", "人工负责", joinList(analysis.aiDistribution?.humanOwns), translateKnownText(joinList(analysis.aiDistribution?.humanOwns))),
+        ],
+      },
+      {
+        key: "seo-competitive-focus",
+        title: "SEO competitor and long-tail focus",
+        titleZh: "竞品与长尾词焦点",
+        cards: [
+          workbenchCard("Similar competitors", "类似竞品", competitorNames, competitorNamesZh, "Use competitors as positioning and proof benchmarks, not copy targets.", "竞品只作为定位、证明和定价参照，不作为盲目复制对象。"),
+          workbenchCard("Differentiation wedge", "差异化切入", firstDifferentiator.differ ?? "Lead with compliance proof.", firstDifferentiator.differZh ?? "主打合规证明。", firstDifferentiator.evidenceUse ?? "", firstDifferentiator.evidenceUseZh ?? ""),
+          workbenchCard("Priority long-tail queries", "优先长尾词", topKeywords, topKeywordsZh, "Use the first pages as outreach artifacts before organic traffic compounds.", "自然流量起量前，先把这些页面当作触达材料。"),
+          workbenchCard("Priority landing pages", "优先落地页", topLandingPages, topLandingPagesZh, "Track replies, booked calls, and paid SKU packs by page link.", "按页面链接追踪回复、预约通话和付费 SKU 图片包。"),
         ],
       },
       {

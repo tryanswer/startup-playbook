@@ -224,6 +224,12 @@ test("buildPlaybookDashboardData includes discover stage from artifacts", async 
     assert.match(data.stages.build.workflowWorkbench.sections[2].titleZh, /质量|验收|风险/);
     assert.match(data.stages.grow.workflowWorkbench.titleZh, /增长工作台/);
     assert.match(data.stages.grow.workflowWorkbench.sections[1].titleZh, /渠道|触达/);
+    assert.equal(data.stages.grow.seoCompetitiveAnalysis.competitors.length, 4);
+    assert.match(data.stages.grow.seoCompetitiveAnalysis.competitors[0].name, /Pixc|Cheeppy|ProductMagic|Prodshot/);
+    assert.match(data.stages.grow.seoCompetitiveAnalysis.differentiationMatrix[0].dimensionZh, /切入|差异|定位/);
+    assert.ok(data.stages.grow.seoCompetitiveAnalysis.longTailKeywords.length >= 12);
+    assert.match(data.stages.grow.seoCompetitiveAnalysis.longTailKeywords[0].queryZh, /Amazon|商品图|图片|合规/);
+    assert.ok(data.stages.grow.workflowWorkbench.sections.some((section) => /竞品|长尾/.test(section.titleZh)));
     assert.match(data.stages.operate.workflowWorkbench.titleZh, /运营工作台/);
     assert.match(data.stages.operate.workflowWorkbench.sections[3].titleZh, /决策|复盘|门槛/);
     assert.match(data.stages.discover.links[0][1], /stages\/discover\/report\.md/);
@@ -363,7 +369,16 @@ test("renderPlaybookIndex embeds discover data without replacing the template sh
 
     const html = await readFile(outputPath, "utf8");
     assert.match(html, /class="stage-rail"/);
-    assert.match(html, /data-stage-tab="discover"/);
+    assert.doesNotMatch(html, /data-stage-tab="discover"/);
+    assert.match(html, /class="discovery-idea-list"/);
+    assert.match(html, /data-opportunity-option/);
+    assert.match(html, /selected-opportunity-detail/);
+    assert.match(html, /id="selected-opportunity-title"/);
+    assert.match(html, /id="selected-idea-pipeline"/);
+    assert.match(html, /function selectOpportunity/);
+    assert.match(html, /实时机会挖掘/);
+    assert.match(html, /潜在用户痛点/);
+    assert.match(html, /后续 Pipeline/);
     assert.match(html, /id="stage-panel"/);
     assert.match(html, /function switchStage/);
     assert.match(html, /const stageChartInstances/);
@@ -378,6 +393,11 @@ test("renderPlaybookIndex embeds discover data without replacing the template sh
     assert.match(html, /candidate-brief/);
     assert.match(html, /outreach-script-pack/);
     assert.match(html, /候选机会详情/);
+    assert.match(html, /seo-competitive-analysis/);
+    assert.match(html, /竞品差异/);
+    assert.match(html, /长尾词机会/);
+    assert.match(html, /Pixc/);
+    assert.match(html, /Amazon 商品图合规/);
     assert.match(html, /社区回复话术/);
     assert.match(html, /继续 \/ 转向 \/ 暂停门槛/);
     assert.match(html, /validation-tracker/);

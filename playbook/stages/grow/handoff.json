@@ -19,9 +19,28 @@
   "summary": {
     "activeChannels": ["direct seller outreach", "seller communities", "SEO later"],
     "utmConvention": "utm_source / utm_medium / utm_campaign / utm_content",
-    "seoAsoTargets": ["Amazon product image requirements", "AI product photos", "ecommerce product image editing"],
+    "seoAsoTargets": [
+      "Amazon product image requirements checklist",
+      "Amazon main image white background service",
+      "Amazon listing image rejected fix",
+      "Amazon product image compliance audit",
+      "product image pack for Amazon listing",
+      "Pixc alternative for Amazon product images",
+      "AI product photo generator with compliance review",
+      "cross-border seller product image service"
+    ],
+    "competitorBenchmarks": ["Pixc", "Cheeppy", "ProductMagic AI", "Prodshot AI"],
+    "differentiationWedge": "Amazon-ready SKU image pack with human compliance review and rejection-repair proof.",
     "paidTestSetup": null,
-    "contentBacklog": ["Amazon main-image checklist", "3 before/after demos", "SKU image audit teardown"],
+    "contentBacklog": [
+      "Amazon main-image rejection checklist",
+      "Amazon product image pack offer page",
+      "Pixc alternative comparison page",
+      "AI plus human compliance review page",
+      "Cross-border seller image service page",
+      "3 before/after demos",
+      "SKU image audit teardown"
+    ],
     "measurementThresholds": ["10 seller replies", "5 calls", "2 paid packs", "revision count under 2 per pack"],
     "evidenceRefs": ["ev-mock-paid-test-001", "ev-pixc-paid-alt-001"]
   }

@@ -173,6 +173,8 @@ Understand which channels drive conversions to optimize spend.
 ## Required Output
 
 - Keyword cluster report.
+- SEO competitor analysis: similar competitors, copyable patterns, non-copyable advantages, differentiation matrix, and fair comparison constraints.
+- Search-engine long-tail expansion: problem, purchase, comparison, platform-compliance, and geography/channel-specific query groups with landing-page targets.
 - Country and language opportunity ranking.
 - SEO landing-page recommendations.
 - ASO title/subtitle/description recommendations.
@@ -200,7 +202,15 @@ playbook/stages/grow/handoff.json
 playbook/stages/grow/report.md
 ```
 
-The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.marketRouting`, `analysis.keywordClusters`, `analysis.seoAso`, `analysis.channels`, `analysis.paidValidation`, `analysis.utmPlan`, `analysis.aiDistribution`, and `analysis.measurementPlan`.
+The `report.json` must follow the Startup Playbook artifact protocol and include `analysis.marketRouting`, `analysis.keywordClusters`, `analysis.seoAso`, `analysis.channels`, `analysis.seoCompetitiveAnalysis`, `analysis.paidValidation`, `analysis.utmPlan`, `analysis.aiDistribution`, and `analysis.measurementPlan`.
+
+`analysis.seoCompetitiveAnalysis` should include:
+
+- `competitors`: competitor name, category, positioning, pricing anchor, similarity, weakness, `copyable`, and `notCopyable`.
+- `differentiationMatrix`: dimensions such as positioning wedge, trust proof, pricing/package, SEO gap, and channel wedge.
+- `longTailKeywords`: grouped search queries with intent, priority, source, landing-page target, and validation use.
+- `contentBacklog`: pages or assets to produce from those long-tail queries.
+- `serpGapNotes`: confidence, live-data gaps, and next checks for Search Console, SERP, CPC, or ranking data.
 
 The `handoff.json` must include active channels, UTM conventions, SEO/ASO targets, paid test setup if any, content backlog, and measurement plan thresholds.
 
