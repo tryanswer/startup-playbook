@@ -106,6 +106,15 @@
     .decision-pivot { background: #fff3cd; color: #856404; }
     .decision-pause { background: #fde2e2; color: #b91c1c; }
     .decision-adjust { background: #e0e7ff; color: #3730a3; }
+    .discovery-layout { display: grid; grid-template-columns: 224px minmax(0,1fr); gap: 16px; align-items: start; }
+    .discovery-side-nav { position: sticky; top: 86px; display: grid; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: var(--radius-card); background: rgba(255,255,255,.82); box-shadow: var(--shadow); backdrop-filter: saturate(180%) blur(16px); }
+    .discovery-side-nav h3 { margin: 0; color: var(--ink); font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; }
+    .discovery-side-nav-list { display: grid; gap: 6px; }
+    .discovery-side-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 34px; padding: 0 10px; border-radius: var(--radius-control); color: var(--muted); text-decoration: none; font-size: var(--text-footnote); line-height: var(--leading-footnote); font-weight: 650; transition: background 160ms ease, color 160ms ease; }
+    .discovery-side-link::after { content: ""; flex: 0 0 auto; width: 6px; height: 6px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); opacity: .38; }
+    .discovery-side-link:hover { background: var(--surface-soft); color: var(--ink); }
+    .discovery-content { min-width: 0; display: grid; gap: 16px; }
+    .discovery-anchor-section { min-width: 0; display: grid; gap: 16px; scroll-margin-top: 96px; }
     .discovery-hub { display: grid; grid-template-columns: minmax(0,.95fr) minmax(360px,1.05fr); gap: 16px; align-items: stretch; }
     .discovery-list-panel, .selected-opportunity-detail, .idea-pipeline { min-width: 0; }
     .discovery-idea-list { display: grid; gap: 10px; margin-top: 12px; }
@@ -317,7 +326,11 @@
     .stage-detail[hidden] { display: none; }
 
     @media (max-width: 900px) {
-      .dashboard, .risk-next-grid, .chart-grid, .overview-section, .discovery-hub { grid-template-columns: 1fr; }
+      .dashboard, .risk-next-grid, .chart-grid, .overview-section, .discovery-layout, .discovery-hub { grid-template-columns: 1fr; }
+      .discovery-side-nav { position: static; }
+      .discovery-side-nav-list { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 2px; scrollbar-width: none; }
+      .discovery-side-nav-list::-webkit-scrollbar { display: none; }
+      .discovery-side-link { flex: 0 0 auto; }
       .pricing-tier-grid, .growth-detail-grid, .source-health-grid, .evidence-matrix-grid, .case-library-grid, .brief-grid, .replication-grid, .script-grid, .decision-gate-grid, .tracker-grid, .scorecard-grid, .memo-grid, .stage-workbench-grid, .workbench-card-list, .seo-matrix-grid, .seo-gap-grid, .opportunity-detail-grid { grid-template-columns: 1fr; }
       .evidence-card { grid-template-columns: 1fr; }
       .artifact-list { grid-template-columns: repeat(2,minmax(0,1fr)); }
@@ -1094,6 +1107,9 @@
       realtimeDiscovery: 'Realtime Discovery', realtimeDiscoveryNote: 'Potential user pains from community signals and public cases',
       potentialUserPains: 'Potential User Pains', selectedOpportunity: 'Selected Opportunity',
       selectedIdeaPipeline: 'Selected Idea Pipeline',
+      discoveryMenu: 'Discovery Menu', menuOpportunities: 'Pain List', menuSummary: 'Source Summary',
+      menuBrief: 'Opportunity Brief', menuEvidence: 'Evidence Matrix', menuCases: 'Public Cases',
+      menuScripts: 'Reply Scripts', menuTracker: 'Validation Tracker', menuPipeline: 'Next Pipeline',
       seoCompetitiveAnalysis: 'SEO Competitive Analysis', seoCompetitiveAnalysisNote: 'Use competitor gaps and long-tail pages as growth experiments',
       competitorDiff: 'Competitor Differences', competitors: 'Competitors', competitor: 'Competitor', copyable: 'Copyable',
       longTailOpportunities: 'Long-Tail Opportunities', contentBacklog: 'Content Backlog', searchGapNotes: 'Search Gap Notes',
@@ -1162,6 +1178,9 @@
       realtimeDiscovery: '实时 Discovery', realtimeDiscoveryNote: '来自社区信号和公开案例的潜在用户痛点',
       potentialUserPains: '潜在用户痛点', selectedOpportunity: '选中机会',
       selectedIdeaPipeline: '后续 Pipeline',
+      discoveryMenu: 'Discovery 目录', menuOpportunities: '痛点列表', menuSummary: '来源摘要',
+      menuBrief: '机会详情', menuEvidence: '证据矩阵', menuCases: '公开案例',
+      menuScripts: '回复话术', menuTracker: '验证追踪', menuPipeline: '后续 Pipeline',
       seoCompetitiveAnalysis: 'SEO 竞品分析', seoCompetitiveAnalysisNote: '把竞品缺口和长尾词页面作为增长实验执行',
       competitorDiff: '竞品差异', competitors: '竞品', competitor: '竞品', copyable: '可复制',
       longTailOpportunities: '长尾词机会', contentBacklog: '内容积压', searchGapNotes: '搜索缺口备注',
@@ -1294,6 +1313,47 @@
       <div class="opportunity-evidence-list">${opportunityEvidenceRows(opportunity)}</div>
     </section>`;
   }
+  function discoverySideNav() {
+    return `<aside class="discovery-side-nav" aria-label="${t('discoveryMenu')}">
+      <h3>${t('discoveryMenu')}</h3>
+      <div class="discovery-side-nav-list">
+        <a class="discovery-side-link" data-discovery-nav="opportunities" href="#discovery-opportunities">${t('menuOpportunities')}</a>
+        <a class="discovery-side-link" data-discovery-nav="summary" href="#discovery-summary">${t('menuSummary')}</a>
+        <a class="discovery-side-link" data-discovery-nav="brief" href="#discovery-brief">${t('menuBrief')}</a>
+        <a class="discovery-side-link" data-discovery-nav="evidence" href="#discovery-evidence">${t('menuEvidence')}</a>
+        <a class="discovery-side-link" data-discovery-nav="cases" href="#discovery-cases">${t('menuCases')}</a>
+        <a class="discovery-side-link" data-discovery-nav="scripts" href="#discovery-scripts">${t('menuScripts')}</a>
+        <a class="discovery-side-link" data-discovery-nav="tracker" href="#discovery-tracker">${t('menuTracker')}</a>
+        <a class="discovery-side-link" data-discovery-nav="pipeline" href="#selected-idea-pipeline">${t('menuPipeline')}</a>
+      </div>
+    </aside>`;
+  }
+  function discoveryWorkbenchOverview(stage, candidates) {
+    return `
+      <section id="discovery-summary" class="discovery-anchor-section">
+        ${runSummaryCards(stage)}
+        ${sourceHealthCards(stage)}
+      </section>
+      <section id="discovery-brief" class="discovery-anchor-section">
+        ${candidateBriefPanel(stage)}
+        ${opportunityRankTable(candidates)}
+        ${replicationBriefPanel(stage)}
+      </section>
+      <section id="discovery-evidence" class="discovery-anchor-section">
+        ${evidenceMatrixCards(stage.evidenceMatrix || [])}
+      </section>
+      <section id="discovery-cases" class="discovery-anchor-section">
+        ${caseLibraryCards(stage)}
+      </section>
+      <section id="discovery-scripts" class="discovery-anchor-section">
+        ${outreachScriptsPanel(stage)}
+      </section>
+      <section id="discovery-tracker" class="discovery-anchor-section">
+        ${decisionGatePanel(stage)}
+        ${validationTrackerPanel(stage)}
+        ${validationPlanRows(stage.validationPlan || [])}
+      </section>`;
+  }
 
   /* ── overview section ── */
   function renderOverview(data) {
@@ -1325,23 +1385,31 @@
     });
 
     ov.innerHTML = `
-      <section class="discovery-hub">
-        <section class="workbench-panel discovery-list-panel">
-          <div class="workbench-head"><h3>${t('realtimeDiscovery')}</h3><p class="workbench-note">${t('realtimeDiscoveryNote')}</p></div>
-          <div class="run-summary-grid">
-            <div class="run-summary-item"><span class="label">${t('candidatesFound')}</span><strong>${escapeHtml(opportunities.length)}</strong></div>
-            <div class="run-summary-item"><span class="label">${t('communityItems')}</span><strong>${escapeHtml(runSummary.communityItems ?? 0)}</strong></div>
-            <div class="run-summary-item"><span class="label">${t('publicCases')}</span><strong>${escapeHtml(runSummary.caseItems ?? 0)}</strong></div>
-            <div class="run-summary-item"><span class="label">${t('sourceFailures')}</span><strong>${escapeHtml(runSummary.sourceErrorCount ?? 0)}</strong></div>
-          </div>
-          <h4 class="tracker-section-title">${t('potentialUserPains')}</h4>
-          <div class="discovery-idea-list" role="listbox" aria-label="${t('potentialUserPains')}">${renderOpportunityOptions(data)}</div>
-        </section>
-        ${renderSelectedOpportunityDetail(selected)}
-      </section>
-      <section class="workbench-panel overview-pipeline idea-pipeline" id="selected-idea-pipeline">
-        <div class="workbench-head"><h3>${t('selectedIdeaPipeline')}</h3><p class="workbench-note">${escapeHtml(localField(selected, 'title') || '')}</p></div>
-        ${pipelineHtml}
+      <section class="discovery-layout">
+        ${discoverySideNav()}
+        <div class="discovery-content">
+          <section id="discovery-opportunities" class="discovery-anchor-section">
+            <section class="discovery-hub">
+              <section class="workbench-panel discovery-list-panel">
+                <div class="workbench-head"><h3>${t('realtimeDiscovery')}</h3><p class="workbench-note">${t('realtimeDiscoveryNote')}</p></div>
+                <div class="run-summary-grid">
+                  <div class="run-summary-item"><span class="label">${t('candidatesFound')}</span><strong>${escapeHtml(opportunities.length)}</strong></div>
+                  <div class="run-summary-item"><span class="label">${t('communityItems')}</span><strong>${escapeHtml(runSummary.communityItems ?? 0)}</strong></div>
+                  <div class="run-summary-item"><span class="label">${t('publicCases')}</span><strong>${escapeHtml(runSummary.caseItems ?? 0)}</strong></div>
+                  <div class="run-summary-item"><span class="label">${t('sourceFailures')}</span><strong>${escapeHtml(runSummary.sourceErrorCount ?? 0)}</strong></div>
+                </div>
+                <h4 class="tracker-section-title">${t('potentialUserPains')}</h4>
+                <div class="discovery-idea-list" role="listbox" aria-label="${t('potentialUserPains')}">${renderOpportunityOptions(data)}</div>
+              </section>
+              ${renderSelectedOpportunityDetail(selected)}
+            </section>
+          </section>
+          ${discoveryWorkbenchOverview(discover, opportunities)}
+          <section class="workbench-panel overview-pipeline idea-pipeline" id="selected-idea-pipeline">
+            <div class="workbench-head"><h3>${t('selectedIdeaPipeline')}</h3><p class="workbench-note">${escapeHtml(localField(selected, 'title') || '')}</p></div>
+            ${pipelineHtml}
+          </section>
+        </div>
       </section>`;
 
     ov.querySelectorAll('[data-opportunity-option]').forEach(button => {
