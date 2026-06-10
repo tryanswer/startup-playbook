@@ -1,0 +1,92 @@
+name: Collect & Analyze Opportunities
+
+on:
+  schedule:
+    # Run every Monday at 08:00 UTC
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+    inputs:
+      query:
+        description: 'Search query for data collection'
+        required: false
+        default: 'ai saas startup tool'
+      sources:
+        description: 'Comma-separated source names'
+        required: false
+        default: 'hacker-news,github,google-autocomplete,v2ex'
+      stage:
+        description: 'Playbook stage to write results to'
+        required: false
+        default: 'discover'
+
+permissions:
+  contents: write
+
+jobs:
+  collect-and-analyze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run collect + analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PRODUCT_HUNT_TOKEN: ${{ secrets.PRODUCT_HUNT_TOKEN }}
+          TWITTER_BEARER_TOKEN: ${{ secrets.TWITTER_BEARER_TOKEN }}
+        run: |
+          QUERY="${{ github.event.inputs.query || 'ai saas startup tool' }}"
+          SOURCES="${{ github.event.inputs.sources || 'hacker-news,github,google-autocomplete' }}"
+          STAGE="${{ github.event.inputs.stage || 'discover' }}"
+
+          echo "🚀 Collecting and analyzing: query='${QUERY}' sources='${SOURCES}' stage='${STAGE}'"
+
+          node scripts/analyze-data.mjs collect-analyze \
+            --sources "${SOURCES}" \
+            -q "${QUERY}" \
+            -o "analysis/$(date +%Y-%m-%d)" \
+            --stage "${STAGE}" \
+            --project "auto-discovery" \
+            -v
+
+      - name: Commit analysis results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add analysis/ playbook/stages/ || true
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            DATE=$(date +%Y-%m-%d)
+            git commit -m "chore: auto-collect & analyze opportunities (${DATE})"
+            git push
+            echo "✅ Analysis committed and pushed"
+          fi
+
+      - name: Summary
+        if: always()
+        run: |
+          echo "## 📊 Analysis Complete" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+
+          if [ -f "analysis/$(date +%Y-%m-%d)/report.json" ]; then
+            SCORE=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/$(date +%Y-%m-%d)/report.json','utf8')); console.log(r.score)")
+            DECISION=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/$(date +%Y-%m-%d)/report.json','utf8')); console.log(r.decisionLabel)")
+            echo "- **Score**: ${SCORE}/100" >> $GITHUB_STEP_SUMMARY
+            echo "- **Decision**: ${DECISION}" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ No report generated" >> $GITHUB_STEP_SUMMARY
+          fi

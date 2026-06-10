@@ -54,6 +54,12 @@ const KNOWN_KEYS = {
   // Keywords
   KEYWORDS_EVERYWHERE_API_KEY: "Keywords Everywhere API key",
 
+  // Twitter / X
+  TWITTER_BEARER_TOKEN: "Twitter API v2 Bearer token",
+
+  // V2EX
+  V2EX_TOKEN: "V2EX personal access token (optional, higher rate limits)",
+
   // China market
   BAIDU_TONGJI_SITE_ID: "Baidu Tongji site ID",
   BAIDU_TONGJI_ACCESS_TOKEN: "Baidu Tongji access token",
