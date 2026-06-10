@@ -25,6 +25,8 @@ import { fuseSignals } from "../tools/_shared/analyzers/signal-fusion.mjs";
 import { generateReport, generateMarkdown } from "../tools/_shared/analyzers/report-generator.mjs";
 import { collectFromSources } from "../tools/_shared/data-sources/index.mjs";
 import { loadCredentials, getCredential } from "../tools/_shared/credentials.mjs";
+import { writeReport as writeStageReport, writeHandoff, writeInput, STAGE_ORDER } from "../tools/_shared/playbook-io.mjs";
+import { matchBusinessModel, generateModelMarkdown } from "../tools/_shared/analyzers/business-model-matcher.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -38,6 +40,7 @@ const { values, positionals } = parseArgs({
     limit: { type: "string", short: "l", default: "25" },
     community: { type: "string", default: "" },
     project: { type: "string", short: "p", default: "startup-analysis" },
+    stage: { type: "string", short: "s", default: "" },
     json: { type: "boolean", default: false },
     verbose: { type: "boolean", short: "v", default: false },
     help: { type: "boolean", short: "h", default: false },
@@ -214,9 +217,18 @@ function runAnalysis(items, options = {}) {
     sources: summary.sources,
   });
 
-  const markdown = generateMarkdown(report);
+  // Step 4: Match business model
+  const modelMatch = matchBusinessModel(report);
 
-  return { extracted, fusion, report, markdown };
+  if (values.verbose) {
+    console.log(`  Business model: ${modelMatch.primaryModel.icon} ${modelMatch.primaryModel.label} (fit: ${modelMatch.primaryModel.fitScore}/100)`);
+    console.log("");
+  }
+
+  const modelMarkdown = generateModelMarkdown(modelMatch);
+  const markdown = generateMarkdown(report) + "\n\n" + modelMarkdown;
+
+  return { extracted, fusion, report, markdown, modelMatch };
 }
 
 /* ------------------------------------------------------------------ */
@@ -224,7 +236,7 @@ function runAnalysis(items, options = {}) {
 /* ------------------------------------------------------------------ */
 
 async function outputResults(result, collectResult = null) {
-  const { report, markdown, fusion } = result;
+  const { report, markdown, fusion, modelMatch } = result;
 
   // Print summary to console
   console.log("─".repeat(60));
@@ -258,6 +270,18 @@ async function outputResults(result, collectResult = null) {
     console.log("  Next steps:");
     for (let i = 0; i < Math.min(report.nextSteps.length, 3); i++) {
       console.log(`    ${i + 1}. ${report.nextSteps[i]}`);
+    }
+  }
+
+  // Business model recommendation
+  if (modelMatch) {
+    const pm = modelMatch.primaryModel;
+    console.log("");
+    console.log(`  💼 Business model: ${pm.icon} ${pm.label} (fit: ${pm.fitScore}/100)`);
+    console.log(`     ${pm.pricingGuidance.model} — ${pm.pricingGuidance.typical}`);
+    if (modelMatch.recommendations.length > 1) {
+      const alt = modelMatch.recommendations[1];
+      console.log(`     Alternative: ${alt.icon} ${alt.label} (fit: ${alt.fitScore}/100)`);
     }
   }
 
@@ -298,6 +322,105 @@ async function outputResults(result, collectResult = null) {
   } else if (values.json) {
     console.log(JSON.stringify(report, null, 2));
   }
+
+  // Write to playbook stage artifacts if --stage is specified
+  if (values.stage) {
+    await writeToPlaybookStage(result, collectResult);
+  }
+}
+
+/**
+ * Write analysis results as playbook stage artifacts.
+ * Supports: discover, validate (more stages can be added).
+ */
+async function writeToPlaybookStage(result, collectResult) {
+  const stageName = values.stage;
+  if (!STAGE_ORDER.includes(stageName)) {
+    console.error(`⚠️  Unknown stage: "${stageName}". Valid: ${STAGE_ORDER.join(", ")}`);
+    return;
+  }
+
+  const { report, markdown, fusion } = result;
+  const topOpp = fusion.topOpportunity;
+
+  // Write input.json — what went into this analysis
+  await writeInput(stageName, {
+    protocolVersion: "1.0",
+    artifactType: "stage-input",
+    projectId: report.projectId,
+    stage: stageName,
+    generatedAt: report.generatedAt,
+    query: report.query,
+    sources: report.input.sourcesCovered,
+    itemCount: report.input.totalItems,
+    collectedAt: collectResult?.collectedAt ?? report.generatedAt,
+  });
+
+  // Write report.json — analysis results in stage report format
+  await writeStageReport(stageName, {
+    protocolVersion: "1.0",
+    artifactType: "stage-report",
+    projectId: report.projectId,
+    stage: stageName,
+    generatedAt: report.generatedAt,
+    status: "completed",
+    score: report.score,
+    decision: report.decision,
+    nextStageAction: report.decision === "continue" ? "advance" : "stay",
+    reasoning: report.reasoning,
+    known: topOpp
+      ? topOpp.evidence.map((e) => `${e.signalType} signal from ${e.source}: "${e.title}"`)
+      : [],
+    assumed: ["Community signals are discovery evidence, not validation proof."],
+    toValidate: report.nextSteps,
+    evidenceRefs: topOpp?.evidence?.map((e, i) => ({
+      id: `ev-${String(i + 1).padStart(3, "0")}`,
+      type: e.type,
+      source: `${e.source}:${e.id ?? ""}`,
+      url: e.url,
+    })) ?? [],
+    concerns: report.gaps.map((g) => g.message),
+    nextSteps: report.nextSteps,
+    analysis: {
+      opportunities: report.opportunities,
+      crossValidation: report.crossValidation,
+      confidence: report.confidence,
+      gaps: report.gaps,
+    },
+  });
+
+  // Write handoff.json — key info for the next stage
+  await writeHandoff(stageName, {
+    protocolVersion: "1.0",
+    artifactType: "stage-handoff",
+    projectId: report.projectId,
+    fromStage: stageName,
+    toStage: stageName === "discover" ? "validate" : null,
+    generatedAt: report.generatedAt,
+    summary: {
+      candidateId: topOpp?.id ?? null,
+      targetUserCandidate: topOpp?.targetUser ?? null,
+      painfulSituation: topOpp?.painfulSituation ?? null,
+      promiseCandidate: topOpp?.description ?? null,
+      topSignals: topOpp?.signalTypes ?? [],
+      suggestedKeywords: report.query ? [report.query] : [],
+      suggestedSubreddits: topOpp?.communities?.filter((c) => c !== "Hacker News") ?? [],
+      score: report.score,
+      decision: report.decision,
+    },
+  });
+
+  // Write report.md
+  const stageDir = resolve(REPO_ROOT, "playbook", "stages", stageName);
+  await mkdir(stageDir, { recursive: true });
+  await writeFile(resolve(stageDir, "report.md"), markdown);
+
+  console.log(`📋 Playbook stage "${stageName}" artifacts written:`);
+  console.log(`   playbook/stages/${stageName}/input.json`);
+  console.log(`   playbook/stages/${stageName}/report.json`);
+  console.log(`   playbook/stages/${stageName}/handoff.json`);
+  console.log(`   playbook/stages/${stageName}/report.md`);
+  console.log("");
 }
 
 /* ------------------------------------------------------------------ */
@@ -335,6 +458,7 @@ Options:
   --limit, -l <number>  Max items per source (default: 25)
   --community <name>    Subreddit name (for reddit source)
   --project, -p <name>  Project name for the report
+  --stage, -s <name>    Write results to playbook stage (discover, validate, etc.)
   --json                Output raw JSON to stdout
   --verbose, -v         Show detailed analysis progress
   --help, -h            Show this help message
@@ -347,6 +471,10 @@ Examples:
   node scripts/analyze-data.mjs collect-analyze \\
     --sources hacker-news,github,google-autocomplete \\
     -q "ai invoice tool" -o analysis/invoice-tool/
+
+  # Collect + analyze + write to playbook discover stage
+  node scripts/analyze-data.mjs collect-analyze \\
+    --sources hacker-news,github -q "ai tool" --stage discover
 
   # Regenerate Markdown from existing analysis
   node scripts/analyze-data.mjs report analysis/report.json -o analysis/

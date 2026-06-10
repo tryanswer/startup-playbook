@@ -322,8 +322,9 @@ function extractRelevantExcerpt(text, pattern, maxLength) {
 function computeHeat(group) {
   // Heat = weighted frequency × source diversity × engagement
   const frequencyScore = Math.min(group.count * group.totalWeight, 100);
-  const diversityMultiplier = 1 + (group.sources.length - 1) * 0.3;
-  const engagementBonus = Math.log2(1 + group.totalScore + group.totalComments * 2);
+  const sourceCount = group.sources instanceof Set ? group.sources.size : (group.sources?.length ?? 0);
+  const diversityMultiplier = 1 + Math.max(0, sourceCount - 1) * 0.3;
+  const engagementBonus = Math.log2(1 + (group.totalScore ?? 0) + (group.totalComments ?? 0) * 2);
 
   return Math.round(frequencyScore * diversityMultiplier + engagementBonus);
 }

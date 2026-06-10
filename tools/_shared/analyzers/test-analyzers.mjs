@@ -9,6 +9,7 @@ import { extractSignals, extractItemSignals, computePainRate, computePaymentRate
 import { scoreOpportunity, classifyDecision, rankOpportunities } from "./opportunity-scorer.mjs";
 import { fuseSignals } from "./signal-fusion.mjs";
 import { generateReport, generateMarkdown } from "./report-generator.mjs";
+import { matchBusinessModel, generatePricingChecklist, generateModelMarkdown, BUSINESS_MODELS } from "./business-model-matcher.mjs";
 
 let passed = 0;
 let failed = 0;
@@ -104,7 +105,10 @@ test("groupSignalsByType produces ranked groups", () => {
   const { signals } = extractSignals(MOCK_POSTS);
   const groups = groupSignalsByType(signals);
   assert.ok(groups.length > 0);
-  assert.ok(groups[0].heat >= groups[groups.length - 1].heat, "Should be sorted by heat");
+  // Verify sorted by heat (descending)
+  for (let i = 1; i < groups.length; i++) {
+    assert.ok(groups[i - 1].heat >= groups[i].heat, `Group ${i - 1} (heat=${groups[i - 1].heat}) should >= group ${i} (heat=${groups[i].heat})`);
+  }
   assert.ok(groups[0].count > 0);
   assert.ok(groups[0].examples.length > 0);
 });
@@ -320,20 +324,112 @@ test("report opportunities are ranked by score", () => {
 /*  End-to-End Pipeline Test                                           */
 /* ------------------------------------------------------------------ */
 
+/* ------------------------------------------------------------------ */
+/*  Business Model Matcher Tests                                       */
+/* ------------------------------------------------------------------ */
+
+console.log("\n── Business Model Matcher ──");
+
+test("BUSINESS_MODELS has 5 model definitions", () => {
+  assert.equal(BUSINESS_MODELS.length, 5);
+  const ids = BUSINESS_MODELS.map((m) => m.id);
+  assert.ok(ids.includes("saas-subscription"));
+  assert.ok(ids.includes("productized-service"));
+  assert.ok(ids.includes("content-course"));
+  assert.ok(ids.includes("marketplace"));
+  assert.ok(ids.includes("developer-tool"));
+});
+
+test("matchBusinessModel returns ranked recommendations", () => {
+  const extracted = extractSignals(MOCK_POSTS);
+  const fusion = fuseSignals(extracted, MOCK_POSTS);
+  const report = generateReport(fusion, { projectId: "bm-test" });
+  const match = matchBusinessModel(report);
+
+  assert.ok(match.recommendations.length > 0, "Should have ≥1 recommendation");
+  assert.ok(match.primaryModel, "Should have a primary model");
+  assert.ok(match.primaryModel.fitScore > 0, "Primary model should have positive fit score");
+  assert.ok(match.primaryModel.pricingGuidance, "Should include pricing guidance");
+  assert.ok(match.pricingChecklist.length > 0, "Should have pricing checklist");
+  assert.ok(match.reasoning, "Should have reasoning text");
+});
+
+test("matchBusinessModel recommendations are sorted by fit", () => {
+  const extracted = extractSignals(MOCK_POSTS);
+  const fusion = fuseSignals(extracted, MOCK_POSTS);
+  const report = generateReport(fusion);
+  const match = matchBusinessModel(report);
+
+  for (let i = 1; i < match.recommendations.length; i++) {
+    assert.ok(
+      match.recommendations[i - 1].fitScore >= match.recommendations[i].fitScore,
+      "Recommendations should be sorted descending by fitScore"
+    );
+  }
+});
+
+test("matchBusinessModel detects SaaS for invoice/tool signals", () => {
+  const extracted = extractSignals(MOCK_POSTS);
+  const fusion = fuseSignals(extracted, MOCK_POSTS);
+  const report = generateReport(fusion);
+  const match = matchBusinessModel(report);
+
+  // Invoice tool data should strongly match SaaS or Developer Tool
+  const topIds = match.recommendations.slice(0, 2).map((m) => m.id);
+  assert.ok(
+    topIds.includes("saas-subscription") || topIds.includes("developer-tool"),
+    `Top models should include SaaS or DevTool, got: ${topIds.join(", ")}`
+  );
+});
+
+test("generatePricingChecklist returns common + model-specific items", () => {
+  const checklist = generatePricingChecklist({ id: "saas-subscription" });
+  assert.ok(checklist.length >= 8, "Should have ≥8 checklist items");
+  assert.ok(checklist.some((c) => c.includes("pricing page")), "Should include pricing page item");
+  assert.ok(checklist.some((c) => c.includes("Free trial")), "Should include free trial item");
+});
+
+test("generateModelMarkdown produces readable output", () => {
+  const extracted = extractSignals(MOCK_POSTS);
+  const fusion = fuseSignals(extracted, MOCK_POSTS);
+  const report = generateReport(fusion);
+  const match = matchBusinessModel(report);
+  const markdown = generateModelMarkdown(match);
+
+  assert.ok(markdown.includes("Business Model Recommendation"));
+  assert.ok(markdown.includes("Pricing guidance"));
+  assert.ok(markdown.includes("Pricing Checklist"));
+  assert.ok(markdown.length > 300, "Markdown should be substantial");
+});
+
+test("matchBusinessModel handles empty report gracefully", () => {
+  const match = matchBusinessModel({ opportunities: [] });
+  assert.ok(match.primaryModel);
+  assert.ok(match.recommendations.length > 0);
+});
+
+/* ------------------------------------------------------------------ */
+/*  End-to-End Pipeline Tests                                          */
+/* ------------------------------------------------------------------ */
+
 console.log("\n── End-to-End Pipeline ──");
 
-test("full pipeline: extract → fuse → report → markdown", () => {
+test("full pipeline: extract → fuse → report → model match → markdown", () => {
   const extracted = extractSignals(MOCK_POSTS);
   const fusion = fuseSignals(extracted, MOCK_POSTS);
   const report = generateReport(fusion, { projectId: "e2e-test", query: "invoice" });
+  const modelMatch = matchBusinessModel(report);
   const markdown = generateMarkdown(report);
+  const modelMd = generateModelMarkdown(modelMatch);
 
   // Verify complete pipeline
   assert.ok(extracted.signals.length > 0, "Should extract signals");
   assert.ok(fusion.opportunities.length > 0 || fusion.gaps.length > 0, "Should have opportunities or gaps");
   assert.ok(report.score >= 0, "Should have a score");
-  assert.ok(markdown.length > 200, "Should generate markdown");
+  assert.ok(markdown.length > 200, "Should generate analysis markdown");
+  assert.ok(modelMd.length > 200, "Should generate model markdown");
   assert.ok(report.nextSteps.length > 0, "Should recommend next steps");
+  assert.ok(modelMatch.primaryModel.fitScore > 0, "Should match a business model");
 });
 
 /* ------------------------------------------------------------------ */

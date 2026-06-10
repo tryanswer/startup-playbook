@@ -1,56 +1,15 @@
 {
   "protocolVersion": "1.0",
   "artifactType": "stage-input",
-  "projectId": "ai-ecommerce-image-optimizer",
+  "projectId": "startup-analysis",
   "stage": "discover",
-  "generatedAt": "2026-06-02T02:04:04.061Z",
-  "generatedBy": {
-    "agent": "codex",
-    "skill": "opportunity-discovery",
-    "model": "unknown"
-  },
-  "sourceInputs": [
-    {
-      "type": "file",
-      "path": "data/sample-live-sources.json"
-    }
+  "generatedAt": "2026-06-10T08:54:20.510Z",
+  "query": "ai invoice tool",
+  "sources": [
+    "hacker-news",
+    "github",
+    "google-autocomplete"
   ],
-  "inputs": {
-    "project": "Live International Opportunity Radar",
-    "targetMarkets": [
-      "international"
-    ],
-    "sources": {
-      "communities": [
-        {
-          "source": "hacker-news:Hacker News",
-          "count": 20
-        },
-        {
-          "source": "hacker-news:Show HN",
-          "count": 20
-        }
-      ],
-      "cases": [
-        {
-          "source": "github",
-          "count": 20
-        },
-        {
-          "source": "product-hunt",
-          "count": 20
-        }
-      ]
-    },
-    "thresholds": {
-      "minScoreForValidation": 60,
-      "maxTopCandidates": 5
-    },
-    "sourceErrors": [
-      {
-        "type": "reddit",
-        "message": "fetch failed"
-      }
-    ]
-  }
+  "itemCount": 60,
+  "collectedAt": "2026-06-10T08:54:20.492Z"
 }

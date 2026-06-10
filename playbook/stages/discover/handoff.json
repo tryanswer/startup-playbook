@@ -1,37 +1,32 @@
 {
   "protocolVersion": "1.0",
   "artifactType": "stage-handoff",
-  "projectId": "ai-ecommerce-image-optimizer",
+  "projectId": "startup-analysis",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-06-02T02:04:04.061Z",
-  "generatedBy": {
-    "agent": "codex",
-    "skill": "startup-playbook-artifacts",
-    "model": "unknown"
-  },
-  "sourceInputs": [
-    {
-      "type": "file",
-      "path": "playbook/stages/discover/report.json"
-    }
-  ],
+  "generatedAt": "2026-06-10T08:54:20.510Z",
   "summary": {
-    "nextStage": "validate",
-    "candidateId": "opp-automation-failure-audit-trail",
-    "candidateType": "pain-led",
-    "targetUserCandidate": "small B2B operators using automation workflows",
-    "painfulSituation": "failed multi-step automations create brittle onboarding workflows and manual spreadsheet reconciliation",
-    "promiseCandidate": "A lightweight audit trail that flags failed automation runs and turns them into a manual recovery queue.",
-    "firstReachableChannel": "hacker-news:Hacker News",
-    "evidenceRefs": [
-      "ev-discover-hacker-news-27748738",
-      "ev-discover-hacker-news-42052432",
-      "ev-discover-hacker-news-44745820",
-      "ev-discover-hacker-news-41259754",
-      "ev-discover-hacker-news-44453377",
-      "ev-discover-github-al1abb-invoify"
+    "candidateId": "cluster-show",
+    "targetUserCandidate": "Teams/organizations",
+    "painfulSituation": "…vs typing.<p>how it works: add a couple lines of js plus an api key, and speecho",
+    "promiseCandidate": "\"show\" theme — 40 signals (pain signals + demand indicators + supply evidence)",
+    "topSignals": [
+      "integration-friction",
+      "open-source",
+      "saas-exists",
+      "manual-workflow",
+      "team-need",
+      "revenue-signal",
+      "pricing-model",
+      "alternative-seeking",
+      "frequency",
+      "purchase-intent"
     ],
-    "recommendedNextExperiment": "Reply to 10 operators in the source communities and offer a paid manual audit of one broken onboarding workflow."
+    "suggestedKeywords": [
+      "ai invoice tool"
+    ],
+    "suggestedSubreddits": [],
+    "score": 47,
+    "decision": "pivot"
   }
 }
