@@ -1,0 +1,14 @@
+{
+  "name": "@startup-playbook/pipeline-orchestrator",
+  "version": "0.1.0",
+  "description": "End-to-end pipeline orchestrator for startup-playbook stages",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "status": "node ../../scripts/run-pipeline.mjs status",
+    "inspect": "node ../../scripts/run-pipeline.mjs inspect",
+    "advance": "node ../../scripts/run-pipeline.mjs advance",
+    "run": "node ../../scripts/run-pipeline.mjs run",
+    "credentials": "node ../../scripts/run-pipeline.mjs credentials"
+  }
+}
