@@ -1,72 +1,27 @@
+/**
+ * Signal rules imported from the unified analyzers module.
+ * This replaces the 14 local rules with the more comprehensive 19-rule set
+ * from _shared/analyzers/signal-extractor.mjs, gaining:
+ *   - Pain: +time-waste, +scaling-pain rules
+ *   - Demand: +urgency, +frequency, +team-need, +feature-request rules
+ *   - Supply: +pricing-model, +open-source, +saas-exists, +market-growth rules
+ *   - Explicit weight per rule for heat scoring
+ */
+import {
+  PAIN_RULES,
+  DEMAND_RULES,
+  SUPPLY_RULES,
+  extractItemSignals,
+} from "../../_shared/analyzers/signal-extractor.mjs";
+
+// Map _shared/ rules back to radar's legacy categories for backward compat
 const PAIN_SIGNAL_RULES = [
-  {
-    type: "pricing-pain",
-    label: "Pricing pain",
-    pattern: /\b(too expensive|pricey|pricing|costs? too much|can't afford|cannot afford|overpriced)\b/i,
-  },
-  {
-    type: "alternative-seeking",
-    label: "Alternative seeking",
-    pattern: /\b(alternative|instead of|replace|replacement|switch from|switching from|dupe|similar tool)\b/i,
-  },
-  {
-    type: "manual-workflow",
-    label: "Manual workflow",
-    pattern: /\b(manual|manually|spreadsheet|copy.?paste|reconcile|csv|every friday|by hand)\b/i,
-  },
-  {
-    type: "repeated-question",
-    label: "Repeated question",
-    pattern: /\b(what do you use|how are you|ask hn|anyone else|recommend|which tool|should i)\b/i,
-  },
-  {
-    type: "integration-friction",
-    label: "Integration friction",
-    pattern: /\b(api|integration|webhook|sync|stripe|breaks when|one api changes)\b/i,
-  },
-  {
-    type: "migration-friction",
-    label: "Migration friction",
-    pattern: /\b(migrate|migration|moving from|switching to|import from|export from)\b/i,
-  },
-  {
-    type: "purchase-intent",
-    label: "Purchase intent",
-    pattern: /\b(would pay|pay for|paid|budget|buy|subscription|procure|purchase)\b/i,
-  },
-  {
-    type: "tool-complaint",
-    label: "Tool complaint",
-    pattern: /\b(keeps failing|keeps breaking|doesn't work|does not work|broken|buggy|unreliable|fails\b)\b/i,
-  },
+  ...PAIN_RULES,
+  // Include purchase-intent from DEMAND_RULES (radar historically treated it as pain)
+  ...DEMAND_RULES.filter((rule) => rule.type === "purchase-intent"),
 ];
 
-const CASE_SIGNAL_RULES = [
-  {
-    type: "revenue-signal",
-    pattern: /\$\s?\d|mrr|arr|revenue|profit/i,
-  },
-  {
-    type: "pricing-signal",
-    pattern: /\$\s?\d|pricing|price|\/mo|per month|subscription/i,
-  },
-  {
-    type: "github-distribution",
-    pattern: /\bgithub|open.?source|readme|repository\b/i,
-  },
-  {
-    type: "seo-channel",
-    pattern: /\bseo|search|google|long-tail|long tail\b/i,
-  },
-  {
-    type: "community-channel",
-    pattern: /\breddit|hacker news|indie hackers|community|forum|discord\b/i,
-  },
-  {
-    type: "manual-service",
-    pattern: /\bmanual|concierge|service|consulting|done-for-you|productized\b/i,
-  },
-];
+const CASE_SIGNAL_RULES = SUPPLY_RULES;
 
 const RISK_WEIGHT = {
   low: 2,

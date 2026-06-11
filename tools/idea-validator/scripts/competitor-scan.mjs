@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Competitor Scan — find existing solutions via Google autocomplete and Product Hunt.
+ * Competitor Scan — find existing solutions via Google autocomplete.
+ *
+ * Delegates data collection to the unified _shared/data-sources/google-autocomplete
+ * adapter, then runs local competitor extraction and market maturity assessment.
  *
  * Usage:
  *   node scripts/competitor-scan.mjs --keywords "ai skin analysis"
@@ -13,6 +16,9 @@ import { parseArgs } from 'node:util';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { collectFromSources } from '../../_shared/data-sources/index.mjs';
+import { loadCredentials } from '../../_shared/credentials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = join(__dirname, '..', 'output');
@@ -31,21 +37,14 @@ if (!args.keywords) {
 
 const keywords = args.keywords;
 
-async function fetchAutocompleteSuggestions(query) {
-  const url = `https://suggestqueries.google.com/complete/search?client=firefox&q=${encodeURIComponent(query)}`;
-  try {
-    const response = await fetch(url, {
-      headers: { 'User-Agent': 'startup-playbook-idea-validator/0.1' },
-    });
-    if (!response.ok) return [];
-    const data = await response.json();
-    return data[1] || [];
-  } catch {
-    return [];
-  }
-}
-
+/**
+ * Scan competitor signals using the unified google-autocomplete adapter.
+ * Queries multiple variations (app, tool, alternative, vs, etc.)
+ * and returns { query, suggestion } pairs.
+ */
 async function scanCompetitorSignals(keyword) {
+  await loadCredentials();
+
   const queries = [
     `${keyword} app`,
     `${keyword} tool`,
@@ -60,10 +59,16 @@ async function scanCompetitorSignals(keyword) {
   ];
 
   const allSuggestions = [];
-  for (const query of queries) {
-    const suggestions = await fetchAutocompleteSuggestions(query);
-    allSuggestions.push(...suggestions.map(s => ({ query, suggestion: s })));
-    await new Promise(resolve => setTimeout(resolve, 300));
+  for (const queryString of queries) {
+    const { items } = await collectFromSources([{
+      type: 'google-autocomplete',
+      query: queryString,
+    }], { credentials: {} });
+
+    allSuggestions.push(...items.map(item => ({
+      query: queryString,
+      suggestion: item.title,
+    })));
   }
 
   return allSuggestions;

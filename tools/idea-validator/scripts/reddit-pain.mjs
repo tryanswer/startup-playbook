@@ -3,6 +3,10 @@
 /**
  * Reddit Pain Miner — fetch and analyze Reddit posts for pain point evidence.
  *
+ * Delegates data collection to the unified _shared/data-sources/reddit adapter
+ * (OAuth2 support, proxy-aware, rate-limit friendly), then runs local
+ * pain/payment analysis on the collected posts.
+ *
  * Usage:
  *   node scripts/reddit-pain.mjs --keywords "skin care routine" --subreddits "SkincareAddiction,30PlusSkinCare"
  *   node scripts/reddit-pain.mjs --keywords "invoice freelancer" --limit 50
@@ -14,6 +18,9 @@ import { parseArgs } from 'node:util';
 import { writeFile, mkdir } from 'node:fs/promises';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import { collectFromSources } from '../../_shared/data-sources/index.mjs';
+import { loadCredentials, getCredential } from '../../_shared/credentials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = join(__dirname, '..', 'output');
@@ -36,47 +43,43 @@ const keywords = args.keywords;
 const subreddits = args.subreddits ? args.subreddits.split(',').map(s => s.trim()) : [];
 const limit = parseInt(args.limit, 10);
 
-async function fetchRedditSearch(query, subreddit, fetchLimit) {
-  const baseUrl = subreddit
-    ? `https://www.reddit.com/r/${subreddit}/search.json`
-    : 'https://www.reddit.com/search.json';
+/**
+ * Fetch Reddit posts using the unified data-sources adapter.
+ * Returns posts in the idea-validator analysis format.
+ */
+async function fetchRedditPosts(query, targetSubreddits, fetchLimit) {
+  await loadCredentials();
 
-  const params = new URLSearchParams({
-    q: query,
-    sort: 'relevance',
-    t: 'year',
-    limit: String(Math.min(fetchLimit, 100)),
-    restrict_sr: subreddit ? 'true' : 'false',
-  });
-
-  const url = `${baseUrl}?${params}`;
-  console.log(`  Fetching: ${url}`);
-
-  const response = await fetch(url, {
-    headers: { 'User-Agent': 'startup-playbook-idea-validator/0.1' },
-  });
-
-  if (!response.ok) {
-    console.warn(`  Warning: Reddit returned ${response.status} for ${subreddit || 'all'}`);
-    return [];
+  const credentials = {};
+  for (const key of ['REDDIT_CLIENT_ID', 'REDDIT_CLIENT_SECRET', 'REDDIT_USERNAME']) {
+    const value = getCredential(key);
+    if (value) credentials[key] = value;
   }
 
-  const data = await response.json();
-  const posts = (data?.data?.children || []).map(child => {
-    const post = child.data;
-    return {
-      title: post.title,
-      selftext: (post.selftext || '').slice(0, 500),
-      subreddit: post.subreddit,
-      score: post.score,
-      numComments: post.num_comments,
-      permalink: `https://reddit.com${post.permalink}`,
-      created: new Date(post.created_utc * 1000).toISOString(),
-      flair: post.link_flair_text || null,
-    };
-  });
+  const { items, errors } = await collectFromSources([{
+    type: 'reddit',
+    query,
+    communities: targetSubreddits.length > 0 ? targetSubreddits : undefined,
+    limit: Math.min(fetchLimit, 100),
+  }], { credentials });
 
-  return posts;
+  if (errors.length > 0) {
+    for (const error of errors) {
+      console.warn(`  Warning: Reddit error — ${error.error}`);
+    }
+  }
+
+  // Convert _shared/ format → idea-validator analysis format
+  return items.map(item => ({
+    title: item.title ?? '',
+    selftext: (item.excerpt ?? '').slice(0, 500),
+    subreddit: item.community ?? 'reddit',
+    score: item.score ?? 0,
+    numComments: item.comments ?? 0,
+    permalink: item.url ?? '',
+    created: item.createdAt ?? new Date().toISOString(),
+    flair: null,
+  }));
 }
 
 function extractPainSignals(posts) {
@@ -154,18 +157,7 @@ function detectPaymentSignals(posts) {
 async function main() {
   console.log(`\n🔍 Reddit Pain Mining: "${keywords}"\n`);
 
-  let allPosts = [];
-
-  if (subreddits.length > 0) {
-    for (const sub of subreddits) {
-      const posts = await fetchRedditSearch(keywords, sub, limit);
-      allPosts.push(...posts);
-      await new Promise(resolve => setTimeout(resolve, 1500));
-    }
-  } else {
-    allPosts = await fetchRedditSearch(keywords, '', limit);
-  }
-
+  const allPosts = await fetchRedditPosts(keywords, subreddits, limit);
   const uniquePosts = [...new Map(allPosts.map(post => [post.permalink, post])).values()];
   console.log(`\n  Found ${uniquePosts.length} unique posts\n`);
 

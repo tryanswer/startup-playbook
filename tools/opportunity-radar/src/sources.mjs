@@ -1,13 +1,102 @@
+/**
+ * Data source bridge for Opportunity Radar.
+ *
+ * Delegates all data collection to the unified _shared/data-sources/ framework,
+ * then splits results into communities (Post format) and cases (Case format)
+ * to maintain backward compatibility with radar.mjs.
+ *
+ * This replaced 502 lines of independent fetch logic with a thin adapter layer.
+ */
+
+import { collectFromSources } from "../../_shared/data-sources/index.mjs";
+import { loadCredentials, getCredential } from "../../_shared/credentials.mjs";
+
+/* ------------------------------------------------------------------ */
+/*  Source type classification                                         */
+/* ------------------------------------------------------------------ */
+
+/** Sources that produce community posts (pain signals) */
+const COMMUNITY_SOURCES = new Set(["reddit", "hacker-news"]);
+
+/** Sources that produce case studies (supply signals) */
+const CASE_SOURCES = new Set(["github", "product-hunt"]);
+
+/* ------------------------------------------------------------------ */
+/*  Public API                                                         */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Fetch data from radar source configs using the unified data-sources framework.
+ *
+ * Converts radar-style source configs to _shared/data-sources/ format,
+ * collects data, then splits results into communities + cases buckets.
+ *
+ * @param {Array} sources — radar source config objects
+ * @param {Object} [options]
+ * @param {boolean} [options.failFast=false]
+ * @param {string} [options.githubToken]
+ * @param {string} [options.productHuntToken]
+ * @returns {{ communities: Post[], cases: Case[], errors: Error[] }}
+ */
+export async function fetchRadarSources(sources, options = {}) {
+  if (!sources?.length) return { communities: [], cases: [], errors: [] };
+
+  await loadCredentials();
+
+  // Build credentials map from options + env
+  const credentials = {
+    ...buildCredentialsMap(),
+    ...(options.githubToken ? { GITHUB_TOKEN: options.githubToken } : {}),
+    ...(options.productHuntToken ? { PRODUCT_HUNT_TOKEN: options.productHuntToken } : {}),
+  };
+
+  // Convert radar source configs to unified format
+  const unifiedConfigs = sources
+    .map((source) => convertSourceConfig(source))
+    .filter(Boolean);
+
+  const result = await collectFromSources(unifiedConfigs, {
+    failFast: options.failFast ?? false,
+    credentials,
+    onProgress: options.onProgress,
+  });
+
+  // Split items into communities (posts) and cases
+  const communities = [];
+  const cases = [];
+
+  for (const item of result.items) {
+    if (COMMUNITY_SOURCES.has(item.source)) {
+      communities.push(item);
+    } else if (CASE_SOURCES.has(item.source)) {
+      cases.push(enrichCaseItem(item));
+    } else {
+      // Default: items with community field go to communities, others to cases
+      if (item.community) communities.push(item);
+      else cases.push(enrichCaseItem(item));
+    }
+  }
+
+  return {
+    communities,
+    cases,
+    errors: result.errors,
+  };
+}
+
+/**
+ * Legacy compatibility: build a community source URL.
+ * Kept for test compatibility — new code should not use this directly.
+ */
 export function buildCommunitySourceUrl(source) {
   if (source.type === "reddit") {
-    const community = required(source.community, "reddit source requires community");
+    const community = source.community;
+    if (!community) throw new Error("reddit source requires community");
     const limit = clampLimit(source.limit, 25);
     if (source.search) {
       const params = new URLSearchParams({
-        q: source.search,
-        restrict_sr: "1",
-        sort: source.sort ?? "relevance",
-        limit: String(limit),
+        q: source.search, restrict_sr: "1",
+        sort: source.sort ?? "relevance", limit: String(limit),
       });
       return `https://www.reddit.com/r/${encodeURIComponent(community)}/search.json?${params.toString()}`;
     }
@@ -17,481 +106,142 @@ export function buildCommunitySourceUrl(source) {
     params.set("limit", String(limit));
     return `https://www.reddit.com/r/${encodeURIComponent(community)}/${listing}.json?${params.toString()}`;
   }
-
-  if (source.type === "hacker-news") {
-    const query = required(source.query ?? source.search, "hacker-news source requires query");
+  if (source.type === "hacker-news" || source.type === "show-hn") {
+    const query = source.query ?? source.search;
+    if (!query) throw new Error(`${source.type} source requires query`);
+    const tags = source.type === "show-hn" ? "show_hn" : (source.tags ?? "story");
     const params = new URLSearchParams({
-      query,
-      tags: source.tags ?? "story",
-      hitsPerPage: String(clampLimit(source.limit, 20)),
+      query, tags, hitsPerPage: String(clampLimit(source.limit, 20)),
     });
     return `https://hn.algolia.com/api/v1/search?${params.toString()}`;
   }
-
-  if (source.type === "show-hn") {
-    const query = required(source.query ?? source.search, "show-hn source requires query");
-    const params = new URLSearchParams({
-      query,
-      tags: "show_hn",
-      hitsPerPage: String(clampLimit(source.limit, 20)),
-    });
-    return `https://hn.algolia.com/api/v1/search?${params.toString()}`;
-  }
-
   if (source.type === "github") {
-    const query = required(source.query ?? source.search, "github source requires query");
-    const q = source.minStars ? `${query} stars:>=${Number(source.minStars)}` : query;
+    const query = source.query ?? source.search;
+    if (!query) throw new Error("github source requires query");
+    const queryString = source.minStars ? `${query} stars:>=${Number(source.minStars)}` : query;
     const params = new URLSearchParams({
-      q,
-      sort: source.sort ?? "stars",
-      order: source.order ?? "desc",
-      per_page: String(clampLimit(source.limit, 20)),
+      q: queryString, sort: source.sort ?? "stars",
+      order: source.order ?? "desc", per_page: String(clampLimit(source.limit, 20)),
     });
     return `https://api.github.com/search/repositories?${params.toString()}`;
   }
-
-  if (source.type === "indie-hackers") {
-    const query = required(source.query ?? source.search, "indie-hackers source requires query");
-    const params = new URLSearchParams({ search: query });
-    return `https://www.indiehackers.com/stories?${params.toString()}`;
-  }
-
-  if (source.type === "product-hunt") {
-    const query = required(source.query ?? source.search, "product-hunt source requires query");
-    if (source.apiToken) return "https://api.producthunt.com/v2/api/graphql";
-    const params = new URLSearchParams({ q: query });
-    return `https://www.producthunt.com/search?${params.toString()}`;
-  }
-
-  throw new Error(`Unsupported source type: ${source.type}`);
+  throw new Error(`Unsupported source type for URL building: ${source.type}`);
 }
 
-export async function fetchRadarSources(sources, options = {}) {
-  const fetchImpl = options.fetchImpl ?? globalThis.fetch;
-  if (typeof fetchImpl !== "function") {
-    throw new Error("fetchRadarSources requires a fetch implementation.");
+/* ------------------------------------------------------------------ */
+/*  Config Conversion                                                  */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Convert a radar-style source config to a unified _shared/data-sources/ config.
+ */
+function convertSourceConfig(source) {
+  const type = source.type;
+  const query = source.query ?? source.search;
+
+  if (type === "reddit") {
+    return {
+      type: "reddit",
+      query: source.search ?? query,
+      communities: source.community ? [source.community] : ["SaaS", "startups"],
+      limit: source.limit ?? 25,
+    };
   }
 
-  const communities = [];
-  const cases = [];
-  const errors = [];
-  for (const source of sources ?? []) {
-    if (!["reddit", "hacker-news", "show-hn", "github", "indie-hackers", "product-hunt"].includes(source.type)) {
-      throw new Error(`Unsupported source type: ${source.type}`);
-    }
-    try {
-      if (["reddit", "hacker-news"].includes(source.type)) {
-        communities.push(...await fetchCommunitySources([source], { ...options, fetchImpl }));
-      } else if (source.type === "show-hn") {
-        communities.push(...await fetchShowHnSource(source, { ...options, fetchImpl }));
-      } else if (source.type === "github") {
-        cases.push(...await fetchGithubSource(source, { ...options, fetchImpl }));
-      } else if (source.type === "indie-hackers") {
-        cases.push(...await fetchIndieHackersSource(source, { ...options, fetchImpl }));
-      } else if (source.type === "product-hunt") {
-        cases.push(...await fetchProductHuntSource(source, { ...options, fetchImpl }));
-      }
-    } catch (error) {
-      if (options.failFast) throw error;
-      errors.push({
-        type: source.type,
-        message: error.message,
-      });
-    }
+  if (type === "hacker-news" || type === "show-hn") {
+    return {
+      type: "hacker-news",
+      query: query,
+      limit: source.limit ?? 20,
+      // show-hn is handled by the HN adapter's tags field
+      tags: type === "show-hn" ? "show_hn" : (source.tags ?? "story"),
+    };
   }
 
+  if (type === "github") {
+    return {
+      type: "github",
+      query: query,
+      limit: source.limit ?? 20,
+      minStars: source.minStars,
+      sort: source.sort ?? "stars",
+    };
+  }
+
+  if (type === "product-hunt") {
+    return {
+      type: "product-hunt",
+      query: query,
+      limit: source.limit ?? 20,
+      featured: source.featured,
+      topic: source.topic,
+      order: source.order,
+    };
+  }
+
+  if (type === "indie-hackers") {
+    // Indie Hackers is not in _shared/ registry — skip with warning
+    console.warn(`[radar] Source "${type}" not available in unified registry, skipping.`);
+    return null;
+  }
+
+  console.warn(`[radar] Unknown source type "${type}", skipping.`);
+  return null;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Case Enrichment                                                    */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Enrich a _shared/ item with radar-specific case fields if missing.
+ * The _shared/ GitHub adapter already produces most fields; this fills gaps.
+ */
+function enrichCaseItem(item) {
   return {
-    communities: dedupePosts(communities),
-    cases: dedupeCases(cases),
-    errors,
+    id: item.id,
+    source: item.source,
+    title: item.title ?? "",
+    url: item.url ?? null,
+    targetUser: item.targetUser ?? inferTargetUser(item),
+    pain: item.pain ?? item.description ?? item.excerpt ?? "",
+    productShape: item.productShape ?? `${item.source} item`,
+    firstAcquisitionChannel: item.firstAcquisitionChannel ?? `${item.source} discovery`,
+    pricing: item.pricing ?? null,
+    revenue: item.revenue ?? null,
+    validationMove: item.validationMove ?? "Inspect positioning, traction signals, and adjacent demand before adapting.",
+    copyable: item.copyable ?? ["positioning angle", "channel strategy"],
+    notCopyable: item.notCopyable ?? ["existing traction", "timing"],
+    // Preserve any extra fields from the adapter
+    ...(item.tags ? { tags: item.tags } : {}),
+    ...(item.score != null ? { score: item.score } : {}),
+    ...(item.comments != null ? { comments: item.comments } : {}),
   };
 }
 
-export async function fetchCommunitySources(sources, options = {}) {
-  const fetchImpl = options.fetchImpl ?? globalThis.fetch;
-  if (typeof fetchImpl !== "function") {
-    throw new Error("fetchCommunitySources requires a fetch implementation.");
-  }
-
-  const posts = [];
-  for (const source of sources ?? []) {
-    if (!["reddit", "hacker-news"].includes(source.type)) continue;
-    const url = buildCommunitySourceUrl(source);
-    const response = await fetchImpl(url, {
-      headers: {
-        "user-agent": options.userAgent ?? "startup-playbook-opportunity-radar/0.1",
-      },
-    });
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${source.type} source (${response.status ?? "unknown"}): ${url}`);
-    }
-    const json = await response.json();
-    if (source.type === "reddit") {
-      posts.push(...redditListingToPosts(json));
-    } else if (source.type === "hacker-news") {
-      posts.push(...hackerNewsHitsToPosts(json));
-    }
-    if (options.delayMs) {
-      await new Promise((resolve) => setTimeout(resolve, Number(options.delayMs)));
-    }
-  }
-
-  return dedupePosts(posts);
-}
-
-async function fetchShowHnSource(source, options) {
-  const response = await fetchJsonUrl(source, options);
-  return hackerNewsHitsToPosts(response, "Show HN");
-}
-
-async function fetchGithubSource(source, options) {
-  const response = await fetchJsonUrl(source, options);
-  return (response.items ?? [])
-    .filter((item) => item?.full_name)
-    .map((item) => ({
-      id: `github:${item.full_name}`,
-      source: "github",
-      title: item.full_name,
-      url: item.html_url ?? null,
-      targetUser: inferTargetUserFromGithub(item),
-      pain: cleanText(item.description ?? "Public repository suggests a repeatable product workflow.", 220),
-      productShape: `GitHub repository${item.language ? ` in ${item.language}` : ""}`,
-      firstAcquisitionChannel: "GitHub search / open-source distribution",
-      pricing: `stars: ${toNumber(item.stargazers_count)}`,
-      revenue: null,
-      validationMove: "Audit issues, README positioning, stars, forks, and adjacent search demand before copying the wedge.",
-      copyable: [
-        "open-source lead magnet",
-        "README-driven positioning",
-        ...(item.topics ?? []).slice(0, 3).map((topic) => `${topic} niche`),
-      ],
-      notCopyable: [
-        "repository age",
-        "existing maintainer trust",
-      ],
-    }));
-}
-
-async function fetchIndieHackersSource(source, options) {
-  const html = await fetchTextUrl(source, options);
-  return extractIndieHackersCases(html, source);
-}
-
-async function fetchProductHuntSource(source, options) {
-  if (source.apiToken || options.productHuntToken) {
-    const json = await fetchProductHuntGraphql(source, options);
-    return productHuntGraphqlToCases(json);
-  }
-  const html = await fetchTextUrl(source, options);
-  return extractProductHuntCases(html, source);
-}
-
-async function fetchJsonUrl(source, options) {
-  const response = await options.fetchImpl(buildCommunitySourceUrl(source), {
-    headers: defaultHeaders(options, source),
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${source.type} source (${response.status ?? "unknown"}).`);
-  }
-  return response.json();
-}
-
-async function fetchTextUrl(source, options) {
-  const response = await options.fetchImpl(buildCommunitySourceUrl(source), {
-    headers: defaultHeaders(options, source),
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch ${source.type} source (${response.status ?? "unknown"}).`);
-  }
-  return response.text();
-}
-
-async function fetchProductHuntGraphql(source, options) {
-  const request = buildProductHuntGraphqlRequest(source);
-  const query = `
-    query OpportunityRadarProductHunt(${request.variableDefinitions.join(", ")}) {
-      posts(${request.argumentList.join(", ")}) {
-        edges {
-          node {
-            id
-            name
-            tagline
-            url
-            votesCount
-            createdAt
-          }
-        }
-      }
-    }
-  `;
-  const response = await options.fetchImpl("https://api.producthunt.com/v2/api/graphql", {
-    method: "POST",
-    headers: {
-      ...defaultHeaders(options, source),
-      Authorization: `Bearer ${source.apiToken ?? options.productHuntToken}`,
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      query,
-      variables: request.variables,
-    }),
-  });
-  if (!response.ok) {
-    throw new Error(`Failed to fetch product-hunt API source (${response.status ?? "unknown"}).`);
-  }
-  const json = await response.json();
-  if (json?.errors?.length) {
-    const message = json.errors[0]?.message ?? json.errors[0]?.error ?? "unknown error";
-    throw new Error(`Product Hunt GraphQL error: ${message}`);
-  }
-  return json;
-}
-
-function buildProductHuntGraphqlRequest(source) {
-  const variableDefinitions = ["$first: Int!"];
-  const argumentList = ["first: $first"];
-  const variables = {
-    first: clampLimit(source.limit, 20),
-  };
-  const optionalArguments = [
-    ["featured", "Boolean", (value) => value === true || value === "true"],
-    ["postedBefore", "DateTime", String],
-    ["postedAfter", "DateTime", String],
-    ["topic", "String", String],
-    ["order", "PostsOrder", String],
-    ["twitterUrl", "String", String],
-    ["url", "String", String],
-    ["after", "String", String],
-    ["before", "String", String],
-  ];
-
-  for (const [name, type, normalize] of optionalArguments) {
-    if (source[name] == null || source[name] === "") continue;
-    variableDefinitions.push(`$${name}: ${type}`);
-    argumentList.push(`${name}: $${name}`);
-    variables[name] = normalize(source[name]);
-  }
-
-  return {
-    variableDefinitions,
-    argumentList,
-    variables,
-  };
-}
-
-function redditListingToPosts(json) {
-  return (json?.data?.children ?? [])
-    .map((child) => child?.data)
-    .filter((item) => item?.id && item?.title)
-    .map((item) => ({
-      id: `reddit:${item.id}`,
-      source: "reddit",
-      community: item.subreddit ?? "reddit",
-      title: cleanText(item.title, 180),
-      excerpt: cleanText(item.selftext ?? "", 360),
-      score: toNumber(item.score),
-      comments: toNumber(item.num_comments),
-      createdAt: item.created_utc ? new Date(item.created_utc * 1000).toISOString() : null,
-      url: normalizeRedditUrl(item.permalink),
-    }));
-}
-
-function hackerNewsHitsToPosts(json, community = "Hacker News") {
-  return (json?.hits ?? [])
-    .filter((hit) => hit?.objectID && (hit.title || hit.story_title))
-    .map((hit) => ({
-      id: `hacker-news:${hit.objectID}`,
-      source: "hacker-news",
-      community,
-      title: cleanText(hit.title ?? hit.story_title, 180),
-      excerpt: cleanText(hit.story_text ?? hit.comment_text ?? "", 360),
-      score: toNumber(hit.points),
-      comments: toNumber(hit.num_comments),
-      createdAt: hit.created_at ?? null,
-      url: hit.url || `https://news.ycombinator.com/item?id=${hit.objectID}`,
-    }));
-}
-
-function productHuntGraphqlToCases(json) {
-  return (json?.data?.posts?.edges ?? [])
-    .map((edge) => edge?.node)
-    .filter((node) => node?.id && node?.name)
-    .map((node) => ({
-      id: `product-hunt:${node.id}`,
-      source: "product-hunt",
-      title: cleanText(node.name, 180),
-      url: node.url ?? null,
-      targetUser: "Product Hunt launch audience",
-      pain: cleanText(node.tagline ?? "Product Hunt launch with public positioning.", 220),
-      productShape: "Product Hunt launch",
-      firstAcquisitionChannel: "Product Hunt",
-      pricing: `upvotes: ${toNumber(node.votesCount)}`,
-      revenue: null,
-      validationMove: "Inspect comments, makers, website CTA, and launch positioning before adapting the wedge.",
-      copyable: ["launch positioning", "tagline framing", "early adopter channel"],
-      notCopyable: ["launch timing", "maker audience", "Product Hunt ranking"],
-    }));
-}
-
-function extractIndieHackersCases(html) {
-  const cases = [];
-  const seen = new Set();
-  const anchorPattern = /<a\b([^>]*class=["'][^"']*(?:database__story|slick-story)[^"']*["'][^>]*)>([\s\S]*?)<\/a>/gi;
-  let match;
-  while ((match = anchorPattern.exec(html)) !== null) {
-    const href = extractAttribute(match[1], "href");
-    const body = match[2];
-    const id = normalizeIndieHackersId(href);
-    if (!id || seen.has(id)) continue;
-    seen.add(id);
-    const title = cleanText(stripTags(extractClassText(body, "slick-story__title") || stripTags(body)), 180);
-    const revenue = cleanText(extractClassText(body, "database__story-mrr") || "", 80);
-    cases.push({
-      id: `indie-hackers:${id}`,
-      source: "indie-hackers",
-      title,
-      url: normalizeUrl(href, "https://www.indiehackers.com"),
-      targetUser: "indie hackers / bootstrapped founders",
-      pain: title,
-      productShape: "public founder case",
-      firstAcquisitionChannel: "Indie Hackers case surface",
-      pricing: revenue || null,
-      revenue: revenue || null,
-      validationMove: "Extract the first validation move and acquisition wedge from the case before adapting it.",
-      copyable: ["founder case pattern", "channel signal", "positioning angle"],
-      notCopyable: ["founder timing", "existing audience", "case-specific market conditions"],
-    });
-  }
-  return cases.filter((item) => item.title);
-}
-
-function extractProductHuntCases(html) {
-  const cases = [];
-  const seen = new Set();
-  const anchorPattern = /<a\b([^>]*href=["']\/(?:products|posts)\/[^"']+["'][^>]*)>([\s\S]*?)<\/a>/gi;
-  let match;
-  while ((match = anchorPattern.exec(html)) !== null) {
-    const href = extractAttribute(match[1], "href");
-    const id = String(href ?? "").split("/").filter(Boolean).pop();
-    if (!id || seen.has(id)) continue;
-    seen.add(id);
-    const text = stripTags(match[2]);
-    const title = cleanText(text.split(/\s{2,}|\n/).find(Boolean) || id.replaceAll("-", " "), 180);
-    cases.push({
-      id: `product-hunt:${id}`,
-      source: "product-hunt",
-      title,
-      url: normalizeUrl(href, "https://www.producthunt.com"),
-      targetUser: "Product Hunt launch audience",
-      pain: cleanText(text || title, 220),
-      productShape: "Product Hunt launch",
-      firstAcquisitionChannel: "Product Hunt",
-      pricing: null,
-      revenue: null,
-      validationMove: "Inspect comments, launch assets, website CTA, and maker profile before adapting the wedge.",
-      copyable: ["launch positioning", "category framing", "early adopter channel"],
-      notCopyable: ["launch timing", "maker audience", "Product Hunt ranking"],
-    });
-  }
-  return cases;
-}
-
-function defaultHeaders(options, source) {
-  const headers = {
-    "user-agent": options.userAgent ?? "startup-playbook-opportunity-radar/0.1",
-  };
-  const githubToken = source?.token ?? options.githubToken;
-  if (source?.type === "github" && githubToken) {
-    headers.Authorization = `Bearer ${githubToken}`;
-  }
-  return headers;
-}
-
-function inferTargetUserFromGithub(item) {
-  const text = `${item.description ?? ""} ${(item.topics ?? []).join(" ")}`.toLowerCase();
+function inferTargetUser(item) {
+  const text = `${item.title ?? ""} ${item.pain ?? ""} ${item.description ?? ""}`.toLowerCase();
   if (text.includes("freelance")) return "freelancers";
   if (text.includes("developer") || text.includes("api")) return "developers";
   if (text.includes("shopify") || text.includes("ecommerce")) return "ecommerce operators";
-  return "GitHub users searching for this workflow";
+  return `${item.source} users`;
 }
 
-function extractAttribute(html, name) {
-  const match = new RegExp(`${name}=["']([^"']+)["']`, "i").exec(html ?? "");
-  return match?.[1] ?? null;
-}
+/* ------------------------------------------------------------------ */
+/*  Helpers                                                            */
+/* ------------------------------------------------------------------ */
 
-function extractClassText(html, className) {
-  const escaped = className.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const match = new RegExp(`<[^>]*class=["'][^"']*${escaped}[^"']*["'][^>]*>([\\s\\S]*?)<\\/[^>]+>`, "i").exec(html ?? "");
-  return match ? stripTags(match[1]) : "";
-}
-
-function stripTags(html) {
-  return String(html ?? "")
-    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
-    .replace(/<style\b[\s\S]*?<\/style>/gi, "")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&nbsp;/g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-function normalizeIndieHackersId(href) {
-  if (!href) return null;
-  const parts = String(href).split("?")[0].split("/").filter(Boolean);
-  return parts.pop() ?? null;
-}
-
-function normalizeUrl(href, baseUrl) {
-  if (!href) return null;
-  if (String(href).startsWith("http")) return String(href);
-  return `${baseUrl}${href.startsWith("/") ? "" : "/"}${href}`;
-}
-
-function normalizeRedditUrl(permalink) {
-  if (!permalink) return null;
-  if (String(permalink).startsWith("http")) return String(permalink);
-  return `https://www.reddit.com${permalink}`;
-}
-
-function dedupePosts(posts) {
-  const seen = new Set();
-  const result = [];
-  for (const post of posts) {
-    if (seen.has(post.id)) continue;
-    seen.add(post.id);
-    result.push(post);
+function buildCredentialsMap() {
+  const keys = [
+    "GITHUB_TOKEN", "PRODUCT_HUNT_TOKEN", "TWITTER_BEARER_TOKEN",
+    "REDDIT_CLIENT_ID", "REDDIT_CLIENT_SECRET", "REDDIT_USERNAME",
+  ];
+  const map = {};
+  for (const key of keys) {
+    const value = getCredential(key);
+    if (value) map[key] = value;
   }
-  return result;
-}
-
-function dedupeCases(cases) {
-  const seen = new Set();
-  const result = [];
-  for (const item of cases) {
-    if (seen.has(item.id)) continue;
-    seen.add(item.id);
-    result.push(item);
-  }
-  return result;
-}
-
-function required(value, message) {
-  if (!value) throw new Error(message);
-  return String(value);
-}
-
-function cleanText(value, maxLength) {
-  return String(value ?? "")
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, maxLength);
-}
-
-function toNumber(value) {
-  const number = Number(value);
-  return Number.isFinite(number) ? number : 0;
+  return map;
 }
 
 function clampLimit(value, fallback) {
