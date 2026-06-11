@@ -39,6 +39,7 @@ const { values, positionals } = parseArgs({
   options: {
     confirm: { type: "boolean", default: false },
     "dry-run": { type: "boolean", default: false },
+    "auto-run": { type: "boolean", default: false },
     to: { type: "string", default: "" },
     help: { type: "boolean", short: "h", default: false },
     json: { type: "boolean", default: false },
@@ -117,9 +118,18 @@ async function commandInspect() {
 }
 
 async function commandAdvance() {
+  const autoRun = values["auto-run"];
+
+  const progressLogger = (stage, status, detail) => {
+    const icons = { starting: "🚀", collecting: "📥", analyzing: "📊", matching: "💼", completed: "✅", error: "❌" };
+    console.log(`  ${icons[status] ?? "⏳"} [${stage}] ${detail}`);
+  };
+
   const result = await executeTransition({
     dryRun: values["dry-run"],
     confirm: values.confirm,
+    autoRun,
+    onProgress: autoRun ? progressLogger : undefined,
   });
 
   if (values.json) {
@@ -130,6 +140,12 @@ async function commandAdvance() {
   const icon = result.success ? "✅" : "⚠️";
   console.log("");
   console.log(`  ${icon} ${result.message}`);
+
+  if (result.action === "needs-run" && result.canAutoRun) {
+    console.log("");
+    console.log("  💡 This stage has an auto-executor. Run with --auto-run to execute:");
+    console.log("    node scripts/run-pipeline.mjs advance --auto-run --confirm");
+  }
 
   if (result.action === "awaiting-confirmation") {
     console.log("");
@@ -168,10 +184,18 @@ async function commandRun() {
     }
   }
 
+  const autoRun = values["auto-run"];
+  const progressLogger = (stage, status, detail) => {
+    const icons = { starting: "🚀", collecting: "📥", analyzing: "📊", matching: "💼", completed: "✅", error: "❌" };
+    console.log(`  ${icons[status] ?? "⏳"} [${stage}] ${detail}`);
+  };
+
   const result = await runPipeline({
     targetStage,
     confirm: values.confirm,
     dryRun: values["dry-run"],
+    autoRun,
+    onProgress: autoRun ? progressLogger : undefined,
   });
 
   if (values.json) {
@@ -246,6 +270,7 @@ function printHelp() {
 
   Options:
     --confirm       Bypass human decision point pauses
+    --auto-run      Auto-execute stage tools when no report exists
     --dry-run       Preview transitions without writing files
     --to <stage>    Target stage for 'run' command
     --json          Output in JSON format
@@ -254,10 +279,9 @@ function printHelp() {
   Examples:
     node scripts/run-pipeline.mjs status
     node scripts/run-pipeline.mjs inspect --json
+    node scripts/run-pipeline.mjs advance --auto-run --confirm
     node scripts/run-pipeline.mjs advance --dry-run
-    node scripts/run-pipeline.mjs advance --confirm
-    node scripts/run-pipeline.mjs run --to build
-    node scripts/run-pipeline.mjs run --to operate --confirm
+    node scripts/run-pipeline.mjs run --to business-model --auto-run --confirm
     node scripts/run-pipeline.mjs credentials
   `);
 }

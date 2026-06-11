@@ -4,16 +4,18 @@ Reusable scripts that support opportunity discovery, startup validation, SEO/ASO
 
 ## Pipeline Orchestrator
 
-- **`pipeline-orchestrator`**: End-to-end pipeline orchestrator — automatically routes between stages, transforms data via bridges, and pauses at human decision points. See [pipeline-orchestrator/README.md](./pipeline-orchestrator/README.md).
+- **`pipeline-orchestrator`**: End-to-end pipeline orchestrator — automatically routes between stages, transforms data via bridges, and pauses at human decision points.
+- **`pipeline-orchestrator/stage-executors.mjs`**: Stage auto-executors — maps each stage to an automated analysis function (discover, validate, business-model).
 - **`_shared/credentials.mjs`**: Unified API credential management — reads from `.env`, `~/.startup-playbook/.env`, and environment variables.
 - **`_shared/playbook-io.mjs`**: Shared read/write utilities for playbook artifacts (manifest, reports, handoffs).
 
 ```bash
 # Quick start
-node scripts/run-pipeline.mjs status      # show pipeline status
-node scripts/run-pipeline.mjs inspect     # inspect next action
-node scripts/run-pipeline.mjs advance     # advance one stage
-node scripts/run-pipeline.mjs credentials # audit API keys
+node scripts/run-pipeline.mjs status                     # show pipeline status
+node scripts/run-pipeline.mjs inspect                    # inspect next action
+node scripts/run-pipeline.mjs advance --auto-run --confirm  # auto-execute + advance
+node scripts/run-pipeline.mjs run --to business-model --auto-run --confirm  # run through multiple stages
+node scripts/run-pipeline.mjs credentials                # audit API keys
 ```
 
 ## Data Collection Layer

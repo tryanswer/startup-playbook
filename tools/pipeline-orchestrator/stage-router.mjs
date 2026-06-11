@@ -25,6 +25,7 @@ import {
 } from "../_shared/playbook-io.mjs";
 
 import { executeBridge, getBridge } from "./stage-bridges.mjs";
+import { hasExecutor, executeStage } from "./stage-executors.mjs";
 
 /**
  * Human decision points — stages where the pipeline must pause
@@ -58,14 +59,18 @@ export async function inspectPipeline() {
   const report = await readReport(currentStage);
 
   if (!report) {
+    const canAutoRun = hasExecutor(currentStage);
     return {
       currentStage,
       currentStatus: "not-started",
       decision: null,
       nextStage: null,
       action: "needs-run",
+      canAutoRun,
       needsHumanDecision: false,
-      message: `Stage "${currentStage}" has no report yet. Run the stage skill/tool first.`,
+      message: canAutoRun
+        ? `Stage "${currentStage}" has no report yet. Use --auto-run to execute automatically.`
+        : `Stage "${currentStage}" has no report yet. Run the stage skill/tool manually.`,
       bridgePreview: null,
     };
   }
@@ -180,20 +185,61 @@ export async function inspectPipeline() {
  * @param {Object} options
  * @param {boolean} [options.dryRun=false] - Preview without writing
  * @param {boolean} [options.confirm=false] - Bypass human decision pause
+ * @param {boolean} [options.autoRun=false] - Auto-execute stage if no report exists
+ * @param {Function} [options.onProgress] - Progress callback(stage, status, detail)
  * @returns {TransitionResult}
  */
-export async function executeTransition({ dryRun = false, confirm = false } = {}) {
-  const state = await inspectPipeline();
+export async function executeTransition({ dryRun = false, confirm = false, autoRun = false, onProgress } = {}) {
+  let state = await inspectPipeline();
 
-  // Can't advance if stage needs to be run first
+  // Stage needs to be run — auto-execute if --auto-run is set
   if (state.action === "needs-run") {
-    return {
-      success: false,
-      action: "needs-run",
-      message: state.message,
-      fromStage: state.currentStage,
-      toStage: null,
-    };
+    if (!autoRun || !state.canAutoRun) {
+      return {
+        success: false,
+        action: "needs-run",
+        message: state.message,
+        fromStage: state.currentStage,
+        toStage: null,
+        canAutoRun: state.canAutoRun ?? false,
+      };
+    }
+
+    // Auto-execute the stage
+    if (dryRun) {
+      return {
+        success: true,
+        action: "dry-run",
+        message: `[DRY RUN] Would auto-execute "${state.currentStage}" stage executor`,
+        fromStage: state.currentStage,
+        toStage: null,
+      };
+    }
+
+    const execResult = await executeStage(state.currentStage, { onProgress });
+    if (!execResult.success) {
+      return {
+        success: false,
+        action: "executor-failed",
+        message: execResult.message,
+        fromStage: state.currentStage,
+        toStage: null,
+      };
+    }
+
+    // Re-inspect after executor ran (it should have written report + handoff)
+    state = await inspectPipeline();
+
+    // If still needs-run, something went wrong
+    if (state.action === "needs-run") {
+      return {
+        success: false,
+        action: "executor-failed",
+        message: `Executor ran but stage "${state.currentStage}" still has no report.`,
+        fromStage: state.currentStage,
+        toStage: null,
+      };
+    }
   }
 
   // Can't advance without a decision
@@ -302,12 +348,12 @@ export async function executeTransition({ dryRun = false, confirm = false } = {}
  * @param {boolean} [options.dryRun=false] - Preview mode
  * @returns {PipelineRunResult}
  */
-export async function runPipeline({ targetStage, confirm = false, dryRun = false } = {}) {
+export async function runPipeline({ targetStage, confirm = false, dryRun = false, autoRun = false, onProgress } = {}) {
   const transitions = [];
   let maxIterations = STAGE_ORDER.length + 1; // Safety limit
 
   while (maxIterations-- > 0) {
-    const result = await executeTransition({ dryRun, confirm });
+    const result = await executeTransition({ dryRun, confirm, autoRun, onProgress });
     transitions.push(result);
 
     // Stop conditions
