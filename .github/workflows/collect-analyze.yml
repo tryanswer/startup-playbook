@@ -76,15 +76,42 @@ jobs:
             echo "✅ Analysis committed and pushed"
           fi
 
+      - name: Send notification
+        if: always()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+        run: |
+          DATE=$(date +%Y-%m-%d)
+          REPORT_PATH="analysis/${DATE}/report.json"
+
+          if [ -f "${REPORT_PATH}" ]; then
+            node -e "
+              import { loadCredentials } from './tools/_shared/credentials.mjs';
+              import { sendNotification, buildNotificationFromReport } from './tools/_shared/notifier.mjs';
+              import { readFile } from 'node:fs/promises';
+
+              await loadCredentials();
+              const report = JSON.parse(await readFile('${REPORT_PATH}', 'utf8'));
+              const payload = buildNotificationFromReport(report, 'discover');
+              payload.url = 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}';
+              const result = await sendNotification(payload);
+              console.log('Notification result:', JSON.stringify(result));
+            " || echo "⚠️ Notification failed (non-critical)"
+          else
+            echo "No report to notify about"
+          fi
+
       - name: Summary
         if: always()
         run: |
           echo "## 📊 Analysis Complete" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
 
-          if [ -f "analysis/$(date +%Y-%m-%d)/report.json" ]; then
-            SCORE=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/$(date +%Y-%m-%d)/report.json','utf8')); console.log(r.score)")
-            DECISION=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/$(date +%Y-%m-%d)/report.json','utf8')); console.log(r.decisionLabel)")
+          DATE=$(date +%Y-%m-%d)
+          if [ -f "analysis/${DATE}/report.json" ]; then
+            SCORE=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/${DATE}/report.json','utf8')); console.log(r.score)")
+            DECISION=$(node -e "const r=JSON.parse(require('fs').readFileSync('analysis/${DATE}/report.json','utf8')); console.log(r.decisionLabel)")
             echo "- **Score**: ${SCORE}/100" >> $GITHUB_STEP_SUMMARY
             echo "- **Decision**: ${DECISION}" >> $GITHUB_STEP_SUMMARY
           else
