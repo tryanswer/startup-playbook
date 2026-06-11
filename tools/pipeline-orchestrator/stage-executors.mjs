@@ -19,6 +19,7 @@ import { generateReport, generateMarkdown } from "../_shared/analyzers/report-ge
 import { matchBusinessModel, generateModelMarkdown } from "../_shared/analyzers/business-model-matcher.mjs";
 import { collectFromSources } from "../_shared/data-sources/index.mjs";
 import { loadCredentials, getCredential } from "../_shared/credentials.mjs";
+import { EvidenceTracker } from "../_shared/evidence-tracker.mjs";
 
 /* ------------------------------------------------------------------ */
 /*  Executor Registry                                                  */
@@ -119,7 +120,13 @@ async function executeDiscover(options = {}) {
   const modelMatch = matchBusinessModel(report);
   const markdown = generateMarkdown(report) + "\n\n" + generateModelMarkdown(modelMatch);
 
-  // Step 3: Write stage artifacts
+  // Step 3: Record evidence
+  const tracker = await EvidenceTracker.load();
+  const evidenceIds = tracker.addFromAnalysis("discover", collectResult.items, extracted);
+  await tracker.save();
+  options.onProgress?.("discover", "analyzing", `Recorded ${evidenceIds.length} evidence entries.`);
+
+  // Step 4: Write stage artifacts
   const topOpp = fusion.topOpportunity;
 
   await writeReport("discover", {
@@ -149,6 +156,7 @@ async function executeDiscover(options = {}) {
         reasoning: modelMatch.reasoning,
       },
     },
+    evidenceCount: evidenceIds.length,
   });
 
   await writeHandoff("discover", {
@@ -168,6 +176,7 @@ async function executeDiscover(options = {}) {
       suggestedSubreddits: topOpp?.communities?.filter((c) => c !== "Hacker News") ?? [],
       score: report.score,
       decision: report.decision,
+      evidenceRefs: evidenceIds.slice(0, 20),
     },
   });
 
@@ -176,7 +185,7 @@ async function executeDiscover(options = {}) {
   return {
     success: true,
     report,
-    message: `Discover complete: score=${report.score}/100, decision=${report.decision}, ${report.opportunities.length} opportunities`,
+    message: `Discover complete: score=${report.score}/100, decision=${report.decision}, ${report.opportunities.length} opportunities, ${evidenceIds.length} evidence recorded`,
   };
 }
 
@@ -251,7 +260,17 @@ async function executeValidate(options = {}) {
   const validationScore = report.score;
   const validationDecision = validationScore >= 60 ? "continue" : validationScore >= 35 ? "pivot" : "kill";
 
-  // Step 3: Write stage artifacts
+  // Step 3: Record evidence + reference discover evidence
+  const tracker = await EvidenceTracker.load();
+  const evidenceIds = tracker.addFromAnalysis("validate", collectResult.items, extracted);
+
+  // Mark discover evidence as referenced by validate (cross-stage linkage)
+  const discoverRefs = tracker.getEvidenceRefs("discover");
+  tracker.markReferencedBy(discoverRefs, "validate");
+  await tracker.save();
+  options.onProgress?.("validate", "analyzing", `Recorded ${evidenceIds.length} evidence entries.`);
+
+  // Step 4: Write stage artifacts
   await writeReport("validate", {
     protocolVersion: "1.0",
     artifactType: "stage-report",
@@ -307,6 +326,7 @@ async function executeValidate(options = {}) {
         .slice(0, 5)
         .map((s) => ({ title: s.title, source: s.source, url: s.url })),
       recommendedNextExperiment: "Create a landing page with pricing to test purchase intent",
+      evidenceRefs: evidenceIds.slice(0, 20),
     },
   });
 
@@ -316,7 +336,7 @@ async function executeValidate(options = {}) {
   return {
     success: true,
     report,
-    message: `Validate complete: score=${validationScore}/100, decision=${validationDecision}`,
+    message: `Validate complete: score=${validationScore}/100, decision=${validationDecision}, ${evidenceIds.length} evidence recorded`,
   };
 }
 
@@ -364,7 +384,30 @@ async function executeBusinessModel(options = {}) {
   const modelMatch = matchBusinessModel(syntheticReport);
   const primaryModel = modelMatch.primaryModel;
 
-  // Step: Write stage artifacts
+  // Record evidence: reference prior stage evidence for cross-stage linkage
+  const tracker = await EvidenceTracker.load();
+  const priorRefs = [
+    ...tracker.getEvidenceRefs("discover"),
+    ...tracker.getEvidenceRefs("validate"),
+  ];
+  tracker.markReferencedBy(priorRefs, "business-model");
+
+  // Add business-model-specific evidence from the matcher results
+  const bmEvidenceIds = [];
+  for (const recommendation of modelMatch.recommendations.slice(0, 3)) {
+    const evidenceId = tracker.addEvidence({
+      stage: "business-model",
+      source: "business-model-matcher",
+      signalType: "model-fit",
+      title: `${recommendation.label} (fit: ${recommendation.fitScore}/100)`,
+      excerpt: `Pricing: ${recommendation.pricingGuidance?.model ?? "unknown"}. ${recommendation.antiPatterns?.[0] ?? ""}`,
+      weight: Math.round(recommendation.fitScore / 20),
+    });
+    bmEvidenceIds.push(evidenceId);
+  }
+  await tracker.save();
+
+  // Write stage artifacts
   const generatedAt = new Date().toISOString();
 
   await writeReport("business-model", {
@@ -433,6 +476,7 @@ async function executeBusinessModel(options = {}) {
       mustNotBuild: primaryModel.antiPatterns,
       revenueMilestones: ["$100 first sale", "$1k MRR", "$5k MRR"],
       targetBuyerProfile: narrowedSegment,
+      evidenceRefs: bmEvidenceIds,
     },
   });
 
@@ -442,7 +486,7 @@ async function executeBusinessModel(options = {}) {
   return {
     success: true,
     report: { score: primaryModel.fitScore, decision: primaryModel.fitScore >= 50 ? "continue" : "adjust" },
-    message: `Business model: ${primaryModel.icon} ${primaryModel.label} (fit: ${primaryModel.fitScore}/100)`,
+    message: `Business model: ${primaryModel.icon} ${primaryModel.label} (fit: ${primaryModel.fitScore}/100), ${bmEvidenceIds.length} evidence recorded`,
   };
 }
 
