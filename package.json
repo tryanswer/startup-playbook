@@ -1,4 +1,18 @@
 {
+  "name": "startup-playbook",
+  "type": "module",
+  "bin": {
+    "startup": "./scripts/startup.mjs"
+  },
+  "scripts": {
+    "startup": "node scripts/startup.mjs",
+    "collect": "node scripts/collect-data.mjs",
+    "analyze": "node scripts/analyze-data.mjs",
+    "validate": "node tools/idea-validator/scripts/validate.mjs",
+    "radar": "node tools/opportunity-radar/scripts/run-radar.mjs",
+    "pipeline": "node scripts/run-pipeline.mjs",
+    "test": "node tools/opportunity-radar/test/radar.test.mjs && node tools/_shared/data-sources/test-data-sources.mjs && node tools/_shared/analyzers/test-analyzers.mjs"
+  },
   "dependencies": {
     "app-store-scraper": "^0.18.0",
     "google-trends-api": "^4.9.2",
