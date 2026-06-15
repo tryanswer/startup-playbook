@@ -1,32 +1,30 @@
 {
   "protocolVersion": "1.0",
   "artifactType": "stage-handoff",
-  "projectId": "startup-analysis",
+  "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-06-10T08:54:20.510Z",
+  "generatedAt": "2026-06-15T13:44:32.828Z",
   "summary": {
-    "candidateId": "cluster-show",
-    "targetUserCandidate": "Teams/organizations",
-    "painfulSituation": "…vs typing.<p>how it works: add a couple lines of js plus an api key, and speecho",
-    "promiseCandidate": "\"show\" theme — 40 signals (pain signals + demand indicators + supply evidence)",
+    "candidateId": "cluster-saas",
+    "targetUserCandidate": "Users in Hacker News",
+    "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
+    "promiseCandidate": "\"saas\" theme — 68 signals (pain signals + demand indicators + supply evidence)",
     "topSignals": [
+      "saas-exists",
       "integration-friction",
       "open-source",
-      "saas-exists",
-      "manual-workflow",
-      "team-need",
       "revenue-signal",
       "pricing-model",
-      "alternative-seeking",
-      "frequency",
-      "purchase-intent"
+      "repeated-question",
+      "purchase-intent",
+      "frequency"
     ],
     "suggestedKeywords": [
-      "ai invoice tool"
+      "ai saas startup tool"
     ],
     "suggestedSubreddits": [],
-    "score": 47,
+    "score": 51,
     "decision": "pivot"
   }
 }

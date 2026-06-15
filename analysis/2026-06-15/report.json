@@ -1,0 +1,705 @@
+{
+  "protocolVersion": "1.0",
+  "artifactType": "analysis-report",
+  "projectId": "auto-discovery",
+  "generatedAt": "2026-06-15T13:44:32.828Z",
+  "query": "ai saas startup tool",
+  "status": "completed",
+  "score": 51,
+  "decision": "pivot",
+  "decisionLabel": "🔄 Pivot",
+  "reasoning": "Score 51/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence.",
+  "input": {
+    "totalItems": 54,
+    "totalSignals": 78,
+    "sourcesCovered": [
+      "hacker-news",
+      "github",
+      "google-autocomplete"
+    ],
+    "communitiesCovered": [
+      "Hacker News"
+    ]
+  },
+  "opportunities": [
+    {
+      "rank": 1,
+      "id": "cluster-saas",
+      "theme": "saas",
+      "description": "\"saas\" theme — 68 signals (pain signals + demand indicators + supply evidence)",
+      "targetUser": "Users in Hacker News",
+      "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
+      "score": {
+        "painHeat": 13,
+        "caseProof": 25,
+        "demandTrend": 5,
+        "channelReach": 4,
+        "feasibility": 4,
+        "total": 51,
+        "breakdown": {
+          "painHeat": {
+            "score": 13,
+            "max": 40,
+            "description": "5 pain signals detected (rate: 7%), 2 distinct types"
+          },
+          "caseProof": {
+            "score": 25,
+            "max": 25,
+            "description": "59 supply signals: 4 types detected"
+          },
+          "demandTrend": {
+            "score": 5,
+            "max": 15,
+            "description": "4 demand signals, payment rate: 4%"
+          },
+          "channelReach": {
+            "score": 4,
+            "max": 10,
+            "description": "Signals found across 2 source(s): hacker-news, github"
+          },
+          "feasibility": {
+            "score": 4,
+            "max": 10,
+            "description": "crowded SaaS market"
+          }
+        }
+      },
+      "decision": {
+        "decision": "pivot",
+        "label": "🔄 Pivot",
+        "color": "orange",
+        "reasoning": "Score 51/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence."
+      },
+      "signalTypes": [
+        "saas-exists",
+        "integration-friction",
+        "open-source",
+        "revenue-signal",
+        "pricing-model",
+        "repeated-question",
+        "purchase-intent",
+        "frequency"
+      ],
+      "sources": [
+        "hacker-news",
+        "github"
+      ],
+      "communities": [
+        "Hacker News"
+      ],
+      "evidenceCount": 8,
+      "evidence": [
+        {
+          "id": "hn:46917886",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Tell HN: I'm a PM at a big system of record SaaS. We're cooked",
+          "url": "https://news.ycombinator.com/item?id=46917886",
+          "score": 103,
+          "comments": 46
+        },
+        {
+          "id": "hn:46917886",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Tell HN: I'm a PM at a big system of record SaaS. We're cooked",
+          "url": "https://news.ycombinator.com/item?id=46917886",
+          "score": 103,
+          "comments": 46
+        },
+        {
+          "id": "hn:41243703",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Show HN: I made a tool to help collect and validate startup ideas",
+          "url": "https://www.keepmyidea.app",
+          "score": 38,
+          "comments": 51
+        },
+        {
+          "id": "hn:37533503",
+          "type": "pain",
+          "signalType": "integration-friction",
+          "source": "hacker-news",
+          "title": "Show HN: Superflows – open-source AI Copilot for SaaS products",
+          "url": "https://github.com/Superflows-AI/superflows",
+          "score": 37,
+          "comments": 5
+        },
+        {
+          "id": "hn:37533503",
+          "type": "supply",
+          "signalType": "open-source",
+          "source": "hacker-news",
+          "title": "Show HN: Superflows – open-source AI Copilot for SaaS products",
+          "url": "https://github.com/Superflows-AI/superflows",
+          "score": 37,
+          "comments": 5
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "cluster-show",
+      "theme": "show",
+      "description": "\"show\" theme — 7 signals (pain signals + supply evidence)",
+      "targetUser": "Users in Hacker News",
+      "painfulSituation": "…aybe even useful) if you could easily connect claude to any api. well, actually we thought it would be cool if we could order pizza and shitpost directly from our …",
+      "score": {
+        "painHeat": 25,
+        "caseProof": 15,
+        "demandTrend": 0,
+        "channelReach": 2,
+        "feasibility": 6,
+        "total": 48,
+        "breakdown": {
+          "painHeat": {
+            "score": 25,
+            "max": 40,
+            "description": "3 pain signals detected (rate: 43%), 3 distinct types"
+          },
+          "caseProof": {
+            "score": 15,
+            "max": 25,
+            "description": "4 supply signals: 3 types detected"
+          },
+          "demandTrend": {
+            "score": 0,
+            "max": 15,
+            "description": "No demand trend data"
+          },
+          "channelReach": {
+            "score": 2,
+            "max": 10,
+            "description": "Signals found across 1 source(s): hacker-news"
+          },
+          "feasibility": {
+            "score": 6,
+            "max": 10,
+            "description": "some SaaS competition"
+          }
+        }
+      },
+      "decision": {
+        "decision": "pivot",
+        "label": "🔄 Pivot",
+        "color": "orange",
+        "reasoning": "Score 48/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence."
+      },
+      "signalTypes": [
+        "integration-friction",
+        "pricing-pain",
+        "alternative-seeking",
+        "revenue-signal",
+        "pricing-model",
+        "saas-exists"
+      ],
+      "sources": [
+        "hacker-news"
+      ],
+      "communities": [
+        "Hacker News"
+      ],
+      "evidenceCount": 7,
+      "evidence": [
+        {
+          "id": "hn:42843011",
+          "type": "pain",
+          "signalType": "integration-friction",
+          "source": "hacker-news",
+          "title": "Show HN: emcee – connect agents to APIs (via MCP)",
+          "url": "https://github.com/loopwork-ai/emcee",
+          "score": 6,
+          "comments": 6
+        },
+        {
+          "id": "hn:48440749",
+          "type": "pain",
+          "signalType": "pricing-pain",
+          "source": "hacker-news",
+          "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
+          "url": "https://teardownhq.io",
+          "score": 5,
+          "comments": 3
+        },
+        {
+          "id": "hn:48440749",
+          "type": "pain",
+          "signalType": "alternative-seeking",
+          "source": "hacker-news",
+          "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
+          "url": "https://teardownhq.io",
+          "score": 5,
+          "comments": 3
+        },
+        {
+          "id": "hn:48440749",
+          "type": "supply",
+          "signalType": "revenue-signal",
+          "source": "hacker-news",
+          "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
+          "url": "https://teardownhq.io",
+          "score": 5,
+          "comments": 3
+        },
+        {
+          "id": "hn:48440749",
+          "type": "supply",
+          "signalType": "pricing-model",
+          "source": "hacker-news",
+          "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
+          "url": "https://teardownhq.io",
+          "score": 5,
+          "comments": 3
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "cluster-startup",
+      "theme": "startup",
+      "description": "\"startup\" theme — 6 signals (pain signals + demand indicators + supply evidence)",
+      "targetUser": "Users in Hacker News",
+      "painfulSituation": "… hello community, we&#x27;re a startup building a langchain alternative that focuses on delivering better results that are more accurate, faster, and cheaper. our product,…",
+      "score": {
+        "painHeat": 11,
+        "caseProof": 12,
+        "demandTrend": 2,
+        "channelReach": 4,
+        "feasibility": 8,
+        "total": 37,
+        "breakdown": {
+          "painHeat": {
+            "score": 11,
+            "max": 40,
+            "description": "1 pain signals detected (rate: 17%), 1 distinct types"
+          },
+          "caseProof": {
+            "score": 12,
+            "max": 25,
+            "description": "3 supply signals: 2 types detected"
+          },
+          "demandTrend": {
+            "score": 2,
+            "max": 15,
+            "description": "2 demand signals"
+          },
+          "channelReach": {
+            "score": 4,
+            "max": 10,
+            "description": "Signals found across 2 source(s): hacker-news, github"
+          },
+          "feasibility": {
+            "score": 8,
+            "max": 10,
+            "description": "some SaaS competition"
+          }
+        }
+      },
+      "decision": {
+        "decision": "kill",
+        "label": "❌ Kill",
+        "color": "red",
+        "reasoning": "Score 37/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+      },
+      "signalTypes": [
+        "frequency",
+        "saas-exists",
+        "market-growth",
+        "alternative-seeking"
+      ],
+      "sources": [
+        "hacker-news",
+        "github"
+      ],
+      "communities": [
+        "Hacker News"
+      ],
+      "evidenceCount": 6,
+      "evidence": [
+        {
+          "id": "hn:46145118",
+          "type": "demand",
+          "signalType": "frequency",
+          "source": "hacker-news",
+          "title": "Show HN: I made StartupLaunchDay,daily startup launches and funding in one place",
+          "url": "https://startuplaunchday.com/",
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "id": "hn:46145118",
+          "type": "demand",
+          "signalType": "frequency",
+          "source": "hacker-news",
+          "title": "Show HN: I made StartupLaunchDay,daily startup launches and funding in one place",
+          "url": "https://startuplaunchday.com/",
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "id": "hn:46145118",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Show HN: I made StartupLaunchDay,daily startup launches and funding in one place",
+          "url": "https://startuplaunchday.com/",
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "id": "hn:46145118",
+          "type": "supply",
+          "signalType": "market-growth",
+          "source": "hacker-news",
+          "title": "Show HN: I made StartupLaunchDay,daily startup launches and funding in one place",
+          "url": "https://startuplaunchday.com/",
+          "score": 1,
+          "comments": 0
+        },
+        {
+          "id": "hn:36313456",
+          "type": "pain",
+          "signalType": "alternative-seeking",
+          "source": "hacker-news",
+          "title": "LangChain Altnerative",
+          "url": "https://news.ycombinator.com/item?id=36313456",
+          "score": 1,
+          "comments": 0
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "id": "cluster-ask",
+      "theme": "ask",
+      "description": "\"ask\" theme — 5 signals (pain signals + supply evidence)",
+      "targetUser": "Users in Hacker News",
+      "painfulSituation": "ask hn: how do you explore emerging technologies/trends? hey hacker news community,<p>it&#x27;s evident th…",
+      "score": {
+        "painHeat": 20,
+        "caseProof": 5,
+        "demandTrend": 0,
+        "channelReach": 2,
+        "feasibility": 8,
+        "total": 35,
+        "breakdown": {
+          "painHeat": {
+            "score": 20,
+            "max": 40,
+            "description": "2 pain signals detected (rate: 40%), 1 distinct types"
+          },
+          "caseProof": {
+            "score": 5,
+            "max": 25,
+            "description": "3 supply signals: 2 types detected"
+          },
+          "demandTrend": {
+            "score": 0,
+            "max": 15,
+            "description": "No demand trend data"
+          },
+          "channelReach": {
+            "score": 2,
+            "max": 10,
+            "description": "Signals found across 1 source(s): hacker-news"
+          },
+          "feasibility": {
+            "score": 8,
+            "max": 10,
+            "description": "some SaaS competition"
+          }
+        }
+      },
+      "decision": {
+        "decision": "kill",
+        "label": "❌ Kill",
+        "color": "red",
+        "reasoning": "Score 35/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+      },
+      "signalTypes": [
+        "repeated-question",
+        "saas-exists",
+        "market-growth"
+      ],
+      "sources": [
+        "hacker-news"
+      ],
+      "communities": [
+        "Hacker News"
+      ],
+      "evidenceCount": 5,
+      "evidence": [
+        {
+          "id": "hn:39914935",
+          "type": "pain",
+          "signalType": "repeated-question",
+          "source": "hacker-news",
+          "title": "Ask HN: How do you explore emerging technologies/trends?",
+          "url": "https://news.ycombinator.com/item?id=39914935",
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "id": "hn:39914935",
+          "type": "pain",
+          "signalType": "repeated-question",
+          "source": "hacker-news",
+          "title": "Ask HN: How do you explore emerging technologies/trends?",
+          "url": "https://news.ycombinator.com/item?id=39914935",
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "id": "hn:39914935",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Ask HN: How do you explore emerging technologies/trends?",
+          "url": "https://news.ycombinator.com/item?id=39914935",
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "id": "hn:39914935",
+          "type": "supply",
+          "signalType": "market-growth",
+          "source": "hacker-news",
+          "title": "Ask HN: How do you explore emerging technologies/trends?",
+          "url": "https://news.ycombinator.com/item?id=39914935",
+          "score": 2,
+          "comments": 2
+        },
+        {
+          "id": "hn:39914935",
+          "type": "supply",
+          "signalType": "market-growth",
+          "source": "hacker-news",
+          "title": "Ask HN: How do you explore emerging technologies/trends?",
+          "url": "https://news.ycombinator.com/item?id=39914935",
+          "score": 2,
+          "comments": 2
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "id": "cluster-x2f",
+      "theme": "x2f",
+      "description": "\"x2f\" theme — 12 signals (pain signals + supply evidence)",
+      "targetUser": "Users in Hacker News",
+      "painfulSituation": "…les only.<p>must be able to ship: code, infra, ai&#x2f;llm, api. location: will happen either in los angeles or san francisco (in-person needed - full commitment n…",
+      "score": {
+        "painHeat": 7,
+        "caseProof": 15,
+        "demandTrend": 0,
+        "channelReach": 2,
+        "feasibility": 4,
+        "total": 28,
+        "breakdown": {
+          "painHeat": {
+            "score": 7,
+            "max": 40,
+            "description": "1 pain signals detected (rate: 8%), 1 distinct types"
+          },
+          "caseProof": {
+            "score": 15,
+            "max": 25,
+            "description": "11 supply signals: 3 types detected"
+          },
+          "demandTrend": {
+            "score": 0,
+            "max": 15,
+            "description": "No demand trend data"
+          },
+          "channelReach": {
+            "score": 2,
+            "max": 10,
+            "description": "Signals found across 1 source(s): hacker-news"
+          },
+          "feasibility": {
+            "score": 4,
+            "max": 10,
+            "description": "crowded SaaS market"
+          }
+        }
+      },
+      "decision": {
+        "decision": "kill",
+        "label": "❌ Kill",
+        "color": "red",
+        "reasoning": "Score 28/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+      },
+      "signalTypes": [
+        "saas-exists",
+        "integration-friction",
+        "revenue-signal",
+        "pricing-model"
+      ],
+      "sources": [
+        "hacker-news"
+      ],
+      "communities": [
+        "Hacker News"
+      ],
+      "evidenceCount": 8,
+      "evidence": [
+        {
+          "id": "hn:30832589",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam search engine",
+          "url": "https://andisearch.com/",
+          "score": 352,
+          "comments": 181
+        },
+        {
+          "id": "hn:30832589",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam search engine",
+          "url": "https://andisearch.com/",
+          "score": 352,
+          "comments": 181
+        },
+        {
+          "id": "hn:30832589",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam search engine",
+          "url": "https://andisearch.com/",
+          "score": 352,
+          "comments": 181
+        },
+        {
+          "id": "hn:30832589",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam search engine",
+          "url": "https://andisearch.com/",
+          "score": 352,
+          "comments": 181
+        },
+        {
+          "id": "hn:36480230",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "hacker-news",
+          "title": "Launch HN: Argonaut (YC S21) – Easily Deploy Apps and Infra to AWS and GCP",
+          "url": "https://news.ycombinator.com/item?id=36480230",
+          "score": 152,
+          "comments": 76
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "id": "cluster-other",
+      "theme": "other",
+      "description": "Signals not matching a dominant theme",
+      "targetUser": "General users",
+      "painfulSituation": "No specific pain identified yet",
+      "score": {
+        "painHeat": 0,
+        "caseProof": 12,
+        "demandTrend": 0,
+        "channelReach": 2,
+        "feasibility": 6,
+        "total": 20,
+        "breakdown": {
+          "painHeat": {
+            "score": 0,
+            "max": 40,
+            "description": "No pain signals detected"
+          },
+          "caseProof": {
+            "score": 12,
+            "max": 25,
+            "description": "2 supply signals: 2 types detected"
+          },
+          "demandTrend": {
+            "score": 0,
+            "max": 15,
+            "description": "No demand trend data"
+          },
+          "channelReach": {
+            "score": 2,
+            "max": 10,
+            "description": "Signals found across 1 source(s): github"
+          },
+          "feasibility": {
+            "score": 6,
+            "max": 10,
+            "description": "some SaaS competition"
+          }
+        }
+      },
+      "decision": {
+        "decision": "kill",
+        "label": "❌ Kill",
+        "color": "red",
+        "reasoning": "Score 20/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+      },
+      "signalTypes": [
+        "revenue-signal",
+        "saas-exists"
+      ],
+      "sources": [
+        "github"
+      ],
+      "communities": [],
+      "evidenceCount": 2,
+      "evidence": [
+        {
+          "id": "github:ramilyabm/AI-Startup-Market-Intelligence",
+          "type": "supply",
+          "signalType": "revenue-signal",
+          "source": "github",
+          "title": "ramilyabm/AI-Startup-Market-Intelligence",
+          "url": "https://github.com/ramilyabm/AI-Startup-Market-Intelligence",
+          "score": 0,
+          "comments": 0
+        },
+        {
+          "id": "github:Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+          "type": "supply",
+          "signalType": "saas-exists",
+          "source": "github",
+          "title": "Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+          "url": "https://github.com/Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+          "score": 0,
+          "comments": 0
+        }
+      ]
+    }
+  ],
+  "crossValidation": {
+    "painConfirmed": true,
+    "demandConfirmed": true,
+    "supplyMapped": true,
+    "triangulated": true,
+    "multiCategorySources": [
+      "hacker-news",
+      "github"
+    ],
+    "convergenceScore": 100,
+    "assessment": "Strong triangulation: pain confirmed, demand validated, supply landscape mapped."
+  },
+  "gaps": [],
+  "confidence": {
+    "level": "high",
+    "score": 100,
+    "label": "High confidence — multiple sources converge"
+  },
+  "nextSteps": [
+    "Narrow the \"saas\" opportunity: focus on a more specific user segment.",
+    "Collect additional data from at least 2 more sources to cross-validate."
+  ]
+}

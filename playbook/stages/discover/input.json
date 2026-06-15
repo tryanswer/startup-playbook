@@ -1,15 +1,15 @@
 {
   "protocolVersion": "1.0",
   "artifactType": "stage-input",
-  "projectId": "startup-analysis",
+  "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-06-10T08:54:20.510Z",
-  "query": "ai invoice tool",
+  "generatedAt": "2026-06-15T13:44:32.828Z",
+  "query": "ai saas startup tool",
   "sources": [
     "hacker-news",
     "github",
     "google-autocomplete"
   ],
-  "itemCount": 60,
-  "collectedAt": "2026-06-10T08:54:20.492Z"
+  "itemCount": 54,
+  "collectedAt": "2026-06-15T13:44:32.805Z"
 }
