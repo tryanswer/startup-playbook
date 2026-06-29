@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-06-22T13:24:46.334Z",
+  "generatedAt": "2026-06-29T12:21:11.650Z",
   "status": "completed",
   "score": 53,
   "decision": "pivot",
@@ -87,7 +87,7 @@
         "rank": 1,
         "id": "cluster-saas",
         "theme": "saas",
-        "description": "\"saas\" theme — 70 signals (pain signals + demand indicators + supply evidence)",
+        "description": "\"saas\" theme — 71 signals (pain signals + demand indicators + supply evidence)",
         "targetUser": "Users in Hacker News",
         "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
         "score": {
@@ -101,12 +101,12 @@
             "painHeat": {
               "score": 13,
               "max": 40,
-              "description": "6 pain signals detected (rate: 9%), 2 distinct types"
+              "description": "6 pain signals detected (rate: 8%), 2 distinct types"
             },
             "caseProof": {
               "score": 25,
               "max": 25,
-              "description": "59 supply signals: 4 types detected"
+              "description": "60 supply signals: 4 types detected"
             },
             "demandTrend": {
               "score": 7,
