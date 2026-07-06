@@ -1,0 +1,898 @@
+{
+  "items": [
+    {
+      "id": "hn:46145118",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: I made StartupLaunchDay,daily startup launches and funding in one place",
+      "excerpt": "I made <a href=\"https:&#x2F;&#x2F;startuplaunchday.com\" rel=\"nofollow\">https:&#x2F;&#x2F;startuplaunchday.com</a> because I was constantly bouncing between Hacker News, random newsletters, Twitter, and government portals just to answer three simple questions:<p>What did people launch today?<p>What’s actually trending in startups right now?<p>Are there any fu",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2025-12-04T08:25:47Z",
+      "url": "https://startuplaunchday.com/",
+      "tags": [
+        "story",
+        "author_aiseoscan",
+        "story_46145118",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:43288605",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Launched a New AI-Powered SaaS Feedback Tool for Startups",
+      "excerpt": "",
+      "score": 1,
+      "comments": 1,
+      "createdAt": "2025-03-07T09:29:59Z",
+      "url": "https://feedinsight.xyz",
+      "tags": [
+        "story",
+        "author_ge0rg3e",
+        "story_43288605"
+      ]
+    },
+    {
+      "id": "hn:41486161",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: LocalOps – Deploy SaaS/AI apps privately",
+      "excerpt": "Hi HN.<p>Anand, here from LocalOps. I am very excited to show you LocalOps.<p>We have built a cloud deployment automation tool to make Private customer deployments &#x2F; Single tenant deployments easy. Especially for the AI&#x2F;Dev tools&#x2F;Data tools startups.<p>Anyone can signup, connect their customer cloud account (AWS, GCP, Azure) &amp; provision pr",
+      "score": 2,
+      "comments": 0,
+      "createdAt": "2024-09-09T07:15:55Z",
+      "url": "https://localops.co",
+      "tags": [
+        "story",
+        "author_luckydev",
+        "story_41486161",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:46166435",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Ask HN: Who wants to buy an AI SaaS startup?",
+      "excerpt": "Hello HN,<p>I built an MVP of a chatbot widget for websites over the last six months (worked by weekends). The core idea: it automatically collects insights from real visitors from conversation and behavior - the things GA4 and similar tools don’t show. Moreover, it can execute tasks based on a specific behavior (visited some page, asked something specific..",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2025-12-05T19:55:07Z",
+      "url": "https://news.ycombinator.com/item?id=46166435",
+      "tags": [
+        "story",
+        "author_duverse",
+        "story_46166435",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:42747019",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: SaaS that turns your idea into a perfect 5-minute pitch",
+      "excerpt": "Hi Hacker News,<p>We’ve built Pitch Forge, an AI-powered SaaS tool designed to help startups create investor-ready pitch decks in minutes.<p>How it works:<p>1. Input your startup’s name, description, target audience (buyer persona), and desired pitch length (1, 3, 5, or 10 minutes).<p>2. Pitch Forge generates:<p>A professionally written script tailored to in",
+      "score": 1,
+      "comments": 4,
+      "createdAt": "2025-01-18T09:24:37Z",
+      "url": "https://www.pitch-forge.com/",
+      "tags": [
+        "story",
+        "author_doberdog",
+        "story_42747019",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:36313456",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "LangChain Altnerative",
+      "excerpt": "Hello community, we&#x27;re a startup building a LangChain alternative that focuses on delivering better results that are more accurate, faster, and cheaper. Our product, called Twilix, also has an integrated vectorstore in our ecosystem, which is hosted with managed infrastructure. We&#x27;re hoping to democratize AI development, head over to www.twilix.io ",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2023-06-13T17:19:01Z",
+      "url": "https://news.ycombinator.com/item?id=36313456",
+      "tags": [
+        "story",
+        "author_jeffsterip",
+        "story_36313456",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:37641022",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Ask HN: I'm bootstrapping, How to get free credits for Notion,GitHub,Slack etc.?",
+      "excerpt": "I&#x27;m bootstrapping a SaaS AI-based startup, is there a way to get free credits for tools like Notion, Github, Slack, and Figma?",
+      "score": 6,
+      "comments": 6,
+      "createdAt": "2023-09-25T08:49:27Z",
+      "url": "https://news.ycombinator.com/item?id=37641022",
+      "tags": [
+        "story",
+        "author_jerrygoyal",
+        "story_37641022",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:47500930",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Ask HN: AI-first SaaS vs. AI-assisted. which one will survive?",
+      "excerpt": "The world is so much blurred with AI-singularity hypothesis of big giants companies.<p>AI-first. what does this mean? I buy a tool and give what do in a single day and rest?<p>AI and paradox of trust by Yuval Noah Harari<p>https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=8GaW36EfidI&amp;t=29s<p>AI is a tool - Linus torvalds<p>For decades, we have been careful ",
+      "score": 2,
+      "comments": 0,
+      "createdAt": "2026-03-24T11:05:45Z",
+      "url": "https://news.ycombinator.com/item?id=47500930",
+      "tags": [
+        "story",
+        "author_kathir05",
+        "story_47500930",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:41243703",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: I made a tool to help collect and validate startup ideas",
+      "excerpt": "Hey HN, I’m Kyrylo. I recently created a small tool that lets you gather, refine, and validate SaaS&#x2F;startup ideas using AI. I used to jot down my product ideas in a note apps, but it wasn’t very practical for collecting feedback or refining them. So, I built this tool to make the process easier.<p>Here’s how it works:<p>1. Enter a brief description of y",
+      "score": 38,
+      "comments": 51,
+      "createdAt": "2024-08-14T08:01:13Z",
+      "url": "https://www.keepmyidea.app",
+      "tags": [
+        "story",
+        "author_kyryloalokhin",
+        "story_41243703",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:41232893",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: I made a tool to help collect and validate SaaS ideas",
+      "excerpt": "Hey HN, I’m Kyrylo. I recently created a small tool that lets you gather, refine, and validate SaaS&#x2F;startup ideas using AI.<p>I used to jot down my product ideas in a note apps, but it wasn’t very practical for collecting feedback or refining them. So, I built this tool to make the process easier.<p>Here’s how it works:<p>1. Enter a brief description of",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2024-08-13T06:39:07Z",
+      "url": "https://www.keepmyidea.app",
+      "tags": [
+        "story",
+        "author_kyryloalokhin",
+        "story_41232893",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:45263058",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: Schema aware AI to build data products",
+      "excerpt": "hey hn — we’re hoshang &amp; vishal, co-founders of airbook. it’s an ai-native workspace to build notebooks, dashboards, or even lightweight data apps — all from one place (<a href=\"https:&#x2F;&#x2F;www.airbook.io\" rel=\"nofollow\">https:&#x2F;&#x2F;www.airbook.io</a>)<p>we used to run ops and analytics at saas startups and constantly found ourselves juggling",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2025-09-16T14:48:24Z",
+      "url": "https://www.airbook.io",
+      "tags": [
+        "story",
+        "author_Hoshang07",
+        "story_45263058",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:47043293",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Looking for Founding Engineers – Esbern",
+      "excerpt": "Technical roles only.<p>Must be able to ship: code, infra, AI&#x2F;LLM, API. Location: Will happen either in Los Angeles or San Francisco (In-person needed - Full commitment needed) Type&#x2F;structure: Working together with 5 other genius programmers. Founding Team &#x2F; Equity<p>Compensation: 5% equity + $100&#x2F;day (For 60 days until investors onboard ",
+      "score": 1,
+      "comments": 2,
+      "createdAt": "2026-02-17T03:15:47Z",
+      "url": "https://news.ycombinator.com/item?id=47043293",
+      "tags": [
+        "story",
+        "author_mochi_codes",
+        "story_47043293",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:44632270",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Replit Agent deleted a $1M SaaS startup's production DB",
+      "excerpt": "Jason Lemkin was 9 days into building a SaaS product using Replit’s new AI agent. It had rewritten core pages, improved UX, and shipped fast. He called it a “$1M product.”<p>Then he added a code freeze.<p>The agent ignored it and deleted the entire production database.<p>Why?<p>1. No environment separation. Dev, staging, and prod looked identical to the agen",
+      "score": 5,
+      "comments": 8,
+      "createdAt": "2025-07-21T06:21:19Z",
+      "url": "https://news.ycombinator.com/item?id=44632270",
+      "tags": [
+        "story",
+        "author_Arindam1729",
+        "story_44632270",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:41476112",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "SaaS Founders Analyze Their Startup Ideas Using AI – Free Tool",
+      "excerpt": "",
+      "score": 2,
+      "comments": 1,
+      "createdAt": "2024-09-07T20:04:27Z",
+      "url": "https://www.validatesaas.com/",
+      "tags": [
+        "story",
+        "author_mailnike",
+        "story_41476112"
+      ]
+    },
+    {
+      "id": "hn:45802673",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: Vayno – AI Email Sequence Generator from Any Landing Page",
+      "excerpt": "Hey HN<p>I built Vayno, an AI-powered email sequence generator that automatically creates full email campaigns from any landing page or product page.<p>Vayno uses AI marketing automation to read your page — offers, tone, audience, and calls to action — and turns it into ready-to-send email flows like:<p>Welcome series<p>Product launch campaigns<p>Abandoned c",
+      "score": 2,
+      "comments": 0,
+      "createdAt": "2025-11-03T18:44:34Z",
+      "url": "https://vaynoai.lovable.app/",
+      "tags": [
+        "story",
+        "author_ahemx_",
+        "story_45802673",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:45814032",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Startup Analysis 2025: Real Data from 50 Companies (Not AI Fiction)",
+      "excerpt": "I got tired of &quot;I analyzed X startups with ChatGPT&quot; posts that are pure fiction, so I did a real analysis with actual data sources.<p>Data: Crunchbase, Kaggle datasets (2024-2025), Mercury 2025 Report (1,500 companies), academic research (7,000+ startups), and industry benchmarks from CloudZero, KeyBanc Capital, G-Squared CFO.<p>Tool: Built using D",
+      "score": 1,
+      "comments": 0,
+      "createdAt": "2025-11-04T18:09:02Z",
+      "url": "https://news.ycombinator.com/item?id=45814032",
+      "tags": [
+        "story",
+        "author_mobsterino",
+        "story_45814032",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:30832589",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam search engine",
+      "excerpt": "Hi HN, we&#x27;re Angie and Jed, and we&#x27;re building Andi (<a href=\"https:&#x2F;&#x2F;andisearch.com\" rel=\"nofollow\">https:&#x2F;&#x2F;andisearch.com</a>), a new type of search engine with an AI assistant that answers complex questions, and gives you tools to fight spam and ad tech.<p>There has been a lot of discussion on HN recently about how Google sea",
+      "score": 352,
+      "comments": 181,
+      "createdAt": "2022-03-28T16:52:50Z",
+      "url": "https://andisearch.com/",
+      "tags": [
+        "story",
+        "author_jedwhite",
+        "story_30832589",
+        "launch_hn"
+      ]
+    },
+    {
+      "id": "hn:36480230",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Launch HN: Argonaut (YC S21) – Easily Deploy Apps and Infra to AWS and GCP",
+      "excerpt": "Hello HN, I&#x27;m Surya, the founder of Argonaut (<a href=\"https:&#x2F;&#x2F;www.argonaut.dev&#x2F;\">https:&#x2F;&#x2F;www.argonaut.dev&#x2F;</a>), a unified platform that tries to make software ops painless, so teams can focus on building features instead of building and managing infrastructure. Argonaut combines Kubernetes PaaS, a CI pipeline builder, and",
+      "score": 152,
+      "comments": 76,
+      "createdAt": "2023-06-26T14:41:47Z",
+      "url": "https://news.ycombinator.com/item?id=36480230",
+      "tags": [
+        "story",
+        "author_suryao",
+        "story_36480230",
+        "launch_hn"
+      ]
+    },
+    {
+      "id": "hn:42843011",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: emcee – connect agents to APIs (via MCP)",
+      "excerpt": "Hi! Mattt and I thought it would be cool (and maybe even useful) if you could easily connect Claude to any API. Well, actually we thought it would be cool if we could order pizza and shitpost directly from our AI-powered IDE.<p>So we made emcee.<p>emcee takes a remote (OpenAPI documented) API, generates an MCP server, and exposes the API methods to your agen",
+      "score": 6,
+      "comments": 6,
+      "createdAt": "2025-01-27T16:46:32Z",
+      "url": "https://github.com/loopwork-ai/emcee",
+      "tags": [
+        "story",
+        "author_carlpeaslee",
+        "story_42843011",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:48440749",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
+      "excerpt": "Launching TeardownHQ: a directory of indie startups with revenue pulled from real signals (and labeled where it is an estimate), plus deep teardowns&#x2F;playbooks of exactly how each one grew. The channels, the pricing, the GTM, all sourced, instead of the usual self-reported screenshots. Why I am building it: Starter Story proved people want &quot;how they",
+      "score": 5,
+      "comments": 3,
+      "createdAt": "2026-06-08T02:32:21Z",
+      "url": "https://teardownhq.io",
+      "tags": [
+        "story",
+        "author_arogers17",
+        "story_48440749",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:47095056",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: Super Launch – A platform for you to get discovered and grow traffic",
+      "excerpt": "I&#x27;ve been launching side projects for a while and realized that after the initial Product Hunt spike, there&#x27;s not many places to get consistent visibility. So I built Super Launch — a curated directory where indie developers can list their startups and keep getting discovered.<p>Here&#x27;s what it offers:<p>Submit your product and reach thousands ",
+      "score": 2,
+      "comments": 2,
+      "createdAt": "2026-02-20T22:44:39Z",
+      "url": "https://super-launch.app",
+      "tags": [
+        "story",
+        "author_yuni_aigc",
+        "story_47095056",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "hn:39914935",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Ask HN: How do you explore emerging technologies/trends?",
+      "excerpt": "Hey Hacker News community,<p>It&#x27;s evident that AI is garnering considerable attention, but I&#x27;m interested in identifying steadily growing solutions like Shopify or Webflow.<p>These platforms have established themselves in the market and are fostering entire ecosystems, opening doors for new service providers and SaaS startups.<p>How do you explore ",
+      "score": 2,
+      "comments": 2,
+      "createdAt": "2024-04-03T08:47:26Z",
+      "url": "https://news.ycombinator.com/item?id=39914935",
+      "tags": [
+        "story",
+        "author_andrewstetsenko",
+        "story_39914935",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:33581805",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "AI that predicts how users respond to a feature before launching it",
+      "excerpt": "Hi everyone. It always happens to all of us when building a specific software that we think that a specific feature will kill it, and our users will love it. But after launching it, it turns out the exact opposite.<p>It happens to the best of us, even when u do customer interviews, and the only way to avoid that is through extensive large-scale customer inte",
+      "score": 1,
+      "comments": 6,
+      "createdAt": "2022-11-13T10:40:07Z",
+      "url": "https://news.ycombinator.com/item?id=33581805",
+      "tags": [
+        "story",
+        "author_Belalmostafa",
+        "story_33581805",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:46917886",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Tell HN: I'm a PM at a big system of record SaaS. We're cooked",
+      "excerpt": "I found myself disagreeing with almost all of the comments on the “AI Is Killing B2B SaaS” thread [1], based on my perspective as a senior PM (~20 years in SaaS) at a massive system of record (SoR) company in California. We’re still cooked. Throwaway for obvious reasons.<p>BigCo SoRs, differences aside, have historically been a good, low-drama way to make a ",
+      "score": 103,
+      "comments": 46,
+      "createdAt": "2026-02-06T20:43:57Z",
+      "url": "https://news.ycombinator.com/item?id=46917886",
+      "tags": [
+        "story",
+        "author_throwawaypm123",
+        "story_46917886",
+        "ask_hn"
+      ]
+    },
+    {
+      "id": "hn:37533503",
+      "source": "hacker-news",
+      "community": "Hacker News",
+      "title": "Show HN: Superflows – open-source AI Copilot for SaaS products",
+      "excerpt": "Henry, Matt and James here – we’re building an open source toolkit that makes it easy to integrate an LLM-powered copilot that talks to your API into software products.<p>It works by calling API endpoints which you choose to expose to it. This lets the chatbot complete tasks within your software in response to natural language queries.<p>It’s also open sourc",
+      "score": 37,
+      "comments": 5,
+      "createdAt": "2023-09-16T10:13:16Z",
+      "url": "https://github.com/Superflows-AI/superflows",
+      "tags": [
+        "story",
+        "author_henry_pulver",
+        "story_37533503",
+        "show_hn"
+      ]
+    },
+    {
+      "id": "github:MekuHQ/saasboard",
+      "source": "github",
+      "title": "MekuHQ/saasboard",
+      "url": "https://github.com/MekuHQ/saasboard",
+      "targetUser": "GitHub users",
+      "pain": "Free and open-source SaaS dashboard template for startups, businesses, and AI Tools. | Built with Meku, React, Tailwind CSS, and Vite for tracking KPIs, metrics, and analytics.",
+      "productShape": "GitHub repo (JavaScript)",
+      "pricing": "stars: 28, forks: 10",
+      "revenue": null,
+      "tags": [
+        "admin-dashboard",
+        "dashboard-template",
+        "free",
+        "react",
+        "saas",
+        "saas-dashboard",
+        "tailwindcss",
+        "template"
+      ],
+      "createdAt": "2025-08-24T11:42:55Z"
+    },
+    {
+      "id": "github:volodstaimi/Startup-Launch-List",
+      "source": "github",
+      "title": "volodstaimi/Startup-Launch-List",
+      "url": "https://github.com/volodstaimi/Startup-Launch-List",
+      "targetUser": "GitHub users",
+      "pain": "The largest curated list of 580+ directories to launch and promote your startup, SaaS, or AI tool.",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 6, forks: 5",
+      "revenue": null,
+      "tags": [
+        "directories",
+        "launch",
+        "launch-directories"
+      ],
+      "createdAt": "2026-02-17T23:02:02Z"
+    },
+    {
+      "id": "github:wednesday-solutions/rightsuite.co",
+      "source": "github",
+      "title": "wednesday-solutions/rightsuite.co",
+      "url": "https://github.com/wednesday-solutions/rightsuite.co",
+      "targetUser": "GitHub users",
+      "pain": "7 AI-powered go-to-market validation tools for SaaS founders. Test your price, messaging, audience, positioning, outreach, channels, and ads against simulated buyers — before you spend a dollar.",
+      "productShape": "GitHub repo (SCSS)",
+      "pricing": "stars: 6, forks: 0",
+      "revenue": null,
+      "tags": [
+        "ai",
+        "b2b-saas",
+        "cold-outreach",
+        "copywriting",
+        "founder-tools",
+        "go-to-market",
+        "gtm",
+        "icp"
+      ],
+      "createdAt": "2026-03-27T10:25:58Z"
+    },
+    {
+      "id": "github:Gourav-512/MindMatrixio",
+      "source": "github",
+      "title": "Gourav-512/MindMatrixio",
+      "url": "https://github.com/Gourav-512/MindMatrixio",
+      "targetUser": "developers",
+      "pain": "`MindMatrix.io – Freemium AI SaaS Toolkit for Creators & Freelancers | Text Gen, Resume Builder, Content Tools | Python + PHP + OpenAI/HF APIs`",
+      "productShape": "GitHub repo (CSS)",
+      "pricing": "stars: 4, forks: 1",
+      "revenue": null,
+      "tags": [
+        "ai-assistant",
+        "ai-saas",
+        "content-generation",
+        "fastapi",
+        "freemium",
+        "llm-tools",
+        "nextjs",
+        "productivity"
+      ],
+      "createdAt": "2025-03-03T06:08:53Z"
+    },
+    {
+      "id": "github:richawo/awesome-ai-startup-stack",
+      "source": "github",
+      "title": "richawo/awesome-ai-startup-stack",
+      "url": "https://github.com/richawo/awesome-ai-startup-stack",
+      "targetUser": "developers",
+      "pain": "Free resources for AI Startups. A collection of the best AI tools, services, and resources to help founders build, launch, and scale modern AI startups.",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 3, forks: 4",
+      "revenue": null,
+      "tags": [
+        "ai",
+        "ai-agents",
+        "ai-startup",
+        "ai-tools",
+        "awesome",
+        "awesome-list",
+        "developer-tools",
+        "founders"
+      ],
+      "createdAt": "2026-05-01T01:55:17Z"
+    },
+    {
+      "id": "github:ejiogbevoices/RevPlanner",
+      "source": "github",
+      "title": "ejiogbevoices/RevPlanner",
+      "url": "https://github.com/ejiogbevoices/RevPlanner",
+      "targetUser": "GitHub users",
+      "pain": "A financial modeling tool that helps SaaS founders project ARR, calculate user volume requirements, and stress-test pricing strategies — powered by AI-driven CFO-level insights.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 3, forks: 0",
+      "revenue": null,
+      "tags": [
+        "startup",
+        "startup-app",
+        "startup-applications",
+        "startup-tools"
+      ],
+      "createdAt": "2026-02-10T22:07:05Z"
+    },
+    {
+      "id": "github:ramilyabm/AI-Startup-Market-Intelligence",
+      "source": "github",
+      "title": "ramilyabm/AI-Startup-Market-Intelligence",
+      "url": "https://github.com/ramilyabm/AI-Startup-Market-Intelligence",
+      "targetUser": "data/ML practitioners",
+      "pain": "A GTM intelligence tool for AI startups. Features 2026 ARR/Valuation tracking, a 5-tier investor taxonomy, and automated PDF GTM strategy generation.",
+      "productShape": "GitHub repo (Python)",
+      "pricing": "stars: 2, forks: 0",
+      "revenue": null,
+      "tags": [
+        "data-engineering",
+        "generative-ai",
+        "gtm-strategy",
+        "market-intelligence",
+        "python",
+        "saas",
+        "sales-engineering",
+        "sqlite"
+      ],
+      "createdAt": "2026-03-02T22:19:21Z"
+    },
+    {
+      "id": "github:cloudkoonly/cloudkoonly",
+      "source": "github",
+      "title": "cloudkoonly/cloudkoonly",
+      "url": "https://github.com/cloudkoonly/cloudkoonly",
+      "targetUser": "GitHub users",
+      "pain": "15+ must-have SaaS tools for startups",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "ai",
+        "alternative",
+        "opensource",
+        "saas",
+        "saas-tools",
+        "startups"
+      ],
+      "createdAt": "2024-04-11T13:49:10Z"
+    },
+    {
+      "id": "github:saviel-videoai/AI-Saas-Tools",
+      "source": "github",
+      "title": "saviel-videoai/AI-Saas-Tools",
+      "url": "https://github.com/saviel-videoai/AI-Saas-Tools",
+      "targetUser": "GitHub users",
+      "pain": "A curated list of AI SaaS tools categorized by niche. Perfect for inspiration, research, and startup ideas.",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 1, forks: 1",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-06-24T06:17:28Z"
+    },
+    {
+      "id": "github:mobeen-asghar/StartupNest",
+      "source": "github",
+      "title": "mobeen-asghar/StartupNest",
+      "url": "https://github.com/mobeen-asghar/StartupNest",
+      "targetUser": "GitHub users",
+      "pain": "A platform for entrepreneurs to brainstorm, plan, and visualize startup ideas with AI-driven insights, a SaaS tool for startup validation.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "entrepreneurs",
+        "mvp",
+        "react",
+        "saas",
+        "startup"
+      ],
+      "createdAt": "2025-07-05T04:11:28Z"
+    },
+    {
+      "id": "github:tomrzv/Awesome-SaaS-Launch-List",
+      "source": "github",
+      "title": "tomrzv/Awesome-SaaS-Launch-List",
+      "url": "https://github.com/tomrzv/Awesome-SaaS-Launch-List",
+      "targetUser": "GitHub users",
+      "pain": "Curated list of platforms where you can launch your SaaS, startup or AI tool",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "ai",
+        "betalist",
+        "indie-hacker",
+        "indiedev",
+        "indiehacker",
+        "indiehackers",
+        "indiehacking",
+        "indiemaker"
+      ],
+      "createdAt": "2026-03-29T12:04:18Z"
+    },
+    {
+      "id": "github:lovehrom/saas-idea-hunter",
+      "source": "github",
+      "title": "lovehrom/saas-idea-hunter",
+      "url": "https://github.com/lovehrom/saas-idea-hunter",
+      "targetUser": "developers",
+      "pain": "AI-powered SaaS startup idea discovery tool - scrapes, analyzes and ranks business ideas by commercial potential",
+      "productShape": "GitHub repo (Python)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "ai",
+        "idea-discovery",
+        "openrouter",
+        "python",
+        "saas",
+        "startup",
+        "web-scraping"
+      ],
+      "createdAt": "2026-04-14T06:27:09Z"
+    },
+    {
+      "id": "github:Kod-Atolye/ka-saas-landing-page",
+      "source": "github",
+      "title": "Kod-Atolye/ka-saas-landing-page",
+      "url": "https://github.com/Kod-Atolye/ka-saas-landing-page",
+      "targetUser": "data/ML practitioners",
+      "pain": "Free SaaS landing page HTML template built with Bootstrap 5. Perfect for startups, AI tools, SaaS products and web applications.",
+      "productShape": "GitHub repo (HTML)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "bootstrap-template",
+        "free-html-template",
+        "html-template",
+        "landing-page",
+        "responsive-template",
+        "saas-landing-page",
+        "saas-template",
+        "startup-template"
+      ],
+      "createdAt": "2026-03-12T14:31:11Z"
+    },
+    {
+      "id": "github:Dashwanth15/stacksave-ai-audit",
+      "source": "github",
+      "title": "Dashwanth15/stacksave-ai-audit",
+      "url": "https://github.com/Dashwanth15/stacksave-ai-audit",
+      "targetUser": "GitHub users",
+      "pain": "AI-powered SaaS platform that audits startup AI tool spending, identifies overspending, and recommends cost-saving optimizations with personalized insights.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-05-06T17:01:24Z"
+    },
+    {
+      "id": "github:karale-aryan/FinSight-AI",
+      "source": "github",
+      "title": "karale-aryan/FinSight-AI",
+      "url": "https://github.com/karale-aryan/FinSight-AI",
+      "targetUser": "GitHub users",
+      "pain": "AI spend audit platform that analyzes SaaS and AI tool subscriptions, identifies optimization opportunities, and recommends cost-saving alternatives for teams and startups.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-05-07T14:40:14Z"
+    },
+    {
+      "id": "github:vrajsolanki2005/AI-Spend-Audit-System",
+      "source": "github",
+      "title": "vrajsolanki2005/AI-Spend-Audit-System",
+      "url": "https://github.com/vrajsolanki2005/AI-Spend-Audit-System",
+      "targetUser": "GitHub users",
+      "pain": "AI spend audit platform that analyzes SaaS AI tooling costs, identifies optimization opportunities, and generates shareable savings reports for startups and engineering teams.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [
+        "audit",
+        "fintech",
+        "saas",
+        "supabase",
+        "tailwindcss",
+        "typescript"
+      ],
+      "createdAt": "2026-05-07T06:11:00Z"
+    },
+    {
+      "id": "github:yerdaulet-damir/awesome-saas-fast-stack",
+      "source": "github",
+      "title": "yerdaulet-damir/awesome-saas-fast-stack",
+      "url": "https://github.com/yerdaulet-damir/awesome-saas-fast-stack",
+      "targetUser": "GitHub users",
+      "pain": "SaaS Startup Fast Launch Stack — tools to go from idea → MVP → growth. Free tiers, automation, AI, analytics, payments. Curated by Yerdaulet Damir.",
+      "productShape": "GitHub repo (JavaScript)",
+      "pricing": "stars: 1, forks: 1",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2025-09-16T16:28:49Z"
+    },
+    {
+      "id": "github:Zeeshanmuqaddas/AUTONOMOUS-AI-COMPANY-ORCHESTRATOR-",
+      "source": "github",
+      "title": "Zeeshanmuqaddas/AUTONOMOUS-AI-COMPANY-ORCHESTRATOR-",
+      "url": "https://github.com/Zeeshanmuqaddas/AUTONOMOUS-AI-COMPANY-ORCHESTRATOR-",
+      "targetUser": "GitHub users",
+      "pain": "I built a SaaS AI Startup Orchestrator using React and Gemini 2.5 that runs a multi-agent system (CEO, CTO, CMO, CFO) with structured JSON outputs. It automatically generates complete startup plans including strategy, pr",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-04-23T07:48:30Z"
+    },
+    {
+      "id": "github:JaiveshVaidya/SaaS-Project--Subscription-Based-Platform",
+      "source": "github",
+      "title": "JaiveshVaidya/SaaS-Project--Subscription-Based-Platform",
+      "url": "https://github.com/JaiveshVaidya/SaaS-Project--Subscription-Based-Platform",
+      "targetUser": "developers",
+      "pain": "Designed a subscription-based platform similar to real-world SaaS products like API marketplaces, where users pay to access premium tools and services. Useful for startups offering paid developer utilities, analytics too",
+      "productShape": "GitHub repo (JavaScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-06-20T06:34:53Z"
+    },
+    {
+      "id": "github:Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+      "source": "github",
+      "title": "Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+      "url": "https://github.com/Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+      "targetUser": "data/ML practitioners",
+      "pain": "BaGency is a premium, multi-page HTML template designed for AI automation agencies, SaaS startups, and digital service businesses. It features a modern glassmorphism design system, three homepage variants, fully working ",
+      "productShape": "GitHub repo (HTML)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-04-08T15:41:02Z"
+    },
+    {
+      "id": "github:codingwhiz-BackendDev/Orion-Labs",
+      "source": "github",
+      "title": "codingwhiz-BackendDev/Orion-Labs",
+      "url": "https://github.com/codingwhiz-BackendDev/Orion-Labs",
+      "targetUser": "developers",
+      "pain": "Orion Labs is a forward-thinking tech startup focused on creating innovative AI-powered tools and SaaS products that empower developers, founders, and businesses to launch ideas faster and smarter.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-03-28T23:48:54Z"
+    },
+    {
+      "id": "github:Burlierbeaver/PitchSense",
+      "source": "github",
+      "title": "Burlierbeaver/PitchSense",
+      "url": "https://github.com/Burlierbeaver/PitchSense",
+      "targetUser": "GitHub users",
+      "pain": "AI-powered SaaS tool that listens to your startup pitch (or reads a pitch deck) and gives you real-time investor feedback, tough questions, and a fundability score before you walk into the room.",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-04-09T21:45:46Z"
+    },
+    {
+      "id": "github:faiza22-byte/LaunchPad",
+      "source": "github",
+      "title": "faiza22-byte/LaunchPad",
+      "url": "https://github.com/faiza22-byte/LaunchPad",
+      "targetUser": "GitHub users",
+      "pain": "The AI Startup Idea Generator & Validator is a full-stack web application that helps entrepreneurs generate, validate, and refine startup ideas. Unlike existing tools, this platform provides market validation, competitor",
+      "productShape": "GitHub repo (JavaScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-03-19T19:00:15Z"
+    },
+    {
+      "id": "github:FiazTechnologies/fiaztechnologies.github.io",
+      "source": "github",
+      "title": "FiazTechnologies/fiaztechnologies.github.io",
+      "url": "https://github.com/FiazTechnologies/fiaztechnologies.github.io",
+      "targetUser": "developers",
+      "pain": "Fiaz Technologies builds developer-first tools, AI-powered solutions, SaaS products, mobile applications, and high-performance web platforms for global users. We serve startups and enterprises across India and worldwide,",
+      "productShape": "GitHub repo (TypeScript)",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-04-22T03:24:45Z"
+    },
+    {
+      "id": "github:Sketchjar/submityourwork",
+      "source": "github",
+      "title": "Sketchjar/submityourwork",
+      "url": "https://github.com/Sketchjar/submityourwork",
+      "targetUser": "GitHub users",
+      "pain": "A curated list of 500+ directories, communities, and platforms for launching your startup or website. Organized by category (AI tools, SaaS reviews, Reddit, lifetime deals, press/PR, and more) with traffic estimates and ",
+      "productShape": "GitHub repo",
+      "pricing": "stars: 1, forks: 0",
+      "revenue": null,
+      "tags": [],
+      "createdAt": "2026-04-27T11:25:08Z"
+    },
+    {
+      "id": "gac:1fqtne",
+      "source": "google-autocomplete",
+      "type": "suggestion",
+      "query": "write for us ai saas startup tools",
+      "seedQuery": "ai saas startup tool",
+      "language": "en",
+      "country": "us"
+    },
+    {
+      "id": "gac:ts3pys",
+      "source": "google-autocomplete",
+      "type": "suggestion",
+      "query": "ai saas ideas",
+      "seedQuery": "ai saas startup tool",
+      "language": "en",
+      "country": "us"
+    },
+    {
+      "id": "gac:fco3e6",
+      "source": "google-autocomplete",
+      "type": "suggestion",
+      "query": "what is saas ai",
+      "seedQuery": "ai saas startup tool",
+      "language": "en",
+      "country": "us"
+    }
+  ],
+  "errors": [],
+  "coverage": {
+    "hacker-news": {
+      "label": "Hacker News",
+      "count": 25,
+      "status": "ok"
+    },
+    "github": {
+      "label": "GitHub",
+      "count": 25,
+      "status": "ok"
+    },
+    "google-autocomplete": {
+      "label": "Google Autocomplete",
+      "count": 3,
+      "status": "ok"
+    }
+  },
+  "collectedAt": "2026-07-06T11:52:45.129Z"
+}
