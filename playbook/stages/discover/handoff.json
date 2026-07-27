@@ -4,12 +4,12 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-07-20T10:37:33.162Z",
+  "generatedAt": "2026-07-27T10:59:32.271Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
     "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
-    "promiseCandidate": "\"saas\" theme — 71 signals (pain signals + demand indicators + supply evidence)",
+    "promiseCandidate": "\"saas\" theme — 70 signals (pain signals + demand indicators + supply evidence)",
     "topSignals": [
       "saas-exists",
       "integration-friction",
