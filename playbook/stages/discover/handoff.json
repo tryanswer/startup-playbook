@@ -4,7 +4,7 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-07-27T10:59:32.271Z",
+  "generatedAt": "2026-08-03T11:10:17.082Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
