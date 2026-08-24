@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-08-17T08:28:28.957Z",
+  "generatedAt": "2026-08-24T08:33:30.290Z",
   "status": "completed",
   "score": 53,
   "decision": "pivot",
@@ -323,26 +323,26 @@
         "rank": 3,
         "id": "cluster-startup",
         "theme": "startup",
-        "description": "\"startup\" theme — 7 signals (pain signals + demand indicators + supply evidence)",
+        "description": "\"startup\" theme — 6 signals (pain signals + demand indicators + supply evidence)",
         "targetUser": "Users in Hacker News",
         "painfulSituation": "… hello community, we&#x27;re a startup building a langchain alternative that focuses on delivering better results that are more accurate, faster, and cheaper. our product,…",
         "score": {
-          "painHeat": 7,
-          "caseProof": 15,
+          "painHeat": 11,
+          "caseProof": 12,
           "demandTrend": 2,
           "channelReach": 4,
           "feasibility": 8,
-          "total": 36,
+          "total": 37,
           "breakdown": {
             "painHeat": {
-              "score": 7,
+              "score": 11,
               "max": 40,
-              "description": "1 pain signals detected (rate: 14%), 1 distinct types"
+              "description": "1 pain signals detected (rate: 17%), 1 distinct types"
             },
             "caseProof": {
-              "score": 15,
+              "score": 12,
               "max": 25,
-              "description": "4 supply signals: 2 types detected"
+              "description": "3 supply signals: 2 types detected"
             },
             "demandTrend": {
               "score": 2,
@@ -365,7 +365,7 @@
           "decision": "kill",
           "label": "❌ Kill",
           "color": "red",
-          "reasoning": "Score 36/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+          "reasoning": "Score 37/100 — insufficient evidence of pain or demand. Move on to next opportunity."
         },
         "signalTypes": [
           "frequency",
@@ -380,7 +380,7 @@
         "communities": [
           "Hacker News"
         ],
-        "evidenceCount": 7,
+        "evidenceCount": 6,
         "evidence": [
           {
             "id": "hn:46145118",
