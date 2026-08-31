@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-08-24T08:33:30.290Z",
+  "generatedAt": "2026-08-31T15:34:25.045Z",
   "status": "completed",
   "score": 53,
   "decision": "pivot",
@@ -106,7 +106,7 @@
             "caseProof": {
               "score": 25,
               "max": 25,
-              "description": "59 supply signals: 5 types detected"
+              "description": "59 supply signals: 4 types detected"
             },
             "demandTrend": {
               "score": 7,
@@ -139,8 +139,7 @@
           "pricing-model",
           "repeated-question",
           "purchase-intent",
-          "frequency",
-          "market-growth"
+          "frequency"
         ],
         "sources": [
           "hacker-news",

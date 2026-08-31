@@ -4,7 +4,7 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-08-24T08:33:30.290Z",
+  "generatedAt": "2026-08-31T15:34:25.045Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
@@ -18,8 +18,7 @@
       "pricing-model",
       "repeated-question",
       "purchase-intent",
-      "frequency",
-      "market-growth"
+      "frequency"
     ],
     "suggestedKeywords": [
       "ai saas startup tool"
