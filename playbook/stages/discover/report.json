@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-09-07T13:44:00.714Z",
+  "generatedAt": "2026-09-14T14:29:54.962Z",
   "status": "completed",
   "score": 53,
   "decision": "pivot",
@@ -13,11 +13,11 @@
     "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
     "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
     "saas-exists signal from hacker-news: \"Show HN: I made a tool to help collect and validate startup ideas\"",
-    "integration-friction signal from hacker-news: \"Show HN: Superflows – open-source AI Copilot for SaaS products\"",
-    "open-source signal from hacker-news: \"Show HN: Superflows – open-source AI Copilot for SaaS products\"",
-    "open-source signal from hacker-news: \"Show HN: Superflows – open-source AI Copilot for SaaS products\"",
-    "saas-exists signal from hacker-news: \"Show HN: Superflows – open-source AI Copilot for SaaS products\"",
-    "saas-exists signal from hacker-news: \"Show HN: Superflows – open-source AI Copilot for SaaS products\""
+    "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\""
   ],
   "assumed": [
     "Community signals are discovery evidence, not validation proof."
@@ -47,33 +47,33 @@
     },
     {
       "id": "ev-004",
-      "type": "pain",
-      "source": "hacker-news:hn:37533503",
-      "url": "https://github.com/Superflows-AI/superflows"
+      "type": "supply",
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-005",
       "type": "supply",
-      "source": "hacker-news:hn:37533503",
-      "url": "https://github.com/Superflows-AI/superflows"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-006",
       "type": "supply",
-      "source": "hacker-news:hn:37533503",
-      "url": "https://github.com/Superflows-AI/superflows"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-007",
       "type": "supply",
-      "source": "hacker-news:hn:37533503",
-      "url": "https://github.com/Superflows-AI/superflows"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-008",
       "type": "supply",
-      "source": "hacker-news:hn:37533503",
-      "url": "https://github.com/Superflows-AI/superflows"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     }
   ],
   "concerns": [],
@@ -87,9 +87,9 @@
         "rank": 1,
         "id": "cluster-saas",
         "theme": "saas",
-        "description": "\"saas\" theme — 70 signals (pain signals + demand indicators + supply evidence)",
+        "description": "\"saas\" theme — 66 signals (pain signals + demand indicators + supply evidence)",
         "targetUser": "Users in Hacker News",
-        "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
+        "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
         "score": {
           "painHeat": 13,
           "caseProof": 25,
@@ -101,12 +101,12 @@
             "painHeat": {
               "score": 13,
               "max": 40,
-              "description": "6 pain signals detected (rate: 9%), 2 distinct types"
+              "description": "5 pain signals detected (rate: 8%), 2 distinct types"
             },
             "caseProof": {
               "score": 25,
               "max": 25,
-              "description": "59 supply signals: 4 types detected"
+              "description": "56 supply signals: 4 types detected"
             },
             "demandTrend": {
               "score": 7,
@@ -133,13 +133,13 @@
         },
         "signalTypes": [
           "saas-exists",
-          "integration-friction",
-          "open-source",
           "revenue-signal",
           "pricing-model",
+          "open-source",
           "repeated-question",
           "purchase-intent",
-          "frequency"
+          "frequency",
+          "integration-friction"
         ],
         "sources": [
           "hacker-news",
@@ -181,145 +181,29 @@
             "comments": 51
           },
           {
-            "id": "hn:37533503",
-            "type": "pain",
-            "signalType": "integration-friction",
+            "id": "hn:44632270",
+            "type": "supply",
+            "signalType": "revenue-signal",
             "source": "hacker-news",
-            "title": "Show HN: Superflows – open-source AI Copilot for SaaS products",
-            "url": "https://github.com/Superflows-AI/superflows",
-            "score": 37,
-            "comments": 5
+            "title": "Replit Agent deleted a $1M SaaS startup's production DB",
+            "url": "https://news.ycombinator.com/item?id=44632270",
+            "score": 5,
+            "comments": 8
           },
           {
-            "id": "hn:37533503",
+            "id": "hn:44632270",
             "type": "supply",
-            "signalType": "open-source",
+            "signalType": "revenue-signal",
             "source": "hacker-news",
-            "title": "Show HN: Superflows – open-source AI Copilot for SaaS products",
-            "url": "https://github.com/Superflows-AI/superflows",
-            "score": 37,
-            "comments": 5
+            "title": "Replit Agent deleted a $1M SaaS startup's production DB",
+            "url": "https://news.ycombinator.com/item?id=44632270",
+            "score": 5,
+            "comments": 8
           }
         ]
       },
       {
         "rank": 2,
-        "id": "cluster-show",
-        "theme": "show",
-        "description": "\"show\" theme — 7 signals (pain signals + supply evidence)",
-        "targetUser": "Users in Hacker News",
-        "painfulSituation": "…aybe even useful) if you could easily connect claude to any api. well, actually we thought it would be cool if we could order pizza and shitpost directly from our …",
-        "score": {
-          "painHeat": 25,
-          "caseProof": 15,
-          "demandTrend": 0,
-          "channelReach": 2,
-          "feasibility": 6,
-          "total": 48,
-          "breakdown": {
-            "painHeat": {
-              "score": 25,
-              "max": 40,
-              "description": "3 pain signals detected (rate: 43%), 3 distinct types"
-            },
-            "caseProof": {
-              "score": 15,
-              "max": 25,
-              "description": "4 supply signals: 3 types detected"
-            },
-            "demandTrend": {
-              "score": 0,
-              "max": 15,
-              "description": "No demand trend data"
-            },
-            "channelReach": {
-              "score": 2,
-              "max": 10,
-              "description": "Signals found across 1 source(s): hacker-news"
-            },
-            "feasibility": {
-              "score": 6,
-              "max": 10,
-              "description": "some SaaS competition"
-            }
-          }
-        },
-        "decision": {
-          "decision": "pivot",
-          "label": "🔄 Pivot",
-          "color": "orange",
-          "reasoning": "Score 48/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence."
-        },
-        "signalTypes": [
-          "integration-friction",
-          "pricing-pain",
-          "alternative-seeking",
-          "revenue-signal",
-          "pricing-model",
-          "saas-exists"
-        ],
-        "sources": [
-          "hacker-news"
-        ],
-        "communities": [
-          "Hacker News"
-        ],
-        "evidenceCount": 7,
-        "evidence": [
-          {
-            "id": "hn:42843011",
-            "type": "pain",
-            "signalType": "integration-friction",
-            "source": "hacker-news",
-            "title": "Show HN: emcee – connect agents to APIs (via MCP)",
-            "url": "https://github.com/loopwork-ai/emcee",
-            "score": 6,
-            "comments": 6
-          },
-          {
-            "id": "hn:48440749",
-            "type": "pain",
-            "signalType": "pricing-pain",
-            "source": "hacker-news",
-            "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
-            "url": "https://teardownhq.io",
-            "score": 5,
-            "comments": 3
-          },
-          {
-            "id": "hn:48440749",
-            "type": "pain",
-            "signalType": "alternative-seeking",
-            "source": "hacker-news",
-            "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
-            "url": "https://teardownhq.io",
-            "score": 5,
-            "comments": 3
-          },
-          {
-            "id": "hn:48440749",
-            "type": "supply",
-            "signalType": "revenue-signal",
-            "source": "hacker-news",
-            "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
-            "url": "https://teardownhq.io",
-            "score": 5,
-            "comments": 3
-          },
-          {
-            "id": "hn:48440749",
-            "type": "supply",
-            "signalType": "pricing-model",
-            "source": "hacker-news",
-            "title": "Show HN: TeardownHQ, teardowns/playbooks of how indie startups grew",
-            "url": "https://teardownhq.io",
-            "score": 5,
-            "comments": 3
-          }
-        ]
-      },
-      {
-        "rank": 3,
         "id": "cluster-startup",
         "theme": "startup",
         "description": "\"startup\" theme — 6 signals (pain signals + demand indicators + supply evidence)",
@@ -434,7 +318,7 @@
         ]
       },
       {
-        "rank": 4,
+        "rank": 3,
         "id": "cluster-ask",
         "theme": "ask",
         "description": "\"ask\" theme — 5 signals (pain signals + supply evidence)",
@@ -547,19 +431,19 @@
         ]
       },
       {
-        "rank": 5,
+        "rank": 4,
         "id": "cluster-x2f",
         "theme": "x2f",
-        "description": "\"x2f\" theme — 12 signals (pain signals + supply evidence)",
+        "description": "\"x2f\" theme — 13 signals (pain signals + supply evidence)",
         "targetUser": "Users in Hacker News",
         "painfulSituation": "…les only.<p>must be able to ship: code, infra, ai&#x2f;llm, api. location: will happen either in los angeles or san francisco (in-person needed - full commitment n…",
         "score": {
           "painHeat": 7,
-          "caseProof": 15,
+          "caseProof": 18,
           "demandTrend": 0,
           "channelReach": 2,
           "feasibility": 4,
-          "total": 28,
+          "total": 31,
           "breakdown": {
             "painHeat": {
               "score": 7,
@@ -567,9 +451,9 @@
               "description": "1 pain signals detected (rate: 8%), 1 distinct types"
             },
             "caseProof": {
-              "score": 15,
+              "score": 18,
               "max": 25,
-              "description": "11 supply signals: 3 types detected"
+              "description": "12 supply signals: 3 types detected"
             },
             "demandTrend": {
               "score": 0,
@@ -592,12 +476,12 @@
           "decision": "kill",
           "label": "❌ Kill",
           "color": "red",
-          "reasoning": "Score 28/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+          "reasoning": "Score 31/100 — insufficient evidence of pain or demand. Move on to next opportunity."
         },
         "signalTypes": [
           "saas-exists",
-          "integration-friction",
           "revenue-signal",
+          "integration-friction",
           "pricing-model"
         ],
         "sources": [
@@ -657,6 +541,98 @@
             "url": "https://news.ycombinator.com/item?id=36480230",
             "score": 152,
             "comments": 76
+          }
+        ]
+      },
+      {
+        "rank": 5,
+        "id": "cluster-show",
+        "theme": "show",
+        "description": "\"show\" theme — 3 signals (pain signals + supply evidence)",
+        "targetUser": "Users in Hacker News",
+        "painfulSituation": "…aybe even useful) if you could easily connect claude to any api. well, actually we thought it would be cool if we could order pizza and shitpost directly from our …",
+        "score": {
+          "painHeat": 15,
+          "caseProof": 5,
+          "demandTrend": 0,
+          "channelReach": 2,
+          "feasibility": 6,
+          "total": 28,
+          "breakdown": {
+            "painHeat": {
+              "score": 15,
+              "max": 40,
+              "description": "1 pain signals detected (rate: 33%), 1 distinct types"
+            },
+            "caseProof": {
+              "score": 5,
+              "max": 25,
+              "description": "2 supply signals: 1 types detected"
+            },
+            "demandTrend": {
+              "score": 0,
+              "max": 15,
+              "description": "No demand trend data"
+            },
+            "channelReach": {
+              "score": 2,
+              "max": 10,
+              "description": "Signals found across 1 source(s): hacker-news"
+            },
+            "feasibility": {
+              "score": 6,
+              "max": 10,
+              "description": "some SaaS competition"
+            }
+          }
+        },
+        "decision": {
+          "decision": "kill",
+          "label": "❌ Kill",
+          "color": "red",
+          "reasoning": "Score 28/100 — insufficient evidence of pain or demand. Move on to next opportunity."
+        },
+        "signalTypes": [
+          "integration-friction",
+          "saas-exists"
+        ],
+        "sources": [
+          "hacker-news"
+        ],
+        "communities": [
+          "Hacker News"
+        ],
+        "evidenceCount": 3,
+        "evidence": [
+          {
+            "id": "hn:42843011",
+            "type": "pain",
+            "signalType": "integration-friction",
+            "source": "hacker-news",
+            "title": "Show HN: emcee – connect agents to APIs (via MCP)",
+            "url": "https://github.com/loopwork-ai/emcee",
+            "score": 6,
+            "comments": 6
+          },
+          {
+            "id": "hn:47095056",
+            "type": "supply",
+            "signalType": "saas-exists",
+            "source": "hacker-news",
+            "title": "Show HN: Super Launch – A platform for you to get discovered and grow traffic",
+            "url": "https://super-launch.app",
+            "score": 2,
+            "comments": 2
+          },
+          {
+            "id": "hn:47095056",
+            "type": "supply",
+            "signalType": "saas-exists",
+            "source": "hacker-news",
+            "title": "Show HN: Super Launch – A platform for you to get discovered and grow traffic",
+            "url": "https://super-launch.app",
+            "score": 2,
+            "comments": 2
           }
         ]
       },

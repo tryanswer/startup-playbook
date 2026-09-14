@@ -1,6 +1,6 @@
 # 📊 Startup Opportunity Analysis Report
 
-> Generated: Sep 7, 2026, 01:44 PM | Project: auto-discovery
+> Generated: Sep 14, 2026, 02:29 PM | Project: auto-discovery
 > Query: "ai saas startup tool"
 
 ---
@@ -16,7 +16,7 @@
 ## 📥 Data Coverage
 
 - **Items analyzed**: 54
-- **Signals extracted**: 79
+- **Signals extracted**: 77
 - **Sources**: hacker-news, github, google-autocomplete
 - **Communities**: Hacker News
 
@@ -28,16 +28,16 @@
 
 - **Score**: 53/100
 - **Target user**: Users in Hacker News
-- **Painful situation**: …easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …
-- **Signal types**: saas-exists, integration-friction, open-source, revenue-signal, pricing-model, repeated-question, purchase-intent, frequency
+- **Painful situation**: ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…
+- **Signal types**: saas-exists, revenue-signal, pricing-model, open-source, repeated-question, purchase-intent, frequency, integration-friction
 - **Sources**: hacker-news, github (Hacker News)
 
 **Score breakdown**:
 
 | Dimension | Score | Max | Detail |
 |-----------|-------|-----|--------|
-| painHeat | 13 | 40 | ███░░░░░░░ 6 pain signals detected (rate: 9%), 2 distinct types |
-| caseProof | 25 | 25 | ██████████ 59 supply signals: 4 types detected |
+| painHeat | 13 | 40 | ███░░░░░░░ 5 pain signals detected (rate: 8%), 2 distinct types |
+| caseProof | 25 | 25 | ██████████ 56 supply signals: 4 types detected |
 | demandTrend | 7 | 15 | █████░░░░░ 5 demand signals, payment rate: 6% |
 | channelReach | 4 | 10 | ████░░░░░░ Signals found across 2 source(s): hacker-news, github |
 | feasibility | 4 | 10 | ████░░░░░░ crowded SaaS market |
@@ -48,31 +48,7 @@
 - [Tell HN: I'm a PM at a big system of record SaaS. We're cook](https://news.ycombinator.com/item?id=46917886) — *saas-exists* (hacker-news, score: 103)
 - [Show HN: I made a tool to help collect and validate startup ](https://www.keepmyidea.app) — *saas-exists* (hacker-news, score: 38)
 
-### #2: show 🔄 Pivot
-
-- **Score**: 48/100
-- **Target user**: Users in Hacker News
-- **Painful situation**: …aybe even useful) if you could easily connect claude to any api. well, actually we thought it would be cool if we could order pizza and shitpost directly from our …
-- **Signal types**: integration-friction, pricing-pain, alternative-seeking, revenue-signal, pricing-model, saas-exists
-- **Sources**: hacker-news (Hacker News)
-
-**Score breakdown**:
-
-| Dimension | Score | Max | Detail |
-|-----------|-------|-----|--------|
-| painHeat | 25 | 40 | ██████░░░░ 3 pain signals detected (rate: 43%), 3 distinct types |
-| caseProof | 15 | 25 | ██████░░░░ 4 supply signals: 3 types detected |
-| demandTrend | 0 | 15 | ░░░░░░░░░░ No demand trend data |
-| channelReach | 2 | 10 | ██░░░░░░░░ Signals found across 1 source(s): hacker-news |
-| feasibility | 6 | 10 | ██████░░░░ some SaaS competition |
-
-**Key evidence**:
-
-- [Show HN: emcee – connect agents to APIs (via MCP)](https://github.com/loopwork-ai/emcee) — *integration-friction* (hacker-news, score: 6)
-- [Show HN: TeardownHQ, teardowns/playbooks of how indie startu](https://teardownhq.io) — *pricing-pain* (hacker-news, score: 5)
-- [Show HN: TeardownHQ, teardowns/playbooks of how indie startu](https://teardownhq.io) — *alternative-seeking* (hacker-news, score: 5)
-
-### #3: startup ❌ Kill
+### #2: startup ❌ Kill
 
 - **Score**: 37/100
 - **Target user**: Users in Hacker News
@@ -96,7 +72,7 @@
 - [Show HN: I made StartupLaunchDay,daily startup launches and ](https://startuplaunchday.com/) — *frequency* (hacker-news, score: 1)
 - [Show HN: I made StartupLaunchDay,daily startup launches and ](https://startuplaunchday.com/) — *saas-exists* (hacker-news, score: 1)
 
-### #4: ask ❌ Kill
+### #3: ask ❌ Kill
 
 - **Score**: 35/100
 - **Target user**: Users in Hacker News
@@ -120,12 +96,12 @@
 - [Ask HN: How do you explore emerging technologies/trends?](https://news.ycombinator.com/item?id=39914935) — *repeated-question* (hacker-news, score: 2)
 - [Ask HN: How do you explore emerging technologies/trends?](https://news.ycombinator.com/item?id=39914935) — *saas-exists* (hacker-news, score: 2)
 
-### #5: x2f ❌ Kill
+### #4: x2f ❌ Kill
 
-- **Score**: 28/100
+- **Score**: 31/100
 - **Target user**: Users in Hacker News
 - **Painful situation**: …les only.<p>must be able to ship: code, infra, ai&#x2f;llm, api. location: will happen either in los angeles or san francisco (in-person needed - full commitment n…
-- **Signal types**: saas-exists, integration-friction, revenue-signal, pricing-model
+- **Signal types**: saas-exists, revenue-signal, integration-friction, pricing-model
 - **Sources**: hacker-news (Hacker News)
 
 **Score breakdown**:
@@ -133,7 +109,7 @@
 | Dimension | Score | Max | Detail |
 |-----------|-------|-----|--------|
 | painHeat | 7 | 40 | ██░░░░░░░░ 1 pain signals detected (rate: 8%), 1 distinct types |
-| caseProof | 15 | 25 | ██████░░░░ 11 supply signals: 3 types detected |
+| caseProof | 18 | 25 | ███████░░░ 12 supply signals: 3 types detected |
 | demandTrend | 0 | 15 | ░░░░░░░░░░ No demand trend data |
 | channelReach | 2 | 10 | ██░░░░░░░░ Signals found across 1 source(s): hacker-news |
 | feasibility | 4 | 10 | ████░░░░░░ crowded SaaS market |
@@ -143,6 +119,30 @@
 - [Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam sea](https://andisearch.com/) — *saas-exists* (hacker-news, score: 352)
 - [Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam sea](https://andisearch.com/) — *saas-exists* (hacker-news, score: 352)
 - [Launch HN: Andi (YC W22) – Q&A based, ad-free, anti-spam sea](https://andisearch.com/) — *saas-exists* (hacker-news, score: 352)
+
+### #5: show ❌ Kill
+
+- **Score**: 28/100
+- **Target user**: Users in Hacker News
+- **Painful situation**: …aybe even useful) if you could easily connect claude to any api. well, actually we thought it would be cool if we could order pizza and shitpost directly from our …
+- **Signal types**: integration-friction, saas-exists
+- **Sources**: hacker-news (Hacker News)
+
+**Score breakdown**:
+
+| Dimension | Score | Max | Detail |
+|-----------|-------|-----|--------|
+| painHeat | 15 | 40 | ████░░░░░░ 1 pain signals detected (rate: 33%), 1 distinct types |
+| caseProof | 5 | 25 | ██░░░░░░░░ 2 supply signals: 1 types detected |
+| demandTrend | 0 | 15 | ░░░░░░░░░░ No demand trend data |
+| channelReach | 2 | 10 | ██░░░░░░░░ Signals found across 1 source(s): hacker-news |
+| feasibility | 6 | 10 | ██████░░░░ some SaaS competition |
+
+**Key evidence**:
+
+- [Show HN: emcee – connect agents to APIs (via MCP)](https://github.com/loopwork-ai/emcee) — *integration-friction* (hacker-news, score: 6)
+- [Show HN: Super Launch – A platform for you to get discovered](https://super-launch.app) — *saas-exists* (hacker-news, score: 2)
+- [Show HN: Super Launch – A platform for you to get discovered](https://super-launch.app) — *saas-exists* (hacker-news, score: 2)
 
 ---
 
@@ -165,7 +165,7 @@
 
 ---
 
-*Report generated by Startup Playbook Analyzer — Sep 7, 2026, 01:44 PM*
+*Report generated by Startup Playbook Analyzer — Sep 14, 2026, 02:29 PM*
 
 ## 💼 Business Model Recommendation
 
@@ -186,8 +186,8 @@
 
 ### Alternative models
 
-- 🏪 **Marketplace / Platform** (fit: 58/100) — Connects buyers and sellers, takes a commission
 - ⚙️ **Developer Tool / API** (fit: 58/100) — Technical product for developers with usage-based or seat-based pricing
+- 🏪 **Marketplace / Platform** (fit: 48/100) — Connects buyers and sellers, takes a commission
 
 ### ☑️ Pricing Checklist
 

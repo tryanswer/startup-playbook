@@ -4,21 +4,21 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-09-07T13:44:00.714Z",
+  "generatedAt": "2026-09-14T14:29:54.962Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
-    "painfulSituation": "…easy to integrate an llm-powered copilot that talks to your api into software products.<p>it works by calling api endpoints which you choose to expose to it. this …",
-    "promiseCandidate": "\"saas\" theme — 70 signals (pain signals + demand indicators + supply evidence)",
+    "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
+    "promiseCandidate": "\"saas\" theme — 66 signals (pain signals + demand indicators + supply evidence)",
     "topSignals": [
       "saas-exists",
-      "integration-friction",
-      "open-source",
       "revenue-signal",
       "pricing-model",
+      "open-source",
       "repeated-question",
       "purchase-intent",
-      "frequency"
+      "frequency",
+      "integration-friction"
     ],
     "suggestedKeywords": [
       "ai saas startup tool"
