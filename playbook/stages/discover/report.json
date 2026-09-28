@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-09-21T14:37:11.591Z",
+  "generatedAt": "2026-09-28T16:08:39.680Z",
   "status": "completed",
   "score": 53,
   "decision": "pivot",
@@ -705,12 +705,12 @@
             "comments": 0
           },
           {
-            "id": "github:Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+            "id": "github:iyanski/finmod",
             "type": "supply",
             "signalType": "saas-exists",
             "source": "github",
-            "title": "Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
-            "url": "https://github.com/Bacodev-com/BaGency-AI-SaaS-Digital-Agency-HTML-Template-Free",
+            "title": "iyanski/finmod",
+            "url": "https://github.com/iyanski/finmod",
             "score": 0,
             "comments": 0
           }
