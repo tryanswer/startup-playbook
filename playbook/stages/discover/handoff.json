@@ -4,12 +4,12 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-09-28T16:08:39.680Z",
+  "generatedAt": "2026-10-05T16:30:07.957Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
     "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
-    "promiseCandidate": "\"saas\" theme — 66 signals (pain signals + demand indicators + supply evidence)",
+    "promiseCandidate": "\"saas\" theme — 64 signals (pain signals + demand indicators + supply evidence)",
     "topSignals": [
       "saas-exists",
       "revenue-signal",
@@ -17,14 +17,13 @@
       "open-source",
       "repeated-question",
       "purchase-intent",
-      "frequency",
-      "integration-friction"
+      "frequency"
     ],
     "suggestedKeywords": [
       "ai saas startup tool"
     ],
     "suggestedSubreddits": [],
-    "score": 53,
+    "score": 47,
     "decision": "pivot"
   }
 }

@@ -3,12 +3,12 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-09-28T16:08:39.680Z",
+  "generatedAt": "2026-10-05T16:30:07.957Z",
   "status": "completed",
-  "score": 53,
+  "score": 47,
   "decision": "pivot",
   "nextStageAction": "stay",
-  "reasoning": "Score 53/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence.",
+  "reasoning": "Score 47/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence.",
   "known": [
     "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
     "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
@@ -87,21 +87,21 @@
         "rank": 1,
         "id": "cluster-saas",
         "theme": "saas",
-        "description": "\"saas\" theme — 66 signals (pain signals + demand indicators + supply evidence)",
+        "description": "\"saas\" theme — 64 signals (pain signals + demand indicators + supply evidence)",
         "targetUser": "Users in Hacker News",
         "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
         "score": {
-          "painHeat": 13,
+          "painHeat": 9,
           "caseProof": 25,
-          "demandTrend": 7,
+          "demandTrend": 5,
           "channelReach": 4,
           "feasibility": 4,
-          "total": 53,
+          "total": 47,
           "breakdown": {
             "painHeat": {
-              "score": 13,
+              "score": 9,
               "max": 40,
-              "description": "5 pain signals detected (rate: 8%), 2 distinct types"
+              "description": "4 pain signals detected (rate: 6%), 1 distinct types"
             },
             "caseProof": {
               "score": 25,
@@ -109,9 +109,9 @@
               "description": "56 supply signals: 4 types detected"
             },
             "demandTrend": {
-              "score": 7,
+              "score": 5,
               "max": 15,
-              "description": "5 demand signals, payment rate: 6%"
+              "description": "4 demand signals, payment rate: 5%"
             },
             "channelReach": {
               "score": 4,
@@ -129,7 +129,7 @@
           "decision": "pivot",
           "label": "🔄 Pivot",
           "color": "orange",
-          "reasoning": "Score 53/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence."
+          "reasoning": "Score 47/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence."
         },
         "signalTypes": [
           "saas-exists",
@@ -138,8 +138,7 @@
           "open-source",
           "repeated-question",
           "purchase-intent",
-          "frequency",
-          "integration-friction"
+          "frequency"
         ],
         "sources": [
           "hacker-news",
@@ -726,12 +725,12 @@
         "hacker-news",
         "github"
       ],
-      "convergenceScore": 100,
+      "convergenceScore": 90,
       "assessment": "Strong triangulation: pain confirmed, demand validated, supply landscape mapped."
     },
     "confidence": {
       "level": "high",
-      "score": 100,
+      "score": 90,
       "label": "High confidence — multiple sources converge"
     },
     "gaps": []
