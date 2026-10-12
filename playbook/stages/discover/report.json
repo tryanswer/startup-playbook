@@ -3,7 +3,7 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-10-05T16:30:07.957Z",
+  "generatedAt": "2026-10-12T17:04:21.832Z",
   "status": "completed",
   "score": 47,
   "decision": "pivot",
@@ -24,7 +24,8 @@
   ],
   "toValidate": [
     "Narrow the \"saas\" opportunity: focus on a more specific user segment.",
-    "Collect additional data from at least 2 more sources to cross-validate."
+    "Collect additional data from at least 2 more sources to cross-validate.",
+    "Add more data sources to reduce single-source bias (recommend: add HN + GitHub + App Store)."
   ],
   "evidenceRefs": [
     {
@@ -79,7 +80,8 @@
   "concerns": [],
   "nextSteps": [
     "Narrow the \"saas\" opportunity: focus on a more specific user segment.",
-    "Collect additional data from at least 2 more sources to cross-validate."
+    "Collect additional data from at least 2 more sources to cross-validate.",
+    "Add more data sources to reduce single-source bias (recommend: add HN + GitHub + App Store)."
   ],
   "analysis": {
     "opportunities": [
