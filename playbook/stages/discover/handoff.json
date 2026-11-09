@@ -4,12 +4,12 @@
   "projectId": "auto-discovery",
   "fromStage": "discover",
   "toStage": "validate",
-  "generatedAt": "2026-11-02T17:29:41.020Z",
+  "generatedAt": "2026-11-09T17:53:25.441Z",
   "summary": {
     "candidateId": "cluster-saas",
     "targetUserCandidate": "Users in Hacker News",
     "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
-    "promiseCandidate": "\"saas\" theme — 65 signals (pain signals + demand indicators + supply evidence)",
+    "promiseCandidate": "\"saas\" theme — 64 signals (pain signals + demand indicators + supply evidence)",
     "topSignals": [
       "saas-exists",
       "revenue-signal",
