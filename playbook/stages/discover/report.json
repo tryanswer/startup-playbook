@@ -3,21 +3,21 @@
   "artifactType": "stage-report",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-11-09T17:53:25.441Z",
+  "generatedAt": "2026-11-16T17:35:04.914Z",
   "status": "completed",
   "score": 51,
   "decision": "pivot",
   "nextStageAction": "stay",
   "reasoning": "Score 51/100 — some signals but gaps remain. Consider narrowing the segment, changing the angle, or collecting more evidence.",
   "known": [
-    "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
-    "saas-exists signal from hacker-news: \"Tell HN: I'm a PM at a big system of record SaaS. We're cooked\"",
     "saas-exists signal from hacker-news: \"Show HN: I made a tool to help collect and validate startup ideas\"",
     "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
     "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
     "revenue-signal signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
     "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
-    "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\""
+    "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "pricing-model signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\"",
+    "saas-exists signal from hacker-news: \"Replit Agent deleted a $1M SaaS startup's production DB\""
   ],
   "assumed": [
     "Community signals are discovery evidence, not validation proof."
@@ -30,20 +30,20 @@
     {
       "id": "ev-001",
       "type": "supply",
-      "source": "hacker-news:hn:46917886",
-      "url": "https://news.ycombinator.com/item?id=46917886"
+      "source": "hacker-news:hn:41243703",
+      "url": "https://www.keepmyidea.app"
     },
     {
       "id": "ev-002",
       "type": "supply",
-      "source": "hacker-news:hn:46917886",
-      "url": "https://news.ycombinator.com/item?id=46917886"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-003",
       "type": "supply",
-      "source": "hacker-news:hn:41243703",
-      "url": "https://www.keepmyidea.app"
+      "source": "hacker-news:hn:44632270",
+      "url": "https://news.ycombinator.com/item?id=44632270"
     },
     {
       "id": "ev-004",
@@ -87,7 +87,7 @@
         "rank": 1,
         "id": "cluster-saas",
         "theme": "saas",
-        "description": "\"saas\" theme — 64 signals (pain signals + demand indicators + supply evidence)",
+        "description": "\"saas\" theme — 66 signals (pain signals + demand indicators + supply evidence)",
         "targetUser": "Users in Hacker News",
         "painfulSituation": "ask hn: ai-first saas vs. ai-assisted. which one will survive? the world is so much blurred with ai-singul…",
         "score": {
@@ -106,7 +106,7 @@
             "caseProof": {
               "score": 25,
               "max": 25,
-              "description": "55 supply signals: 4 types detected"
+              "description": "57 supply signals: 5 types detected"
             },
             "demandTrend": {
               "score": 5,
@@ -138,6 +138,7 @@
           "open-source",
           "repeated-question",
           "purchase-intent",
+          "market-growth",
           "frequency",
           "pricing-pain"
         ],
@@ -150,26 +151,6 @@
         ],
         "evidenceCount": 8,
         "evidence": [
-          {
-            "id": "hn:46917886",
-            "type": "supply",
-            "signalType": "saas-exists",
-            "source": "hacker-news",
-            "title": "Tell HN: I'm a PM at a big system of record SaaS. We're cooked",
-            "url": "https://news.ycombinator.com/item?id=46917886",
-            "score": 103,
-            "comments": 46
-          },
-          {
-            "id": "hn:46917886",
-            "type": "supply",
-            "signalType": "saas-exists",
-            "source": "hacker-news",
-            "title": "Tell HN: I'm a PM at a big system of record SaaS. We're cooked",
-            "url": "https://news.ycombinator.com/item?id=46917886",
-            "score": 103,
-            "comments": 46
-          },
           {
             "id": "hn:41243703",
             "type": "supply",
@@ -194,6 +175,26 @@
             "id": "hn:44632270",
             "type": "supply",
             "signalType": "revenue-signal",
+            "source": "hacker-news",
+            "title": "Replit Agent deleted a $1M SaaS startup's production DB",
+            "url": "https://news.ycombinator.com/item?id=44632270",
+            "score": 5,
+            "comments": 8
+          },
+          {
+            "id": "hn:44632270",
+            "type": "supply",
+            "signalType": "revenue-signal",
+            "source": "hacker-news",
+            "title": "Replit Agent deleted a $1M SaaS startup's production DB",
+            "url": "https://news.ycombinator.com/item?id=44632270",
+            "score": 5,
+            "comments": 8
+          },
+          {
+            "id": "hn:44632270",
+            "type": "supply",
+            "signalType": "pricing-model",
             "source": "hacker-news",
             "title": "Replit Agent deleted a $1M SaaS startup's production DB",
             "url": "https://news.ycombinator.com/item?id=44632270",
