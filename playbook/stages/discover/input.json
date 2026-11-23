@@ -3,13 +3,12 @@
   "artifactType": "stage-input",
   "projectId": "auto-discovery",
   "stage": "discover",
-  "generatedAt": "2026-11-16T17:35:04.914Z",
+  "generatedAt": "2026-11-23T19:34:00.793Z",
   "query": "ai saas startup tool",
   "sources": [
     "hacker-news",
-    "github",
-    "google-autocomplete"
+    "github"
   ],
-  "itemCount": 53,
-  "collectedAt": "2026-11-16T17:35:04.902Z"
+  "itemCount": 50,
+  "collectedAt": "2026-11-23T19:34:00.778Z"
 }
